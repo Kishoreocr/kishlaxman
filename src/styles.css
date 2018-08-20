@@ -1,0 +1,91 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+.no-paddings{
+    padding-left:0px !important;
+    padding-right:0px !important;
+}
+.carousel-indicators li {
+background-color:#0069af;
+width:10px;
+height:10px;
+border-radius:50px;
+}
+.carousel-indicators .active{
+    background-color:#ff5f00;
+}
+.carousel-control-prev, .carousel-control-next{
+    display:none;
+}
+.dropdown-menu{
+    margin: 0.99em 0 0;
+    border-top:0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border:0px;
+    box-shadow:1px 4px 5px rgba(0,0,0,0.3);
+}
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.dropdown-toggle::after{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 0.255em;
+    vertical-align: 0px !important;
+    border-top: 0px solid !important;
+    border-right: 0px solid transparent !important; 
+    border-bottom: 0px !important; 
+    border-left: 0px solid transparent !important; 
+    content:"\f107";
+    font-family: FontAwesome;
+}
+li.nav-item{
+    padding-right:20px;
+}
+.dropdown-item {
+   
+    font-weight: 400;
+    color: #0063ab;
+
+}
+.submit-btn{
+    background-color: #fd8236;
+    color: #fff;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border:0px;
+    cursor: pointer;
+    outline: 0;
+    outline-style: none;
+}
+.submit-btn:focus{
+    outline: 0;
+    }
+.modal-header{
+    padding: 10px 15px !important;
+}
+.modal-header > .modal-title{
+    font-size: 16px !important;
+}
+.modal-header > .modal-title > button.close{
+    padding-top: 0.2em;
+}
+button.glyphicon-remove::after {
+    content: "\f00d";
+    font-family: FontAwesome;
+    font-size:16px;
+    color:#ccc;
+}
+.modal-header .close {
+    padding: 0.8rem !important;
+    margin: -1rem -1rem -1rem auto;
+    outline: none;
+}
