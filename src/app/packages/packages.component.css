@@ -137,3 +137,12 @@
     border:0px;
     font-weight: 500;
 }
+.modallg{
+    width: 600px !important;
+}
+.modal-body{
+    width: 600px !important;
+}
+.modal-dialog{
+    width: 600px !important;
+}

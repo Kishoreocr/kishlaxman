@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
-import { ModalDialogService } from 'ngx-modal-dialog';
+import { ModalDialogService,IModalDialogButton } from 'ngx-modal-dialog';
 import { PackageconfirmComponent } from '../packageconfirm/packageconfirm.component'
 
 @Component({
@@ -20,6 +20,8 @@ export class PackagesComponent implements OnInit {
 
     this.modalService = modalService;
     this.viewRef = viewRef;
+    
+
    }
 
   ngOnInit() {
@@ -33,7 +35,7 @@ export class PackagesComponent implements OnInit {
     }
   
     if(selected === 'PLANB' || selected === 'PLANA' || selected === 'PLANC'){
-      this.openNewDialog();
+      this.openNewDialog(selected);
     }
   }
 
@@ -64,10 +66,11 @@ export class PackagesComponent implements OnInit {
 
   }
 
-  openNewDialog() {
+  openNewDialog(selected) {
     this.modalService.openDialog(this.viewRef, {
       title: 'Confirm Plan choosen?',
-      childComponent: PackageconfirmComponent
+      childComponent: PackageconfirmComponent,
+      data: selected,settings:{modalClass: 'modal fade ngx-modal blue'}
     });
   }
 }
