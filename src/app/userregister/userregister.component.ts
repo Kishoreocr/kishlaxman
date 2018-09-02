@@ -14,7 +14,7 @@ export class UserregisterComponent implements OnInit {
   submitted = false;
   modalService:any;
   viewRef:any;
-
+loading:String;
   constructor(private formBuilder: FormBuilder, private router:Router, modalService: ModalDialogService, viewRef: ViewContainerRef) { 
 
     this.modalService = modalService;

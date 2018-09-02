@@ -20,8 +20,8 @@
 
                     <i class="fa fa-credit-card"></i> Transactions
                 </li>
-                <li [ngClass]="{'activeTabdash': profileTab}" (click)="userdashTabs('Profile')">
-
+                <!-- <li [ngClass]="{'activeTabdash': profileTab}" (click)="userdashTabs('Profile')"> -->
+                    <li [ngClass]="{'activeTabdash': profileTab}" >
                     <i class="fa fa-user"></i> Profile
                 </li>
 
@@ -35,7 +35,10 @@
 
             <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
 
-                <div *ngIf="addProperty && !viewProperties" class="propertyheading" (click)="propertyFun()">
+                <!-- <div *ngIf="addProperty && !viewProperties" class="propertyheading" (click)="propertyFun()">
+                    <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
+                </div> -->
+                <div *ngIf="addProperty && !viewProperties" class="propertyheading" >
                     <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
                 </div>
                 <div *ngIf="!addProperty && viewProperties" class="propertyheading" (click)="propertyFun()">

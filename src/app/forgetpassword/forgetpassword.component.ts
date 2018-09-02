@@ -94,7 +94,9 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
         // this.actionButtons[1].onAction();
         setTimeout(function () {
           //this_.routerProperty.navigateByUrl('/registerform');
-          window.location.href = '/loginform'
+          //window.location.href = '/loginform'
+          window.location.reload(true);
+
         }, 2000);
       }
       else {
