@@ -409,12 +409,12 @@
                                     <input type="text" [readonly]="!isEditDisabled" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.firstName.errors }"
                                     />
                                     <div *ngIf="submitted && feditP.firstName.errors" class="invalid-feedback">
-                                            <div *ngIf="feditP.firstName.errors.required">First Name is required</div>
-                                        </div>
+                                        <div *ngIf="feditP.firstName.errors.required">First Name is required</div>
+                                    </div>
                                 </div>
-                           
-                           
-                           
+
+
+
                             </div>
 
 
@@ -424,10 +424,10 @@
                                     <input type="text" [readonly]="!isEditDisabled" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.lastName.errors }"
                                     />
                                     <div *ngIf="submitted && feditP.lastName.errors" class="invalid-feedback">
-                                            <div *ngIf="feditP.lastName.errors.required">Name is required</div>
-                                        </div>
-                                
-                    
+                                        <div *ngIf="feditP.lastName.errors.required">Name is required</div>
+                                    </div>
+
+
                                 </div>
 
                             </div>
