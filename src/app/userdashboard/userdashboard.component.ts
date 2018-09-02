@@ -23,10 +23,11 @@ export class UserdashboardComponent implements OnInit {
   propertyForm: FormGroup;
   submitted = false;
   isEditDisabled: boolean = false;
-  userEditprofileFlag: boolean =false;
+  userEditprofileFlag: boolean = false;
 
   updateuserForm: FormGroup;
-  userchangepwdflag:boolean = false;
+  updateuserNewpwdForm: FormGroup;
+  userchangepwdflag: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef) {
     this.modalService = modalService;
@@ -39,7 +40,8 @@ export class UserdashboardComponent implements OnInit {
     this.isEditDisabled = false;
     this.userchangepwdflag = true;
     this.userEditprofileFlag = false;
-    
+    this.submitted = false;
+
     this.propertyForm = this.formBuilder.group({
       typeofProperty: ['', Validators.required],
       titleHolder: ['', Validators.required],
@@ -58,25 +60,32 @@ export class UserdashboardComponent implements OnInit {
       state: ['', Validators.required]
     });
 
-      this.updateuserForm = this.formBuilder.group({
-          firstName: ['', Validators.required],
-          lastName: ['', Validators.required],
-          email: ['', [Validators.required, Validators.email]],
-          mobileNumber: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
-          zipCode: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(5)])],
-       
-      });
-  
-      this.updateuserForm.value.firstName = "laxman";
-      
+    this.updateuserForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+      zipCode: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(6)])],
+
+    });
+
+    this.updateuserNewpwdForm = this.formBuilder.group({
+      oldpwd: ['', Validators.required],
+      newpwd: ['', Validators.required],
+      confirmpwd: ['', Validators.required],
+
+    });
+
+    this.updateuserForm.value.firstName = "laxman";
+
 
   }
   // convenience getter for easy access to form fields
   get f() { return this.propertyForm.controls; }
 
-  get feditP() { 
-    return this.updateuserForm.controls; }
-  
+  get feditP() { return this.updateuserForm.controls }
+
+  get fpwdP() { return this.updateuserNewpwdForm.controls }
 
 
 
@@ -137,23 +146,27 @@ export class UserdashboardComponent implements OnInit {
 
   }
 
-  ChangingValue(){
-    
+  ChangingValue() {
+
   }
 
-  updateuserFun(){
+  updateuserFun() {
     this.submitted = true;
   }
 
-  profileeditFun(){
+  profileeditFun() {
     this.isEditDisabled = !this.isEditDisabled;
     this.userchangepwdflag = true;
     this.userEditprofileFlag = false;
   }
 
-  profileChangepwdFun(){
-  this.userchangepwdflag = false;
-  this.userEditprofileFlag = true;
+  profileChangepwdFun() {
+    this.userchangepwdflag = false;
+    this.userEditprofileFlag = true;
+  }
+
+  profileChangepwdSubmit() {
+    this.submitted = true;
   }
 
 }

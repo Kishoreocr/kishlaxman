@@ -406,7 +406,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.firstName.errors }"
+                                    <input type="text" [readonly]="!isEditDisabled" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.firstName.errors && isEditDisabled }"
                                     />
                                     <div *ngIf="submitted && feditP.firstName.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.firstName.errors.required">First Name is required</div>
@@ -421,7 +421,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.lastName.errors }"
+                                    <input type="text" [readonly]="!isEditDisabled" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.lastName.errors && isEditDisabled}"
                                     />
                                     <div *ngIf="submitted && feditP.lastName.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.lastName.errors.required">Name is required</div>
@@ -435,7 +435,11 @@
                                 <label class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-4">
                                     <input type="text" value="laxmancse525@gmail.com" [readonly]="!isEditDisabled" formControlName="email" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                        [ngClass]="{ 'is-invalid': submitted && feditP.email.errors && isEditDisabled}" />
+
+                                    <div *ngIf="submitted && feditP.email.errors" class="invalid-feedback">
+                                        <div *ngIf="feditP.email.errors.required">Email Name is required</div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -443,7 +447,13 @@
                                 <label class="col-sm-2 col-form-label">Mobile Number</label>
                                 <div class="col-sm-4">
                                     <input type="text" value="8374463962" [readonly]="!isEditDisabled" maxlength="10" formControlName="mobileNumber" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" />
+                                        [ngClass]="{ 'is-invalid': submitted && feditP.mobileNumber.errors && isEditDisabled}"
+                                    />
+
+                                    <div *ngIf="submitted && feditP.mobileNumber.errors" class="invalid-feedback">
+                                        <div *ngIf="feditP.mobileNumber.errors.required">Mobile Number Name is required</div>
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -451,22 +461,11 @@
                                 <label class="col-sm-2 col-form-label">zipCode</label>
                                 <div class="col-sm-4">
                                     <input type="text" value="500032" [readonly]="!isEditDisabled" maxlength="5" formControlName="zipCode" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
-                                </div>
+                                        [ngClass]="{ 'is-invalid': submitted && feditP.zipCode.errors && isEditDisabled}" />
 
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Password</label>
-                                <div class="col-sm-4">
-                                    <input type="password" value="123@gmail" [readonly]="!isEditDisabled" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-                                    />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Confirm Password</label>
-                                <div class="col-sm-4">
-                                    <input type="password" value="123@gmail" [readonly]="!isEditDisabled" formControlName="confirmPassword" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                                    <div *ngIf="submitted && feditP.zipCode.errors" class="invalid-feedback">
+                                        <div *ngIf="feditP.zipCode.errors.required">Zip Code is required</div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -482,30 +481,39 @@
 
                     <div *ngIf="!userchangepwdflag && userEditprofileFlag">
 
-                        <form [formGroup]="updateuserForm" (ngSubmit)="updateuserFun()">
-
-
+                        <form [formGroup]="updateuserNewpwdForm" (ngSubmit)="profileChangepwdSubmit()">
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Old Password</label>
                                 <div class="col-sm-4">
-                                    <input type="password" value="123@gmail" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                    <input type="password" formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
                                     />
+                                    <div *ngIf="submitted && fpwdP.oldpwd.errors" class="invalid-feedback">
+                                        <div *ngIf="fpwdP.oldpwd.errors.required">Old Password is required</div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">New Password</label>
                                 <div class="col-sm-4">
-                                    <input type="password" value="123@gmail" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                    <input type="password" formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
                                     />
+                                    <div *ngIf="submitted && fpwdP.newpwd.errors" class="invalid-feedback">
+                                        <div *ngIf="fpwdP.newpwd.errors.required">New Password is required</div>
+                                    </div>
+                                
+                                
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Confirm Password</label>
                                 <div class="col-sm-4">
-                                    <input type="password" value="123@gmail" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+                                    <input type="password" formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
                                     />
+                                    <div *ngIf="submitted && fpwdP.confirmpwd.errors" class="invalid-feedback">
+                                        <div *ngIf="fpwdP.confirmpwd.errors.required">New Password is required</div>
+                                    </div>
                                 </div>
 
                             </div>
