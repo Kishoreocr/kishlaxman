@@ -1,0 +1,177 @@
+<div class="container" style="padding:50px;padding-bottom:100px;">
+  <h4 style="text-align:center;padding:10px;">We Have a Package Plan That Fits You.
+    <br/>
+    <p style="font-size:14px;font-weight:200;word-spacing: 2px;padding:5px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+  </h4>
+
+  <div class="row justify-content-center d-block d-sm-none">
+
+    <div class="col-md-3 package-tile-style" style="background-color:#f3f2f2;">
+      <div class="package-hding">
+        MAKER PLAN
+        <P>1-MONTH</P>
+      </div>
+      <div class="package-options">
+        <ul>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i>Lorem Ipsum is simply dummy.</li>
+
+        </ul>
+
+      </div>
+
+      <div align="center">
+        <span class="package-btn">GET STARTED</span>
+      </div>
+
+    </div>
+
+    <div class="col-md-3 package-tile-style" style="background-color:#f7810a70;">
+
+      <div class="package-hding">
+        COMMERCIAL PLAN
+        <P>1-YEAR</P>
+      </div>
+      <div class="package-options">
+        <ul>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i>Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i>Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i>Lorem Ipsum is simply dummy.</li>
+        </ul>
+
+      </div>
+
+      <div align="center">
+        <span class="package-btn">GET STARTED</span>
+      </div>
+
+
+
+    </div>
+
+    <div class="col-md-3 package-tile-style" style="background-color:#f3f2f2;">
+
+      <div class="package-hding">
+        ENTERPRICE PALN
+        <P>CUSTOM</P>
+      </div>
+      <div class="package-options">
+        <ul>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
+          <li>
+            <i class="fa fa-check"></i>Lorem Ipsum is simply dummy.</li>
+
+        </ul>
+
+      </div>
+
+      <div align="center">
+        <div class="package-btn" (click)="packageFun('custom')">GET STARTED</div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- display only at large screens  -->
+
+  <div class="row justify-content-center d-none d-sm-block">
+
+    <div class="package-container">
+
+      <div class="package-side-left">
+        <ul>
+          <li [ngClass]="{'active-package-tab':planATab}" (click)="plansTabFun('PLANA')">MONTHLY</li>
+          <li [ngClass]="{'active-package-tab':planBTab}" (click)="plansTabFun('PLANB')">YEARLY</li>
+          <li [ngClass]="{'active-package-tab':planCTab}" (click)="plansTabFun('PLANC')">CUSTOM</li>
+        </ul>
+      </div>
+
+      <div class="package-right-side">
+
+        <div *ngIf="planATab">
+          <div class="package-right-side-contain">
+            <h5 class="package-choose-color">MONTHLY</h5>
+            <p class="package-contain-heading">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            <p class="package-font-style">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+              galley of type and scrambled it to make a type specimen book.</p>
+            <p class="package-font-style">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+              galley of type and scrambled it to make a type specimen book.</p>
+            <div align="center">
+              <div class="orange-clr-btn" (click)="packageFun('PLANA')">GET STARTED</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div *ngIf="planBTab">
+          <div class="package-right-side-contain">
+            <h5 class="package-choose-color">YEARLY</h5>
+            <p class="package-contain-heading">
+              Lorem Ipsum has been the dndustry's standard dummy text ever since, when an unknown printer took.</p>
+            <p class="package-font-style">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+              galley of type and scrambled it to make a type specimen book.
+            </p>
+            <p class="package-font-style">Lorem Ipsum has been the dndustry's standard dummy text ever since the 1500s, when an unknown printer took a
+              galley of type and scrambled it to make a type specimen book.</p>
+            <div align="center">
+              <div class="orange-clr-btn" (click)="packageFun('PLANB')">GET STARTED</div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="planCTab">
+          <div class="package-right-side-contain">
+            <h5 class="package-choose-color">CUSTOM</h5>
+            <p class="package-contain-heading">
+              While we have taken care to make sure that we have createred a Pocket friendly Plan for you.</p>
+            <p class="package-font-style">If you feel your property needs different monitiring as you need customised monitiring for your different properties.
+              Kindly feel free to contact us and get customised a quote.
+            </p>
+            <p class="package-font-style">Lorem Ipsum has been the dndustry's standard dummy text ever since the 1500s, when an unknown printer took a
+              galley of type and scrambled it to make a type specimen book.</p>
+            <div align="center">
+              <div class="orange-clr-btn" (click)="packageFun('PLANB')">GET STARTED</div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+</div>

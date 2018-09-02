@@ -27,17 +27,10 @@ export class UserregisterComponent implements OnInit {
           lastName: ['', Validators.required],
           email: ['', [Validators.required, Validators.email]],
           mobileNumber:[null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
-          zipCode:['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(6)])],
+          zipCode:['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(5)])],
           password: ['', [Validators.required, Validators.minLength(6)]],
           confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
       });
-  }
-  keyPress(event: any) {
-    const pattern = /[0-9]/; //^[6-9]\d{9}$
-    let inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode != 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
-    }
   }
 
   // convenience getter for easy access to form fields

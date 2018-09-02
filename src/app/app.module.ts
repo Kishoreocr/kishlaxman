@@ -12,6 +12,11 @@ import { UserdashboardComponent } from './userdashboard/userdashboard.component'
 
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { MessagemodalpopupComponent } from './messagemodalpopup/messagemodalpopup.component';
+import { SuccessregsiterComponent } from './successregsiter/successregsiter.component';
+import { PackagesComponent } from './packages/packages.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { ViewpropertyComponent } from './viewproperty/viewproperty.component';
+import { PwdchangesuccessComponent } from './pwdchangesuccess/pwdchangesuccess.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,7 +27,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   { path: 'userdashboard', component: UserdashboardComponent },
-  { path: '**', component:PagenotfoundComponent }
+  { path: 'success-register', component: SuccessregsiterComponent },
+  { path: 'package-choose', component: PackagesComponent },
+  { path: 'forget-password', component: ForgetpasswordComponent },
+
+  { path: '**', component: PagenotfoundComponent }
 ];
 
 @NgModule({
@@ -33,9 +42,18 @@ const appRoutes: Routes = [
     UserregisterComponent,
     PagenotfoundComponent,
     UserdashboardComponent,
-    MessagemodalpopupComponent
+    MessagemodalpopupComponent,
+    SuccessregsiterComponent,
+    PackagesComponent,
+    ForgetpasswordComponent,
+    ViewpropertyComponent,
+    PwdchangesuccessComponent
   ],
-  entryComponents:[MessagemodalpopupComponent],
+  entryComponents:[
+    MessagemodalpopupComponent,
+    ForgetpasswordComponent,
+    ViewpropertyComponent
+  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,

@@ -3,7 +3,8 @@ import { Userdata } from '../userdata';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { ModalDialogService } from 'ngx-modal-dialog';
-import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpopup.component'
+import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpopup.component';
+import { ForgetpasswordComponent } from '../forgetpassword/forgetpassword.component'
 @Component({
   selector: 'app-userlogin',
   templateUrl: './userlogin.component.html',
@@ -27,6 +28,8 @@ export class UserloginComponent implements OnInit {
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef) {
     this.disabledField = false;
     this.routerProperty = router;
+    this.modalService = modalService;
+    this.viewRef  = viewRef;
 
     // if (this.routerProperty.url === '/loginform')
     //       {
@@ -51,7 +54,9 @@ export class UserloginComponent implements OnInit {
   saveUser() {
     this.submitted = true;
     if (this.userloginForm.value.username === 'demo@gmail.com' && this.userloginForm.value.userpwd === 'demo123') {
-      this.routerProperty.navigateByUrl('/userdashboard');
+     
+      this.routerProperty.navigateByUrl('/package-choose');
+      
       this.userloginForm.value.username = "";
       this.userloginForm.value.userpwd = "";
     }
@@ -76,6 +81,17 @@ export class UserloginComponent implements OnInit {
     // if (this.userloginForm.dirty && this.userloginForm.valid) {
     //  // alert(`user Name: ${this.userloginForm.value.username} password: ${this.userloginForm.value.userpwd}`);
     // }
+  }
+
+  forgetPWD(event){
+    event.preventDefault();
+    this.openNewDialog();
+  }
+  openNewDialog() {
+    this.modalService.openDialog(this.viewRef, {
+      title: 'Forgot your Password?',
+      childComponent: ForgetpasswordComponent
+    });
   }
 
 }

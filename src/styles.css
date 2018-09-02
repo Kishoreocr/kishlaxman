@@ -89,3 +89,18 @@ button.glyphicon-remove::after {
     margin: -1rem -1rem -1rem auto;
     outline: none;
 }
+/** **/
+
+
+@media (min-width: 576px)
+{
+.modal-dialog {
+    max-width: 80% !important;
+    margin: 1.75rem auto;
+}
+}
+
+.modal-dialog {
+    max-width: 80% !important;
+    margin: 1.75rem auto;
+}

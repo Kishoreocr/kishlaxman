@@ -36,7 +36,7 @@ export class MessagemodalpopupComponent implements OnInit, IModalDialog {
   OTPSave() {
     this.submitted = true;
     if (this.otpForm.value.otp === '1234') {
-      this.routerProperty.navigateByUrl('/userdashboard');
+      this.routerProperty.navigateByUrl('/success-register');
       this.otpForm.value.otp = "";
     }
     else if (this.otpForm.value.otp) {
