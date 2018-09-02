@@ -17,6 +17,7 @@ import { PackagesComponent } from './packages/packages.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ViewpropertyComponent } from './viewproperty/viewproperty.component';
 import { PwdchangesuccessComponent } from './pwdchangesuccess/pwdchangesuccess.component';
+import { PackageconfirmComponent } from './packageconfirm/packageconfirm.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -47,12 +48,14 @@ const appRoutes: Routes = [
     PackagesComponent,
     ForgetpasswordComponent,
     ViewpropertyComponent,
-    PwdchangesuccessComponent
+    PwdchangesuccessComponent,
+    PackageconfirmComponent
   ],
   entryComponents:[
     MessagemodalpopupComponent,
     ForgetpasswordComponent,
-    ViewpropertyComponent
+    ViewpropertyComponent,
+    PackageconfirmComponent
   ],
   imports: [
     BrowserModule,

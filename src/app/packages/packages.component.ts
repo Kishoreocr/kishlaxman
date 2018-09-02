@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
+import { ModalDialogService } from 'ngx-modal-dialog';
+import { PackageconfirmComponent } from '../packageconfirm/packageconfirm.component'
 
 @Component({
   selector: 'app-packages',
@@ -11,21 +13,28 @@ export class PackagesComponent implements OnInit {
   planBTab:boolean=false;
   planCTab:boolean=false;
   activeTabflag:boolean=false;
-  constructor(private router: Router) { }
+  modalService:any;
+  viewRef:any;
+
+  constructor(private router: Router,  modalService: ModalDialogService, viewRef: ViewContainerRef) {
+
+    this.modalService = modalService;
+    this.viewRef = viewRef;
+   }
 
   ngOnInit() {
     this.planBTab = true;
   }
 
   packageFun(selected){
+
     if(selected === 'custom'){
     this.router.navigateByUrl('/userdashboard');
     }
   
     if(selected === 'PLANB' || selected === 'PLANA' || selected === 'PLANC'){
-      this.router.navigateByUrl('/userdashboard');
+      this.openNewDialog();
     }
-
   }
 
 
@@ -55,4 +64,10 @@ export class PackagesComponent implements OnInit {
 
   }
 
+  openNewDialog() {
+    this.modalService.openDialog(this.viewRef, {
+      title: 'Confirm Plan choosen?',
+      childComponent: PackageconfirmComponent
+    });
+  }
 }
