@@ -4,7 +4,9 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { ModalDialogService } from 'ngx-modal-dialog';
 import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpopup.component';
-import { ForgetpasswordComponent } from '../forgetpassword/forgetpassword.component'
+import { ForgetpasswordComponent } from '../forgetpassword/forgetpassword.component';
+import { EgazeService } from '../services/egaze.service';
+
 @Component({
   selector: 'app-userlogin',
   templateUrl: './userlogin.component.html',
@@ -25,7 +27,9 @@ export class UserloginComponent implements OnInit {
   attemptloginMessage: string;
   modalService: any;
   viewRef: any;
-  constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef) {
+  invalidCredential:string;
+  
+  constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService:EgazeService ) {
     this.disabledField = false;
     this.routerProperty = router;
     this.modalService = modalService;
@@ -51,8 +55,24 @@ export class UserloginComponent implements OnInit {
   }
   // convenience getter for easy access to form fields
   get f() { return this.userloginForm.controls; }
-  saveUser() {
+  
+  saveUser(userloginForm) {
     this.submitted = true;
+    this.EgazeService.loginFun(userloginForm).subscribe(message => { 
+
+
+    if(null){
+       this.invalidCredential = "Invalid Credential"
+    }
+    else{
+      this.routerProperty.navigateByUrl('/package-choose');
+      
+      this.userloginForm.value.username = "";
+      this.userloginForm.value.userpwd = "";
+    }
+     
+    });
+
     if (this.userloginForm.value.username === 'demo@gmail.com' && this.userloginForm.value.userpwd === 'demo123') {
      
       this.routerProperty.navigateByUrl('/package-choose');

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule }    from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
@@ -18,6 +19,8 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { ViewpropertyComponent } from './viewproperty/viewproperty.component';
 import { PwdchangesuccessComponent } from './pwdchangesuccess/pwdchangesuccess.component';
 import { PackageconfirmComponent } from './packageconfirm/packageconfirm.component';
+import { EgazeService} from './services/egaze.service'
+
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -61,10 +64,11 @@ const appRoutes: Routes = [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
     ModalDialogModule.forRoot()
   ],
-  providers: [],
+  providers: [EgazeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

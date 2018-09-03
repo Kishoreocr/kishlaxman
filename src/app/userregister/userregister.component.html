@@ -3,7 +3,7 @@
             <div class="col-md-5 offset-md-4 userregisterForm">
                 <h4>Sign Up</h4>
                 <p>Please fill in this form to create an account!</p>
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
                     <div class="form-group">
                         <label class="radio-inline" style="margin-right:6px;">
                             <input type="radio" name="registerType" checked> Customer
@@ -33,6 +33,9 @@
                             <div *ngIf="f.email.errors.required">Email is required</div>
                             <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                         </div>
+                        <div *ngIf="existsUser && existsUser.length > 0">
+                           <div style="color:red">{{existsUser}}</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Mobile Number</label>
@@ -44,10 +47,10 @@
                     </div>
                     <div class="form-group">
                         <label>zipCode</label>
-                        <input type="text" maxlength="5" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
+                        <input type="text" maxlength="6" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
                         <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
                             <div *ngIf="f.zipCode.errors.required">Zipcode is required</div>
-                            <div *ngIf="f.zipCode.errors.minlength">ZipCode must be at 5 digits only</div>
+                            <div *ngIf="f.zipCode.errors.minlength">ZipCode must be at 6 digits only</div>
                         </div>
                     </div>
                     <div class="form-group">
