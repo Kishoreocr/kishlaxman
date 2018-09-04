@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container-fluid no-gutters no-paddings">
-    <header *ngIf="false" style="background-color:#fff;box-shadow: 2px 2px 2px rgba(0,0,0,0.2);z-index: 1;
+    <header *ngIf=!flag style="background-color:#fff;box-shadow: 2px 2px 2px rgba(0,0,0,0.2);z-index: 1;
         position: relative;">
         <div class="container no-paddings">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -64,7 +64,7 @@
     </header>
 
 
-    <header *ngIf="true" style="background-color:#fff;box-shadow: 2px 2px 2px rgba(0,0,0,0.2);z-index: 1;position: relative;">
+    <header *ngIf=flag style="background-color:#fff;box-shadow: 2px 2px 2px rgba(0,0,0,0.2);z-index: 1;position: relative;">
         <nav class="navbar navbar-expand-lg navbar-light">
                 <div  class="col-sm-2">
             <a class="navbar-brand" routerLink="/home" routerLinkActive="activeClss">
@@ -79,12 +79,13 @@
                         <a style="color:#1275af;font-size:17px;margin-left:50px;" class="nav-link dropdown-toggle" [ngClass]="'active'" [ngClass]="{'activeClass': activeColor}" href="#" id="navbarDropdownMenuLinkAccount"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user-circle" style="font-size:22px;"></i>
-                            <span>Kiran M</span>
+                            <span>{{user.email}}</span>
                         </a>
 
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkAccount">
-                            <a class="dropdown-item" routerLink="/loginform" routerLinkActive="activeClss">Logout</a>
+                            <!-- <a class="dropdown-item" routerLink="/loginform" routerLinkActive="activeClss">Logout</a> -->
+                            <a class="dropdown-item" (click)="logout()">Logout</a> 
                             <a class="dropdown-item" routerLink="/registerform" routerLinkActive="activeClss">Alerts</a>
                         </div>
                     </li>

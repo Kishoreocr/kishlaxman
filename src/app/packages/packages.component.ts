@@ -20,12 +20,14 @@ export class PackagesComponent implements OnInit {
 
     this.modalService = modalService;
     this.viewRef = viewRef;
-    
+    //
+
 
    }
 
   ngOnInit() {
     this.planBTab = true;
+    //window.location.reload(true);
   }
 
   packageFun(selected){

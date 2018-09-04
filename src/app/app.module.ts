@@ -19,8 +19,8 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { ViewpropertyComponent } from './viewproperty/viewproperty.component';
 import { PwdchangesuccessComponent } from './pwdchangesuccess/pwdchangesuccess.component';
 import { PackageconfirmComponent } from './packageconfirm/packageconfirm.component';
-import { EgazeService} from './services/egaze.service'
-
+import { EgazeService} from './services/egaze.service';
+import {SessionstorageService} from './services/sessionstorage.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -68,7 +68,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
     ModalDialogModule.forRoot()
   ],
-  providers: [EgazeService],
+  providers: [EgazeService,SessionstorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

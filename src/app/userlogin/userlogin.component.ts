@@ -6,6 +6,8 @@ import { ModalDialogService } from 'ngx-modal-dialog';
 import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpopup.component';
 import { ForgetpasswordComponent } from '../forgetpassword/forgetpassword.component';
 import { EgazeService } from '../services/egaze.service';
+import { SessionstorageService } from '../services/sessionstorage.service';
+import{ AppConstants} from '../services/constants'
 
 @Component({
   selector: 'app-userlogin',
@@ -27,14 +29,14 @@ export class UserloginComponent implements OnInit {
   attemptloginMessage: string;
   modalService: any;
   viewRef: any;
-  invalidCredential:string;
-  
-  constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService:EgazeService ) {
+  invalidCredential: string;
+  user: any;
+  constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
     this.disabledField = false;
     this.routerProperty = router;
     this.modalService = modalService;
-    this.viewRef  = viewRef;
-
+    this.viewRef = viewRef;
+    this.sessionstorageService.removeUserDetails("user");
     // if (this.routerProperty.url === '/loginform')
     //       {
     //         this.activeColor = true;
@@ -55,55 +57,56 @@ export class UserloginComponent implements OnInit {
   }
   // convenience getter for easy access to form fields
   get f() { return this.userloginForm.controls; }
-  
+
   saveUser(userloginForm) {
-    this.submitted = true;
-    this.EgazeService.loginFun(userloginForm).subscribe(message => { 
+    if (this.userloginForm.valid) {
 
+      this.EgazeService.loginFun(userloginForm).subscribe(message => {
+        //alert(message);
 
-    if(null){
-       this.invalidCredential = "Invalid Credential"
-    }
-    else{
-      this.routerProperty.navigateByUrl('/package-choose');
-      
-      this.userloginForm.value.username = "";
-      this.userloginForm.value.userpwd = "";
-    }
-     
-    });
-
-    if (this.userloginForm.value.username === 'demo@gmail.com' && this.userloginForm.value.userpwd === 'demo123') {
-     
-      this.routerProperty.navigateByUrl('/package-choose');
-      
-      this.userloginForm.value.username = "";
-      this.userloginForm.value.userpwd = "";
-    }
-    else {
-      if (this.loginAttemptcount == 0 && this.userloginForm.value.username && this.userloginForm.value.userpwd) {
-        this.attemptloginMessage = 'Your account has been locked, Please wait for some time..';
-        //alert("No Login Attempts Available , Please wait for some time..");
-      }
-      else if (this.userloginForm.value.username && this.userloginForm.value.userpwd) {
-        this.loginAttemptcount = this.loginAttemptcount - 1;
-        this.attemptloginMessage = 'Login Failed Now Only ' + this.loginAttemptcount + ' Login Attempts Available, Please enter valid Username and Password.';
-        //alert("Login Failed Now Only "+this.loginAttemptcount+" Login Attempts Available");
-        if (this.loginAttemptcount == 0) {
-          this.disabledField = true;
+        if (message === null) {
+          this.invalidCredential = "Invalid Credentials";
+          if (this.loginAttemptcount == 0 && this.userloginForm.value.username && this.userloginForm.value.userpwd) {
+            this.attemptloginMessage = 'Your account has been locked, Please wait for some time..';
+          }
+          else if (this.userloginForm.value.username && this.userloginForm.value.userpwd) {
+            this.loginAttemptcount = this.loginAttemptcount - 1;
+            this.attemptloginMessage = 'Login Failed Now Only ' + this.loginAttemptcount + ' Login Attempts Available, Please enter valid Username and Password.';
+            if (this.loginAttemptcount == 0) {
+              this.disabledField = true;
+            }
+          }
         }
-      }
+        else {
+          this.user = JSON.stringify(message);
+          var msg = { "loginId": this.user.loginId, "email": this.user.email, 'role': this.user.role, 'status': this.user.status };
+          this.sessionstorageService.setUserDetails(msg);
+          window.location.href=AppConstants.packageURL;
+         // this.routerProperty.navigateByUrl('/package-choose');
+
+          this.userloginForm.value.username = "";
+          this.userloginForm.value.userpwd = "";
+        }
+
+      });
+
+      // if (this.userloginForm.value.username === 'demo@gmail.com' && this.userloginForm.value.userpwd === 'demo123') {
+
+      //   this.routerProperty.navigateByUrl('/package-choose');
+
+      //   this.userloginForm.value.username = "";
+      //   this.userloginForm.value.userpwd = "";
+      // }
+
+      // return false;
+    } else {
+      this.submitted = true;
+
+
     }
-    return false;
-    // else {
-    //   this.routerProperty.navigateByUrl('/loginform');
-    // }
-    // if (this.userloginForm.dirty && this.userloginForm.valid) {
-    //  // alert(`user Name: ${this.userloginForm.value.username} password: ${this.userloginForm.value.userpwd}`);
-    // }
   }
 
-  forgetPWD(event){
+  forgetPWD(event) {
     event.preventDefault();
     this.openNewDialog();
   }

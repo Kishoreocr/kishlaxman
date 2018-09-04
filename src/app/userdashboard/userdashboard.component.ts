@@ -28,7 +28,7 @@ export class UserdashboardComponent implements OnInit {
   updateuserForm: FormGroup;
   updateuserNewpwdForm: FormGroup;
   userchangepwdflag: boolean = false;
-
+user:any;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef) {
     this.modalService = modalService;
     this.viewRef = viewRef;
