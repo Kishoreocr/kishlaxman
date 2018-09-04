@@ -81,6 +81,7 @@ export class UserloginComponent implements OnInit {
           this.user = JSON.stringify(message);
           var msg = { "loginId": this.user.loginId, "email": this.user.email, 'role': this.user.role, 'status': this.user.status };
           this.sessionstorageService.setUserDetails(msg);
+          //alert(msg);
           window.location.href=AppConstants.packageURL;
          // this.routerProperty.navigateByUrl('/package-choose');
 

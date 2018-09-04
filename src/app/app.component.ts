@@ -24,10 +24,11 @@ export class AppComponent {
   constructor(router: Router, route: ActivatedRoute, private sessionstorageService: SessionstorageService) {
 
     this.routerProperty = router;
-    this.user = JSON.parse(this.sessionstorageService.getUserDetails());
-    //alert(typeof this.user)
+    this.user =this.sessionstorageService.getUserDetails();
+   // alert(JSON.parse(this.user));
     if (this.user != null) {
       this.flag = true;
+     // this.user=JSON.parse(this.user);
     }
     // if (this.routerProperty.url === '/loginform') {
     //   debugger
