@@ -1,17 +1,153 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <title>EGazeApp</title>
+  <title>::EGazeApp::</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+    /*** spinner styles here ****/
+
+    .loadingDiv {
+      text-align: center;
+      display: inline-block;
+      margin: 0 auto;
+      width: 150px;
+    }
+
+    .lds-div-roller {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+    }
+
+    .lds-div-roller div {
+      animation: lds-div-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      transform-origin: 32px 32px;
+    }
+
+    .lds-div-roller div:after {
+      content: " ";
+      display: block;
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #1275af;
+      margin: -3px 0 0 -3px;
+    }
+
+    .lds-div-roller div:nth-child(1) {
+      animation-delay: -0.036s;
+    }
+
+    .lds-div-roller div:nth-child(1):after {
+      top: 50px;
+      left: 50px;
+    }
+
+    .lds-div-roller div:nth-child(2) {
+      animation-delay: -0.072s;
+    }
+
+    .lds-div-roller div:nth-child(2):after {
+      top: 54px;
+      left: 45px;
+    }
+
+    .lds-div-roller div:nth-child(3) {
+      animation-delay: -0.108s;
+    }
+
+    .lds-div-roller div:nth-child(3):after {
+      top: 57px;
+      left: 39px;
+    }
+
+    .lds-div-roller div:nth-child(4) {
+      animation-delay: -0.144s;
+    }
+
+    .lds-div-roller div:nth-child(4):after {
+      top: 58px;
+      left: 32px;
+    }
+
+    .lds-div-roller div:nth-child(5) {
+      animation-delay: -0.18s;
+    }
+
+    .lds-div-roller div:nth-child(5):after {
+      top: 57px;
+      left: 25px;
+    }
+
+    .lds-div-roller div:nth-child(6) {
+      animation-delay: -0.216s;
+    }
+
+    .lds-div-roller div:nth-child(6):after {
+      top: 54px;
+      left: 19px;
+    }
+
+    .lds-div-roller div:nth-child(7) {
+      animation-delay: -0.252s;
+    }
+
+    .lds-div-roller div:nth-child(7):after {
+      top: 50px;
+      left: 14px;
+    }
+
+    .lds-div-roller div:nth-child(8) {
+      animation-delay: -0.288s;
+    }
+
+    .lds-div-roller div:nth-child(8):after {
+      top: 45px;
+      left: 10px;
+    }
+
+    @keyframes lds-div-roller {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <app-root>Loading..</app-root>
+  <app-root>
+    <div style="text-align:center;padding:100px">
+      <div>
+        <img src="./assets/images/eGAZE_logo.png" width="100px" />
+      </div>
+      <div class="lds-div-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <h4>Loading...</h4>
+    </div>
+
+  </app-root>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
 </html>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ElementRef } from '@angular/core';
 import { ModalDialogService, IModalDialogSettings } from 'ngx-modal-dialog';
 import { ViewpropertyComponent } from '../viewproperty/viewproperty.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -29,7 +29,8 @@ export class UserdashboardComponent implements OnInit {
   updateuserNewpwdForm: FormGroup;
   userchangepwdflag: boolean = false;
 user:any;
-  constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef) {
+acc:any;
+  constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef) {
     this.modalService = modalService;
     this.viewRef = viewRef;
   }
@@ -76,10 +77,27 @@ user:any;
 
     });
 
-    this.updateuserForm.value.firstName = "laxman";
-
-
   }
+  ngAfterViewChecked(){
+    // you'll get your through 'elements' below code
+    debugger;
+    let acc = this.elem.nativeElement.querySelectorAll('.alertDivstyles');
+    let i;
+   for (i = 0; i < acc.length; i++) {
+       acc[i].addEventListener("click", function() {
+           /* Toggle between adding and removing the "active" class,
+           to highlight the button that controls the panel */
+           this.classList.toggle("active");
+           /* Toggle between hiding and showing the active panel */
+           var panel = this.nextElementSibling;
+           if (panel.style.display === "block") {
+               panel.style.display = "none";
+           } else {
+               panel.style.display = "block";
+           }
+       });
+   }
+}
   // convenience getter for easy access to form fields
   get f() { return this.propertyForm.controls; }
 
@@ -168,5 +186,13 @@ user:any;
   profileChangepwdSubmit() {
     this.submitted = true;
   }
+
+
+  
+
+
+
+
+
 
 }

@@ -21,7 +21,7 @@
                     <i class="fa fa-credit-card"></i> Transactions
                 </li>
                 <!-- <li [ngClass]="{'activeTabdash': profileTab}" (click)="userdashTabs('Profile')"> -->
-                    <li [ngClass]="{'activeTabdash': profileTab}" >
+                <li [ngClass]="{'activeTabdash': profileTab}">
                     <i class="fa fa-user"></i> Profile
                 </li>
 
@@ -38,7 +38,7 @@
                 <!-- <div *ngIf="addProperty && !viewProperties" class="propertyheading" (click)="propertyFun()">
                     <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
                 </div> -->
-                <div *ngIf="addProperty && !viewProperties" class="propertyheading" >
+                <div *ngIf="addProperty && !viewProperties" class="propertyheading">
                     <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
                 </div>
                 <div *ngIf="!addProperty && viewProperties" class="propertyheading" (click)="propertyFun()">
@@ -383,8 +383,105 @@
             <!---propety Tab -->
 
             <!-- Alerts tab -->
-            <div *ngIf="!propertyTab && alertsTab && !transactionsTab && !profileTab">
-                <p style="text-align:center;padding:50px;">Alerts page is under construction</p>
+            <div *ngIf="!propertyTab && alertsTab && !transactionsTab && !profileTab" class="table-container-style">
+
+                <div class='mainAlertcontainer'>
+
+                        <div class='alertcontainer' style='margin-bottom:5px;background-color: #fdf8f5;vertical-align: middle;
+                        color: #1275af;font-size: 14px;'>
+                                <div class='alertColomns'>
+                                        #
+                                </div>
+                                <div class='alertColomns'>
+                                    Type
+                                </div>
+                                <div class='alertColomns'>
+                                    Date
+                                </div>
+                                <div class='alertColomns'>
+                                    Heading4
+                                </div>
+                                <div class='alertColomns'>
+                                       Heading5
+                                    </div>
+                                <div class='alertColomns'>
+                                
+                                    
+                                </div>
+                            </div>
+
+                    <div class="alertDivstyles">
+
+                        <div class='alertcontainer'>
+                            <div class='alertColomns'>
+                                1
+                            </div>
+                            <div class='alertColomns'>
+                                dummy content
+                            </div>
+                            <div class='alertColomns'>
+                                dummy content
+                            </div>
+                            <div class='alertColomns'>
+                                dummy content
+                            </div>
+                            <div class='alertColomns'>
+                                    dummy content
+                                </div>
+                            <div class='alertColomns'>
+
+                                <div class="dropdown-toggle"></div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class='accordionshowHide'>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+                                text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                                to make a type specimen book.
+                            </p>
+                        </div>
+
+
+                    <div class="alertDivstyles">
+                        <div class='alertcontainer'>
+                            <div class='alertColomns'>
+                                2
+                            </div>
+                            <div class='alertColomns'>
+                                dummy content
+                            </div>
+                            <div class='alertColomns'>
+                                dummy content
+                            </div>
+                            <div class='alertColomns'>
+                                dummy content
+                            </div>
+                            <div class='alertColomns'>
+                                    dummy content
+                                </div>
+                            <div class='alertColomns'>
+                                <div class="dropdown-toggle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='accordionshowHide'>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+                                text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                                to make a type specimen book.
+                            </p>
+                        </div>
+
+
+
+
+
+                </div>
+
             </div>
             <!-- Alerts tab -->
 
@@ -505,8 +602,8 @@
                                     <div *ngIf="submitted && fpwdP.newpwd.errors" class="invalid-feedback">
                                         <div *ngIf="fpwdP.newpwd.errors.required">New Password is required</div>
                                     </div>
-                                
-                                
+
+
                                 </div>
                             </div>
                             <div class="form-group row">

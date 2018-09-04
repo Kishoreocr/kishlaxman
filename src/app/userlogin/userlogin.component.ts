@@ -7,7 +7,8 @@ import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpop
 import { ForgetpasswordComponent } from '../forgetpassword/forgetpassword.component';
 import { EgazeService } from '../services/egaze.service';
 import { SessionstorageService } from '../services/sessionstorage.service';
-import{ AppConstants} from '../services/constants'
+import { AppConstants } from '../services/constants';
+import { LoadingDivComponent } from '../loading-div/loading-div.component'
 
 @Component({
   selector: 'app-userlogin',
@@ -31,6 +32,8 @@ export class UserloginComponent implements OnInit {
   viewRef: any;
   invalidCredential: string;
   user: any;
+  isLoading: boolean;
+
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
     this.disabledField = false;
     this.routerProperty = router;
@@ -60,10 +63,10 @@ export class UserloginComponent implements OnInit {
 
   saveUser(userloginForm) {
     if (this.userloginForm.valid) {
-
+      this.isLoading = true;
       this.EgazeService.loginFun(userloginForm).subscribe(message => {
         //alert(message);
-
+        this.isLoading = false;
         if (message === null) {
           this.invalidCredential = "Invalid Credentials";
           if (this.loginAttemptcount == 0 && this.userloginForm.value.username && this.userloginForm.value.userpwd) {
@@ -82,8 +85,8 @@ export class UserloginComponent implements OnInit {
           var msg = { "loginId": this.user.loginId, "email": this.user.email, 'role': this.user.role, 'status': this.user.status };
           this.sessionstorageService.setUserDetails(msg);
           //alert(msg);
-          window.location.href=AppConstants.packageURL;
-         // this.routerProperty.navigateByUrl('/package-choose');
+          window.location.href = AppConstants.packageURL;
+          // this.routerProperty.navigateByUrl('/package-choose');
 
           this.userloginForm.value.username = "";
           this.userloginForm.value.userpwd = "";

@@ -21,6 +21,8 @@ import { PwdchangesuccessComponent } from './pwdchangesuccess/pwdchangesuccess.c
 import { PackageconfirmComponent } from './packageconfirm/packageconfirm.component';
 import { EgazeService} from './services/egaze.service';
 import {SessionstorageService} from './services/sessionstorage.service';
+import { LoadingDivComponent } from './loading-div/loading-div.component';
+import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -52,7 +54,9 @@ const appRoutes: Routes = [
     ForgetpasswordComponent,
     ViewpropertyComponent,
     PwdchangesuccessComponent,
-    PackageconfirmComponent
+    PackageconfirmComponent,
+    LoadingDivComponent,
+    AdmindashboardComponent
   ],
   entryComponents:[
     MessagemodalpopupComponent,
