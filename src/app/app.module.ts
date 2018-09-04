@@ -23,6 +23,7 @@ import { EgazeService} from './services/egaze.service';
 import {SessionstorageService} from './services/sessionstorage.service';
 import { LoadingDivComponent } from './loading-div/loading-div.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
+import { AdminModule } from './admin/admin.module';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -57,6 +58,7 @@ const appRoutes: Routes = [
     PackageconfirmComponent,
     LoadingDivComponent,
     AdmindashboardComponent
+    
   ],
   entryComponents:[
     MessagemodalpopupComponent,
@@ -70,7 +72,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
-    ModalDialogModule.forRoot()
+    ModalDialogModule.forRoot(),AdminModule
   ],
   providers: [EgazeService,SessionstorageService],
   bootstrap: [AppComponent]
