@@ -8,7 +8,7 @@ import { ForgetpasswordComponent } from '../forgetpassword/forgetpassword.compon
 import { EgazeService } from '../services/egaze.service';
 import { SessionstorageService } from '../services/sessionstorage.service';
 import { AppConstants } from '../services/constants';
-import { LoadingDivComponent } from '../loading-div/loading-div.component'
+import { LoadingDivComponent } from '../loading-div/loading-div.component';
 
 @Component({
   selector: 'app-userlogin',

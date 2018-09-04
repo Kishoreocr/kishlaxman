@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { ModalDialogService } from 'ngx-modal-dialog';
 import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpopup.component'
 import { EgazeService } from '../services/egaze.service';
+import { LoadingDivComponent } from '../loading-div/loading-div.component';
 
 @Component({
   selector: 'app-userregister',
@@ -17,6 +18,8 @@ export class UserregisterComponent implements OnInit {
   viewRef: any;
   loading: string;
   existsUser: string;
+  isLoading: boolean;
+
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
 
     this.modalService = modalService;
@@ -46,13 +49,15 @@ export class UserregisterComponent implements OnInit {
       return;
     }
     else {
-
+      this.isLoading = true;
       this.EgazeService.existingUserFun(formData.value.email).subscribe(
         result => {
           if (result) {
+            this.isLoading = false;
             this.existsUser = "This email address already exists.";
           }
           else {
+            this.isLoading = false;
             sessionStorage.setItem("formData", JSON.stringify(formData.value));
             this.openNewDialog(formData);
           }

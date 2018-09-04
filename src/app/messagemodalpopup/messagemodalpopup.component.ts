@@ -5,6 +5,7 @@ import { ComponentFixture } from '../../../node_modules/@angular/core/testing';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { EgazeService } from '../services/egaze.service'
 import { jsonpCallbackContext } from '../../../node_modules/@angular/common/http/src/module';
+import { LoadingDivComponent } from '../loading-div/loading-div.component';
 @Component({
   selector: 'app-messagemodalpopup',
   templateUrl: './messagemodalpopup.component.html',
@@ -19,12 +20,15 @@ export class MessagemodalpopupComponent implements OnInit, IModalDialog {
   parentFormdata: any;
   otpValue: any;
   userFormValue: any;
+  isLoading: boolean;
 
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, private EgazeService: EgazeService) {
     this.routerProperty = router;
     this.userFormValue = JSON.parse(sessionStorage.getItem("formData"));
     debugger;
+    this.isLoading = true;
     this.EgazeService.getOTP(this.userFormValue.email).subscribe(otp => {
+      this.isLoading = false;
       this.otpValue = otp;
     });
   }
@@ -52,25 +56,28 @@ export class MessagemodalpopupComponent implements OnInit, IModalDialog {
 
   OTPSave() {
     this.submitted = true;
+    this.isLoading = true;
     if (parseInt(this.otpForm.value.otp) === this.otpValue) {
       debugger;
       //this.otpForm.value.otp = "";
-
       this.EgazeService.registerFun(this.userFormValue).subscribe(result => {
-        debugger;
+        this.isLoading = false;
         if (result) {
           this.routerProperty.navigateByUrl('/success-register');
         }
       },
         error => {
+          this.isLoading = false;
           console.log(error);
         }
       );
     }
     else if (this.otpForm.value.otp) {
+      this.isLoading = false;
       this.errorMessage = "Invalid OTP."
     }
     else {
+      this.isLoading = false;
       this.errorValidation = "OTP is required"
     }
   }
