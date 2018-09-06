@@ -5,7 +5,7 @@ export class SessionstorageService {
 
   constructor() { }
 
-  getUserDetails() {
+  getUserDetails():Object {
     return localStorage.getItem("user");
   }
   setUserDetails(key) {

@@ -33,7 +33,7 @@ export class UserloginComponent implements OnInit {
   invalidCredential: string;
   user: any;
   isLoading: boolean;
-
+  msg: any;
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
     this.disabledField = false;
     this.routerProperty = router;
@@ -82,9 +82,11 @@ export class UserloginComponent implements OnInit {
         }
         else {
           this.user = JSON.stringify(message);
-          var msg = { "loginId": this.user.loginId, "email": this.user.email, 'role': this.user.role, 'status': this.user.status };
-          this.sessionstorageService.setUserDetails(msg);
-          //alert(msg);
+          //alert(this.user)
+
+          this.msg = { loginId: this.user.loginId, email: this.user.email, role: this.user.role, status: this.user.status };
+          this.sessionstorageService.setUserDetails(this.user);
+          // alert(this.sessionstorageService.getUserDetails());
           window.location.href = AppConstants.packageURL;
           // this.routerProperty.navigateByUrl('/package-choose');
 

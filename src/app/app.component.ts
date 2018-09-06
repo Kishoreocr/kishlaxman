@@ -13,7 +13,7 @@ import{ AppConstants} from './services/constants'
 })
 export class AppComponent {
   title = 'app';
-  user: any;
+  user: Object={loginId: Number, email: String, role: String, status: String };
   flag: boolean = false;
   // navbarOpen = false;
   // toggleNavbar() {
@@ -25,10 +25,10 @@ export class AppComponent {
 
     this.routerProperty = router;
     this.user =this.sessionstorageService.getUserDetails();
-   // alert(JSON.parse(this.user));
     if (this.user != null) {
+      this.user=JSON.parse(this.user+"");
+    //  alert(this.user)
       this.flag = true;
-     // this.user=JSON.parse(this.user);
     }
     // if (this.routerProperty.url === '/loginform') {
     //   debugger
@@ -39,4 +39,5 @@ export class AppComponent {
     this.sessionstorageService.removeUserDetails("user");
     window.location.href=AppConstants.loginURL;
   }
+  
 }
