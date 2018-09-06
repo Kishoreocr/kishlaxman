@@ -14,17 +14,17 @@ export class EgazeService {
       "email": loginForm.value.username,
       "password": loginForm.value.userpwd
   }
-    return this.http.post(this.baseUrl + 'user/signin', data);
+    return this.http.post(this.baseUrl + 'signin', data);
   }
 
   existingUserFun(userId) {
     // http://localhost:8080/egaze-api/user/validate/kishore11@gmail.com
-    let requestURL = this.baseUrl + 'user/validate/' + userId;
+    let requestURL = this.baseUrl + 'validate/' + userId;
     return this.http.get(requestURL);
   }
 
   getOTP(emialId) {
-    let requestURL = this.baseUrl + 'user/otp/' + emialId + '/REGISTRATION';
+    let requestURL = this.baseUrl + 'otp/' + emialId + '/REGISTRATION';
     return this.http.get(requestURL);
   }
 
@@ -39,7 +39,7 @@ export class EgazeService {
       "password": userObject.password
     };
 
-    return this.http.post(this.baseUrl + 'user/signup', payloadRequestData);
+    return this.http.post(this.baseUrl + 'signup', payloadRequestData);
   }
 
 

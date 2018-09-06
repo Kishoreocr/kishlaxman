@@ -35,7 +35,7 @@
         <button type="submit" class="submit-btn">Login</button>
       </div>
     </form>
-    <div class="row justify-content-md-center" *ngIf="invalidCredential && invalidCredential > 0">
+    <div class="row justify-content-md-center" *ngIf="invalidCredential !='' ">
       {{invalidCredential}}</div>
     <div class="row justify-content-md-center">
       <p style="padding:10px;font-size:13px;color:red;">{{attemptloginMessage}}</p>
