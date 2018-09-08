@@ -387,6 +387,20 @@
 
                 <div class='mainAlertcontainer'>
 
+                    <table border="1"><tr>
+                        <th>SUBJECT</th>
+                        <th>DESCRIPTION</th>
+                        <th>DATE</th>
+
+
+                    </tr>
+                    <tr *ngFor="let alert of alerts">
+                            <td>{{alert.subject}}</td>
+                            <td>{{alert.description}}</td>
+                            <td>{{alert.addedDate}}</td>
+                        </tr>
+                    </table>
+<!-- 
                         <div class='alertcontainer' style='margin-bottom:5px;background-color: #fdf8f5;vertical-align: middle;
                         color: #1275af;font-size: 14px;'>
                                 <div class='alertColomns'>
@@ -395,7 +409,7 @@
                                 <div class='alertColomns'>
                                     Type
                                 </div>
-                                <div class='alertColomns'>
+                                 <div class='alertColomns'>
                                     Date
                                 </div>
                                 <div class='alertColomns'>
@@ -407,19 +421,20 @@
                                 <div class='alertColomns'>
                                 
                                     
-                                </div>
-                            </div>
+                                </div> 
+                            </div> -->
 
-                    <div class="alertDivstyles">
+  
+                    <!-- <div class="alertDivstyles" *ngFor="let alert of alerts">
 
                         <div class='alertcontainer'>
                             <div class='alertColomns'>
-                                1
+                                {{alert.subject}}
                             </div>
                             <div class='alertColomns'>
-                                dummy content
-                            </div>
-                            <div class='alertColomns'>
+                                {{alert.description}}
+                            </div> -->
+                            <!-- <div class='alertColomns'>
                                 dummy content
                             </div>
                             <div class='alertColomns'>
@@ -431,13 +446,13 @@
                             <div class='alertColomns'>
 
                                 <div class="dropdown-toggle"></div>
-                            </div>
-                        </div>
+                            </div> -->
+                        <!-- </div>
 
 
 
-                    </div>
-                    <div class='accordionshowHide'>
+                    </div> -->
+                    <!-- <div class='accordionshowHide'>
                             <p>
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
                                 text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
@@ -475,7 +490,7 @@
                                 to make a type specimen book.
                             </p>
                         </div>
-
+ -->
 
 
 
@@ -498,7 +513,7 @@
             <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab">
 
                 <div class="table-container-style">
-
+<p>{{updateuserProfilestatus}}</p>
 
                     <div *ngIf="!userEditprofileFlag && userchangepwdflag">
                         <form [formGroup]="updateuserForm" (ngSubmit)="updateuserFun(updateuserForm)">
@@ -755,3 +770,4 @@
 
 
 </div>
+<app-loading-div *ngIf="isLoading"></app-loading-div>

@@ -9,6 +9,8 @@ import { EgazeService } from '../services/egaze.service';
 import { SessionstorageService } from '../services/sessionstorage.service';
 import { AppConstants } from '../services/constants';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-userlogin',
@@ -34,7 +36,10 @@ export class UserloginComponent implements OnInit {
   user: any;
   isLoading: boolean;
   msg: any;
-  constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
+  private baseUrl: string = 'http://43.225.26.98:8080/egaze-api/';
+  user1: any;
+
+  constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private http: HttpClient) {
     this.disabledField = false;
     this.routerProperty = router;
     this.modalService = modalService;
@@ -82,12 +87,27 @@ export class UserloginComponent implements OnInit {
         }
         else {
           this.user = JSON.stringify(message);
-          //alert(this.user)
 
-          this.msg = { loginId: this.user.loginId, email: this.user.email, role: this.user.role, status: this.user.status };
           this.sessionstorageService.setUserDetails(this.user);
           // alert(this.sessionstorageService.getUserDetails());
-          window.location.href = AppConstants.packageURL;
+          this.isLoading = true;
+          this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
+          // alert(this.user1.loginId)
+          this.http.get(this.baseUrl + 'customerpackages/' + this.user1.loginId).subscribe(
+            result => {
+              //alert(typeof result);
+              if (typeof result === "object") {
+                this.isLoading = false;
+                window.location.href = AppConstants.userdashboardURL;
+
+              } else {
+                window.location.href = AppConstants.packageURL;
+                // this.router.navigateByUrl('/userdashboard');
+
+              }
+            }
+
+          );
           // this.routerProperty.navigateByUrl('/package-choose');
 
           this.userloginForm.value.username = "";

@@ -30,14 +30,14 @@ export class PackagesComponent implements OnInit {
     //window.location.reload(true);
   }
 
-  packageFun(selected){
+  packageFun(selected,id){
 
     if(selected === 'custom'){
     this.router.navigateByUrl('/userdashboard');
     }
   
     if(selected === 'PLANB' || selected === 'PLANA' || selected === 'PLANC'){
-      this.openNewDialog(selected);
+      this.openNewDialog(selected,id);
     }
   }
 
@@ -68,11 +68,11 @@ export class PackagesComponent implements OnInit {
 
   }
 
-  openNewDialog(selected) {
+  openNewDialog(selected,id) {
     this.modalService.openDialog(this.viewRef, {
       title: 'Confirm Plan choosen?',
       childComponent: PackageconfirmComponent,
-      data: selected,settings:{modalClass: 'modal fade ngx-modal blue'}
+      data: selected+"$$"+id,settings:{modalClass: 'modal fade ngx-modal blue'}
     });
   }
 }

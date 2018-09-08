@@ -52,19 +52,19 @@ export class EgazeService {
     return this.http.post(this.baseUrl + 'pwdchange', requestPayload);
   }
 
-  getprofile() {
-    return this.http.get(this.baseUrl + 'profile/' + '8');
+  getprofile(id) {
+    return this.http.get(this.baseUrl + 'profile/'+id);
   }
 
-  updateprofile(userObj) {
+  updateprofile(userObj,id) {
     debugger;
     let requestPayload = {
-      "loginId": 8,
+      "loginId": id,
       "firstName": userObj.firstName,
       "middleName": userObj.middleName,
       "lastName": userObj.lastName,
       "email": userObj.email,
-      "mobileNo": userObj.mobileNo,
+      "mobileNo": userObj.mobileNumber,
       "address1": userObj.address1,
       "address2": userObj.address2,
       "address3": userObj.address3,
@@ -78,6 +78,8 @@ export class EgazeService {
 
   }
 
-
+  getAlerts(id) {
+    return this.http.get(this.baseUrl + 'alerts/'+id);
+  }
 
 }

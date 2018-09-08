@@ -127,7 +127,7 @@
             <p class="package-font-style">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
               galley of type and scrambled it to make a type specimen book.</p>
             <div align="center">
-              <div class="orange-clr-btn" (click)="packageFun('PLANA')">GET STARTED</div>
+              <div class="orange-clr-btn" (click)="packageFun('PLANA',1)">GET STARTED</div>
             </div>
           </div>
         </div>
@@ -144,7 +144,7 @@
             <p class="package-font-style">Lorem Ipsum has been the dndustry's standard dummy text ever since the 1500s, when an unknown printer took a
               galley of type and scrambled it to make a type specimen book.</p>
             <div align="center">
-              <div class="orange-clr-btn" (click)="packageFun('PLANB')">GET STARTED</div>
+              <div class="orange-clr-btn" (click)="packageFun('PLANB',2)">GET STARTED</div>
             </div>
           </div>
         </div>
@@ -159,7 +159,7 @@
             <p class="package-font-style">Lorem Ipsum has been the dndustry's standard dummy text ever since the 1500s, when an unknown printer took a
               galley of type and scrambled it to make a type specimen book.</p>
             <div align="center">
-              <div class="orange-clr-btn" (click)="packageFun('PLANC')">GET STARTED</div>
+              <div class="orange-clr-btn" (click)="packageFun('PLANC',3)">GET STARTED</div>
             </div>
           </div>
         </div>
@@ -175,3 +175,4 @@
   </div>
 
 </div>
+<app-loading-div *ngIf="isLoading"></app-loading-div>

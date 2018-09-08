@@ -4,6 +4,7 @@ import { ViewpropertyComponent } from '../viewproperty/viewproperty.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { EgazeService } from '../services/egaze.service';
+import { SessionstorageService } from '../services/sessionstorage.service';
 
 @Component({
   selector: 'app-userdashboard',
@@ -33,11 +34,15 @@ export class UserdashboardComponent implements OnInit {
   acc: any;
 
   updateuserProfile: any;
-
+  updateuserProfilestatus: any;
+  isLoading: boolean;
+  alerts:any;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
-    private EgazeService: EgazeService) {
+    private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
     this.modalService = modalService;
     this.viewRef = viewRef;
+    this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
+
   }
 
   ngOnInit() {
@@ -68,13 +73,13 @@ export class UserdashboardComponent implements OnInit {
 
     this.updateuserForm = this.formBuilder.group({
       firstName: ['', Validators.required],
-      middleName: ['', Validators.required],
+      middleName: [],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
       address1: ['', Validators.required],
-      address2: ['', Validators.required],
-      address3: ['', Validators.required],
+      address2: [],
+      address3: [],
       city: ['', Validators.required],
       state: ['', Validators.required],
       zipCode: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(6)])],
@@ -136,6 +141,7 @@ export class UserdashboardComponent implements OnInit {
         this.alertsTab = true;
         this.transactionsTab = false;
         this.profileTab = false;
+        this.getAlerts();
         break;
       case 'Transactions':
         this.propertyTab = false;
@@ -148,7 +154,9 @@ export class UserdashboardComponent implements OnInit {
         this.alertsTab = false;
         this.transactionsTab = false;
         this.profileTab = true;
+        this.updateuserProfilestatus="";
         this.getsaveprofile();
+        this.isEditDisabled = false;
         break;
 
       default:
@@ -182,11 +190,15 @@ export class UserdashboardComponent implements OnInit {
 
   updateuserFun(updateuserobj) {
     this.submitted = true;
-   
-    if(this.updateuserForm.valid){
+    this.isLoading = true;
+    if (this.updateuserForm.valid) {
 
-      this.EgazeService.updateprofile(updateuserobj.value).subscribe(result => {
+      this.EgazeService.updateprofile(updateuserobj.value, this.user.loginId).subscribe(result => {
+        this.isLoading = false;
+        if (typeof result === "object") {
 
+          this.updateuserProfilestatus = "Profile updated Successfully"
+        }
       }, error => {
 
       });
@@ -212,7 +224,7 @@ export class UserdashboardComponent implements OnInit {
   }
 
   getsaveprofile() {
-    this.EgazeService.getprofile().subscribe(result => {
+    this.EgazeService.getprofile(this.user.loginId).subscribe(result => {
       this.updateuserProfile = result;
 
       if (result) {
@@ -237,6 +249,19 @@ export class UserdashboardComponent implements OnInit {
     });
 
   }
+
+  getAlerts() {
+    this.EgazeService.getAlerts(this.user.loginId).subscribe(result => {
+      this.alerts = result;
+ }, error => {
+
+    });
+
+  }
+
+
+
+
 
 
 
