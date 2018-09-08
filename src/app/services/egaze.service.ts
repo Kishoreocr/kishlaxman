@@ -51,4 +51,33 @@ export class EgazeService {
     }
     return this.http.post(this.baseUrl + 'pwdchange', requestPayload);
   }
+
+  getprofile() {
+    return this.http.get(this.baseUrl + 'profile/' + '8');
+  }
+
+  updateprofile(userObj) {
+    debugger;
+    let requestPayload = {
+      "loginId": 8,
+      "firstName": userObj.firstName,
+      "middleName": userObj.middleName,
+      "lastName": userObj.lastName,
+      "email": userObj.email,
+      "mobileNo": userObj.mobileNo,
+      "address1": userObj.address1,
+      "address2": userObj.address2,
+      "address3": userObj.address3,
+      "city": userObj.city,
+      "state": userObj.state,
+      "zip": userObj.zipCode,
+      "country": userObj.country,
+    }
+
+    return this.http.post(this.baseUrl + 'profileupdate', requestPayload);
+
+  }
+
+
+
 }

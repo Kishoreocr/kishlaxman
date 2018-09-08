@@ -3,6 +3,7 @@ import { ModalDialogService, IModalDialogSettings } from 'ngx-modal-dialog';
 import { ViewpropertyComponent } from '../viewproperty/viewproperty.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
+import { EgazeService } from '../services/egaze.service';
 
 @Component({
   selector: 'app-userdashboard',
@@ -28,9 +29,13 @@ export class UserdashboardComponent implements OnInit {
   updateuserForm: FormGroup;
   updateuserNewpwdForm: FormGroup;
   userchangepwdflag: boolean = false;
-user:any;
-acc:any;
-  constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef) {
+  user: any;
+  acc: any;
+
+  updateuserProfile: any;
+
+  constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
+    private EgazeService: EgazeService) {
     this.modalService = modalService;
     this.viewRef = viewRef;
   }
@@ -63,11 +68,17 @@ acc:any;
 
     this.updateuserForm = this.formBuilder.group({
       firstName: ['', Validators.required],
+      middleName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+      address1: ['', Validators.required],
+      address2: ['', Validators.required],
+      address3: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
       zipCode: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(6)])],
-
+      country: ['', Validators.required],
     });
 
     this.updateuserNewpwdForm = this.formBuilder.group({
@@ -78,26 +89,26 @@ acc:any;
     });
 
   }
-  ngAfterViewChecked(){
+  ngAfterViewChecked() {
     // you'll get your through 'elements' below code
     debugger;
     let acc = this.elem.nativeElement.querySelectorAll('.alertDivstyles');
     let i;
-   for (i = 0; i < acc.length; i++) {
-       acc[i].addEventListener("click", function() {
-           /* Toggle between adding and removing the "active" class,
-           to highlight the button that controls the panel */
-           this.classList.toggle("active");
-           /* Toggle between hiding and showing the active panel */
-           var panel = this.nextElementSibling;
-           if (panel.style.display === "block") {
-               panel.style.display = "none";
-           } else {
-               panel.style.display = "block";
-           }
-       });
-   }
-}
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+  }
   // convenience getter for easy access to form fields
   get f() { return this.propertyForm.controls; }
 
@@ -137,6 +148,7 @@ acc:any;
         this.alertsTab = false;
         this.transactionsTab = false;
         this.profileTab = true;
+        this.getsaveprofile();
         break;
 
       default:
@@ -168,8 +180,20 @@ acc:any;
 
   }
 
-  updateuserFun() {
+  updateuserFun(updateuserobj) {
     this.submitted = true;
+   
+    if(this.updateuserForm.valid){
+
+      this.EgazeService.updateprofile(updateuserobj.value).subscribe(result => {
+
+      }, error => {
+
+      });
+
+    }
+
+
   }
 
   profileeditFun() {
@@ -187,8 +211,33 @@ acc:any;
     this.submitted = true;
   }
 
+  getsaveprofile() {
+    this.EgazeService.getprofile().subscribe(result => {
+      this.updateuserProfile = result;
 
-  
+      if (result) {
+        this.updateuserForm.setValue({
+          firstName: this.updateuserProfile.firstName,
+          middleName: this.updateuserProfile.middleName,
+          lastName: this.updateuserProfile.lastName,
+          email: this.updateuserProfile.email,
+          mobileNumber: this.updateuserProfile.mobileNo,
+          address1: this.updateuserProfile.address1,
+          address2: this.updateuserProfile.address2,
+          address3: this.updateuserProfile.address3,
+          city: this.updateuserProfile.city,
+          state: this.updateuserProfile.state,
+          zipCode: this.updateuserProfile.zip,
+          country: this.updateuserProfile.country,
+        });
+      }
+      console.log('this.updateProfile', JSON.stringify(this.updateuserProfile));
+    }, error => {
+
+    });
+
+  }
+
 
 
 
