@@ -184,6 +184,7 @@ export class UserdashboardComponent implements OnInit {
 
   updateuserFun(updateuserobj) {
     this.submitted = true;
+    this.errorMsg = '';
 
     if (this.updateuserForm.valid) {
       this.isLoaderdiv= true;
@@ -209,15 +210,18 @@ export class UserdashboardComponent implements OnInit {
     this.isEditDisabled = !this.isEditDisabled;
     this.userchangepwdflag = true;
     this.userEditprofileFlag = false;
+    this.errorMsg = '';
   }
 
   profileChangepwdFun() {
     this.userchangepwdflag = false;
     this.userEditprofileFlag = true;
+    this.errorMsg = '';
   }
 
   profileChangepwdSubmit() {
     this.submitted = true;
+    this.errorMsg = '';
   }
 
   getsaveprofile() {
