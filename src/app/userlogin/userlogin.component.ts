@@ -94,6 +94,11 @@ export class UserloginComponent implements OnInit {
           this.userloginForm.value.userpwd = "";
         }
 
+      }, error => {
+        this.isLoading = false;
+        this.invalidCredential = 'Server error has occurred, Please try later.'
+
+
       });
 
       // if (this.userloginForm.value.username === 'demo@gmail.com' && this.userloginForm.value.userpwd === 'demo123') {

@@ -7,18 +7,16 @@ export class EgazeService {
   private baseUrl: string = 'http://43.225.26.98:8080/egaze-api/';
   constructor(private http: HttpClient) { }
 
-
   loginFun(loginForm) {
     debugger;
-    let data = { 
+    let data = {
       "email": loginForm.value.username,
       "password": loginForm.value.userpwd
-  }
+    }
     return this.http.post(this.baseUrl + 'signin', data);
   }
 
   existingUserFun(userId) {
-    // http://localhost:8080/egaze-api/user/validate/kishore11@gmail.com
     let requestURL = this.baseUrl + 'validate/' + userId;
     return this.http.get(requestURL);
   }
@@ -42,7 +40,15 @@ export class EgazeService {
     return this.http.post(this.baseUrl + 'signup', payloadRequestData);
   }
 
+  forgotuserpwd(userId) {
+    return this.http.get(this.baseUrl + 'otp/' + userId + '/FORGOTPASSWORD');
+  }
 
-
-
+  pwdchange(userpw, useremail) {
+    let requestPayload = {
+      "email": useremail.emailidForget,
+      "password": userpw.newpwd
+    }
+    return this.http.post(this.baseUrl + 'pwdchange', requestPayload);
+  }
 }
