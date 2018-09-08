@@ -4,7 +4,7 @@ import { ViewpropertyComponent } from '../viewproperty/viewproperty.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { EgazeService } from '../services/egaze.service';
-
+import { LoadingDivComponent } from '../loading-div/loading-div.component';
 @Component({
   selector: 'app-userdashboard',
   templateUrl: './userdashboard.component.html',
@@ -33,6 +33,8 @@ export class UserdashboardComponent implements OnInit {
   acc: any;
 
   updateuserProfile: any;
+  isLoaderdiv:boolean = false;
+  errorMsg:string = '';
 
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService) {
@@ -182,13 +184,20 @@ export class UserdashboardComponent implements OnInit {
 
   updateuserFun(updateuserobj) {
     this.submitted = true;
-   
-    if(this.updateuserForm.valid){
+
+    if (this.updateuserForm.valid) {
+      this.isLoaderdiv= true;
 
       this.EgazeService.updateprofile(updateuserobj.value).subscribe(result => {
-
+        if (result) {
+          this.isLoaderdiv= false;
+          setTimeout(function () {
+            window.location.reload(true);
+          }, 2000);
+        }
       }, error => {
-
+        this.isLoaderdiv= false;
+        this.errorMsg = 'Server error has occurred. Please try later.';
       });
 
     }
