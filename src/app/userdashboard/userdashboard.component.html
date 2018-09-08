@@ -685,6 +685,9 @@
                             <div class="form-group" align="center" style="margin-top:15px;">
                                 <button [disabled]="!isEditDisabled" class="submit-btn">SAVE</button>
                             </div>
+                            <div class='col' align='center' *ngIf='errorMsg && errorMsg.length > 0'>
+                                <p style='color:red;font-size:14px;'>{{errorMsg}}</p>
+                            </div>
 
                         </form>
                     </div>
@@ -753,7 +756,7 @@
             </div>
             <!-- profile tab -->
 
-
+            <app-loading-div *ngIf="isLoaderdiv"></app-loading-div>
 
 
 

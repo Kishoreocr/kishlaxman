@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { EgazeService } from '../services/egaze.service';
 import { SessionstorageService } from '../services/sessionstorage.service';
-
+import { LoadingDivComponent } from '../loading-div/loading-div.component';
 @Component({
   selector: 'app-userdashboard',
   templateUrl: './userdashboard.component.html',
@@ -37,6 +37,9 @@ export class UserdashboardComponent implements OnInit {
   updateuserProfilestatus: any;
   isLoading: boolean;
   alerts:any;
+  isLoaderdiv:boolean = false;
+  errorMsg:string = '';
+
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
     this.modalService = modalService;
@@ -191,16 +194,23 @@ export class UserdashboardComponent implements OnInit {
   updateuserFun(updateuserobj) {
     this.submitted = true;
     this.isLoading = true;
+    this.errorMsg = '';
+
     if (this.updateuserForm.valid) {
 
       this.EgazeService.updateprofile(updateuserobj.value, this.user.loginId).subscribe(result => {
         this.isLoading = false;
         if (typeof result === "object") {
-
+          this.isLoaderdiv= false;
+          setTimeout(function () {
+            window.location.reload(true);
+          }, 2000);
           this.updateuserProfilestatus = "Profile updated Successfully"
+
         }
       }, error => {
-
+        this.isLoaderdiv= false;
+        this.errorMsg = 'Server error has occurred. Please try later.';
       });
 
     }
@@ -212,15 +222,18 @@ export class UserdashboardComponent implements OnInit {
     this.isEditDisabled = !this.isEditDisabled;
     this.userchangepwdflag = true;
     this.userEditprofileFlag = false;
+    this.errorMsg = '';
   }
 
   profileChangepwdFun() {
     this.userchangepwdflag = false;
     this.userEditprofileFlag = true;
+    this.errorMsg = '';
   }
 
   profileChangepwdSubmit() {
     this.submitted = true;
+    this.errorMsg = '';
   }
 
   getsaveprofile() {
