@@ -164,3 +164,8 @@ padding:0px 10px;
 .mainAlertcontainer{
     background-color:#fff;
 }
+td.noAlerts{
+    font-size:16px!important;;
+    padding:5px!important;;
+    text-align:center!important;
+}

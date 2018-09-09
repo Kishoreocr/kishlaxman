@@ -36,9 +36,9 @@ export class UserdashboardComponent implements OnInit {
   updateuserProfile: any;
   updateuserProfilestatus: any;
   isLoading: boolean;
-  alerts:any;
-  isLoaderdiv:boolean = false;
-  errorMsg:string = '';
+  alerts: any;
+  isLoaderdiv: boolean = false;
+  errorMsg: string = '';
 
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
@@ -85,7 +85,7 @@ export class UserdashboardComponent implements OnInit {
       address3: [],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      zipCode: ['', Validators.compose([Validators.required,  Validators.maxLength(6)])],
+      zipCode: ['', Validators.compose([Validators.required, Validators.maxLength(6)])],
       country: ['', Validators.required],
     });
 
@@ -131,7 +131,7 @@ export class UserdashboardComponent implements OnInit {
     this.viewProperties = !this.viewProperties;
   }
   userdashTabs(activeTab) {
-    this.updateuserProfilestatus="";
+    this.updateuserProfilestatus = "";
     //this.activeSelected = true;
     switch (activeTab) {
       case 'Properties':
@@ -158,7 +158,7 @@ export class UserdashboardComponent implements OnInit {
         this.alertsTab = false;
         this.transactionsTab = false;
         this.profileTab = true;
-        this.updateuserProfilestatus="";
+        this.updateuserProfilestatus = "";
         this.getsaveprofile();
         this.isEditDisabled = false;
         break;
@@ -202,18 +202,18 @@ export class UserdashboardComponent implements OnInit {
       this.EgazeService.updateprofile(updateuserobj.value, this.user.loginId).subscribe(result => {
         this.isLoading = false;
         if (typeof result === "object") {
-          this.isLoaderdiv= false;
+          this.isLoaderdiv = false;
           // setTimeout(function () {
           //   window.location.reload(true);
           // }, 2000);
           const element = document.querySelector("#destination")
-if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
           this.updateuserProfilestatus = "Profile updated Successfully";
           this.isEditDisabled = false;
         }
       }, error => {
-        this.isLoaderdiv= false;
+        this.isLoaderdiv = false;
         this.errorMsg = 'Server error has occurred. Please try later.';
       });
 
@@ -269,8 +269,9 @@ if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
   getAlerts() {
     this.EgazeService.getAlerts(this.user.loginId).subscribe(result => {
+      debugger;
       this.alerts = result;
- }, error => {
+    }, error => {
 
     });
 
