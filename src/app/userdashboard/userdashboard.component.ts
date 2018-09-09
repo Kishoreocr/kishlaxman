@@ -131,6 +131,7 @@ export class UserdashboardComponent implements OnInit {
     this.viewProperties = !this.viewProperties;
   }
   userdashTabs(activeTab) {
+    this.updateuserProfilestatus="";
     //this.activeSelected = true;
     switch (activeTab) {
       case 'Properties':
@@ -205,8 +206,11 @@ export class UserdashboardComponent implements OnInit {
           // setTimeout(function () {
           //   window.location.reload(true);
           // }, 2000);
-          this.updateuserProfilestatus = "Profile updated Successfully"
+          const element = document.querySelector("#destination")
+if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
+          this.updateuserProfilestatus = "Profile updated Successfully";
+          this.isEditDisabled = false;
         }
       }, error => {
         this.isLoaderdiv= false;

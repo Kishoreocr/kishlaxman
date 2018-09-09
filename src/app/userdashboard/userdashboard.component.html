@@ -514,8 +514,12 @@
             <!-- profile tab -->
             <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab">
 
-                <div class="table-container-style">
-<p>{{updateuserProfilestatus}}</p>
+                <div class="table-container-style" >
+                        <div class="alert alert-success" id="destination" *ngIf="updateuserProfilestatus!=''">
+                                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                <strong>{{updateuserProfilestatus}}</strong> 
+                            </div>
+     
 
                     <div *ngIf="!userEditprofileFlag && userchangepwdflag">
                         <form [formGroup]="updateuserForm" (ngSubmit)="updateuserFun(updateuserForm)">
