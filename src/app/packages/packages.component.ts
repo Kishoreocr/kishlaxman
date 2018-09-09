@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
-import { ModalDialogService,IModalDialogButton } from 'ngx-modal-dialog';
+import { ModalDialogService, IModalDialogButton } from 'ngx-modal-dialog';
 import { PackageconfirmComponent } from '../packageconfirm/packageconfirm.component'
+import { EgazeService } from '../services/egaze.service';
 
 @Component({
   selector: 'app-packages',
@@ -9,73 +10,86 @@ import { PackageconfirmComponent } from '../packageconfirm/packageconfirm.compon
   styleUrls: ['./packages.component.css']
 })
 export class PackagesComponent implements OnInit {
-  planATab:boolean=false;
-  planBTab:boolean=false;
-  planCTab:boolean=false;
-  activeTabflag:boolean=false;
-  modalService:any;
-  viewRef:any;
-  isLoading:boolean=true;
-  
+  MONTHLY: boolean = false;
+  YEARLY: boolean = false;
+  CUSTOM: boolean = false;
+  activeflag: boolean = false;
+  modalService: any;
+  viewRef: any;
+  isLoading: boolean = true;
+  packages: any;
 
 
-  constructor(private router: Router,  modalService: ModalDialogService, viewRef: ViewContainerRef) {
+  constructor(private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
 
     this.modalService = modalService;
     this.viewRef = viewRef;
-    //
+    this.EgazeService.getPackages().subscribe(
+      result => {
+        this.isLoading=false;
+        this.packages = result;
+
+      }
+
+    );
 
 
-   }
+  }
 
   ngOnInit() {
-    this.planBTab = true;
+    this.YEARLY = true;
     //window.location.reload(true);
   }
+  addActiveClass(id){
+    //alert(id+"")
+    return {
+      'active-package-tab': id
+      };
+   }
+  packageFun(selected, id) {
 
-  packageFun(selected,id){
-
-    if(selected === 'custom'){
-    this.router.navigateByUrl('/userdashboard');
-    }
-  
-    if(selected === 'PLANB' || selected === 'PLANA' || selected === 'PLANC'){
-      this.openNewDialog(selected,id);
+    // if (selected === 'custom') {
+    //   this.router.navigateByUrl('/userdashboard');
+    // }
+   
+    if (selected === 'CUSTOM' || selected === 'YEARLY' || selected === 'MONTHLY') {
+      this.openNewDialog(selected, id);
     }
   }
 
 
-  plansTabFun(activeTab) {
+  plansTabFun(active) {
     //this.activeSelected = true;
-    switch (activeTab) {
-      case 'PLANA':
-        this.planATab = true;
-        this.planBTab = false;
-        this.planCTab = false;
+    switch (active) {
+      case 'MONTHLY':
+        this.MONTHLY = true;
+        this.YEARLY = false;
+        this.CUSTOM = false;
         break;
-      case 'PLANB':
-      this.planATab = false;
-      this.planBTab = true;
-      this.planCTab = false;
+      case 'YEARLY':
+        this.MONTHLY = false;
+        this.YEARLY = true;
+        this.CUSTOM = false;
         break;
-      case 'PLANC':
-      this.planATab = false;
-      this.planBTab = false;
-      this.planCTab = true;
+      case 'CUSTOM':
+        this.MONTHLY = false;
+        this.YEARLY = false;
+        this.CUSTOM = true;
         break;
       default:
-     
-      this.planBTab = true;
-     
+
+        this.YEARLY = true;
+
     }
 
   }
 
-  openNewDialog(selected,id) {
+  openNewDialog(selected, id) {
+    //alert(selected + "$$" + id)
     this.modalService.openDialog(this.viewRef, {
       title: 'Confirm Plan choosen?',
       childComponent: PackageconfirmComponent,
-      data: selected+"$$"+id,settings:{modalClass: 'modal fade ngx-modal blue'}
+      data: selected + "$$" + id, settings: { modalClass: 'modal fade ngx-modal blue' }
     });
   }
 }

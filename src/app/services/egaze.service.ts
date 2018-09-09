@@ -85,5 +85,8 @@ export class EgazeService {
     return this.http.get(this.baseUrl + 'customerpackages/' + id);
 
   }
+  getPackages() {
+    return this.http.get(this.baseUrl + 'packages');
 
+  }
 }

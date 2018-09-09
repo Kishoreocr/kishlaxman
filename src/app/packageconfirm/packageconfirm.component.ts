@@ -30,16 +30,17 @@ private baseUrl: string = 'http://43.225.26.98:8080/egaze-api/';
 
   dialogInit(reference: ComponentRef<IModalDialog>, options: Partial<IModalDialogOptions<string>>) {
   this.data=options.data.split("$$");
-  if(this.data[0] === 'PLANB'){
-    this.plan="Yearly";
+  this.plan=this.data[0];
+  // if(this.data[0] === 'PLANB'){
+  //   this.plan="Yearly";
 
-  }else if(this.data[0] === 'PLANA'){
-    this.plan="Monthly";
-  }
-   else if(this.data[0] === 'PLANC'){
+  // }else if(this.data[0] === 'PLANA'){
+  //   this.plan="Monthly";
+  // }
+  //  else if(this.data[0] === 'PLANC'){
 
-    this.plan="Custom";
-   } 
+  //   this.plan="Custom";
+  //  } 
    this.actionButtons = [
     { text: 'Confirm' , onAction: () =>  this.confirmPackage()
   },{ text: 'Cancel', onAction: () => true },

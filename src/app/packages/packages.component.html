@@ -109,15 +109,15 @@
 
       <div class="package-side-left">
         <ul>
-          <li [ngClass]="{'active-package-tab':planATab}" (click)="plansTabFun('PLANA')">MONTHLY</li>
-          <li [ngClass]="{'active-package-tab':planBTab}" (click)="plansTabFun('PLANB')">YEARLY</li>
-          <li [ngClass]="{'active-package-tab':planCTab}" (click)="plansTabFun('PLANC')">CUSTOM</li>
+          <li [ngClass]="{'active-package-tab':MONTHLY}" (click)="plansTabFun('MONTHLY')">MONTHLY</li>
+          <li [ngClass]="{'active-package-tab':YEARLY}" (click)="plansTabFun('YEARLY')">YEARLY</li>
+          <li [ngClass]="{'active-package-tab':CUSTOM}" (click)="plansTabFun('CUSTOM')">CUSTOM</li>
         </ul>
       </div>
 
       <div class="package-right-side">
 
-        <div *ngIf="planATab">
+        <div *ngIf="MONTHLY">
           <div class="package-right-side-contain">
             <h5 class="package-choose-color">MONTHLY</h5>
             <p class="package-contain-heading">
@@ -127,13 +127,13 @@
             <p class="package-font-style">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
               galley of type and scrambled it to make a type specimen book.</p>
             <div align="center">
-              <div class="orange-clr-btn" (click)="packageFun('PLANA',1)">GET STARTED</div>
+              <div class="orange-clr-btn" (click)="packageFun('MONTHLY',1)">GET STARTED</div>
             </div>
           </div>
         </div>
 
 
-        <div *ngIf="planBTab">
+        <div *ngIf="YEARLY">
           <div class="package-right-side-contain">
             <h5 class="package-choose-color">YEARLY</h5>
             <p class="package-contain-heading">
@@ -144,11 +144,11 @@
             <p class="package-font-style">Lorem Ipsum has been the dndustry's standard dummy text ever since the 1500s, when an unknown printer took a
               galley of type and scrambled it to make a type specimen book.</p>
             <div align="center">
-              <div class="orange-clr-btn" (click)="packageFun('PLANB',2)">GET STARTED</div>
+              <div class="orange-clr-btn" (click)="packageFun('YEARLY',2)">GET STARTED</div>
             </div>
           </div>
         </div>
-        <div *ngIf="planCTab">
+        <div *ngIf="CUSTOM">
           <div class="package-right-side-contain">
             <h5 class="package-choose-color">CUSTOM</h5>
             <p class="package-contain-heading">
@@ -159,7 +159,7 @@
             <p class="package-font-style">Lorem Ipsum has been the dndustry's standard dummy text ever since the 1500s, when an unknown printer took a
               galley of type and scrambled it to make a type specimen book.</p>
             <div align="center">
-              <div class="orange-clr-btn" (click)="packageFun('PLANC',3)">GET STARTED</div>
+              <div class="orange-clr-btn" (click)="packageFun('CUSTOM',3)">GET STARTED</div>
             </div>
           </div>
         </div>
