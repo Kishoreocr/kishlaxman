@@ -63,6 +63,8 @@ export class MessagemodalpopupComponent implements OnInit, IModalDialog {
       this.EgazeService.registerFun(this.userFormValue).subscribe(result => {
         this.isLoading = false;
         if (result) {
+          sessionStorage.removeItem("formData");
+
           this.routerProperty.navigateByUrl('/success-register');
         }
       },

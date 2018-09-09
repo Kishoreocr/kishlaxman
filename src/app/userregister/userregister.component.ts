@@ -33,10 +33,12 @@ export class UserregisterComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       mobileNumber: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
-      zipCode: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(6)])],
+      zipCode: ['', Validators.compose([Validators.required, Validators.maxLength(6)])],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
     });
+    this.registerForm.controls['registerType'].setValue("customer");
+
   }
 
   // convenience getter for easy access to form fields
@@ -45,7 +47,7 @@ export class UserregisterComponent implements OnInit {
   onSubmit(formData) {
     debugger;
     this.submitted = true;
-    alert(this.registerForm)
+    //console.log(JSON.stringify(this.registerForm))
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;

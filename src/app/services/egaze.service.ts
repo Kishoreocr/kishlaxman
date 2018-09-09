@@ -33,7 +33,7 @@ export class EgazeService {
       "email": userObject.email,
       "mobile": userObject.mobileNumber,
       "zip": userObject.zipCode,
-      "role": "user",
+      "role": userObject.registerType,
       "password": userObject.password
     };
 

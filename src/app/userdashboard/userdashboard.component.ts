@@ -85,7 +85,7 @@ export class UserdashboardComponent implements OnInit {
       address3: [],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      zipCode: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(6)])],
+      zipCode: ['', Validators.compose([Validators.required,  Validators.maxLength(6)])],
       country: ['', Validators.required],
     });
 

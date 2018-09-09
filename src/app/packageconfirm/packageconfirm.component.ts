@@ -20,11 +20,7 @@ isLoading: boolean;
 private baseUrl: string = 'http://43.225.26.98:8080/egaze-api/';
 
   constructor(private router: Router, private modalService: ModalDialogService,private sessionstorageService: SessionstorageService,private http: HttpClient) {
-    this.actionButtons = [
-      { text: 'Confirm' , onAction: () =>  this.confirmPackage()
-    },{ text: 'Cancel', onAction: () => true },
-
-    ];
+    
     this.user =JSON.parse(this.sessionstorageService.getUserDetails()+"");
 
    }
@@ -44,6 +40,11 @@ private baseUrl: string = 'http://43.225.26.98:8080/egaze-api/';
 
     this.plan="Custom";
    } 
+   this.actionButtons = [
+    { text: 'Confirm' , onAction: () =>  this.confirmPackage()
+  },{ text: 'Cancel', onAction: () => true },
+
+  ];
   }
 confirmPackage(){
   let data1 ={
