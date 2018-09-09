@@ -15,6 +15,9 @@ export class PackagesComponent implements OnInit {
   activeTabflag:boolean=false;
   modalService:any;
   viewRef:any;
+  isLoading:boolean=true;
+  
+
 
   constructor(private router: Router,  modalService: ModalDialogService, viewRef: ViewContainerRef) {
 

@@ -95,13 +95,13 @@ export class UserloginComponent implements OnInit {
           // alert(this.user1.loginId)
           this.http.get(this.baseUrl + 'customerpackages/' + this.user1.loginId).subscribe(
             result => {
-              //alert(typeof result);
-              if (typeof result === "object") {
+              //alert(Object.keys(result).length);
+              if (Object.keys(result).length === 0) {
                 this.isLoading = false;
-                window.location.href = AppConstants.userdashboardURL;
+                window.location.href = AppConstants.packageURL;
 
               } else {
-                window.location.href = AppConstants.packageURL;
+                window.location.href = AppConstants.userdashboardURL;
                 // this.router.navigateByUrl('/userdashboard');
 
               }

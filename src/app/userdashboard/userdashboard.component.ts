@@ -193,18 +193,18 @@ export class UserdashboardComponent implements OnInit {
 
   updateuserFun(updateuserobj) {
     this.submitted = true;
-    this.isLoading = true;
     this.errorMsg = '';
 
     if (this.updateuserForm.valid) {
+      this.isLoading = true;
 
       this.EgazeService.updateprofile(updateuserobj.value, this.user.loginId).subscribe(result => {
         this.isLoading = false;
         if (typeof result === "object") {
           this.isLoaderdiv= false;
-          setTimeout(function () {
-            window.location.reload(true);
-          }, 2000);
+          // setTimeout(function () {
+          //   window.location.reload(true);
+          // }, 2000);
           this.updateuserProfilestatus = "Profile updated Successfully"
 
         }

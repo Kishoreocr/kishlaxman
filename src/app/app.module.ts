@@ -22,7 +22,6 @@ import { PackageconfirmComponent } from './packageconfirm/packageconfirm.compone
 import { EgazeService} from './services/egaze.service';
 import {SessionstorageService} from './services/sessionstorage.service';
 import { LoadingDivComponent } from './loading-div/loading-div.component';
-import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { AdminModule } from './admin/admin.module';
 
 const appRoutes: Routes = [
@@ -56,8 +55,7 @@ const appRoutes: Routes = [
     ViewpropertyComponent,
     PwdchangesuccessComponent,
     PackageconfirmComponent,
-    LoadingDivComponent,
-    AdmindashboardComponent
+    LoadingDivComponent
     
   ],
   entryComponents:[

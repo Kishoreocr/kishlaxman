@@ -6,10 +6,10 @@
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
                     <div class="form-group">
                         <label class="radio-inline" style="margin-right:6px;">
-                            <input type="radio" name="registerType" checked> Customer
+                            <input type="radio" formControlName="registerType" value="customer" checked="checked"> Customer
                           </label>
                           <label class="radio-inline">
-                            <input type="radio" name="registerType"> Agent
+                            <input type="radio" formControlName="registerType" value="agent"> Agent
                           </label>
                     </div>
                     <div class="form-group">
