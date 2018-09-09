@@ -36,7 +36,6 @@ export class UserloginComponent implements OnInit {
   user: any;
   isLoading: boolean;
   msg: any;
-  private baseUrl: string = 'http://43.225.26.98:8080/egaze-api/';
   user1: any;
 
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private http: HttpClient) {
