@@ -93,7 +93,7 @@ export class UserloginComponent implements OnInit {
           this.isLoading = true;
           this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
           // alert(this.user1.loginId)
-          this.http.get(this.baseUrl + 'customerpackages/' + this.user1.loginId).subscribe(
+          this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
             result => {
               //alert(Object.keys(result).length);
               if (Object.keys(result).length === 0) {

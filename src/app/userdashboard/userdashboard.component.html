@@ -389,7 +389,7 @@
 
                 <div class='mainAlertcontainer'>
 
-                    <table border="1"><tr>
+                    <table border="1" *ngIf="alerts.length!==0"><tr>
                         <th>SUBJECT</th>
                         <th>DESCRIPTION</th>
                         <th>DATE</th>
@@ -399,9 +399,11 @@
                     <tr *ngFor="let alert of alerts">
                             <td>{{alert.subject}}</td>
                             <td>{{alert.description}}</td>
-                            <td>{{alert.addedDate}}</td>
+                            <td>{{alert.addedDate  | date: 'dd/mm/yyyy'}}</td>
                         </tr>
                     </table>
+                    <p style="text-align:center;padding:50px;" *ngIf="alerts.length===0">No Alerts Found </p>
+
 <!-- 
                         <div class='alertcontainer' style='margin-bottom:5px;background-color: #fdf8f5;vertical-align: middle;
                         color: #1275af;font-size: 14px;'>
@@ -505,7 +507,23 @@
 
             <!-- transactions  tab -->
             <div *ngIf="!propertyTab && !alertsTab && transactionsTab && !profileTab">
-                <p style="text-align:center;padding:50px;">Transactions page is under construction</p>
+
+                    <table border="1" *ngIf="transactions.length!==0"><tr>
+                            <th>Package Name</th>
+                            <th>Start Date</th>
+                            <th>Expiry Date</th>
+                            <th>No of Properties Used</th><th>Status</th>
+    
+                        </tr>
+                        <tr *ngFor="let transaction of transactions">
+                                <td>{{transaction.packageId}}</td>
+                                <td>{{transaction.purchaseDate | date: 'dd/MM/yyyy'}}</td>
+                                <td>{{transaction.expiryDate | date: 'dd/MM/yyyy'}}</td>
+                                <td>{{transaction.propertiesUSed}}</td>
+                                <td>{{transaction.status}}</td>
+                            </tr>
+                        </table>
+                <p style="text-align:center;padding:50px;" *ngIf="transactions.length===0">No Transactions Found </p>
             </div>
             <!-- transactions tab -->
 

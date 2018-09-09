@@ -53,10 +53,10 @@ export class EgazeService {
   }
 
   getprofile(id) {
-    return this.http.get(this.baseUrl + 'profile/'+id);
+    return this.http.get(this.baseUrl + 'profile/' + id);
   }
 
-  updateprofile(userObj,id) {
+  updateprofile(userObj, id) {
     debugger;
     let requestPayload = {
       "loginId": id,
@@ -79,7 +79,11 @@ export class EgazeService {
   }
 
   getAlerts(id) {
-    return this.http.get(this.baseUrl + 'alerts/'+id);
+    return this.http.get(this.baseUrl + 'alerts/' + id);
+  }
+  getCustomerPackages(id) {
+    return this.http.get(this.baseUrl + 'customerpackages/' + id);
+
   }
 
 }

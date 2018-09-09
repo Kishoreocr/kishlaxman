@@ -6,6 +6,8 @@ import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { EgazeService } from '../services/egaze.service';
 import { SessionstorageService } from '../services/sessionstorage.service';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
+import { AppConstants } from '../services/constants';
+
 @Component({
   selector: 'app-userdashboard',
   templateUrl: './userdashboard.component.html',
@@ -36,16 +38,27 @@ export class UserdashboardComponent implements OnInit {
   updateuserProfile: any;
   updateuserProfilestatus: any;
   isLoading: boolean;
-  alerts:any;
-  isLoaderdiv:boolean = false;
-  errorMsg:string = '';
-
+  alerts: any;
+  transactions:any;
+  isLoaderdiv: boolean = false;
+  errorMsg: string = '';
+  user1: any;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
     this.modalService = modalService;
     this.viewRef = viewRef;
     this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
+    this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
+    this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
+      result => {
+        if (Object.keys(result).length === 0) {
+          this.isLoading = false;
+          window.location.href = AppConstants.packageURL;
+        }
+        this.transactions=result;
+      }
 
+    );
   }
 
   ngOnInit() {
@@ -85,7 +98,7 @@ export class UserdashboardComponent implements OnInit {
       address3: [],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      zipCode: ['', Validators.compose([Validators.required,  Validators.maxLength(6)])],
+      zipCode: ['', Validators.compose([Validators.required, Validators.maxLength(6)])],
       country: ['', Validators.required],
     });
 
@@ -131,7 +144,7 @@ export class UserdashboardComponent implements OnInit {
     this.viewProperties = !this.viewProperties;
   }
   userdashTabs(activeTab) {
-    this.updateuserProfilestatus="";
+    this.updateuserProfilestatus = "";
     //this.activeSelected = true;
     switch (activeTab) {
       case 'Properties':
@@ -158,7 +171,7 @@ export class UserdashboardComponent implements OnInit {
         this.alertsTab = false;
         this.transactionsTab = false;
         this.profileTab = true;
-        this.updateuserProfilestatus="";
+        this.updateuserProfilestatus = "";
         this.getsaveprofile();
         this.isEditDisabled = false;
         break;
@@ -202,18 +215,18 @@ export class UserdashboardComponent implements OnInit {
       this.EgazeService.updateprofile(updateuserobj.value, this.user.loginId).subscribe(result => {
         this.isLoading = false;
         if (typeof result === "object") {
-          this.isLoaderdiv= false;
+          this.isLoaderdiv = false;
           // setTimeout(function () {
           //   window.location.reload(true);
           // }, 2000);
           const element = document.querySelector("#destination")
-if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
           this.updateuserProfilestatus = "Profile updated Successfully";
           this.isEditDisabled = false;
         }
       }, error => {
-        this.isLoaderdiv= false;
+        this.isLoaderdiv = false;
         this.errorMsg = 'Server error has occurred. Please try later.';
       });
 
@@ -270,7 +283,7 @@ if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
   getAlerts() {
     this.EgazeService.getAlerts(this.user.loginId).subscribe(result => {
       this.alerts = result;
- }, error => {
+    }, error => {
 
     });
 
