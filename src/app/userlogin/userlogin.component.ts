@@ -36,7 +36,6 @@ export class UserloginComponent implements OnInit {
   user: any;
   isLoading: boolean;
   msg: any;
-  private baseUrl: string = 'http://43.225.26.98:8080/egaze-api/';
   user1: any;
 
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private http: HttpClient) {
@@ -93,7 +92,7 @@ export class UserloginComponent implements OnInit {
           this.isLoading = true;
           this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
           // alert(this.user1.loginId)
-          this.http.get(this.baseUrl + 'customerpackages/' + this.user1.loginId).subscribe(
+          this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
             result => {
               //alert(Object.keys(result).length);
               if (Object.keys(result).length === 0) {

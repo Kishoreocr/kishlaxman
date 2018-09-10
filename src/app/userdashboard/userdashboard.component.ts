@@ -6,6 +6,8 @@ import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { EgazeService } from '../services/egaze.service';
 import { SessionstorageService } from '../services/sessionstorage.service';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
+import { AppConstants } from '../services/constants';
+
 @Component({
   selector: 'app-userdashboard',
   templateUrl: './userdashboard.component.html',
@@ -35,17 +37,30 @@ export class UserdashboardComponent implements OnInit {
 
   updateuserProfile: any;
   updateuserProfilestatus: any;
-  isLoading: boolean;
+  isLoading:boolean;
   alerts: any;
+
   isLoaderdiv: boolean = false;
   errorMsg: string = '';
+  transactions:any;
+  user1: any;
 
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
     this.modalService = modalService;
     this.viewRef = viewRef;
     this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
+    this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
+    this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
+      result => {
+        if (Object.keys(result).length === 0) {
+          this.isLoading = false;
+          window.location.href = AppConstants.packageURL;
+        }
+        this.transactions=result;
+      }
 
+    );
   }
 
   ngOnInit() {
