@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule }    from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: 'adminlogin', component: LoginComponent },
@@ -10,7 +11,11 @@ const appRoutes: Routes = [
 ]
 @NgModule({
   imports: [
-    CommonModule, RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes, { enableTracing: true }),
 
   ],
   declarations: [LoginComponent],
