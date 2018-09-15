@@ -47,11 +47,6 @@ export class LoginComponent implements OnInit {
     //       }
   }
 
-  // this.userloginForm = this.fb.group({
-  //   username: ['', Validators.required],
-  //   userpwd: ['', Validators.required],
-  // });
-
   ngOnInit() {
     this.disabledField = false;
     this.userloginForm = this.fb.group({
@@ -65,6 +60,7 @@ export class LoginComponent implements OnInit {
   saveUser(userloginForm) {
     if (this.userloginForm.valid) {
       this.isLoading = true;
+
       this.EgazeService.loginFun(userloginForm).subscribe(message => {
         //alert(message);
         this.isLoading = false;
@@ -89,21 +85,7 @@ export class LoginComponent implements OnInit {
           this.isLoading = true;
           this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
           // alert(this.user1.loginId)
-          this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
-            result => {
-              //alert(Object.keys(result).length);
-              if (Object.keys(result).length === 0) {
-                this.isLoading = false;
-                window.location.href = AppConstants.packageURL;
-
-              } else {
-                window.location.href = AppConstants.userdashboardURL;
-                // this.router.navigateByUrl('/userdashboard');
-
-              }
-            }
-
-          );
+          window.location.href = AppConstants.AdminloginURL;
           // this.routerProperty.navigateByUrl('/package-choose');
 
           this.userloginForm.value.username = "";

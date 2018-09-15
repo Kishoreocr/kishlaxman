@@ -49,7 +49,7 @@ export class EgazeService {
       "email": useremail.emailidForget,
       "password": userpw.newpwd
     }
-    return this.http.post(this.baseUrl + 'pwdchange', requestPayload);
+    return this.http.post(this.baseUrl + 'forgotpwdchange', requestPayload);
   }
 
   getprofile(id) {
@@ -83,10 +83,47 @@ export class EgazeService {
   }
   getCustomerPackages(id) {
     return this.http.get(this.baseUrl + 'customerpackages/' + id);
-
   }
   getPackages() {
     return this.http.get(this.baseUrl + 'packages');
+  }
+
+  addProperty(objProperty, userId) {
+    let propertyDetails = {
+      "loginId": userId,
+      "propertyType": objProperty.typeofProperty,
+      "propertyHolderName": objProperty.titleHolder,
+      "relationship": objProperty.relationship,
+      "doorNo": objProperty.doorNo,
+      "documentNo": objProperty.documentNo,
+      "boundaries": objProperty.boundaries,
+      "mandal": objProperty.mandal,
+      "district": objProperty.district,
+      "subRegisterOffice": objProperty.subRegisterOffice,
+      "extentOfProperty": objProperty.extentOfProperty,
+      "address1": objProperty.address1,
+      "address2": objProperty.address2,
+      "city": objProperty.villageCity,
+      "state": objProperty.state,
+      "zip": objProperty.zip,
+      "country": objProperty.country
+    };
+    return this.http.post(this.baseUrl + 'add/property', propertyDetails);
 
   }
+
+getAllproperties(userId){
+  return this.http.get(this.baseUrl + 'properties/' + userId);
+}
+
+profilechndpwd(objData, userEmail){
+let requestData = {
+  "email": userEmail,
+  "newPassword": objData.newpwd,
+  "password": objData.oldpwd
+}
+return this.http.post(this.baseUrl + 'pwdchange', requestData);
+
+}
+
 }

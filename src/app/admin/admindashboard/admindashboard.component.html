@@ -1,0 +1,842 @@
+<!-- row justify-content-md-center no-gutters -->
+<div class="row no-gutters">
+
+  <div class="col-md-2" style="background-color:#cce8fc;padding:0px;">
+      <!-- <div class="registeruserName">
+          <i class="fa fa-user-circle"></i>
+          <span>Kiran</span>
+      </div> -->
+      <div class="leftside-menu">
+          <ul>
+              <li [ngClass]="{'activeTabdash': propertyTab}" (click)="userdashTabs('Properties')">
+
+                  <i class="fa fa-home"></i> Payment Approval
+              </li>
+              <li [ngClass]="{'activeTabdash': alertsTab}" (click)="userdashTabs('Alerts')">
+
+                  <i class="fa fa-bell"></i> Alerts
+              </li>
+              <li [ngClass]="{'activeTabdash': transactionsTab}" (click)="userdashTabs('Transactions')">
+
+                  <i class="fa fa-credit-card"></i> Transactions
+              </li>
+              <li [ngClass]="{'activeTabdash': profileTab}" (click)="userdashTabs('Profile')">
+                  <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
+                  <i class="fa fa-user"></i> Profile
+              </li>
+
+          </ul>
+      </div>
+
+  </div>
+
+  <div class="col-md-10 right-content-bg" style="padding:15px;">
+      <div class="col tabActions" style="background-color:#f7fcff;">
+
+          <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
+
+              <!-- <div *ngIf="addProperty && !viewProperties" class="propertyheading" (click)="propertyFun()">
+                  <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
+              </div> -->
+              <div *ngIf="addProperty && !viewProperties" class="propertyheading">
+                  <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
+              </div>
+              <div *ngIf="!addProperty && viewProperties" class="propertyheading" (click)="propertyFun()">
+                  <i class="fa fa-eye" style="font-size:13px;font-weight: 200"></i> View Properties
+              </div>
+
+          </div>
+
+
+          <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab">
+
+
+              <div class="propertyheading" (click)="profileeditFun()">
+                  <i class="fa fa-edit" style="font-size:13px;font-weight: 200"></i> Edit
+              </div>
+              <div class="propertyheading" (click)="profileChangepwdFun()">
+                  <i class="fa fa-key" style="font-size:13px;font-weight: 200"></i> Change Password
+              </div>
+
+          </div>
+
+
+
+
+      </div>
+
+      <div class="col" style="padding-bottom:7px;">
+
+          <!--Property Tab start here -->
+          <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
+              <div *ngIf="addProperty && !viewProperties">
+                  <div class="table-container-style table-th-styles">
+                      <div class="table-responsive">
+                          <table class="table">
+                              <caption>List of Properties</caption>
+                              <thead>
+                                  <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Type of Property</th>
+                                      <th scope="col">Title Holder</th>
+                                      <th scope="col">Relationship to customer</th>
+                                      <th scope="col">Survey No/Dr No</th>
+                                      <th scope="col">Sub Register Office</th>
+                                      <th scope="col">Extent of Property</th>
+                                      <th scope="col">Boundaries</th>
+                                      <th scope="col">Action</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>1</td>
+                                      <td>Commercial</td>
+                                      <td>Mr. Gunti</td>
+                                      <td>Parents</td>
+                                      <td>189/p</td>
+                                      <td>6-3-541/A, Punjagutta Rd, Irram Manzil Colony</td>
+                                      <td>5-00 Acres</td>
+                                      <td>East:Z.P.School, West:Temple, North:Purana Hills</td>
+
+                                      <td class="viewbtn">
+                                          <i class="fa fa-eye" (click)="viewPropertyFun()"></i>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>2</td>
+                                      <td>Commercial</td>
+                                      <td>Mr. Gunti</td>
+                                      <td>Parents</td>
+                                      <td>189/p</td>
+                                      <td>6-3-541/A, Punjagutta Rd, Irram Manzil Colony</td>
+                                      <td>5-00 Acres</td>
+                                      <td>East:Z.P.School, West:Temple, North:Purana Hills</td>
+                                      <td class="viewbtn">
+                                          <i class="fa fa-eye"></i>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>3</td>
+                                      <td>Commercial</td>
+                                      <td>Mr. Gunti</td>
+                                      <td>Parents</td>
+                                      <td>189/p</td>
+                                      <td>6-3-541/A, Punjagutta Rd, Irram Manzil Colony</td>
+                                      <td>5-00 Acres</td>
+                                      <td>East:Z.P.School, West:Temple, North:Purana Hills</td>
+                                      <td class="viewbtn">
+                                          <i class="fa fa-eye"></i>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>4</td>
+                                      <td>Commercial</td>
+                                      <td>Mr. Gunti</td>
+                                      <td>Parents</td>
+                                      <td>189/p</td>
+                                      <td>6-3-541/A, Punjagutta Rd, Irram Manzil Colony</td>
+                                      <td>5-00 Acres</td>
+                                      <td>East:Z.P.School, West:Temple, North:Purana Hills</td>
+                                      <td class="viewbtn">
+                                          <i class="fa fa-eye"></i>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+
+
+                      </div>
+                  </div>
+              </div>
+
+
+
+              <div *ngIf="!addProperty && viewProperties" class="table-container-style">
+
+                  <form [formGroup]="propertyForm" (ngSubmit)="addPropertyFun()">
+                      <div class="row">
+                          <div class="col-md-6">
+
+                              <div class="form-group">
+                                  <label for="exampleFormControlSelect1">Type of Property
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <select (change)="ChangingValue($event)" [value]='1' class="form-control" id="exampleFormControlSelect1" formControlName="typeofProperty"
+                                      class="form-control" [ngClass]="{ 'is-invalid': submitted && f.typeofProperty.errors }">
+                                      <option [value]="1" [selected]="selected">Select any Property</option>
+                                      <option [value]="2">Residential</option>
+                                      <option [value]="3">Commercial</option>
+                                      <option [value]="4">Land/Plots/Agricultural</option>
+                                      <option [value]="5">Industrial</option>
+                                  </select>
+                                  <div *ngIf="submitted && f.typeofProperty.errors" class="invalid-feedback">
+                                      <div *ngIf="f.typeofProperty.errors.required">Type of Property is required</div>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label for="titleHolder">Title Holder
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <input type="text" formControlName="titleHolder" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.titleHolder.errors }"
+                                      id="titleHolderFormControlInput" placeholder="Enter Title Holder" />
+                                  <div *ngIf="submitted && f.titleHolder.errors" class="invalid-feedback">
+                                      <div *ngIf="f.titleHolder.errors.required">Title Holder is required</div>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="RelationshipTocustomer">Relationship to customer
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <input type="text" formControlName="relationshipTocustomer" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationshipTocustomer.errors }"
+                                      id="RelationshipTocustomerFormControlInput" placeholder="Enter Relationship to customer">
+                                  <div *ngIf="submitted && f.relationshipTocustomer.errors" class="invalid-feedback">
+                                      <div *ngIf="f.relationshipTocustomer.errors.required">Relationship to customer is required</div>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="surveyNo/DrNo">Survey No/Dr No
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <input type="text" formControlName="surveyNoDrNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.surveyNoDrNo.errors }"
+                                      id="surveyNo/DrNoFormControlInput" placeholder="Enter Survey No/Dr No">
+                                  <div *ngIf="submitted && f.surveyNoDrNo.errors" class="invalid-feedback">
+                                      <div *ngIf="f.surveyNoDrNo.errors.required">Survey No/Dr No is required</div>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="subRegisterOffice">Sub Register Office
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <input type="text" formControlName="subRegisterOffice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
+                                      id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office">
+                                  <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
+                                      <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is required</div>
+                                  </div>
+                              </div>
+
+
+                              <div class="form-group">
+                                  <label for="extentofProperty">Extent of Property
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <input type="text" formControlName="extentofProperty" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentofProperty.errors }"
+                                      id="extentofPropertyFormControlInput" placeholder="Enter Extent of Property">
+                                  <div *ngIf="submitted && f.extentofProperty.errors" class="invalid-feedback">
+                                      <div *ngIf="f.extentofProperty.errors.required">Extent of Property is required</div>
+                                  </div>
+                              </div>
+
+
+                              <div class="form-group">
+                                  <label for="boundaries">Boundaries
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <input type="text" formControlName="boundaries" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundaries.errors }"
+                                      id="boundariesFormControlInput" placeholder="Enter Boundaries">
+                                  <div *ngIf="submitted && f.boundaries.errors" class="invalid-feedback">
+                                      <div *ngIf="f.boundaries.errors.required">Boundaries is required</div>
+                                  </div>
+                              </div>
+
+
+                              <div class="form-group">
+                                  <label for="documentno">Document No.
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <input type="text" formControlName="documentNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
+                                      id="documentNoFormControlInput" placeholder="Enter document no.">
+                                  <div *ngIf="submitted && f.documentNo.errors" class="invalid-feedback">
+                                      <div *ngIf="f.documentNo.errors.required">Document No. is required</div>
+                                  </div>
+                              </div>
+
+                          </div>
+
+
+
+
+                          <div class="col-md-6">
+
+
+
+                              <div class="form-group">
+                                  <label for="address1">Address 1
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <input type="text" formControlName="address1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address1.errors }"
+                                      id="address1FormControlInput" placeholder="Enter Address 1">
+                                  <div *ngIf="submitted && f.address1.errors" class="invalid-feedback">
+                                      <div *ngIf="f.address1.errors.required">Address 1 is required</div>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="address2">Address 2
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <input type="text" formControlName="address2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address2.errors }"
+                                      id="address1FormControlInput" placeholder="Enter Address 2">
+                                  <div *ngIf="submitted && f.address2.errors" class="invalid-feedback">
+                                      <div *ngIf="f.address2.errors.required">Address 2 is required</div>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="village/City">Village/City
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <input type="text" formControlName="villageCity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.villageCity.errors }"
+                                      id="villageCityFormControlInput" placeholder="Enter Village/City">
+                                  <div *ngIf="submitted && f.villageCity.errors" class="invalid-feedback">
+                                      <div *ngIf="f.villageCity.errors.required">Village/City is required</div>
+                                  </div>
+
+                              </div>
+
+
+                              <div class="form-group">
+                                  <label for="mandal">Mandal
+                                      <span class="mandatory">*</span>
+                                  </label>
+
+                                  <input type="text" formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
+                                      id="mandalFormControlInput" placeholder="Enter Mandal">
+                                  <div *ngIf="submitted && f.mandal.errors" class="invalid-feedback">
+                                      <div *ngIf="f.mandal.errors.required">Mandal is required</div>
+                                  </div>
+                              </div>
+
+
+                              <div class="form-group">
+                                  <label for="district">District
+                                      <span class="mandatory">*</span>
+                                  </label>
+
+                                  <input type="text" formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
+                                      id="districtFormControlInput" placeholder="Enter District">
+                                  <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                                      <div *ngIf="f.district.errors.required">District is required</div>
+                                  </div>
+
+
+                              </div>
+                              <div class="form-group">
+                                  <label for="zip">zip
+                                      <span class="mandatory">*</span>
+                                  </label>
+                                  <input type="text" formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }" id="zipFormControlInput"
+                                      placeholder="Enter zipCode">
+                                  <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
+                                      <div *ngIf="f.zip.errors.required">zipCode is required</div>
+                                      <div *ngIf="f.zip.errors.maxlength">ZipCode max value will be 6 digits only</div>
+
+                                  </div>
+                              </div>
+
+
+
+                              <div class="form-group">
+                                  <label for="state">State
+                                      <span class="mandatory">*</span>
+                                  </label>
+
+                                  <input type="text" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
+                                      id="stateFormControlInput" placeholder="Enter State">
+                                  <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                      <div *ngIf="f.state.errors.required">State is required</div>
+                                  </div>
+
+                              </div>
+
+
+
+
+                          </div>
+
+
+
+
+
+
+                      </div>
+
+
+
+
+
+
+
+                      <div class="col" align="center">
+                          <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
+                          <button type="submit" class="submit-btn">Submit</button>
+                      </div>
+
+
+
+
+                  </form>
+
+              </div>
+          </div>
+          <!---propety Tab -->
+
+          <!-- Alerts tab -->
+          <div *ngIf="!propertyTab && alertsTab && !transactionsTab && !profileTab" class="table-container-style">
+
+              <div class='mainAlertcontainer'>
+                  <table class="table">
+                      <caption>List of Alerts</caption>
+                      <thead>
+                          <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Subject</th>
+                              <th scope="col">Description</th>
+                              <th scope="col">Date</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let alert of alerts;let IndexId = index">
+                              <td>{{IndexId + 1}}</td>
+                              <td>{{alert.subject}}</td>
+                              <td>{{alert.description}}</td>
+                              <td>{{alert.addedDate}}</td>
+                          </tr>
+                          <tr *ngIf='alerts.length == 0'>
+                              <td colspan="4" class='noAlerts'>No Alerts.</td>
+                          </tr>
+                      </tbody>
+
+
+                  </table>
+                  <!-- 
+
+                  <table border="1" *ngIf="alerts.length!==0"><tr>
+                      <th>SUBJECT</th>
+                      <th>DESCRIPTION</th>
+                      <th>DATE</th>
+
+
+                  </tr>
+                  <tr *ngFor="let alert of alerts">
+                          <td>{{alert.subject}}</td>
+                          <td>{{alert.description}}</td>
+                          <td>{{alert.addedDate  | date: 'dd/mm/yyyy'}}</td>
+                      </tr>
+                  </table>
+                  <p style="text-align:center;padding:50px;" *ngIf="alerts.length===0">No Alerts Found </p>
+
+
+                      <div class='alertcontainer' style='margin-bottom:5px;background-color: #fdf8f5;vertical-align: middle;
+                      color: #1275af;font-size: 14px;'>
+                              <div class='alertColomns'>
+                                      #
+                              </div>
+                              <div class='alertColomns'>
+                                  Type
+                              </div>
+                               <div class='alertColomns'>
+                                  Date
+                              </div>
+                              <div class='alertColomns'>
+                                  Heading4
+                              </div>
+                              <div class='alertColomns'>
+                                     Heading5
+                                  </div>
+                              <div class='alertColomns'>
+                              
+                                  
+                              </div> 
+                          </div> -->
+
+
+                  <!-- <div class="alertDivstyles" *ngFor="let alert of alerts">
+
+                      <div class='alertcontainer'>
+                          <div class='alertColomns'>
+                              {{alert.subject}}
+                          </div>
+                          <div class='alertColomns'>
+                              {{alert.description}}
+                          </div> -->
+                  <!-- <div class='alertColomns'>
+                              dummy content
+                          </div>
+                          <div class='alertColomns'>
+                              dummy content
+                          </div>
+                          <div class='alertColomns'>
+                                  dummy content
+                              </div>
+                          <div class='alertColomns'>
+
+                              <div class="dropdown-toggle"></div>
+                          </div> -->
+                  <!-- </div>
+
+
+
+                  </div> -->
+                  <!-- <div class='accordionshowHide'>
+                          <p>
+                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+                              text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                              to make a type specimen book.
+                          </p>
+                      </div>
+
+
+                  <div class="alertDivstyles">
+                      <div class='alertcontainer'>
+                          <div class='alertColomns'>
+                              2
+                          </div>
+                          <div class='alertColomns'>
+                              dummy content
+                          </div>
+                          <div class='alertColomns'>
+                              dummy content
+                          </div>
+                          <div class='alertColomns'>
+                              dummy content
+                          </div>
+                          <div class='alertColomns'>
+                                  dummy content
+                              </div>
+                          <div class='alertColomns'>
+                              <div class="dropdown-toggle"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class='accordionshowHide'>
+                          <p>
+                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+                              text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                              to make a type specimen book.
+                          </p>
+                      </div>
+-->
+
+
+
+
+              </div>
+
+          </div>
+          <!-- Alerts tab -->
+
+
+          <!-- transactions  tab -->
+          <div *ngIf="!propertyTab && !alertsTab && transactionsTab && !profileTab" class="table-container-style">
+              <div class='mainAlertcontainer'>
+                  <table class="table">
+                      <caption>List of Transactions</caption>
+                      <thead>
+                          <tr>
+                              <th scope="col">#</th>
+                              <th>Package Name</th>
+                              <th>Start Date</th>
+                              <th>Expiry Date</th>
+                              <th>No of Properties Used</th>
+                              <th>Status</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let transaction of transactions; let i = index">
+                              <td>{{i + 1}}</td>
+                              <td>{{transaction.packageName}}</td>
+                              <td>{{transaction.purchaseDate | date: 'dd/MM/yyyy'}}</td>
+                              <td>{{transaction.expiryDate | date: 'dd/MM/yyyy'}}</td>
+                              <td>{{transaction.propertiesUSed}}</td>
+                              <td>{{transaction.status}}</td>
+                          </tr>
+
+                          <tr *ngIf='transactions.length == 0'>
+                              <td colspan="5">No Transactions Found</td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+          <!-- transactions tab -->
+
+
+
+          <!-- profile tab -->
+          <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab">
+              <div class="table-container-style">
+                  <div class="alert alert-success" id="destination" *ngIf="updateuserProfilestatus!=''">
+                      <a href="#" class="close" data-dismiss="alert">&times;</a>
+                      <strong>{{updateuserProfilestatus}}</strong>
+                  </div>
+
+
+                  <div *ngIf="!userEditprofileFlag && userchangepwdflag">
+                      <form [formGroup]="updateuserForm" (ngSubmit)="updateuserFun(updateuserForm)">
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">First Name
+                                  <span class="mandatory">*</span>
+                              </label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="!isEditDisabled" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.firstName.errors && isEditDisabled }"
+                                  />
+                                  <div *ngIf="submitted && feditP.firstName.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.firstName.errors.required">First Name is required</div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Middle Name</label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="!isEditDisabled" formControlName="middleName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.middleName.errors && isEditDisabled }"
+                                  />
+                                  <div *ngIf="submitted && feditP.middleName.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.middleName.errors.required">Middle Name is required</div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Last Name
+                                  <span class="mandatory">*</span>
+                              </label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="!isEditDisabled" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.lastName.errors && isEditDisabled}"
+                                  />
+                                  <div *ngIf="submitted && feditP.lastName.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.lastName.errors.required">Name is required</div>
+                                  </div>
+
+
+                              </div>
+
+                          </div>
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Email
+                                  <span class="mandatory">*</span>
+                              </label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="true" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.email.errors && isEditDisabled}"
+                                  />
+
+                                  <div *ngIf="submitted && feditP.email.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.email.errors.required">Email Name is required</div>
+                                  </div>
+                              </div>
+
+                          </div>
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Mobile Number
+                                  <span class="mandatory">*</span>
+                              </label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="true" maxlength="10" formControlName="mobileNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.mobileNumber.errors && isEditDisabled}"
+                                  />
+
+                                  <div *ngIf="submitted && feditP.mobileNumber.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.mobileNumber.errors.required">Mobile Number Name is required</div>
+                                  </div>
+
+                              </div>
+
+                          </div>
+
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Address 1
+                                  <span class="mandatory">*</span>
+                              </label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="!isEditDisabled" formControlName="address1" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address1.errors && isEditDisabled}"
+                                  />
+                                  <div *ngIf="submitted && feditP.address1.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.address1.errors.required">Address is required</div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Address 2</label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="!isEditDisabled" formControlName="address2" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address2.errors && isEditDisabled}"
+                                  />
+                                  <div *ngIf="submitted && feditP.address2.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.address2.errors.required">Address is required</div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Address 3</label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="!isEditDisabled" formControlName="address3" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address3.errors && isEditDisabled}"
+                                  />
+                                  <div *ngIf="submitted && feditP.address3.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.address3.errors.required">Address is required</div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">City
+                                  <span class="mandatory">*</span>
+                              </label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="!isEditDisabled" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.city.errors && isEditDisabled}"
+                                  />
+                                  <div *ngIf="submitted && feditP.city.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.city.errors.required">City is required</div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+
+
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">State
+                                  <span class="mandatory">*</span>
+                              </label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="!isEditDisabled" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.state.errors && isEditDisabled}"
+                                  />
+                                  <div *ngIf="submitted && feditP.state.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.state.errors.required">State is required</div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">zipCode
+                                  <span class="mandatory">*</span>
+                              </label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="!isEditDisabled" maxlength="6" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.zipCode.errors && isEditDisabled}"
+                                  />
+
+                                  <div *ngIf="submitted && feditP.zipCode.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.zipCode.errors.required">Zip Code is required</div>
+                                  </div>
+                              </div>
+
+                          </div>
+
+
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Country
+                                  <span class="mandatory">*</span>
+                              </label>
+                              <div class="col-sm-4">
+                                  <input type="text" [readonly]="!isEditDisabled" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.country.errors && isEditDisabled}"
+                                  />
+                                  <div *ngIf="submitted && feditP.country.errors" class="invalid-feedback">
+                                      <div *ngIf="feditP.country.errors.required">country is required</div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+
+
+
+                          <div class="form-group" align="center" style="margin-top:15px;">
+                              <button [disabled]="!isEditDisabled" class="submit-btn">SAVE</button>
+                          </div>
+                          <div class='col' align='center' *ngIf='errorMsg && errorMsg.length > 0'>
+                              <p style='color:red;font-size:14px;'>{{errorMsg}}</p>
+                          </div>
+
+                      </form>
+                  </div>
+
+
+                  <div *ngIf="!userchangepwdflag && userEditprofileFlag">
+
+                      <form [formGroup]="updateuserNewpwdForm" (ngSubmit)="profileChangepwdSubmit()">
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Old Password</label>
+                              <div class="col-sm-4">
+                                  <input type="password" formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
+                                  />
+                                  <div *ngIf="submitted && fpwdP.oldpwd.errors" class="invalid-feedback">
+                                      <div *ngIf="fpwdP.oldpwd.errors.required">Old Password is required</div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">New Password</label>
+                              <div class="col-sm-4">
+                                  <input type="password" formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
+                                  />
+                                  <div *ngIf="submitted && fpwdP.newpwd.errors" class="invalid-feedback">
+                                      <div *ngIf="fpwdP.newpwd.errors.required">New Password is required</div>
+                                  </div>
+
+
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Confirm Password</label>
+                              <div class="col-sm-4">
+                                  <input type="password" formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
+                                  />
+                                  <div *ngIf="submitted && fpwdP.confirmpwd.errors" class="invalid-feedback">
+                                      <div *ngIf="fpwdP.confirmpwd.errors.required">New Password is required</div>
+                                  </div>
+                              </div>
+
+                          </div>
+
+
+                          <div class="form-group" align="center" style="margin-top:15px;">
+                              <button class="submit-btn">SAVE</button>
+                          </div>
+
+
+                      </form>
+
+
+
+                  </div>
+
+
+              </div>
+
+
+          </div>
+          <!-- profile tab -->
+
+          <!-- <app-loading-div *ngIf="isLoaderdiv"></app-loading-div> -->
+
+
+
+
+
+
+
+
+      </div>
+
+      <!-- <app-viewproperty> </app-viewproperty> -->
+
+  </div>
+
+
+</div>
+<!-- <app-loading-div *ngIf="isLoading"></app-loading-div> -->

@@ -4,4 +4,6 @@ export class AppConstants {
     public static get packageURL(): string { return "/package-choose";}
 
     public static get userdashboardURL(): string { return "/userdashboard";}
+
+    public static get AdminloginURL(): string { return "/admindashboard"; }
 }

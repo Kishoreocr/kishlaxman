@@ -1,19 +1,20 @@
 import { Component, OnInit, ViewContainerRef, ElementRef } from '@angular/core';
 import { ModalDialogService, IModalDialogSettings } from 'ngx-modal-dialog';
-import { ViewpropertyComponent } from '../viewproperty/viewproperty.component';
+import { ViewpropertyComponent } from '../../viewproperty/viewproperty.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
-import { EgazeService } from '../services/egaze.service';
-import { SessionstorageService } from '../services/sessionstorage.service';
-import { LoadingDivComponent } from '../loading-div/loading-div.component';
-import { AppConstants } from '../services/constants';
+import { EgazeService } from '../../services/egaze.service';
+import { SessionstorageService } from '../../services/sessionstorage.service';
+import { LoadingDivComponent } from '../../loading-div/loading-div.component';
+import { AppConstants } from '../../services/constants';
 
 @Component({
-  selector: 'app-userdashboard',
-  templateUrl: './userdashboard.component.html',
-  styleUrls: ['./userdashboard.component.css']
+  selector: 'app-admindashboard',
+  templateUrl: './admindashboard.component.html',
+  styleUrls: ['./admindashboard.component.css']
 })
-export class UserdashboardComponent implements OnInit {
+export class AdmindashboardComponent implements OnInit {
+
   addProperty: boolean = true;
   viewProperties: boolean = false;
   activeSelected: boolean = false;
@@ -37,18 +38,14 @@ export class UserdashboardComponent implements OnInit {
 
   updateuserProfile: any;
   updateuserProfilestatus: any;
-  isLoading: boolean;
+  isLoading:boolean;
   alerts: any;
 
   isLoaderdiv: boolean = false;
   errorMsg: string = '';
-  transactions: any;
+  transactions:any;
   user1: any;
 
-  propertyStatus: string;
-  userAllpropertis: any;
-  resultMsg: string;
-  profilechndResultMsg: string;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
     this.modalService = modalService;
@@ -61,7 +58,7 @@ export class UserdashboardComponent implements OnInit {
           this.isLoading = false;
           window.location.href = AppConstants.packageURL;
         }
-        this.transactions = result;
+        this.transactions=result;
       }
 
     );
@@ -114,11 +111,11 @@ export class UserdashboardComponent implements OnInit {
       confirmpwd: ['', Validators.required],
 
     });
-    this.propertiesShow();
+
   }
   ngAfterViewChecked() {
     // you'll get your through 'elements' below code
-
+    debugger;
     let acc = this.elem.nativeElement.querySelectorAll('.alertDivstyles');
     let i;
     for (i = 0; i < acc.length; i++) {
@@ -151,8 +148,6 @@ export class UserdashboardComponent implements OnInit {
   }
   userdashTabs(activeTab) {
     this.updateuserProfilestatus = "";
-    this.propertyStatus = "";
-    this.profilechndResultMsg = "";
     //this.activeSelected = true;
     switch (activeTab) {
       case 'Properties':
@@ -160,8 +155,6 @@ export class UserdashboardComponent implements OnInit {
         this.alertsTab = false;
         this.transactionsTab = false;
         this.profileTab = false;
-        this.propertyStatus = "";
-        this.propertiesShow();
         break;
       case 'Alerts':
         this.propertyTab = false;
@@ -184,8 +177,6 @@ export class UserdashboardComponent implements OnInit {
         this.updateuserProfilestatus = "";
         this.getsaveprofile();
         this.isEditDisabled = false;
-        // this.resultMsg = "";
-        // this.profilechndResultMsg = "";
         break;
 
       default:
@@ -208,33 +199,8 @@ export class UserdashboardComponent implements OnInit {
 
   }
 
-  addPropertyFun(objProperty) {
-    debugger;
+  addPropertyFun() {
     this.submitted = true;
-    if (this.propertyForm.valid) {
-      this.isLoaderdiv = true;
-      this.EgazeService.addProperty(objProperty.value, this.user.loginId).subscribe(
-        result => {
-          this.isLoaderdiv = false;
-          console.log(result);
-          if (typeof result === "object") {
-            const element = document.querySelector("#propertyDestination")
-            if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-
-            this.propertyStatus = "Property added Successfully";
-
-          }
-        },
-        error => {
-          console.log(error);
-        }
-
-      );
-
-
-
-    }
-
 
   }
 
@@ -285,37 +251,9 @@ export class UserdashboardComponent implements OnInit {
     this.errorMsg = '';
   }
 
-  profileChangepwdSubmit(updateuserNewpwdForm) {
+  profileChangepwdSubmit() {
     this.submitted = true;
     this.errorMsg = '';
-
-    debugger;
-    if (this.updateuserNewpwdForm.valid) {
-      this.isLoaderdiv = true;
-      this.EgazeService.profilechndpwd(updateuserNewpwdForm.value, this.user.email).subscribe(
-        result => {
-          this.isLoaderdiv = false;
-          if (result === 'SUCCESS') {
-            const element = document.querySelector("#profilechndpwd")
-            if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-            this.profilechndResultMsg = "Congrats, Successfully changed your password";
-          }
-          if (result === 'Incorrect Old Password') {
-            debugger;
-            this.resultMsg = "Sorry you entered wrong old password";
-          }
-        },
-        error => {
-          this.isLoaderdiv = false;
-          this.resultMsg = "Sorry you entered wrong old password";
-        }
-
-      );
-
-
-
-    }
-
   }
 
   getsaveprofile() {
@@ -355,17 +293,7 @@ export class UserdashboardComponent implements OnInit {
 
   }
 
-  propertiesShow() {
 
-    this.EgazeService.getAllproperties(this.user.loginId).subscribe(
-      result => {
-        debugger;
-        this.userAllpropertis = result;
-      },
-      error => { }
-    );
-
-  }
 
 
 
