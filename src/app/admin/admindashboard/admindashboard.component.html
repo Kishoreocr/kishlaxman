@@ -10,20 +10,36 @@
           <ul>
               <li [ngClass]="{'activeTabdash': propertyTab}" (click)="userdashTabs('Properties')">
 
-                  <i class="fa fa-home"></i> Payment Approval
+                  <i class="fa fa-home"></i> Customer Details
               </li>
               <li [ngClass]="{'activeTabdash': alertsTab}" (click)="userdashTabs('Alerts')">
 
-                  <i class="fa fa-bell"></i> Alerts
+                  <i class="fa fa-bell"></i> Property Approval
               </li>
               <li [ngClass]="{'activeTabdash': transactionsTab}" (click)="userdashTabs('Transactions')">
 
-                  <i class="fa fa-credit-card"></i> Transactions
+                  <i class="fa fa-credit-card"></i> Agent Approval
               </li>
               <li [ngClass]="{'activeTabdash': profileTab}" (click)="userdashTabs('Profile')">
                   <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
-                  <i class="fa fa-user"></i> Profile
+                  <i class="fa fa-user"></i> Payment Approval
               </li>
+
+              <li [ngClass]="{'activeTabdash': profileTab1}" (click)="userdashTabs('Profile')">
+                    <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
+                    <i class="fa fa-user"></i> Custom packages
+                </li>
+                <li [ngClass]="{'activeTabdash': profileTab2}" (click)="userdashTabs('Profile')">
+                        <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
+                        <i class="fa fa-user"></i> Property comments
+
+                    </li>
+                    <li [ngClass]="{'activeTabdash': profileTab3}" (click)="userdashTabs('Profile')">
+                            <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
+                            <i class="fa fa-user"></i> Portal feedback
+
+    
+                        </li>
 
           </ul>
       </div>
@@ -32,21 +48,6 @@
 
   <div class="col-md-10 right-content-bg" style="padding:15px;">
       <div class="col tabActions" style="background-color:#f7fcff;">
-
-          <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
-
-              <!-- <div *ngIf="addProperty && !viewProperties" class="propertyheading" (click)="propertyFun()">
-                  <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
-              </div> -->
-              <div *ngIf="addProperty && !viewProperties" class="propertyheading">
-                  <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
-              </div>
-              <div *ngIf="!addProperty && viewProperties" class="propertyheading" (click)="propertyFun()">
-                  <i class="fa fa-eye" style="font-size:13px;font-weight: 200"></i> View Properties
-              </div>
-
-          </div>
-
 
           <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab">
 
@@ -73,75 +74,66 @@
                   <div class="table-container-style table-th-styles">
                       <div class="table-responsive">
                           <table class="table">
-                              <caption>List of Properties</caption>
                               <thead>
                                   <tr>
                                       <th scope="col">#</th>
-                                      <th scope="col">Type of Property</th>
-                                      <th scope="col">Title Holder</th>
-                                      <th scope="col">Relationship to customer</th>
-                                      <th scope="col">Survey No/Dr No</th>
-                                      <th scope="col">Sub Register Office</th>
-                                      <th scope="col">Extent of Property</th>
-                                      <th scope="col">Boundaries</th>
-                                      <th scope="col">Action</th>
+                                      <th scope="col">First Name</th>
+                                      <th scope="col">Middle Name</th>
+                                      <th scope="col">Last Name</th>
+                                      <th scope="col">Email</th>
+                                      <th scope="col">Mobile Number</th>
+                                      <th scope="col">Address 1</th>
+                                      <th scope="col">City</th>
+                                      <th scope="col">State</th>
 
                                   </tr>
                               </thead>
                               <tbody>
                                   <tr>
                                       <td>1</td>
-                                      <td>Commercial</td>
-                                      <td>Mr. Gunti</td>
-                                      <td>Parents</td>
-                                      <td>189/p</td>
+                                      <td>laxman</td>
+                                      <td>kumar</td>
+                                      <td>madasi</td>
+                                      <td>laxmancse525@gmail.com</td>
                                       <td>6-3-541/A, Punjagutta Rd, Irram Manzil Colony</td>
-                                      <td>5-00 Acres</td>
-                                      <td>East:Z.P.School, West:Temple, North:Purana Hills</td>
+                                      <td>Hyderabad</td>
+                                      <td>Telangana</td>
 
                                       <td class="viewbtn">
                                           <i class="fa fa-eye" (click)="viewPropertyFun()"></i>
                                       </td>
                                   </tr>
+                                
+                              
                                   <tr>
-                                      <td>2</td>
-                                      <td>Commercial</td>
-                                      <td>Mr. Gunti</td>
-                                      <td>Parents</td>
-                                      <td>189/p</td>
-                                      <td>6-3-541/A, Punjagutta Rd, Irram Manzil Colony</td>
-                                      <td>5-00 Acres</td>
-                                      <td>East:Z.P.School, West:Temple, North:Purana Hills</td>
-                                      <td class="viewbtn">
-                                          <i class="fa fa-eye"></i>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>3</td>
-                                      <td>Commercial</td>
-                                      <td>Mr. Gunti</td>
-                                      <td>Parents</td>
-                                      <td>189/p</td>
-                                      <td>6-3-541/A, Punjagutta Rd, Irram Manzil Colony</td>
-                                      <td>5-00 Acres</td>
-                                      <td>East:Z.P.School, West:Temple, North:Purana Hills</td>
-                                      <td class="viewbtn">
-                                          <i class="fa fa-eye"></i>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>4</td>
-                                      <td>Commercial</td>
-                                      <td>Mr. Gunti</td>
-                                      <td>Parents</td>
-                                      <td>189/p</td>
-                                      <td>6-3-541/A, Punjagutta Rd, Irram Manzil Colony</td>
-                                      <td>5-00 Acres</td>
-                                      <td>East:Z.P.School, West:Temple, North:Purana Hills</td>
-                                      <td class="viewbtn">
-                                          <i class="fa fa-eye"></i>
-                                      </td>
-                                  </tr>
+                                        <td>2</td>
+                                        <td>laxman</td>
+                                        <td>kumar</td>
+                                        <td>madasi</td>
+                                        <td>laxmancse525@gmail.com</td>
+                                        <td>6-3-541/A, Punjagutta Rd, Irram Manzil Colony</td>
+                                        <td>Hyderabad</td>
+                                        <td>Telangana</td>
+  
+                                        <td class="viewbtn">
+                                            <i class="fa fa-eye" (click)="viewPropertyFun()"></i>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                            <td>3</td>
+                                            <td>laxman</td>
+                                            <td>kumar</td>
+                                            <td>madasi</td>
+                                            <td>laxmancse525@gmail.com</td>
+                                            <td>6-3-541/A, Punjagutta Rd, Irram Manzil Colony</td>
+                                            <td>Hyderabad</td>
+                                            <td>Telangana</td>
+      
+                                            <td class="viewbtn">
+                                                <i class="fa fa-eye" (click)="viewPropertyFun()"></i>
+                                            </td>
+                                        </tr>
                               </tbody>
                           </table>
 
