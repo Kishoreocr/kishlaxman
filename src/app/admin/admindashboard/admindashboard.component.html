@@ -10,20 +10,36 @@
           <ul>
               <li [ngClass]="{'activeTabdash': propertyTab}" (click)="userdashTabs('Properties')">
 
-                  <i class="fa fa-home"></i> Payment Approval
+                  <i class="fa fa-home"></i> Customer Details
               </li>
               <li [ngClass]="{'activeTabdash': alertsTab}" (click)="userdashTabs('Alerts')">
 
-                  <i class="fa fa-bell"></i> Alerts
+                  <i class="fa fa-bell"></i> Property Approval
               </li>
               <li [ngClass]="{'activeTabdash': transactionsTab}" (click)="userdashTabs('Transactions')">
 
-                  <i class="fa fa-credit-card"></i> Transactions
+                  <i class="fa fa-credit-card"></i> Agent Approval
               </li>
               <li [ngClass]="{'activeTabdash': profileTab}" (click)="userdashTabs('Profile')">
                   <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
-                  <i class="fa fa-user"></i> Profile
+                  <i class="fa fa-user"></i> Payment Approval
               </li>
+
+              <li [ngClass]="{'activeTabdash': profileTab1}" (click)="userdashTabs('Profile')">
+                    <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
+                    <i class="fa fa-user"></i> Custom packages
+                </li>
+                <li [ngClass]="{'activeTabdash': profileTab2}" (click)="userdashTabs('Profile')">
+                        <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
+                        <i class="fa fa-user"></i> Property comments
+
+                    </li>
+                    <li [ngClass]="{'activeTabdash': profileTab3}" (click)="userdashTabs('Profile')">
+                            <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
+                            <i class="fa fa-user"></i> Portal feedback
+
+    
+                        </li>
 
           </ul>
       </div>
@@ -32,21 +48,6 @@
 
   <div class="col-md-10 right-content-bg" style="padding:15px;">
       <div class="col tabActions" style="background-color:#f7fcff;">
-
-          <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
-
-              <!-- <div *ngIf="addProperty && !viewProperties" class="propertyheading" (click)="propertyFun()">
-                  <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
-              </div> -->
-              <div *ngIf="addProperty && !viewProperties" class="propertyheading">
-                  <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
-              </div>
-              <div *ngIf="!addProperty && viewProperties" class="propertyheading" (click)="propertyFun()">
-                  <i class="fa fa-eye" style="font-size:13px;font-weight: 200"></i> View Properties
-              </div>
-
-          </div>
-
 
           <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab">
 
@@ -73,7 +74,6 @@
                   <div class="table-container-style table-th-styles">
                       <div class="table-responsive">
                           <table class="table">
-                              <caption>List of Properties</caption>
                               <thead>
                                   <tr>
                                       <th scope="col">#</th>
