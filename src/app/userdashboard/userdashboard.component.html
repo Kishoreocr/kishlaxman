@@ -106,7 +106,7 @@
                                         </td>
                                     </tr>
                                     <tr *ngIf='userAllpropertis.length == 0'>
-                                        <td colspan="4" class='noAlerts'>No Alerts.</td>
+                                        <td colspan="4" class='noAlerts'>No Properties.</td>
                                     </tr>
 
                                
@@ -140,13 +140,13 @@
                                     <label for="exampleFormControlSelect1">Type of Property
                                         <span class="mandatory">*</span>
                                     </label>
-                                    <select (change)="ChangingValue($event)" [value]='1' class="form-control" id="exampleFormControlSelect1" formControlName="typeofProperty"
+                                    <select  class="form-control"  formControlName="typeofProperty" (ngModelChange)="getType($event)" 
                                         class="form-control" [ngClass]="{ 'is-invalid': submitted && f.typeofProperty.errors }">
-                                        <option [value]="1" [selected]="selected">Select any Property</option>
-                                        <option [value]="2">Residential</option>
-                                        <option [value]="3">Commercial</option>
-                                        <option [value]="4">Land/Plots/Agricultural</option>
-                                        <option [value]="5">Industrial</option>
+                                        <option value="" [selected]="selected">Select any Property</option>
+                                        <option value="Residential">Residential</option>
+                                        <option value="Commercial">Commercial</option>
+                                        <option value="Land">Land/Plots/Agricultural</option>
+                                        <option value="Industrial">Industrial</option>
                                     </select>
                                     <div *ngIf="submitted && f.typeofProperty.errors" class="invalid-feedback">
                                         <div *ngIf="f.typeofProperty.errors.required">Type of Property is required</div>
@@ -187,7 +187,6 @@
 
                                 <div class="form-group">
                                     <label for="subRegisterOffice">Sub Register Office
-                                        <span class="mandatory">*</span>
                                     </label>
                                     <input type="text" formControlName="subRegisterOffice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
                                         id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office">
@@ -211,7 +210,6 @@
 
                                 <div class="form-group">
                                     <label for="boundaries">Boundaries
-                                        <span class="mandatory">*</span>
                                     </label>
                                     <input type="text" formControlName="boundaries" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundaries.errors }"
                                         id="boundariesFormControlInput" placeholder="Enter Boundaries">
@@ -734,7 +732,7 @@
                             <div class="form-group" align="center" style="margin-top:15px;">
                                 <button [disabled]="!isEditDisabled" class="submit-btn">SAVE</button>
                             </div>
-                            <div class='col' align='center' *ngIf='errorMsg && errorMsg.length > 0'>
+                            <div class='col' align='center' *ngIf="errorMsg!=''">
                                 <p style='color:red;font-size:14px;'>{{errorMsg}}</p>
                             </div>
 
@@ -744,7 +742,7 @@
 
                     <div *ngIf="!userchangepwdflag && userEditprofileFlag">
                     
-                        <div class="alert alert-success" id="profilechndpwd" *ngIf="profilechndResultMsg && profilechndResultMsg.length > 0">
+                        <div class="alert alert-success" id="profilechndpwd" *ngIf="profilechndResultMsg !=''">
                             <a href="#" class="close" data-dismiss="alert">&times;</a>
                             <strong>{{profilechndResultMsg}}</strong>
                         </div>
@@ -791,13 +789,13 @@
                                 <button class="submit-btn">SAVE</button>
                             </div>
                         
-                            <div class='col' align='center' *ngIf="true">
-                                <p style='color:red;font-size:14px;'>{{resultMsg}} sfasf</p>
-                            </div>
+                           
 
                         </form>
 
-
+                        <div class='col' align='center' *ngIf="resultMsg!=''">
+                            <p style='color:red;font-size:14px;'>{{resultMsg}} </p>
+                        </div>
 
                     </div>
 

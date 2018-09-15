@@ -93,14 +93,14 @@ export class EgazeService {
       "loginId": userId,
       "propertyType": objProperty.typeofProperty,
       "propertyHolderName": objProperty.titleHolder,
-      "relationship": objProperty.relationship,
-      "doorNo": objProperty.doorNo,
+      "relationship": objProperty.relationshipTocustomer,
+      "doorNo": objProperty.surveyNoDrNo,
       "documentNo": objProperty.documentNo,
       "boundaries": objProperty.boundaries,
       "mandal": objProperty.mandal,
       "district": objProperty.district,
       "subRegisterOffice": objProperty.subRegisterOffice,
-      "extentOfProperty": objProperty.extentOfProperty,
+      "extentOfProperty": objProperty.extentofProperty,
       "address1": objProperty.address1,
       "address2": objProperty.address2,
       "city": objProperty.villageCity,
@@ -108,6 +108,7 @@ export class EgazeService {
       "zip": objProperty.zip,
       "country": objProperty.country
     };
+    alert(JSON.stringify(propertyDetails));
     return this.http.post(this.baseUrl + 'add/property', propertyDetails);
 
   }
@@ -122,7 +123,8 @@ let requestData = {
   "newPassword": objData.newpwd,
   "password": objData.oldpwd
 }
-return this.http.post(this.baseUrl + 'pwdchange', requestData);
+//alert(requestData)
+return this.http.post(this.baseUrl + 'profile/pwdchange', requestData,{responseType: 'text'});
 
 }
 

@@ -38,15 +38,15 @@ export class UserdashboardComponent implements OnInit {
   updateuserProfile: any;
   updateuserProfilestatus: any;
   isLoading: boolean;
-  alerts: any;
+  alerts: any = [];
 
   isLoaderdiv: boolean = false;
   errorMsg: string = '';
-  transactions: any;
+  transactions: any = [];
   user1: any;
 
   propertyStatus: string;
-  userAllpropertis: any;
+  userAllpropertis: any = [];
   resultMsg: string;
   profilechndResultMsg: string;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
@@ -80,9 +80,9 @@ export class UserdashboardComponent implements OnInit {
       titleHolder: ['', Validators.required],
       relationshipTocustomer: ['', Validators.required],
       surveyNoDrNo: ['', Validators.required],
-      subRegisterOffice: ['', Validators.required],
+      subRegisterOffice: [''],
       extentofProperty: ['', Validators.required],
-      boundaries: ['', Validators.required],
+      boundaries: [''],
       documentNo: ['', Validators.required],
       address1: ['', Validators.required],
       address2: ['', Validators.required],
@@ -143,6 +143,10 @@ export class UserdashboardComponent implements OnInit {
 
   get fpwdP() { return this.updateuserNewpwdForm.controls }
 
+  getType(event) {
+    this.propertyForm.value.typeofProperty = "" + event;
+    //alert(this.updateuserNewpwdForm.value.typeofProperty);
+  }
 
 
   propertyFun() {
@@ -153,6 +157,7 @@ export class UserdashboardComponent implements OnInit {
     this.updateuserProfilestatus = "";
     this.propertyStatus = "";
     this.profilechndResultMsg = "";
+    this.resultMsg = '';
     //this.activeSelected = true;
     switch (activeTab) {
       case 'Properties':
@@ -222,7 +227,8 @@ export class UserdashboardComponent implements OnInit {
             if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
             this.propertyStatus = "Property added Successfully";
-
+            this.propertyForm.reset();
+            this.submitted = false;
           }
         },
         error => {
@@ -289,23 +295,30 @@ export class UserdashboardComponent implements OnInit {
     this.submitted = true;
     this.errorMsg = '';
 
-    debugger;
+    //debugger;
     if (this.updateuserNewpwdForm.valid) {
       this.isLoaderdiv = true;
       this.EgazeService.profilechndpwd(updateuserNewpwdForm.value, this.user.email).subscribe(
         result => {
           this.isLoaderdiv = false;
+          console.log(result);
           if (result === 'SUCCESS') {
             const element = document.querySelector("#profilechndpwd")
             if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            this.updateuserNewpwdForm.reset();
+            this.submitted = false;
+
             this.profilechndResultMsg = "Congrats, Successfully changed your password";
+            this.resultMsg = "";
           }
           if (result === 'Incorrect Old Password') {
             debugger;
             this.resultMsg = "Sorry you entered wrong old password";
+            this.profilechndResultMsg = "";
           }
         },
         error => {
+          alert(JSON.stringify(error));
           this.isLoaderdiv = false;
           this.resultMsg = "Sorry you entered wrong old password";
         }
