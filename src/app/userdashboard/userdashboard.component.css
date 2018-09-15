@@ -169,3 +169,7 @@ td.noAlerts{
     padding:25px!important;;
     text-align:center!important;
 }
+caption { 
+    caption-side: top;
+  
+}

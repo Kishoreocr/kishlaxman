@@ -49,22 +49,15 @@ export class UserdashboardComponent implements OnInit {
   userAllpropertis: any = [];
   resultMsg: string;
   profilechndResultMsg: string;
+  propertyCount: any;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
     this.modalService = modalService;
     this.viewRef = viewRef;
     this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
     this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
-    this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
-      result => {
-        if (Object.keys(result).length === 0) {
-          this.isLoading = false;
-          window.location.href = AppConstants.packageURL;
-        }
-        this.transactions = result;
-      }
-
-    );
+    this.getTransactions();
+    this.getPropertiesCount();
   }
 
   ngOnInit() {
@@ -150,6 +143,21 @@ export class UserdashboardComponent implements OnInit {
 
 
   propertyFun() {
+    if (this.propertyCount != null) {
+      var data = JSON.stringify(this.propertyCount);
+      // alert(data)
+      if (parseInt(this.propertyCount.propertiesLimit) == parseInt(this.propertyCount.propertiesUSed)) {
+        alert("Your can not add the properties.Your Property add Limit has completed")
+      } else {
+        this.addProperty = !this.addProperty;
+        this.viewProperties = !this.viewProperties;
+      }
+    } else {
+      this.addProperty = !this.addProperty;
+      this.viewProperties = !this.viewProperties;
+    }
+  }
+  propertyFunView() {
     this.addProperty = !this.addProperty;
     this.viewProperties = !this.viewProperties;
   }
@@ -229,7 +237,11 @@ export class UserdashboardComponent implements OnInit {
             this.propertyStatus = "Property added Successfully";
             this.propertyForm.reset();
             this.submitted = false;
+            this.propertiesShow();
+            this.getPropertiesCount();
+            this.getTransactions();
           }
+
         },
         error => {
           console.log(error);
@@ -367,7 +379,27 @@ export class UserdashboardComponent implements OnInit {
     });
 
   }
+  getPropertiesCount() {
+    this.EgazeService.getCustomerPackageLatestRecord(this.user.loginId).subscribe(result => {
+      debugger;
+      this.propertyCount = result;
+    }, error => {
 
+    });
+
+  }
+  getTransactions() {
+    this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
+      result => {
+        if (Object.keys(result).length === 0) {
+          this.isLoading = false;
+          window.location.href = AppConstants.packageURL;
+        }
+        this.transactions = result;
+      }
+
+    );
+  }
   propertiesShow() {
 
     this.EgazeService.getAllproperties(this.user.loginId).subscribe(
