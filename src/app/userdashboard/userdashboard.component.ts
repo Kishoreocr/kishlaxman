@@ -7,6 +7,8 @@ import { EgazeService } from '../services/egaze.service';
 import { SessionstorageService } from '../services/sessionstorage.service';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
 import { AppConstants } from '../services/constants';
+import { ModalPropertyService} from '../services/modal-property.service';
+// import { ModalPropertyComponent} from '../modal-property/modal-property.component'
 
 @Component({
   selector: 'app-userdashboard',
@@ -51,7 +53,7 @@ export class UserdashboardComponent implements OnInit {
   profilechndResultMsg: string;
   propertyCount: any;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
-    private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
+    private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private ModalPropertyService: ModalPropertyService) {
     this.modalService = modalService;
     this.viewRef = viewRef;
     this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
@@ -415,7 +417,14 @@ export class UserdashboardComponent implements OnInit {
 
 
 
+  openModal(id: string) {
+    debugger;
+    this.ModalPropertyService.open(id);
+  }
 
+  closeModal(id: string) {
+    this.ModalPropertyService.close(id);
+  }
 
 
 

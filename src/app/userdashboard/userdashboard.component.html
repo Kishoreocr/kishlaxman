@@ -70,7 +70,32 @@
             <!--Property Tab start here -->
             <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
                 <div *ngIf="addProperty && !viewProperties">
+
+
+            
+            
                     <div class="table-container-style table-th-styles">
+                        
+                            <app-modal-property id="custom-modal-11">
+                                    <div class="modal">
+                                        <div class="modal-body">
+                                            ====
+                                            <ul>
+                                                <li *ngFor="let obj of somedata">
+                                                    {{obj.name}}
+                                                </li>
+                                            </ul>
+                                            <h1>A Custom Modal! ===</h1>
+                                            <p>
+                                                Home page text:
+                                                <input type="text" [(ngModel)]="bodyText" />
+                
+                                            </p>
+                                            <button (click)="closeModal('custom-modal-11');">Close</button>
+                                        </div>
+                                    </div>
+                                    <div class="modal-background"></div>
+                                </app-modal-property>
                         <div class="table-responsive">
                             <table class="table">
                                 <caption>List of Properties</caption>
@@ -102,7 +127,9 @@
                                         <td>{{property.mandal}}</td>
 
                                         <td class="viewbtn">
-                                            <i class="fa fa-eye" (click)="viewPropertyFun(property)"></i>
+                                                
+                                            <!-- <i class="fa fa-eye" (click)="viewPropertyFun(property)"></i> -->
+                                            <i class="fa fa-eye" (click)="openModal('custom-modal-11')"></i>
                                         </td>
                                     </tr>
                                     <tr *ngIf='userAllpropertis.length == 0'>
