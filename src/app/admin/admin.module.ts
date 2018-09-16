@@ -8,6 +8,12 @@ import { AdmindashboardComponent } from './admindashboard/admindashboard.compone
 import { ModalComponent } from './directives/modal/modal.component';
 
 import { ModalService } from './service/modal.service';
+import { PropertyApprovalComponent } from './property-approval/property-approval.component';
+import { AgentApprovalComponent } from './agent-approval/agent-approval.component';
+import { PaymentApprovalComponent } from './payment-approval/payment-approval.component';
+import { CustomPackagesComponent } from './custom-packages/custom-packages.component';
+import { PropertyCommentsComponent } from './property-comments/property-comments.component';
+import { PortalFeedbackComponent } from './portal-feedback/portal-feedback.component';
 
 const appRoutes: Routes = [
   { path: 'adminlogin', component: LoginComponent },
@@ -22,7 +28,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
 
   ],
-  declarations: [LoginComponent, AdmindashboardComponent, ModalComponent],
+  declarations: [LoginComponent, AdmindashboardComponent, ModalComponent, PropertyApprovalComponent, AgentApprovalComponent, PaymentApprovalComponent, CustomPackagesComponent, PropertyCommentsComponent, PortalFeedbackComponent],
   providers: [ModalService]
 
 })
