@@ -226,7 +226,7 @@ export class UserdashboardComponent implements OnInit {
     this.submitted = true;
     if (this.propertyForm.valid) {
       this.isLoaderdiv = true;
-      this.EgazeService.addProperty(objProperty.value, this.user.loginId).subscribe(
+      this.EgazeService.addProperty(objProperty.value, this.user.loginId,this.user.email).subscribe(
         result => {
           this.isLoaderdiv = false;
           console.log(result);

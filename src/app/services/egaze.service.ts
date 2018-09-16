@@ -89,9 +89,10 @@ export class EgazeService {
     return this.http.get(this.baseUrl + 'packages');
   }
 
-  addProperty(objProperty, userId) {
+  addProperty(objProperty, userId,email) {
     let propertyDetails = {
       "loginId": userId,
+      "email": email,
       "propertyType": objProperty.typeofProperty,
       "propertyHolderName": objProperty.titleHolder,
       "relationship": objProperty.relationshipTocustomer,
