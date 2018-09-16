@@ -78,15 +78,19 @@
                                     <!-- <h6>Property Details</h6> -->
                                     <div class='row userdashboardTab'>
                                         <ul>
-                                            <li class='active'>Property Details</li>
-                                            <li>Documents</li>
-                                            <li>Comments</li>
+                                            <li [ngClass]="{'active': propertytabModal}" (click)="userdashTabs('PropertyDetailsTab')">Property Details</li>
+                                            <li [ngClass]="{'active': documentstabModal}" (click)="userdashTabs('DocumentsTab')">Documents</li>
+                                            <li [ngClass]="{'active': commentstabModal}" (click)="userdashTabs('CommentsTab')">Comments</li>
                                         </ul>
                                     </div>
 
                                     <div style='position:absolute;right:20px;top:10px;'>
                                         <i class="fa fa-times" aria-hidden="true" style='font-size:22px;color:#ffb384;cursor: pointer;' (click)="closeModal('custom-modal-11');"></i>
                                     </div>
+
+<div *ngIf="propertytabModal && !documentstabModal && !commentstabModal">
+
+
                                     <table *ngIf="property!=''" class="table">
                                         <tr>
                                             <td>Type of Property:</td>
@@ -167,6 +171,15 @@
                                         </tr>
 
                                     </table>
+</div>
+
+
+<div *ngIf="!propertytabModal && documentstabModal && !commentstabModal" class="col" align="center">
+    <p>No data available for documents</p></div>
+
+<div *ngIf="!propertytabModal && !documentstabModal && commentstabModal" class="col" align="center">
+   <p>No data available for comments </p></div>
+
                                     <div class='col' align='center'>
                                         <button class="submit-btn" (click)="closeModal('custom-modal-11');">Close</button>
                                     </div>

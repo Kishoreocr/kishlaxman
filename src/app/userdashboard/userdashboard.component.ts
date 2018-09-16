@@ -7,7 +7,7 @@ import { EgazeService } from '../services/egaze.service';
 import { SessionstorageService } from '../services/sessionstorage.service';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
 import { AppConstants } from '../services/constants';
-import { ModalPropertyService} from '../services/modal-property.service';
+import { ModalPropertyService } from '../services/modal-property.service';
 // import { ModalPropertyComponent} from '../modal-property/modal-property.component'
 
 @Component({
@@ -52,7 +52,12 @@ export class UserdashboardComponent implements OnInit {
   resultMsg: string;
   profilechndResultMsg: string;
   propertyCount: any;
-  property:any='';
+  property: any = '';
+
+  propertytabModal: boolean = true;
+  documentstabModal: boolean = false;
+  commentstabModal: boolean = false;
+
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private ModalPropertyService: ModalPropertyService) {
     this.modalService = modalService;
@@ -70,6 +75,8 @@ export class UserdashboardComponent implements OnInit {
     this.userchangepwdflag = true;
     this.userEditprofileFlag = false;
     this.submitted = false;
+
+    this.propertytabModal = true;
 
     this.propertyForm = this.formBuilder.group({
       typeofProperty: ['', Validators.required],
@@ -203,9 +210,26 @@ export class UserdashboardComponent implements OnInit {
         // this.resultMsg = "";
         // this.profilechndResultMsg = "";
         break;
+      case 'PropertyDetailsTab':
+        this.propertytabModal = true;
+        this.documentstabModal = false;
+        this.commentstabModal = false;
+
+        break;
+      case 'DocumentsTab':
+        this.propertytabModal = false;
+        this.documentstabModal = true;
+        this.commentstabModal = false;
+        break;
+      case 'CommentsTab':
+        this.propertytabModal = false;
+        this.documentstabModal = false;
+        this.commentstabModal = true;
+        break;
 
       default:
         this.propertyTab = true;
+        this.propertytabModal = true;
     }
 
   }
@@ -229,7 +253,7 @@ export class UserdashboardComponent implements OnInit {
     this.submitted = true;
     if (this.propertyForm.valid) {
       this.isLoaderdiv = true;
-      this.EgazeService.addProperty(objProperty.value, this.user.loginId,this.user.email).subscribe(
+      this.EgazeService.addProperty(objProperty.value, this.user.loginId, this.user.email).subscribe(
         result => {
           this.isLoaderdiv = false;
           console.log(result);
@@ -279,7 +303,7 @@ export class UserdashboardComponent implements OnInit {
           // }, 2000);
           const element = document.querySelector("#destination")
           if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-          window.scroll(0,0);
+          window.scroll(0, 0);
 
           this.updateuserProfilestatus = "Profile updated Successfully";
           this.isEditDisabled = false;
@@ -419,9 +443,9 @@ export class UserdashboardComponent implements OnInit {
 
 
 
-  openModal(id: string,property) {
+  openModal(id: string, property) {
     debugger;
-    this.property=property;
+    this.property = property;
     this.ModalPropertyService.open(id);
   }
 
