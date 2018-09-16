@@ -52,6 +52,7 @@ export class UserdashboardComponent implements OnInit {
   resultMsg: string;
   profilechndResultMsg: string;
   propertyCount: any;
+  property:any='';
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private ModalPropertyService: ModalPropertyService) {
     this.modalService = modalService;
@@ -417,8 +418,9 @@ export class UserdashboardComponent implements OnInit {
 
 
 
-  openModal(id: string) {
+  openModal(id: string,property) {
     debugger;
+    this.property=property;
     this.ModalPropertyService.open(id);
   }
 
