@@ -279,6 +279,7 @@ export class UserdashboardComponent implements OnInit {
           // }, 2000);
           const element = document.querySelector("#destination")
           if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          window.scroll(0,0);
 
           this.updateuserProfilestatus = "Profile updated Successfully";
           this.isEditDisabled = false;
