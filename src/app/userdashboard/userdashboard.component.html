@@ -71,48 +71,105 @@
             <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
                 <div *ngIf="addProperty && !viewProperties">
 
-
-
-
                     <div class="table-container-style table-th-styles">
-
                         <app-modal-property id="custom-modal-11">
                             <div class="modal">
                                 <div class="modal-body">
+                                    <!-- <h6>Property Details</h6> -->
+                                    <div class='row userdashboardTab'>
+                                        <ul>
+                                            <li class='active'>Property Details</li>
+                                            <li>Documents</li>
+                                            <li>Comments</li>
+                                        </ul>
+                                    </div>
 
-                                    <h1>Property Details</h1>
-                                    <table border="1" *ngIf="property!=''">
+                                    <div style='position:absolute;right:20px;top:10px;'>
+                                        <i class="fa fa-times" aria-hidden="true" style='font-size:22px;color:#ffb384;cursor: pointer;' (click)="closeModal('custom-modal-11');"></i>
+                                    </div>
+                                    <table *ngIf="property!=''" class="table">
                                         <tr>
-                                            <td scope="col">Type of Property</td> <td>{{property.propertyType}}</td>
+                                            <td class='col-md-3'>Type of Property:</td>
+                                            <td class='col-md-6'>{{property.propertyType}}</td>
+
                                         </tr>
 
                                         <tr>
-                                            <td scope="col">Title Holder</td><td>{{property.propertyHolderName}}</td></tr>
-                                        <tr>
-                                            <td scope="col">Relationship to customer</td> <td>{{property.relationship}}</td></tr>
-                                        <tr>
-                                            <td scope="col">Survey No/Dr No</td><td>{{property.doorNo}}</td></tr>
-                                        <tr>
-                                            <td scope="col">Sub Register Office</td> <td>{{property.subRegisterOffice}}</td></tr>
-                                        <tr>
-                                            <td scope="col">Extent of Property</td><td>{{property.extentOfProperty}}</td></tr>
-                                        <tr><td scope="col">Boundaries</td><td>{{property.boundaries}}</td></tr>
+                                            <td class='col-md-3'>Title Holder:</td>
+                                            <td class='col-md-6'>{{property.propertyHolderName}}</td>
 
-                                        <tr><td scope="col">Document No</td><td>{{property.documentNo}}</td></tr>
-                                        <tr><td scope="col">Address 1</td><td>{{property.address1}}</td></tr>
-                                        <tr><td scope="col">Address 2</td><td>{{property.address2}}</td></tr>
-                                        <tr><td scope="col">Village/City</td><td>{{property.city}}</td></tr>
-                                        <tr><td scope="col">Mandal</td><td>{{property.mandal}}</td></tr>
-                                        <tr><td scope="col">District</td><td>{{property.district}}</td></tr>
-                                        <tr><td scope="col">State</td><td>{{property.state}}</td></tr>
-                                        <tr><td scope="col">Zip</td><td>{{property.zip}}</td></tr>
-                                        
-                                       
-                                        
-                                       
+                                        </tr>
+                                        <tr>
+                                            <td class='col-md-3'>Relationship to customer:</td>
+                                            <td class='col-md-6'>{{property.relationship}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-3">Survey No/Dr No:</td>
+                                            <td class='col-md-6'>{{property.doorNo}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class='col-md-3'>Sub Register Office:</td>
+                                            <td class='col-md-6'>{{property.subRegisterOffice}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class='col-md-3'>Extent of Property:</td>
+                                            <td class='col-md-6'>{{property.extentOfProperty}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class='col-md-3'>Boundaries:</td>
+                                            <td class='col-md-6'>{{property.boundaries}}</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class='col-md-3'>Document No:</td>
+                                            <td class='col-md-6'>{{property.documentNo}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class='col-md-3'>Address 1:</td>
+                                            <td class='col-md-6'>{{property.address1}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class='col-md-3'>Address 2:</td>
+                                            <td class='col-md-6'>{{property.address2}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class='col-md-3'>Village/City:</td>
+                                            <td class='col-md-6'>{{property.city}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class='col-md-3'>Mandal:</td>
+                                            <td class='col-md-6'>{{property.mandal}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class='col-md-3'>District:</td>
+                                            <td class='col-md-6'>{{property.district}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class='col-md-3'>State:</td>
+                                            <td class='col-md-6'>{{property.state}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class='col-md-3'>Zip:</td>
+                                            <td class='col-md-6'>{{property.zip}}</td>
+
+                                        </tr>
 
                                     </table>
-                                    <button (click)="closeModal('custom-modal-11');">Close</button>
+                                    <div class='col' align='center'>
+                                        <button class="submit-btn" (click)="closeModal('custom-modal-11');">Close</button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-background"></div>
@@ -189,8 +246,7 @@
                                     <label for="exampleFormControlSelect1">Type of Property
                                         <span class="mandatory">*</span>
                                     </label>
-                                    <select class="form-control" formControlName="typeofProperty" (ngModelChange)="getType($event)"
-                                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.typeofProperty.errors }">
+                                    <select class="form-control" formControlName="typeofProperty" (ngModelChange)="getType($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.typeofProperty.errors }">
                                         <option value="" [selected]="selected">Select any Property</option>
                                         <option value="Residential">Residential</option>
                                         <option value="Commercial">Commercial</option>
@@ -216,12 +272,10 @@
                                     <label for="RelationshipTocustomer">Relationship to customer
                                         <span class="mandatory">*</span>
                                     </label>
-                                    <input type="text" formControlName="relationshipTocustomer" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.relationshipTocustomer.errors }" id="RelationshipTocustomerFormControlInput"
-                                        placeholder="Enter Relationship to customer">
+                                    <input type="text" formControlName="relationshipTocustomer" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationshipTocustomer.errors }"
+                                        id="RelationshipTocustomerFormControlInput" placeholder="Enter Relationship to customer">
                                     <div *ngIf="submitted && f.relationshipTocustomer.errors" class="invalid-feedback">
-                                        <div *ngIf="f.relationshipTocustomer.errors.required">Relationship to customer
-                                            is required</div>
+                                        <div *ngIf="f.relationshipTocustomer.errors.required">Relationship to customer is required</div>
                                     </div>
                                 </div>
 
@@ -239,12 +293,11 @@
                                 <div class="form-group">
                                     <label for="subRegisterOffice">Sub Register Office
                                     </label>
-                                    <input type="text" formControlName="subRegisterOffice" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }" id="subRegisterOfficeFormControlInput"
-                                        placeholder="Enter Sub Register Office">
+                                    <input type="text" formControlName="subRegisterOffice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
+                                        id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office">
                                     <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
-                                        <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is
-                                            required</div>
+                                        <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is required
+                                        </div>
                                     </div>
                                 </div>
 
@@ -253,9 +306,8 @@
                                     <label for="extentofProperty">Extent of Property
                                         <span class="mandatory">*</span>
                                     </label>
-                                    <input type="text" formControlName="extentofProperty" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.extentofProperty.errors }" id="extentofPropertyFormControlInput"
-                                        placeholder="Enter Extent of Property">
+                                    <input type="text" formControlName="extentofProperty" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentofProperty.errors }"
+                                        id="extentofPropertyFormControlInput" placeholder="Enter Extent of Property">
                                     <div *ngIf="submitted && f.extentofProperty.errors" class="invalid-feedback">
                                         <div *ngIf="f.extentofProperty.errors.required">Extent of Property is required</div>
                                     </div>
@@ -358,8 +410,8 @@
                                     <label for="zip">zip
                                         <span class="mandatory">*</span>
                                     </label>
-                                    <input type="text" formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }"
-                                        id="zipFormControlInput" placeholder="Enter zipCode">
+                                    <input type="text" formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }" id="zipFormControlInput"
+                                        placeholder="Enter zipCode">
                                     <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
                                         <div *ngIf="f.zip.errors.required">zipCode is required</div>
                                         <div *ngIf="f.zip.errors.maxlength">ZipCode max value will be 6 digits only</div>
@@ -613,8 +665,8 @@
                                     <span class="mandatory">*</span>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" formControlName="firstName" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && feditP.firstName.errors && isEditDisabled }" />
+                                    <input type="text" [readonly]="!isEditDisabled" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.firstName.errors && isEditDisabled }"
+                                    />
                                     <div *ngIf="submitted && feditP.firstName.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.firstName.errors.required">First Name is required</div>
                                     </div>
@@ -625,8 +677,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Middle Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" formControlName="middleName" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && feditP.middleName.errors && isEditDisabled }" />
+                                    <input type="text" [readonly]="!isEditDisabled" formControlName="middleName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.middleName.errors && isEditDisabled }"
+                                    />
                                     <div *ngIf="submitted && feditP.middleName.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.middleName.errors.required">Middle Name is required</div>
                                     </div>
@@ -638,8 +690,8 @@
                                     <span class="mandatory">*</span>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" formControlName="lastName" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && feditP.lastName.errors && isEditDisabled}" />
+                                    <input type="text" [readonly]="!isEditDisabled" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.lastName.errors && isEditDisabled}"
+                                    />
                                     <div *ngIf="submitted && feditP.lastName.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.lastName.errors.required">Name is required</div>
                                     </div>
@@ -653,8 +705,8 @@
                                     <span class="mandatory">*</span>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="true" formControlName="email" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && feditP.email.errors && isEditDisabled}" />
+                                    <input type="text" [readonly]="true" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.email.errors && isEditDisabled}"
+                                    />
 
                                     <div *ngIf="submitted && feditP.email.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.email.errors.required">Email Name is required</div>
@@ -667,8 +719,8 @@
                                     <span class="mandatory">*</span>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="true" maxlength="10" formControlName="mobileNumber"
-                                        class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.mobileNumber.errors && isEditDisabled}" />
+                                    <input type="text" [readonly]="true" maxlength="10" formControlName="mobileNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.mobileNumber.errors && isEditDisabled}"
+                                    />
 
                                     <div *ngIf="submitted && feditP.mobileNumber.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.mobileNumber.errors.required">Mobile Number Name is required</div>
@@ -684,8 +736,8 @@
                                     <span class="mandatory">*</span>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" formControlName="address1" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && feditP.address1.errors && isEditDisabled}" />
+                                    <input type="text" [readonly]="!isEditDisabled" formControlName="address1" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address1.errors && isEditDisabled}"
+                                    />
                                     <div *ngIf="submitted && feditP.address1.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.address1.errors.required">Address is required</div>
                                     </div>
@@ -696,8 +748,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Address 2</label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" formControlName="address2" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && feditP.address2.errors && isEditDisabled}" />
+                                    <input type="text" [readonly]="!isEditDisabled" formControlName="address2" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address2.errors && isEditDisabled}"
+                                    />
                                     <div *ngIf="submitted && feditP.address2.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.address2.errors.required">Address is required</div>
                                     </div>
@@ -707,8 +759,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Address 3</label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" formControlName="address3" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && feditP.address3.errors && isEditDisabled}" />
+                                    <input type="text" [readonly]="!isEditDisabled" formControlName="address3" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address3.errors && isEditDisabled}"
+                                    />
                                     <div *ngIf="submitted && feditP.address3.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.address3.errors.required">Address is required</div>
                                     </div>
@@ -722,8 +774,8 @@
                                     <span class="mandatory">*</span>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" formControlName="city" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && feditP.city.errors && isEditDisabled}" />
+                                    <input type="text" [readonly]="!isEditDisabled" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.city.errors && isEditDisabled}"
+                                    />
                                     <div *ngIf="submitted && feditP.city.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.city.errors.required">City is required</div>
                                     </div>
@@ -739,8 +791,8 @@
                                     <span class="mandatory">*</span>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" formControlName="state" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && feditP.state.errors && isEditDisabled}" />
+                                    <input type="text" [readonly]="!isEditDisabled" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.state.errors && isEditDisabled}"
+                                    />
                                     <div *ngIf="submitted && feditP.state.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.state.errors.required">State is required</div>
                                     </div>
@@ -754,8 +806,8 @@
                                     <span class="mandatory">*</span>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" maxlength="6" formControlName="zipCode"
-                                        class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.zipCode.errors && isEditDisabled}" />
+                                    <input type="text" [readonly]="!isEditDisabled" maxlength="6" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.zipCode.errors && isEditDisabled}"
+                                    />
 
                                     <div *ngIf="submitted && feditP.zipCode.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.zipCode.errors.required">Zip Code is required</div>
@@ -771,8 +823,8 @@
                                     <span class="mandatory">*</span>
                                 </label>
                                 <div class="col-sm-4">
-                                    <input type="text" [readonly]="!isEditDisabled" formControlName="country" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && feditP.country.errors && isEditDisabled}" />
+                                    <input type="text" [readonly]="!isEditDisabled" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.country.errors && isEditDisabled}"
+                                    />
                                     <div *ngIf="submitted && feditP.country.errors" class="invalid-feedback">
                                         <div *ngIf="feditP.country.errors.required">country is required</div>
                                     </div>
@@ -806,7 +858,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Old Password</label>
                                 <div class="col-sm-4">
-                                    <input type="password" formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }" />
+                                    <input type="password" formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
+                                    />
                                     <div *ngIf="submitted && fpwdP.oldpwd.errors" class="invalid-feedback">
                                         <div *ngIf="fpwdP.oldpwd.errors.required">Old Password is required</div>
                                     </div>
@@ -816,7 +869,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">New Password</label>
                                 <div class="col-sm-4">
-                                    <input type="password" formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }" />
+                                    <input type="password" formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
+                                    />
                                     <div *ngIf="submitted && fpwdP.newpwd.errors" class="invalid-feedback">
                                         <div *ngIf="fpwdP.newpwd.errors.required">New Password is required</div>
                                     </div>
@@ -827,7 +881,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Confirm Password</label>
                                 <div class="col-sm-4">
-                                    <input type="password" formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }" />
+                                    <input type="password" formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
+                                    />
                                     <div *ngIf="submitted && fpwdP.confirmpwd.errors" class="invalid-feedback">
                                         <div *ngIf="fpwdP.confirmpwd.errors.required">New Password is required</div>
                                     </div>
