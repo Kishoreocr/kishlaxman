@@ -7,7 +7,7 @@ import { EgazeService } from '../../services/egaze.service';
 import { SessionstorageService } from '../../services/sessionstorage.service';
 import { LoadingDivComponent } from '../../loading-div/loading-div.component';
 import { AppConstants } from '../../services/constants';
-
+import { ModalService } from '../../admin/service/modal.service';
 @Component({
   selector: 'app-admindashboard',
   templateUrl: './admindashboard.component.html',
@@ -38,16 +38,16 @@ export class AdmindashboardComponent implements OnInit {
 
   updateuserProfile: any;
   updateuserProfilestatus: any;
-  isLoading:boolean;
+  isLoading: boolean;
   alerts: any;
 
   isLoaderdiv: boolean = false;
   errorMsg: string = '';
-  transactions:any;
+  transactions: any;
   user1: any;
 
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
-    private EgazeService: EgazeService, private sessionstorageService: SessionstorageService) {
+    private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
     this.viewRef = viewRef;
     this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
@@ -58,7 +58,7 @@ export class AdmindashboardComponent implements OnInit {
           this.isLoading = false;
           window.location.href = AppConstants.packageURL;
         }
-        this.transactions=result;
+        this.transactions = result;
       }
 
     );
@@ -294,8 +294,13 @@ export class AdmindashboardComponent implements OnInit {
   }
 
 
+  openModal(id: string) {
+    this.modalService1.open(id);
+}
 
-
+closeModal(id: string) {
+    this.modalService1.close(id);
+}
 
 
 
