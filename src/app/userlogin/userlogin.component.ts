@@ -92,6 +92,9 @@ export class UserloginComponent implements OnInit {
           this.isLoading = true;
           this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
           // alert(this.user1.loginId)
+          if(this.user1.role==='admin'){
+            window.location.href = AppConstants.AdminloginURL;
+          }
           this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
             result => {
               //alert(Object.keys(result).length);

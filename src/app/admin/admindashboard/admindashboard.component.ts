@@ -41,11 +41,13 @@ export class AdmindashboardComponent implements OnInit {
   transactions: any;
   
   somedata: any[] = [{ "id": "11" }, { "name": "laxman" }];
-
+  customers:any=[];
+  customer:any='';
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
     this.viewRef = viewRef;
+    this.getCustomerDetails();
   }
   ngOnInit() {
     this.propertyTab = true;
@@ -92,12 +94,21 @@ export class AdmindashboardComponent implements OnInit {
     }
   }
 
-  openModal(id: string) {
+  openModal(id: string,cust) {
+    this.customer=cust;
     this.modalService1.open(id);
   }
 
   closeModal(id: string) {
     this.modalService1.close(id);
   }
+  getCustomerDetails() {
+    this.EgazeService.getCustomerDetails().subscribe(result => {
+      //debugger;
+      this.customers = result;
+    }, error => {
 
+    });
+
+  }
 }

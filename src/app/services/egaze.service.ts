@@ -133,4 +133,8 @@ getCustomerPackageLatestRecord(id){
   return this.http.get(this.baseUrl + 'customerpackages/latest/' + id);
 
 }
+getCustomerDetails(){
+  return this.http.get(this.baseUrl + 'customer/details');
+
+}
 }
