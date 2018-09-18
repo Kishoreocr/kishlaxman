@@ -9,12 +9,16 @@ import { LoadingDivComponent } from '../loading-div/loading-div.component';
 import { AppConstants } from '../services/constants';
 import { ModalPropertyService } from '../services/modal-property.service';
 // import { ModalPropertyComponent} from '../modal-property/modal-property.component'
-
+export interface PropertyDoc {
+  pdoc: String;
+  downoladUrl:String;
+}
 @Component({
   selector: 'app-userdashboard',
   templateUrl: './userdashboard.component.html',
   styleUrls: ['./userdashboard.component.css']
 })
+
 export class UserdashboardComponent implements OnInit {
   addProperty: boolean = true;
   viewProperties: boolean = false;
@@ -33,6 +37,7 @@ export class UserdashboardComponent implements OnInit {
 
   updateuserForm: FormGroup;
   updateuserNewpwdForm: FormGroup;
+  documentGrp: FormGroup;
   userchangepwdflag: boolean = false;
   user: any;
   acc: any;
@@ -117,6 +122,12 @@ export class UserdashboardComponent implements OnInit {
       confirmpwd: ['', Validators.required],
 
     });
+    this.documentGrp = this.formBuilder.group({
+      file: [null, Validators.required]
+
+    });
+    this.items.push({ "pdoc": "" + this.lengthCheckToaddMore,"downoladUrl":"" });
+
     this.propertiesShow();
   }
   ngAfterViewChecked() {
@@ -453,7 +464,59 @@ export class UserdashboardComponent implements OnInit {
     this.ModalPropertyService.close(id);
   }
 
+  public totalfiles: Array<File> = [];
+  public totalFileName = [];
+  public lengthCheckToaddMore = 0;
+  items: Array<PropertyDoc> = [];
 
+
+
+  fileSelectionEvent(event: any, i) {
+    const reader = new FileReader();
+ //alert(event.target.files)
+ this.isLoaderdiv = true;
+
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      //alert(reader.readAsDataURL(file))
+
+      reader.onload = () => {
+        this.documentGrp.patchValue({
+          file: reader.result
+       });
+       //alert(reader.result);
+    this.EgazeService.savePropertyDoc(file,this.user.loginId,2).subscribe(result => {
+     // result
+      var id=JSON.stringify(result['id']);
+      var down=this.EgazeService.getPropertyDocURL(id);
+      this.items.splice(i, 1);
+      this.items.push({ "pdoc": this.lengthCheckToaddMore + "" ,"downoladUrl":down});
+//alert(JSON.stringify(this.items))
+      this.isLoaderdiv = false;
+
+    }, error => {
+      alert(JSON.stringify(error));
+    });
+      };
+    }
+ }
+  addItem(): void {
+    this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
+    this.items.push({ "pdoc": this.lengthCheckToaddMore + "" ,"downoladUrl":""});
+  }
+
+  removeItem(index: number) {
+
+    //this.totalfiles.splice(index);
+    //this.totalFileName.splice(index);
+    alert(JSON.stringify(this.items))
+    this.items.splice(index, 1);
+    alert(JSON.stringify(this.items))
+    this.lengthCheckToaddMore = this.lengthCheckToaddMore - 1;
+    // console.log("name are ",this.totalFileName);
+
+  }
 
 
 }

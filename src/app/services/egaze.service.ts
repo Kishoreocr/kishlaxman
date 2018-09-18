@@ -137,4 +137,17 @@ getCustomerDetails(){
   return this.http.get(this.baseUrl + 'customer/details');
 
 }
+savePropertyDoc(file,propetyId,userId): Observable<any> {
+  let formdata: FormData = new FormData();
+ 
+  formdata.append('file', file);
+
+  return this.http.post(this.baseUrl +"uploadFile/propertydocs/"+propetyId+"/"+userId, formdata);
+
+}
+
+getPropertyDocURL(id){
+  return this.baseUrl + 'downloadFile/propertydocs/'+id;
+
+}
 }

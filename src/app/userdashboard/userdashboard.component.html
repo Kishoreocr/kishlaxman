@@ -474,7 +474,26 @@
 
 
                     </form>
+                    <form [formGroup]="documentGrp" >
+                    <table><tr *ngFor="let item of items;let IndexId = index">
+                        <td>
+                            <div class="form-group  required">
 
+                          <td class="remove" >
+                            <input type="file" name="file" title="Browse Document" (change)="fileSelectionEvent($event,IndexId)" required="">
+                              <div class="help-block" *ngIf="item.downoladUrl!=''"><a href={{item.downoladUrl}}>Downolad</a></div>
+                            </div>
+                          </td><td>
+                            <a title="Remove" (click)="removeItem(IndexId)" class="fa fa-minus-square fa-lg text-red"></a>
+                          </td>
+                        </tr>
+                    </table>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-sm btn-success" title="Add More" style="" (click)="addItem()">Add More</button>
+      
+                      </div>
+      
+</form>
                 </div>
             </div>
             <!---propety Tab -->
