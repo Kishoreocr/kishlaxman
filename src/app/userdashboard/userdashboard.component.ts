@@ -299,7 +299,6 @@ export class UserdashboardComponent implements OnInit {
             this.getTransactions();
              
             this.propertyDocuments = true;
-
             this.propertyDetails= false;
             
           }
