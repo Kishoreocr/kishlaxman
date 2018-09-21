@@ -89,7 +89,7 @@ export class EgazeService {
     return this.http.get(this.baseUrl + 'packages');
   }
 
-  addProperty(objProperty, userId,email) {
+  addProperty(objProperty, userId, email) {
     let propertyDetails = {
       "loginId": userId,
       "email": email,
@@ -98,7 +98,11 @@ export class EgazeService {
       "relationship": objProperty.relationshipTocustomer,
       "doorNo": objProperty.surveyNoDrNo,
       "documentNo": objProperty.documentNo,
-      "boundaries": objProperty.boundaries,
+      "boundaries": '',
+      "boundariesEast": objProperty.boundariesEast,
+      "boundariesNorth": objProperty.boundariesNorth,
+      "boundariesWest": objProperty.boundariesWest,
+      "boundariesSouth": objProperty.boundariesSouth,
       "mandal": objProperty.mandal,
       "district": objProperty.district,
       "subRegisterOffice": objProperty.subRegisterOffice,
@@ -115,39 +119,39 @@ export class EgazeService {
 
   }
 
-getAllproperties(userId){
-  return this.http.get(this.baseUrl + 'properties/' + userId);
-}
+  getAllproperties(userId) {
+    return this.http.get(this.baseUrl + 'properties/' + userId);
+  }
 
-profilechndpwd(objData, userEmail){
-let requestData = {
-  "email": userEmail,
-  "newPassword": objData.newpwd,
-  "password": objData.oldpwd
-}
-//alert(requestData)
-return this.http.post(this.baseUrl + 'profile/pwdchange', requestData,{responseType: 'text'});
+  profilechndpwd(objData, userEmail) {
+    let requestData = {
+      "email": userEmail,
+      "newPassword": objData.newpwd,
+      "password": objData.oldpwd
+    }
+    //alert(requestData)
+    return this.http.post(this.baseUrl + 'profile/pwdchange', requestData, { responseType: 'text' });
 
-}
-getCustomerPackageLatestRecord(id){
-  return this.http.get(this.baseUrl + 'customerpackages/latest/' + id);
+  }
+  getCustomerPackageLatestRecord(id) {
+    return this.http.get(this.baseUrl + 'customerpackages/latest/' + id);
 
-}
-getCustomerDetails(){
-  return this.http.get(this.baseUrl + 'customer/details');
+  }
+  getCustomerDetails() {
+    return this.http.get(this.baseUrl + 'customer/details');
 
-}
-savePropertyDoc(file,propetyId,userId): Observable<any> {
-  let formdata: FormData = new FormData();
- 
-  formdata.append('file', file);
+  }
+  savePropertyDoc(file, propetyId, userId): Observable<any> {
+    let formdata: FormData = new FormData();
 
-  return this.http.post(this.baseUrl +"uploadFile/propertydocs/"+propetyId+"/"+userId, formdata);
+    formdata.append('file', file);
 
-}
+    return this.http.post(this.baseUrl + "uploadFile/propertydocs/" + propetyId + "/" + userId, formdata);
 
-getPropertyDocURL(id){
-  return this.baseUrl + 'downloadFile/propertydocs/'+id;
+  }
 
-}
+  getPropertyDocURL(id) {
+    return this.baseUrl + 'downloadFile/propertydocs/' + id;
+
+  }
 }
