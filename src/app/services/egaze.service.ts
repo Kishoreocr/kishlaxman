@@ -154,4 +154,16 @@ export class EgazeService {
     return this.baseUrl + 'downloadFile/propertydocs/' + id;
 
   }
+
+  savePropertyComments(propetyId, userId,agentId,role,description): Observable<any> {
+    let formdata: FormData = new FormData();
+    formdata.append('propetyId', propetyId);
+    formdata.append('userId', userId);
+    formdata.append('agentId', agentId);
+    formdata.append('role', role);
+    formdata.append('description', description);
+
+    return this.http.post(this.baseUrl + "uploadFile/propertydocs/agent", formdata);
+
+  }
 }
