@@ -297,10 +297,10 @@ export class UserdashboardComponent implements OnInit {
             this.propertiesShow();
             this.getPropertiesCount();
             this.getTransactions();
-             
+
             this.propertyDocuments = true;
-            this.propertyDetails= false;
-            
+            this.propertyDetails = false;
+
           }
 
         },
@@ -492,15 +492,23 @@ export class UserdashboardComponent implements OnInit {
   public lengthCheckToaddMore = 0;
   items: Array<PropertyDoc> = [];
 
-
+  sfile: File;
+  importfile(event: any, i) {
+    const file = event.target.files;
+    //alert(file[i]);
+    if (event.target.files && event.target.files.length) {
+      this.sfile = file[i];
+    }
+    else {
+      alert('Please select the file');
+    }
+  }
 
   fileSelectionEvent(event: any, i) {
     const reader = new FileReader();
-    //alert(event.target.files)
-    this.isLoaderdiv = true;
 
-    if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
+    if (this.sfile != null) {
+      const file = this.sfile;
       reader.readAsDataURL(file);
       //alert(reader.readAsDataURL(file))
 
@@ -522,7 +530,12 @@ export class UserdashboardComponent implements OnInit {
           alert(JSON.stringify(error));
         });
       };
+      this.sfile = null;
     }
+    else {
+      alert('Please select the file');
+    }
+   
   }
   addItem(): void {
     this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
@@ -533,9 +546,9 @@ export class UserdashboardComponent implements OnInit {
 
     //this.totalfiles.splice(index);
     //this.totalFileName.splice(index);
-    alert(JSON.stringify(this.items))
+    // alert(JSON.stringify(this.items))
     this.items.splice(index, 1);
-    alert(JSON.stringify(this.items))
+    //alert(JSON.stringify(this.items))
     this.lengthCheckToaddMore = this.lengthCheckToaddMore - 1;
     // console.log("name are ",this.totalFileName);
 

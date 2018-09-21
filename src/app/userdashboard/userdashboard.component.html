@@ -466,10 +466,11 @@
 
                         </form>
                     </div>
-
-                    <div class="col" *ngIf="propertyDocuments">
+                    <!-- <div class="col" *ngIf="propertyDocuments"> -->
+                    <div class="col" *ngIf="true">
                         <form [formGroup]="documentGrp">
-                            <table>
+
+                            <!-- <table>
                                 <tr *ngFor="let item of items;let IndexId = index">
                                     <td>
                                         <div class="form-group  required">
@@ -485,10 +486,24 @@
                                             <a title="Remove" (click)="removeItem(IndexId)" class="fa fa-minus-square fa-lg text-red"></a>
                                         </td>
                                 </tr>
-                            </table>
-                            <div class="pull-right">
-                                <button type="button" class="btn btn-sm btn-success" title="Add More" style="" (click)="addItem()">Add More</button>
+                            </table> -->
+                           <div class="row"><label for="Upload your documents">Upload your documents</label></div> 
 
+                            <div class="form-inline" *ngFor="let item of items;let IndexId = index" style="margin-bottom:4px;">
+                                <div class="form-group uploadfile-style">
+                                    <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event,IndexId)">
+                                </div>
+                                <button type="button" class="upload-btn" (click)="fileSelectionEvent(IndexId)">Upload</button>
+                                <button type="button" class="remove-btn" (click)="removeItem(IndexId)" style="margin-left:5px;">Remove</button>
+                           
+                                <div *ngIf="item.downoladUrl!=''" style="margin-left:30px;color:#f9a069;font-size:16px;">
+                                        <a href={{item.downoladUrl}}>Download</a>
+                                    </div>
+
+                            </div>
+                    
+                            <div class="col" align="center" style="margin-top:20px;">
+                                <button type="button" class="addmore-btn" title="Add More" (click)="addItem()">Add More</button>
                             </div>
 
                         </form>
