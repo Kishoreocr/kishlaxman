@@ -124,8 +124,28 @@
 
                                             </tr>
                                             <tr>
-                                                <td>Boundaries:</td>
-                                                <td>{{property.boundaries}}</td>
+                                                <td>Boundaries North:</td>
+                                                <td>{{property.boundariesNorth}}</td>
+
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td>Boundaries East:</td>
+                                                <td>{{property.boundariesEast}}</td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td>Boundaries West:</td>
+                                                <td>{{property.boundariesWest}}</td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td>Boundaries South:</td>
+                                                <td>{{property.boundariesSouth}}</td>
 
                                             </tr>
 
@@ -227,7 +247,7 @@
                                         </td>
                                     </tr>
                                     <tr *ngIf='userAllpropertis.length == 0'>
-                                        <td colspan="4" class='noAlerts'>No Properties.</td>
+                                        <td colspan="9" class='noAlerts'>No Properties.</td>
                                     </tr>
 
 

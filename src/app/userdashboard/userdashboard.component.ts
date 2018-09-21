@@ -310,6 +310,7 @@ export class UserdashboardComponent implements OnInit {
         },
         error => {
           console.log(error);
+          this.isLoaderdiv = false;
         }
 
       );
