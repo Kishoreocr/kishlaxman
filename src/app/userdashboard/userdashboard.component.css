@@ -195,6 +195,21 @@ caption {
 
 }
 
+
+.verticalTab{margin:0px 0px 10px;padding:0px;}
+.verticalTab ul{width:100%;display:inline-block;margin: 0px;
+    padding: 0px;}
+
+.verticalTab ul li{list-style: none;font-size:18px;padding:4px 13px;cursor: pointer;margin:2px 2px;
+background-color:#1275af;color:#fff;display:inline-block;border-radius:2px;}
+
+.verticalTab ul li.deactive{
+    opacity:0.4;
+    cursor:default;
+    pointer-events: none;
+
+}
+
 /* MODAL STYLES
 -------------------------------*/
 app-modal-property {

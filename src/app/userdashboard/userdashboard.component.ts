@@ -63,6 +63,9 @@ export class UserdashboardComponent implements OnInit {
   documentstabModal: boolean = false;
   commentstabModal: boolean = false;
 
+  propertyDetails: boolean = false;
+  propertyDocuments: boolean = false;
+
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private ModalPropertyService: ModalPropertyService) {
     this.modalService = modalService;
@@ -82,6 +85,7 @@ export class UserdashboardComponent implements OnInit {
     this.submitted = false;
 
     this.propertytabModal = true;
+    this.propertyDetails = true;
 
     this.propertyForm = this.formBuilder.group({
       typeofProperty: ['', Validators.required],
@@ -168,7 +172,9 @@ export class UserdashboardComponent implements OnInit {
       var data = JSON.stringify(this.propertyCount);
       // alert(data)
       if (parseInt(this.propertyCount.propertiesLimit) == parseInt(this.propertyCount.propertiesUSed)) {
-        alert("Your can not add the properties.Your Property add Limit has completed")
+        this.addProperty = !this.addProperty;
+        this.viewProperties = !this.viewProperties;
+       // alert("Your can not add the properties.Your Property add Limit has completed")
       } else {
         this.addProperty = !this.addProperty;
         this.viewProperties = !this.viewProperties;
@@ -238,9 +244,22 @@ export class UserdashboardComponent implements OnInit {
         this.commentstabModal = true;
         break;
 
+      case 'propertyDetailsTab':
+      
+        this.propertyDetails = true;
+        this.propertyDocuments= false;
+        break;
+        case 'propertyDocumentsTab':
+        this.propertyDetails = false;
+        if(this.propertyStatus !=''){
+        this.propertyDocuments=true;
+        }
+  
+
       default:
         this.propertyTab = true;
         this.propertytabModal = true;
+        this.propertyDetails = true;
     }
 
   }
