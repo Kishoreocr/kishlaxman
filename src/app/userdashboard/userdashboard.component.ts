@@ -11,7 +11,7 @@ import { ModalPropertyService } from '../services/modal-property.service';
 // import { ModalPropertyComponent} from '../modal-property/modal-property.component'
 export interface PropertyDoc {
   pdoc: String;
-  downoladUrl:String;
+  downoladUrl: String;
 }
 @Component({
   selector: 'app-userdashboard',
@@ -130,7 +130,7 @@ export class UserdashboardComponent implements OnInit {
       file: [null, Validators.required]
 
     });
-    this.items.push({ "pdoc": "" + this.lengthCheckToaddMore,"downoladUrl":"" });
+    this.items.push({ "pdoc": "" + this.lengthCheckToaddMore, "downoladUrl": "" });
 
     this.propertiesShow();
   }
@@ -174,7 +174,7 @@ export class UserdashboardComponent implements OnInit {
       if (parseInt(this.propertyCount.propertiesLimit) == parseInt(this.propertyCount.propertiesUSed)) {
         this.addProperty = !this.addProperty;
         this.viewProperties = !this.viewProperties;
-       // alert("Your can not add the properties.Your Property add Limit has completed")
+        // alert("Your can not add the properties.Your Property add Limit has completed")
       } else {
         this.addProperty = !this.addProperty;
         this.viewProperties = !this.viewProperties;
@@ -245,16 +245,16 @@ export class UserdashboardComponent implements OnInit {
         break;
 
       case 'propertyDetailsTab':
-      
+
         this.propertyDetails = true;
-        this.propertyDocuments= false;
+        this.propertyDocuments = false;
         break;
-        case 'propertyDocumentsTab':
+      case 'propertyDocumentsTab':
         this.propertyDetails = false;
-        if(this.propertyStatus !=''){
-        this.propertyDocuments=true;
+        if (this.propertyStatus != '') {
+          this.propertyDocuments = true;
         }
-  
+
 
       default:
         this.propertyTab = true;
@@ -297,6 +297,11 @@ export class UserdashboardComponent implements OnInit {
             this.propertiesShow();
             this.getPropertiesCount();
             this.getTransactions();
+             
+            this.propertyDocuments = true;
+
+            this.propertyDetails= false;
+            
           }
 
         },
@@ -492,10 +497,10 @@ export class UserdashboardComponent implements OnInit {
 
   fileSelectionEvent(event: any, i) {
     const reader = new FileReader();
- //alert(event.target.files)
- this.isLoaderdiv = true;
+    //alert(event.target.files)
+    this.isLoaderdiv = true;
 
-    if(event.target.files && event.target.files.length) {
+    if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       reader.readAsDataURL(file);
       //alert(reader.readAsDataURL(file))
@@ -503,26 +508,26 @@ export class UserdashboardComponent implements OnInit {
       reader.onload = () => {
         this.documentGrp.patchValue({
           file: reader.result
-       });
-       //alert(reader.result);
-    this.EgazeService.savePropertyDoc(file,this.user.loginId,2).subscribe(result => {
-     // result
-      var id=JSON.stringify(result['id']);
-      var down=this.EgazeService.getPropertyDocURL(id);
-      this.items.splice(i, 1);
-      this.items.push({ "pdoc": this.lengthCheckToaddMore + "" ,"downoladUrl":down});
-//alert(JSON.stringify(this.items))
-      this.isLoaderdiv = false;
+        });
+        //alert(reader.result);
+        this.EgazeService.savePropertyDoc(file, this.user.loginId, 2).subscribe(result => {
+          // result
+          var id = JSON.stringify(result['id']);
+          var down = this.EgazeService.getPropertyDocURL(id);
+          this.items.splice(i, 1);
+          this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
+          //alert(JSON.stringify(this.items))
+          this.isLoaderdiv = false;
 
-    }, error => {
-      alert(JSON.stringify(error));
-    });
+        }, error => {
+          alert(JSON.stringify(error));
+        });
       };
     }
- }
+  }
   addItem(): void {
     this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
-    this.items.push({ "pdoc": this.lengthCheckToaddMore + "" ,"downoladUrl":""});
+    this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": "" });
   }
 
   removeItem(index: number) {

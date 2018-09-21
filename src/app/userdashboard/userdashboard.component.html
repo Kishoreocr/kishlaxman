@@ -255,7 +255,7 @@
 
                     <div class="col verticalTab">
                         <ul>
-                            <li (click)="userdashTabs('propertyDetailsTab')">Property Details</li>
+                            <li [ngClass]="{'deactive': !propertyDetails}" (click)="userdashTabs('propertyDetailsTab')">Property Details</li>
                             <li [ngClass]="{'deactive': !propertyDocuments}" (click)="userdashTabs('propertyDocumentsTab')">Documents</li>
                         </ul>
                     </div>
