@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef, ElementRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
+import { EgazeService } from '../../services/egaze.service';
 
 @Component({
   selector: 'app-property-approval',
@@ -6,10 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./property-approval.component.css']
 })
 export class PropertyApprovalComponent implements OnInit {
-
-  constructor() { }
+  propertyApproval:any=[];
+  @Input() propertyData:any;
+  constructor(private EgazeService: EgazeService) {
+    this.getPropertyDetails();
+   }
 
   ngOnInit() {
+    this.getPropertyDetails();
   }
+  getPropertyDetails() {
+    this.EgazeService.getPropertyApi().subscribe(result => {
+      debugger;
+      this.propertyApproval = result;
+    }, error => {
 
+    });
+
+  }
 }

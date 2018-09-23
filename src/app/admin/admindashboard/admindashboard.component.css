@@ -222,3 +222,35 @@ body.modal-open {
     /* body overflow is hidden to hide main scrollbar when modal window is open */
     overflow: hidden;
 }
+/*** **/
+.userdashboardTab{margin:0px;padding:0px;padding-top:20px;padding-bottom:20px;}
+.userdashboardTab ul{
+    width:100%;
+    display:inline-block;
+    background-color: #f5f5f5;
+    margin: 0px;
+    padding: 0px;
+}
+.userdashboardTab ul li{
+    list-style: none;
+    display:inline-block;
+    font-size:18px;
+    color:#000;
+    padding:5px 15px;
+    cursor: pointer;
+}
+.userdashboardTab ul li.active{
+    background-color: #ccc;
+
+}
+
+.propertyheading{background-color:#fff;text-align:center;padding:5px 15px;color:#1275af;font-size:16px;
+    border-radius: 3px;display:inline-block;cursor: pointer;
+    box-shadow: 0px 0px 1px #1275af;
+    }
+
+    .disabled-btn {
+        cursor: not-allowed;
+        opacity: 0.5;
+        /**pointer-events: none;**/
+    }

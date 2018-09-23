@@ -95,10 +95,10 @@ export class UserdashboardComponent implements OnInit {
       subRegisterOffice: [''],
       extentofProperty: ['', Validators.required],
       boundaries: [''],
-      boundariesNorth: [''],
-      boundariesSouth: [''],
-      boundariesEast: [''],
-      boundariesWest: [''],
+      boundariesNorth:[''],
+      boundariesSouth:[''],
+      boundariesEast:[''],
+      boundariesWest:[''],
       documentNo: ['', Validators.required],
       address1: ['', Validators.required],
       address2: ['', Validators.required],
@@ -176,9 +176,10 @@ export class UserdashboardComponent implements OnInit {
       var data = JSON.stringify(this.propertyCount);
       // alert(data)
       if (parseInt(this.propertyCount.propertiesLimit) == parseInt(this.propertyCount.propertiesUSed)) {
-        this.addProperty = !this.addProperty;
-        this.viewProperties = !this.viewProperties;
-        // alert("Your can not add the properties.Your Property add Limit has completed")
+       
+        // this.addProperty = !this.addProperty;
+        // this.viewProperties = !this.viewProperties;
+      alert("Your can not add the properties. Your Property add Limit has completed")
       } else {
         this.addProperty = !this.addProperty;
         this.viewProperties = !this.viewProperties;
@@ -494,90 +495,70 @@ export class UserdashboardComponent implements OnInit {
 
   public totalfiles: Array<File> = [];
   public totalFileName = [];
-  public lengthCheckToaddMore = 1;
+  public lengthCheckToaddMore = 0;
   items: Array<PropertyDoc> = [];
 
   sfile: File;
   importfile(event: any, i) {
-    const [file] = event.target.files;
+    const file = event.target.files;
     //alert(file[i]);
     if (event.target.files && event.target.files.length) {
-      this.sfile = file;
+      this.sfile = file[i];
     }
-
+    else {
+      alert('Please select the file');
+    }
   }
 
-  fileSelectionEvent(i) {
+  fileSelectionEvent(event: any, i) {
     const reader = new FileReader();
-    //alert(event.target.files)
 
     if (this.sfile != null) {
-
       const file = this.sfile;
-      if (file.type === "application/pdf" || file.type.match("image")) {
-        if (file.size <= 4194304) {
-          this.isLoaderdiv = true;
-          reader.readAsDataURL(file);
-          reader.onload = () => {
-            this.documentGrp.patchValue({
-              file: reader.result
-            });
-            this.EgazeService.savePropertyDoc(file, this.user.loginId, 2).subscribe(result => {
-              var id = JSON.stringify(result['id']);
-              var down = this.EgazeService.getPropertyDocURL(id);
-              this.items.splice(i, 1);
-              this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
-              this.isLoaderdiv = false;
-              this.sfile=null;
-            }, error => {
-              alert(JSON.stringify(error));
-            });
-          };
-        } else {
-          alert("Please choose < 4MB Documents")
-        }
-      } else {
-        alert("Please choose images/pdf")
-      }
-    } else {
-      alert("Please choose the file")
+      reader.readAsDataURL(file);
+      //alert(reader.readAsDataURL(file))
 
+      reader.onload = () => {
+        this.documentGrp.patchValue({
+          file: reader.result
+        });
+        //alert(reader.result);
+        this.EgazeService.savePropertyDoc(file, this.user.loginId, 2).subscribe(result => {
+          // result
+          var id = JSON.stringify(result['id']);
+          var down = this.EgazeService.getPropertyDocURL(id);
+          this.items.splice(i, 1);
+          this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
+          //alert(JSON.stringify(this.items))
+          this.isLoaderdiv = false;
+
+        }, error => {
+          alert(JSON.stringify(error));
+        });
+      };
+      this.sfile = null;
     }
+    else {
+      alert('Please select the file');
+    }
+   
   }
   addItem(): void {
+    this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
+    this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": "" });
+  }
+
+  removeItem(index: number) {
+
+    //this.totalfiles.splice(index);
+    //this.totalFileName.splice(index);
     // alert(JSON.stringify(this.items))
-    var lemtn: any = false;
-    this.items.forEach(element => {
-      if (element.downoladUrl === '') {
-        lemtn = true;
-        return false
- 
-      }
-      return true;
-    });
-    if (lemtn) {
-      alert("Please upload the file and then choose Add more")
-    } else {
-      if (this.lengthCheckToaddMore <= 14) {
-        this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
-        this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": "" });
-      } else {
-        alert("You can choose maximum of 15 documents")
-      }
-
-    }
-
-    removeItem(index: number) {
-
-      //this.totalfiles.splice(index);
-      //this.totalFileName.splice(index);
-      // alert(JSON.stringify(this.items))
-      this.items.splice(index, 1);
-      //alert(JSON.stringify(this.items))
-      this.lengthCheckToaddMore = this.lengthCheckToaddMore - 1;
-      // console.log("name are ",this.totalFileName);
-
-    }
-
+    this.items.splice(index, 1);
+    //alert(JSON.stringify(this.items))
+    this.lengthCheckToaddMore = this.lengthCheckToaddMore - 1;
+    // console.log("name are ",this.totalFileName);
 
   }
+
+
+}

@@ -158,12 +158,49 @@ export class EgazeService {
   savePropertyComments(propetyId, userId,agentId,role,description): Observable<any> {
     let formdata: FormData = new FormData();
     formdata.append('propetyId', propetyId);
+    // if admin then user id is zero.
     formdata.append('userId', userId);
+
     formdata.append('agentId', agentId);
     formdata.append('role', role);
     formdata.append('description', description);
 
     return this.http.post(this.baseUrl + "uploadFile/propertydocs/agent", formdata);
+
+  }
+
+  getPropertyApi(){
+
+   return this.http.get(this.baseUrl + "all/properties");
+
+  }
+
+  updatePropertybyAdmin(objProperty,userId){
+    let requestData = {
+      'propertyId':'',
+      "loginId": userId,
+      "propertyType": objProperty.typeofProperty,
+      "propertyHolderName": objProperty.titleHolder,
+      "relationship": objProperty.relationshipTocustomer,
+      "doorNo": objProperty.surveyNoDrNo,
+      "documentNo": objProperty.documentNo,
+      "boundaries": '',
+      "boundariesEast": objProperty.boundariesEast,
+      "boundariesNorth": objProperty.boundariesNorth,
+      "boundariesWest": objProperty.boundariesWest,
+      "boundariesSouth": objProperty.boundariesSouth,
+      "mandal": objProperty.mandal,
+      "district": objProperty.district,
+      "subRegisterOffice": objProperty.subRegisterOffice,
+      "extentOfProperty": objProperty.extentofProperty,
+      "address1": objProperty.address1,
+      "address2": objProperty.address2,
+      "city": objProperty.villageCity,
+      "state": objProperty.state,
+      "zip": objProperty.zip,
+      "country": objProperty.country
+    };
+    return this.http.post(this.baseUrl + 'egaze-api/update/property', requestData);
 
   }
 }

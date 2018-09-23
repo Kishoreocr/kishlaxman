@@ -1,3 +1,99 @@
-<p>
-  property-approval works!
-</p>
+<div>
+  <modal id="custom-modal-3">
+    <div class="modal">
+      <div class="modal-body">
+        <h6>Customer Details</h6>
+        <div style='position:absolute;right:20px;top:10px;'>
+          <i class="fa fa-times" aria-hidden="true" style='font-size:22px;color:#ffb384;cursor: pointer;' (click)="closeModal('custom-modal-1');"></i>
+        </div>
+        <table *ngIf="customer!=''" class="table">
+          <tr>
+            <td>Name:</td>
+            <td>{{customer.firstName}} {{customer.lastName}}</td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td>{{customer.email}} </td>
+          </tr>
+          <tr>
+            <td>Mobile Number:</td>
+            <td>{{customer.mobileNo}}</td>
+          </tr>
+          <tr>
+            <td>Address Line1:</td>
+            <td>{{customer.address1}}</td>
+          </tr>
+          <tr>
+            <td>Address Line2:</td>
+            <td>{{customer.address2}}</td>
+          </tr>
+          <tr>
+            <td>Address Line3:</td>
+            <td>{{customer.address3}}</td>
+          </tr>
+          <tr>
+            <td>City:</td>
+            <td>{{customer.city}}</td>
+          </tr>
+          <tr>
+            <td>State:</td>
+            <td>{{customer.state}}</td>
+          </tr>
+          <tr>
+            <td>Country:</td>
+            <td>{{customer.country}}</td>
+          </tr>
+          <tr>
+            <td>Zip:</td>
+            <td>{{customer.zip}}</td>
+          </tr>
+        </table>
+        <div class='col' align='center'>
+          <button class="submit-btn" (click)="closeModal('custom-modal-1');">Close</button>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-background"></div>
+  </modal>
+
+
+
+
+  <div class="table-container-style table-th-styles">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Property Type</th>
+            <th scope="col">Property Holder Name</th>
+            <th scope="col">Relationship</th>
+            <th scope="col">Door Number</th>
+            <th scope="col">Document Number</th>
+            <th scope="col">View</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let property of propertyApproval; let IndexId = index">
+            <td>{{IndexId+1}} 1</td>
+            <td>{{property.propertyType}} asgf</td>
+            <td>{{property.propertyHolderName}} sag</td>
+            <td>{{property.relationship}} sf</td>
+            <td>{{property.doorNo}} sag </td>
+
+          <td>{{property.documentNo}} sfasfg</td>
+           
+          <td class="viewbtn">
+              <!-- <i class="fa fa-eye" (click)="viewPropertyFun()"></i> -->
+              <i class="fa fa-eye" (click)="openModal('custom-modal-3',property)"></i>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

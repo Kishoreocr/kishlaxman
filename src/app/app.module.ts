@@ -25,9 +25,39 @@ import { LoadingDivComponent } from './loading-div/loading-div.component';
 import { AdminModule } from './admin/admin.module';
 import { ModalPropertyComponent } from './modal-property/modal-property.component';
 import { ModalPropertyService } from './services/modal-property.service';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+import { HelpComponent } from './help/help.component';
+import { SitemapComponent } from './sitemap/sitemap.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { ServicesComponent } from './services/services.component';
+import { PropertyMonitoringComponent } from './property-monitoring/property-monitoring.component';
+import { AbouteGazeComponent } from './aboute-gaze/aboute-gaze.component';
+import { WhyeGazeComponent } from './whye-gaze/whye-gaze.component';
+import { BlogsComponent } from './blogs/blogs.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'aboutus', component: AboutusComponent },
+  { path: 'contactus', component: ContactusComponent },
+  { path: 'terms-conditions', component: TermsConditionsComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'disclaimer', component: DisclaimerComponent },
+  { path: 'help', component: HelpComponent },
+  { path: 'sitemap', component: SitemapComponent },
+  { path: 'articles', component: ArticlesComponent },
+  { path: 'testimonials', component: TestimonialsComponent },
+  { path: 'services', component: ServicesComponent },
+  { path: 'property-monitoring', component: ServicesComponent },
+  { path: 'abouteGaze', component: ServicesComponent },
+  { path: 'whyeGAZE', component: ServicesComponent },
+  { path: 'blogs', component: ServicesComponent },
+
+
   { path: 'loginform', component: UserloginComponent },
   { path: 'registerform', component: UserregisterComponent },
   { path: '',
@@ -38,7 +68,6 @@ const appRoutes: Routes = [
   { path: 'success-register', component: SuccessregsiterComponent },
   { path: 'package-choose', component: PackagesComponent },
   { path: 'forget-password', component: ForgetpasswordComponent },
-
   { path: '**', component: PagenotfoundComponent }
 ];
 
@@ -58,7 +87,21 @@ const appRoutes: Routes = [
     PwdchangesuccessComponent,
     PackageconfirmComponent,
     LoadingDivComponent,
-    ModalPropertyComponent
+    ModalPropertyComponent,
+    AboutusComponent,
+    ContactusComponent,
+    TermsConditionsComponent,
+    PrivacyPolicyComponent,
+    DisclaimerComponent,
+    HelpComponent,
+    SitemapComponent,
+    ArticlesComponent,
+    TestimonialsComponent,
+    ServicesComponent,
+    PropertyMonitoringComponent,
+    AbouteGazeComponent,
+    WhyeGazeComponent,
+    BlogsComponent
     
   ],
   entryComponents:[

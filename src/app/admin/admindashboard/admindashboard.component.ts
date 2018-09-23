@@ -8,7 +8,7 @@ import { LoadingDivComponent } from '../../loading-div/loading-div.component';
 import { AppConstants } from '../../services/constants';
 import { ModalService } from '../../admin/service/modal.service';
 
-import { PropertyApprovalComponent} from '../../admin/property-approval/property-approval.component';
+import { PropertyApprovalComponent } from '../../admin/property-approval/property-approval.component';
 
 @Component({
   selector: 'app-admindashboard',
@@ -25,11 +25,11 @@ export class AdmindashboardComponent implements OnInit {
   profileTab: boolean = false;
   modalService: any;
   viewRef: any;
-  propertyForm: FormGroup;
+  propertyForm1: FormGroup;
   submitted = false;
   isEditDisabled: boolean = false;
   userEditprofileFlag: boolean = false;
-  
+
 
   updateuserProfile: any;
   updateuserProfilestatus: any;
@@ -39,23 +39,66 @@ export class AdmindashboardComponent implements OnInit {
   isLoaderdiv: boolean = false;
   errorMsg: string = '';
   transactions: any;
-  
+
   somedata: any[] = [{ "id": "11" }, { "name": "laxman" }];
-  customers:any=[];
-  customer:any='';
+  customers: any = [];
+  customer: any = '';
+  propertyApproval: any;
+  property: any = '';
+
+
+  propertytabModal: boolean = true;
+  documentstabModal: boolean = false;
+  commentstabModal: boolean = false;
+
+  propertyDetails: boolean = false;
+  propertyDocuments: boolean = false;
+  loginId:any;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
     this.viewRef = viewRef;
     this.getCustomerDetails();
+    this.getPropertyDetails();
   }
   ngOnInit() {
     this.propertyTab = true;
     this.isEditDisabled = false;
     this.userEditprofileFlag = false;
     this.submitted = false;
-  }
+    this.getPropertyDetails();
 
+    this.propertytabModal = true;
+    this.propertyDetails = true;
+
+    this.propertyForm1 = this.formBuilder.group({
+      propertyType: ['', Validators.required],
+      propertyHolderName: ['', Validators.required],
+      relationship: ['', Validators.required],
+      doorNo: ['', Validators.required],
+      documentNo: ['', Validators.required],
+      boundaries: ['', Validators.required],
+      boundariesEast: [''],
+      boundariesWest: [''],
+      boundariesNorth: [''],
+      boundariesSouth: [''],
+      mandal: ['', Validators.required],
+      district: ['', Validators.required],
+      subRegisterOffice: ['', Validators.required],
+      extentOfProperty: ['', Validators.required],
+      address1: ['', Validators.required],
+      address2: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zip: ['', Validators.required],
+      country: ['', Validators.required]
+    });
+
+  }
+  get f() {
+    debugger;
+    return this.propertyForm1.controls;
+  }
 
 
   userdashTabs(activeTab) {
@@ -73,6 +116,7 @@ export class AdmindashboardComponent implements OnInit {
         this.alertsTab = true;
         this.transactionsTab = false;
         this.profileTab = false;
+        this.getPropertyDetails();
         break;
       case 'Transactions':
         this.propertyTab = false;
@@ -88,15 +132,72 @@ export class AdmindashboardComponent implements OnInit {
         this.updateuserProfilestatus = "";
         this.isEditDisabled = false;
         break;
+      case 'PropertyDetailsTab':
+        this.propertytabModal = true;
+        this.documentstabModal = false;
+        this.commentstabModal = false;
+        this.isEditDisabled = false;
+        this.getPropertyDetails();
+        this.propertyDetails = true;
+        this.propertyDocuments = false;
+
+
+        break;
+      case 'DocumentsTab':
+        this.propertytabModal = false;
+        this.documentstabModal = true;
+        this.commentstabModal = false;
+        this.propertyDetails = false;
+        this.propertyDocuments = true;
+        this.isEditDisabled = false;
+        break;
+      case 'CommentsTab':
+        this.propertytabModal = false;
+        this.documentstabModal = false;
+        this.commentstabModal = true;
+        this.isEditDisabled = false;
+        break;
+
 
       default:
         this.propertyTab = true;
+        this.propertyDetails = true;
+        this.propertytabModal = true;
     }
   }
 
-  openModal(id: string,cust) {
-    this.customer=cust;
+  openModal(id: string, cust) {
+
+    this.customer = cust;
+    this.property = cust;
+
     this.modalService1.open(id);
+    this.isEditDisabled = false;
+    this.loginId = this.property.loginId;
+    this.propertyForm1.setValue({
+      propertyType: this.property.propertyType,
+      propertyHolderName: this.property.propertyHolderName,
+      relationship: this.property.relationship,
+      doorNo: this.property.doorNo,
+      documentNo: this.property.documentNo,
+      boundaries: this.property.boundaries,
+      boundariesEast: this.property.boundariesEast,
+      boundariesWest: this.property.boundariesWest,
+      boundariesNorth: this.property.boundariesNorth,
+      boundariesSouth: this.property.boundariesSouth,
+      mandal: this.property.mandal,
+      district: this.property.district,
+      subRegisterOffice: this.property.subRegisterOffice,
+      extentOfProperty: this.property.extentOfProperty,
+      address1: this.property.address1,
+      address2: this.property.address2,
+      city: this.property.city,
+      state: this.property.state,
+      zip: this.property.zip,
+      country: this.property.country,
+      status: this.property.status
+
+    });
   }
 
   closeModal(id: string) {
@@ -111,4 +212,63 @@ export class AdmindashboardComponent implements OnInit {
     });
 
   }
+
+
+  /** property Tab for view and edit  */
+  propertyeditFun() {
+    this.isEditDisabled = !this.isEditDisabled;
+    this.errorMsg = '';
+  }
+
+  getPropertyDetails() {
+    this.EgazeService.getPropertyApi().subscribe(result => {
+      debugger;
+      this.propertyApproval = result;
+      this.isEditDisabled = false;
+    }, error => {
+
+    });
+  }
+
+  profileeditFun() {
+    this.isEditDisabled = !this.isEditDisabled;
+    this.submitted = false;
+  }
+
+
+  updatepropertyFun(updateuserobj) {
+    if (!this.isEditDisabled) {
+      this.submitted = false;
+    }
+    else {
+      this.submitted = true;
+    }
+
+    this.errorMsg = '';
+
+    if (this.propertyForm1.valid) {
+      this.isLoading = true;
+
+      this.EgazeService.updatePropertybyAdmin(updateuserobj.value, this.loginId).subscribe(result => {
+        this.isLoading = false;
+        if (typeof result === "object") {
+          this.isLoaderdiv = false;
+          const element = document.querySelector("#destination")
+          if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          window.scroll(0, 0);
+
+          this.updateuserProfilestatus = "Profile updated Successfully";
+          this.isEditDisabled = false;
+        }
+      }, error => {
+        this.isLoaderdiv = false;
+        this.errorMsg = 'Server error has been occurred. Please try later.';
+      });
+    }
+  }
+
+
+
+
+
 }
