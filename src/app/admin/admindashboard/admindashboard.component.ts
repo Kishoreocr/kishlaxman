@@ -45,7 +45,7 @@ export class AdmindashboardComponent implements OnInit {
   customer: any = '';
   propertyApproval: any;
   property: any = '';
-
+  propertyId: any;
 
   propertytabModal: boolean = true;
   documentstabModal: boolean = false;
@@ -53,7 +53,7 @@ export class AdmindashboardComponent implements OnInit {
 
   propertyDetails: boolean = false;
   propertyDocuments: boolean = false;
-  loginId:any;
+  loginId: any;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
@@ -96,7 +96,6 @@ export class AdmindashboardComponent implements OnInit {
 
   }
   get f() {
-    debugger;
     return this.propertyForm1.controls;
   }
 
@@ -174,6 +173,8 @@ export class AdmindashboardComponent implements OnInit {
     this.modalService1.open(id);
     this.isEditDisabled = false;
     this.loginId = this.property.loginId;
+    this.propertyId = this.property.propertyId;
+
     this.propertyForm1.setValue({
       propertyType: this.property.propertyType,
       propertyHolderName: this.property.propertyHolderName,
@@ -236,7 +237,7 @@ export class AdmindashboardComponent implements OnInit {
   }
 
 
-  updatepropertyFun(updateuserobj) {
+  updatepropertyFun(propertyForm1) {
     if (!this.isEditDisabled) {
       this.submitted = false;
     }
@@ -249,7 +250,7 @@ export class AdmindashboardComponent implements OnInit {
     if (this.propertyForm1.valid) {
       this.isLoading = true;
 
-      this.EgazeService.updatePropertybyAdmin(updateuserobj.value, this.loginId).subscribe(result => {
+      this.EgazeService.updatePropertybyAdmin(propertyForm1.value, this.loginId, this.propertyId).subscribe(result => {
         this.isLoading = false;
         if (typeof result === "object") {
           this.isLoaderdiv = false;

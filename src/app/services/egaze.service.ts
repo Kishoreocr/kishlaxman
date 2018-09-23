@@ -175,9 +175,10 @@ export class EgazeService {
 
   }
 
-  updatePropertybyAdmin(objProperty,userId){
+  updatePropertybyAdmin(objProperty,userId, propertyId){
+    debugger;
     let requestData = {
-      'propertyId':'',
+      'propertyId':propertyId,
       "loginId": userId,
       "propertyType": objProperty.typeofProperty,
       "propertyHolderName": objProperty.titleHolder,
