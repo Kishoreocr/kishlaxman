@@ -52,10 +52,10 @@ const appRoutes: Routes = [
   { path: 'articles', component: ArticlesComponent },
   { path: 'testimonials', component: TestimonialsComponent },
   { path: 'services', component: ServicesComponent },
-  { path: 'property-monitoring', component: ServicesComponent },
-  { path: 'abouteGaze', component: ServicesComponent },
-  { path: 'whyeGAZE', component: ServicesComponent },
-  { path: 'blogs', component: ServicesComponent },
+  { path: 'property-monitoring', component: PropertyMonitoringComponent },
+  { path: 'abouteGAZE', component: AbouteGazeComponent },
+  { path: 'whyeGAZE', component: WhyeGazeComponent },
+  { path: 'blogs', component: BlogsComponent },
 
 
   { path: 'loginform', component: UserloginComponent },
