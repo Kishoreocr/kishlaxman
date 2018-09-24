@@ -470,16 +470,46 @@
                             </div>
                             <div *ngIf="!propertytabModal && !documentstabModal && commentstabModal">
                                 <div class="col">
-                                    <form>
+                                    <form [formGroup]="commentForm" (ngSubmit)="commentFun(commentForm)">
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Comments:</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                        </div>
-                                        <div class="col" align="center" style="margin-top:20px;">
-                                                <button type="submit" class="addmore-btn" title="Submit" (click)="commentFun()">Submit</button>
+
+                                            <textarea class="form-control" style="resize:none" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.commentfield.errors }">
+                                                    </textarea>
+                                            <div *ngIf="submitted && f.commentfield.errors" class="invalid-feedback">
+                                                <div *ngIf="f.commentfield.errors.required">zipCode is required</div>
+
                                             </div>
+                                        </div>
+
+                                        <div class="col" align="center" style="margin-top:20px;">
+                                            <button type="submit" class="addmore-btn" title="Submit" (click)="commentFun()">Submit</button>
+                                        </div>
                                     </form>
                                 </div>
+
+                                <div class='col'>
+
+                                    <div class="commentbox-style">
+                                        <p class="comment-role">Admin</p>
+                                        <p class="comment-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                            Ipsum has been the industry's standard dummy text ever since the 1500s, when
+                                            an unknown printer took a galley of type and scrambled it to make a type specimen
+                                            book</p>
+                                        <span class="comment-reply-btn">Reply</span>
+                                        <span class="comment-hrs">3 hours ago</span>
+                                    </div>
+
+
+
+                                </div>
+
+
+
+
+
+
                             </div>
 
                         </div>

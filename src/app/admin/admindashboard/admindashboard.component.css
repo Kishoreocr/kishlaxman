@@ -300,3 +300,22 @@ body.modal-open {
         outline: 0;
         outline-style: none;
     }
+
+    .commentbox-style{
+        border-bottom:1px solid #f5f5f5;width:100%;
+        padding:10px 0px;
+    }
+    .comment-role{
+        color:#1275af;font-size:16px;
+        font-weight: 500;
+        margin:0px;
+    }
+    .comment-description{
+        color:#666;font-size:14px;line-height: 18px;
+    }
+    .comment-reply-btn{
+        cursor:pointer;color:#f9a069;font-size:16px;padding:5px 20px 5px 0px;
+    }
+    .comment-hrs{
+        color:#ccc;font-size:16px;padding:5px 20px 5px 0px;
+    }
