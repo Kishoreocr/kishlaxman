@@ -25,13 +25,23 @@ export class UserregisterComponent implements OnInit {
     this.modalService = modalService;
     this.viewRef = viewRef;
   }
+ isNumberKey(evt)
+  {
+     var charCode = (evt.which) ? evt.which : evt.keyCode
+     if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+
+     return true;
+  }
 
   ngOnInit() {
+    var emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+    
     this.registerForm = this.formBuilder.group({
       registerType:[],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(emailPattern)]],
       mobileNumber: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
       zipCode: ['', Validators.compose([Validators.required, Validators.maxLength(6)])],
       password: ['', [Validators.required, Validators.minLength(6)]],

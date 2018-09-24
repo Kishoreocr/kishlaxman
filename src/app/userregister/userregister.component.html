@@ -31,7 +31,7 @@
                         <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                             <div *ngIf="f.email.errors.required">Email is required</div>
-                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            <div *ngIf="f.email.errors.pattern">Email must be a valid email address</div>
                         </div>
                         <div *ngIf="existsUser && existsUser.length > 0">
                            <div style="color:red">{{existsUser}}</div>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <label>Mobile Number</label>
-                        <input type="text" maxlength="10" formControlName="mobileNumber" pattern="[0-9]*" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" />
+                        <input type="text" maxlength="10" formControlName="mobileNumber" (keypress)="isNumberKey($event)"  pattern="[0-9]*" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" />
                         <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
                             <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required</div>
                             <div *ngIf="f.mobileNumber.errors.minlength">Mobile Number must be at 10 digits only</div>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group">
                         <label>zipCode</label>
-                        <input type="text" maxlength="6" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
+                        <input type="text" maxlength="6" formControlName="zipCode" (keypress)="isNumberKey($event)"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
                         <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
                             <div *ngIf="f.zipCode.errors.required">Zipcode is required</div>
                             <div *ngIf="f.zipCode.errors.maxlength">ZipCode max value will be 6 digits only</div>
