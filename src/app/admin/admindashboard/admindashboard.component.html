@@ -474,11 +474,11 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Comments:</label>
 
-                                            <textarea class="form-control" style="resize:none" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
-                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.commentfield.errors }">
+                                            <textarea class="form-control" style="resize:none;text-align:left;" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }">
                                                     </textarea>
-                                            <div *ngIf="submitted && f.commentfield.errors" class="invalid-feedback">
-                                                <div *ngIf="f.commentfield.errors.required">zipCode is required</div>
+                                            <div *ngIf="submitted && c.commentfield.errors" class="invalid-feedback">
+                                                <div *ngIf="c.commentfield.errors.required">Comment is required</div>
 
                                             </div>
                                         </div>

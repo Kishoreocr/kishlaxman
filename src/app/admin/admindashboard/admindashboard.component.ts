@@ -61,7 +61,9 @@ export class AdmindashboardComponent implements OnInit {
   loginId: any;
 
   documentGrp: FormGroup;
-  commentsmsg:any;
+  commentsmsg: any;
+  user: any;
+  commentForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
@@ -69,8 +71,12 @@ export class AdmindashboardComponent implements OnInit {
     this.viewRef = viewRef;
     this.getCustomerDetails();
     this.getPropertyDetails();
+    this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
   }
   ngOnInit() {
+
+    this.submitted = false;
+
     this.propertyTab = true;
     this.isEditDisabled = false;
     this.userEditprofileFlag = false;
@@ -103,6 +109,13 @@ export class AdmindashboardComponent implements OnInit {
       country: ['', Validators.required]
     });
 
+    this.commentForm = this.formBuilder.group({
+      commentfield: ['', Validators.required]
+    });
+
+  }
+  get c() {
+    return this.commentForm.controls;
   }
   get f() {
     return this.propertyForm1.controls;
@@ -232,7 +245,6 @@ export class AdmindashboardComponent implements OnInit {
 
   getPropertyDetails() {
     this.EgazeService.getPropertyApi().subscribe(result => {
-      debugger;
       this.propertyApproval = result;
       this.isEditDisabled = false;
     }, error => {
@@ -329,7 +341,7 @@ export class AdmindashboardComponent implements OnInit {
     else {
       alert('Please select the file');
     }
-   
+
   }
   addItem(): void {
     this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
@@ -349,15 +361,23 @@ export class AdmindashboardComponent implements OnInit {
   }
 
 
-  commentsFun(description){
-    this.EgazeService.savePropertyComments('propetyId','userId','agentId','role', description).subscribe( result => {
-    
-      this.commentsmsg = result;
-   
-    }, error => {
+  commentFun(description) {
+    debugger;
 
-    } );
-   
+    this.submitted = true;
+    if (this.commentForm.valid) {
+      this.EgazeService.savePropertyComments(this.propertyId, this.loginId, this.user.loginId, 'admin', description).subscribe(result => {
+
+        this.commentsmsg = result;
+        if (this.commentsmsg) {
+          this.submitted = false;
+        }
+        alert('success' + this.commentsmsg);
+
+      }, error => {
+        alert('error' + error);
+      });
+    }
   }
- 
+
 }
