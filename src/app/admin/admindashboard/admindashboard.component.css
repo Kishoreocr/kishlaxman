@@ -254,3 +254,49 @@ body.modal-open {
         opacity: 0.5;
         /**pointer-events: none;**/
     }
+
+    .uploadfile-style{
+        margin-right: 5px;
+        border: 1px solid rgba(0,0,0,0.1);
+        padding: 3px;
+    }
+    
+    .addmore-btn{
+        background-color: #1275af;
+        color: #fff;
+        border-radius: 5px;
+        padding: 8px 15px;
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 500;
+        border: 0px;
+        cursor: pointer;
+        outline: 0;
+        outline-style: none;
+    }
+    .remove-btn{
+        background-color: #349edc;
+        color: #fff;
+        border-radius: 5px;
+        padding: 8px 15px;
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 500;
+        border: 0px;
+        cursor: pointer;
+        outline: 0;
+        outline-style: none;
+    }
+    .upload-btn{
+        background-color: #f9a069;
+        color: #fff;
+        border-radius: 5px;
+        padding: 8px 15px;
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 500;
+        border: 0px;
+        cursor: pointer;
+        outline: 0;
+        outline-style: none;
+    }

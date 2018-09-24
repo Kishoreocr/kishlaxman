@@ -10,11 +10,16 @@ import { ModalService } from '../../admin/service/modal.service';
 
 import { PropertyApprovalComponent } from '../../admin/property-approval/property-approval.component';
 
+export interface PropertyDoc {
+  pdoc: String;
+  downoladUrl: String;
+}
 @Component({
   selector: 'app-admindashboard',
   templateUrl: './admindashboard.component.html',
   styleUrls: ['./admindashboard.component.css']
 })
+
 export class AdmindashboardComponent implements OnInit {
 
   viewProperties: boolean = false;
@@ -54,6 +59,10 @@ export class AdmindashboardComponent implements OnInit {
   propertyDetails: boolean = false;
   propertyDocuments: boolean = false;
   loginId: any;
+
+  documentGrp: FormGroup;
+  commentsmsg:any;
+
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
@@ -271,5 +280,84 @@ export class AdmindashboardComponent implements OnInit {
 
 
 
+  /*file*/
+  public totalfiles: Array<File> = [];
+  public totalFileName = [];
+  public lengthCheckToaddMore = 0;
+  items: Array<PropertyDoc> = [];
 
+  sfile: File;
+  importfile(event: any, i) {
+    const file = event.target.files;
+    //alert(file[i]);
+    if (event.target.files && event.target.files.length) {
+      this.sfile = file[i];
+    }
+    else {
+      alert('Please select the file');
+    }
+  }
+
+  fileSelectionEvent(event: any, i) {
+    const reader = new FileReader();
+
+    if (this.sfile != null) {
+      const file = this.sfile;
+      reader.readAsDataURL(file);
+      //alert(reader.readAsDataURL(file))
+
+      reader.onload = () => {
+        this.documentGrp.patchValue({
+          file: reader.result
+        });
+        //alert(reader.result);
+        this.EgazeService.savePropertyDoc(file, this.loginId, 2).subscribe(result => {
+          // result
+          var id = JSON.stringify(result['id']);
+          var down = this.EgazeService.getPropertyDocURL(id);
+          this.items.splice(i, 1);
+          this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
+          //alert(JSON.stringify(this.items))
+          this.isLoaderdiv = false;
+
+        }, error => {
+          alert(JSON.stringify(error));
+        });
+      };
+      this.sfile = null;
+    }
+    else {
+      alert('Please select the file');
+    }
+   
+  }
+  addItem(): void {
+    this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
+    this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": "" });
+  }
+
+  removeItem(index: number) {
+
+    //this.totalfiles.splice(index);
+    //this.totalFileName.splice(index);
+    // alert(JSON.stringify(this.items))
+    this.items.splice(index, 1);
+    //alert(JSON.stringify(this.items))
+    this.lengthCheckToaddMore = this.lengthCheckToaddMore - 1;
+    // console.log("name are ",this.totalFileName);
+
+  }
+
+
+  commentsFun(){
+    this.EgazeService.savePropertyComments('propetyId','userId','agentId','role','description').subscribe( result => {
+    
+      this.commentsmsg = result;
+   
+    }, error => {
+
+    } );
+   
+  }
+ 
 }
