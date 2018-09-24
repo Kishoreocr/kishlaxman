@@ -349,8 +349,8 @@ export class AdmindashboardComponent implements OnInit {
   }
 
 
-  commentsFun(){
-    this.EgazeService.savePropertyComments('propetyId','userId','agentId','role','description').subscribe( result => {
+  commentsFun(description){
+    this.EgazeService.savePropertyComments('propetyId','userId','agentId','role', description).subscribe( result => {
     
       this.commentsmsg = result;
    

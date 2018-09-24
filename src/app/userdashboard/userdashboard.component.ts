@@ -106,7 +106,8 @@ export class UserdashboardComponent implements OnInit {
       mandal: ['', Validators.required],
       district: ['', Validators.required],
       zip: ['', Validators.required],
-      state: ['', Validators.required]
+      state: ['', Validators.required],
+      country: ['', Validators.required]
     });
 
     this.updateuserForm = this.formBuilder.group({
