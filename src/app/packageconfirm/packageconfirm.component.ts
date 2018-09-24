@@ -4,6 +4,7 @@ import { ModalDialogService, IModalDialogButton, IModalDialog, IModalDialogOptio
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { SessionstorageService } from '../services/sessionstorage.service';
+import { EgazeService } from '../services/egaze.service';
 
 @Component({
   selector: 'app-packageconfirm',
@@ -19,7 +20,7 @@ isLoading: boolean;
 
 private baseUrl: string = 'http://43.225.26.98:8080/egaze-api/';
 
-  constructor(private router: Router, private modalService: ModalDialogService,private sessionstorageService: SessionstorageService,private http: HttpClient) {
+  constructor(private router: Router, private modalService: ModalDialogService,private sessionstorageService: SessionstorageService,private http: HttpClient, private EgazeService: EgazeService) {
     
     this.user =JSON.parse(this.sessionstorageService.getUserDetails()+"");
 
@@ -57,7 +58,7 @@ confirmPackage(){
 //alert(this.user.email);
 this.isLoading = true;
 
-   this.http.post(this.baseUrl + 'customerpackage', data1).subscribe(
+this.EgazeService.customerpackage(data1).subscribe(
     result => {
       if (result==true) {
         this.isLoading = false;

@@ -65,7 +65,7 @@ export class UserdashboardComponent implements OnInit {
 
   propertyDetails: boolean = false;
   propertyDocuments: boolean = false;
-
+  propertyId: any;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private ModalPropertyService: ModalPropertyService) {
     this.modalService = modalService;
@@ -95,10 +95,10 @@ export class UserdashboardComponent implements OnInit {
       subRegisterOffice: [''],
       extentofProperty: ['', Validators.required],
       boundaries: [''],
-      boundariesNorth:[''],
-      boundariesSouth:[''],
-      boundariesEast:[''],
-      boundariesWest:[''],
+      boundariesNorth: [''],
+      boundariesSouth: [''],
+      boundariesEast: [''],
+      boundariesWest: [''],
       documentNo: ['', Validators.required],
       address1: ['', Validators.required],
       address2: ['', Validators.required],
@@ -177,10 +177,10 @@ export class UserdashboardComponent implements OnInit {
       var data = JSON.stringify(this.propertyCount);
       // alert(data)
       if (parseInt(this.propertyCount.propertiesLimit) == parseInt(this.propertyCount.propertiesUSed)) {
-       
+
         // this.addProperty = !this.addProperty;
         // this.viewProperties = !this.viewProperties;
-      alert("Your can not add the properties. Your Property add Limit has completed")
+        alert("Your can not add the properties. Your Property add Limit has completed")
       } else {
         this.addProperty = !this.addProperty;
         this.viewProperties = !this.viewProperties;
@@ -296,7 +296,8 @@ export class UserdashboardComponent implements OnInit {
           if (typeof result === "object") {
             const element = document.querySelector("#propertyDestination")
             if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-
+            this.propertyId = JSON.stringify(result['id']);
+            //alert(this.propertyId)
             this.propertyStatus = "Property added Successfully";
             this.propertyForm.reset();
             this.submitted = false;
@@ -488,6 +489,8 @@ export class UserdashboardComponent implements OnInit {
     debugger;
     this.property = property;
     this.ModalPropertyService.open(id);
+    this.propertyId=this.property.id;
+    this.getPrpopertyDocs(this.user.loginId, this.property.id)
   }
 
   closeModal(id: string) {
@@ -496,70 +499,110 @@ export class UserdashboardComponent implements OnInit {
 
   public totalfiles: Array<File> = [];
   public totalFileName = [];
-  public lengthCheckToaddMore = 0;
+  public lengthCheckToaddMore = 1;
   items: Array<PropertyDoc> = [];
 
   sfile: File;
   importfile(event: any, i) {
-    const file = event.target.files;
-    //alert(file[i]);
+    const [file] = event.target.files;
     if (event.target.files && event.target.files.length) {
-      this.sfile = file[i];
-    }
-    else {
-      alert('Please select the file');
+      this.sfile = file;
     }
   }
 
-  fileSelectionEvent(event: any, i) {
+  fileSelectionEvent(i) {
     const reader = new FileReader();
 
     if (this.sfile != null) {
       const file = this.sfile;
-      reader.readAsDataURL(file);
-      //alert(reader.readAsDataURL(file))
-
-      reader.onload = () => {
-        this.documentGrp.patchValue({
-          file: reader.result
-        });
-        //alert(reader.result);
-        this.EgazeService.savePropertyDoc(file, this.user.loginId, 2).subscribe(result => {
-          // result
-          var id = JSON.stringify(result['id']);
-          var down = this.EgazeService.getPropertyDocURL(id);
-          this.items.splice(i, 1);
-          this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
-          //alert(JSON.stringify(this.items))
-          this.isLoaderdiv = false;
-
-        }, error => {
-          alert(JSON.stringify(error));
-        });
-      };
-      this.sfile = null;
+      if (file.type === "application/pdf" || file.type.match("image")) {
+        if (file.size <= 4194304) {
+          this.isLoaderdiv = true;
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            this.documentGrp.patchValue({
+              file: reader.result
+            });
+            if(this.property!=null){
+              this.propertyId=this.property.id;
+            }
+           // alert(this.propertyId)
+            this.EgazeService.savePropertyDoc(file,  this.propertyId,this.user.loginId).subscribe(result => {
+              var id = JSON.stringify(result['id']);
+              var down = this.EgazeService.getPropertyDocURL(id);
+              this.items.splice(i, 1);
+              this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
+              this.isLoaderdiv = false;
+              this.sfile = null;
+            }, error => {
+              alert(JSON.stringify(error));
+            });
+          };
+        } else {
+          alert("Please choose < 4MB Documents")
+        }
+      } else {
+        alert("Please choose images/pdf")
+      }
+    } else {
+      alert("Please choose the file");
     }
-    else {
-      alert('Please select the file');
-    }
-   
   }
+
+
   addItem(): void {
-    this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
-    this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": "" });
+    var lemtn: any = false;
+    this.items.forEach(element => {
+      if (element.downoladUrl === '') {
+        lemtn = true;
+        return false
+
+      }
+      return true;
+    });
+    if (lemtn) {
+      alert("Please upload the file and then choose Add more")
+    } else {
+      if (this.lengthCheckToaddMore <= 14) {
+        this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
+        this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": "" });
+      } else {
+        alert("You can choose maximum of 15 documents")
+      }
+
+    }
   }
 
   removeItem(index: number) {
-
-    //this.totalfiles.splice(index);
-    //this.totalFileName.splice(index);
-    // alert(JSON.stringify(this.items))
     this.items.splice(index, 1);
     //alert(JSON.stringify(this.items))
     this.lengthCheckToaddMore = this.lengthCheckToaddMore - 1;
-    // console.log("name are ",this.totalFileName);
-
   }
+  getPrpopertyDocs(customerId, propertyId) {
+    this.isLoaderdiv = true;
+    //alert("customerId="+customerId)
+    //alert("propertyId="+propertyId)
+    this.items=[];
+    this.EgazeService.getPrpopertyDocs(customerId, propertyId).subscribe(result => {
+      var ids: any = result;
+      this.lengthCheckToaddMore=0;
+      Object.keys(ids).forEach(key => {
+        //alert(ids[key]);
 
+        this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": this.EgazeService.getPropertyDocURL(ids[key]) });
+        this.lengthCheckToaddMore=this.lengthCheckToaddMore+1;
+      });
+       // alert(JSON.stringify(this.items))
+
+      //alert(id)
+      // var down = this.EgazeService.getPropertyDocURL(id);
+      //this.items.splice(i, 1);
+      // this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
+      this.isLoaderdiv = false;
+      //this.sfile = null;
+    }, error => {
+      alert(JSON.stringify(error));
+    });
+  }
 
 }

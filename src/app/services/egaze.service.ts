@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class EgazeService {
-  private baseUrl: string = 'http://43.225.26.98:8080/egaze-api/';
-  private baseUrllocal: string = 'http://localhost:8080/egaze-api/';
+  //private baseUrl: string = 'http://43.225.26.98:8080/egaze-api/';
+  private baseUrl: string = 'http://localhost:8080/egaze-api/';
   constructor(private http: HttpClient) { }
 
   loginFun(loginForm) {
@@ -202,6 +202,15 @@ export class EgazeService {
       "country": objProperty.country
     };
     return this.http.post(this.baseUrl + 'egaze-api/update/property', requestData);
+
+  }
+  customerpackage(requestData) {
+    return this.http.post(this.baseUrl + 'customerpackage', requestData);
+
+  }
+  getPrpopertyDocs(customerId,propertyId) {
+    return this.http.get(this.baseUrl + "customer/propertydocs/"+customerId+"/"
+    +propertyId);
 
   }
 }
