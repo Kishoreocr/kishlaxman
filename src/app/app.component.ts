@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { UserloginComponent } from './userlogin/userlogin.component';
 import { UserregisterComponent } from './userregister/userregister.component';
 import { HomeComponent } from './home/home.component';
@@ -11,7 +11,7 @@ import{ AppConstants} from './services/constants'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'app';
   user: Object={loginId: Number, email: String, role: String, status: String };
   flag: boolean = false;
@@ -35,9 +35,21 @@ export class AppComponent {
     //   this.activeColor = true;
     // }
   }
+
+
+
   logout(){
     this.sessionstorageService.removeUserDetails("user");
     window.location.href=AppConstants.loginURL;
   }
+
+  ngOnInit() {
+    this.routerProperty.events.subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+            return;
+        }
+        window.scrollTo(0, 0)
+    });
+}
   
 }

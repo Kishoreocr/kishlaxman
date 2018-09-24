@@ -39,6 +39,8 @@ import { PropertyMonitoringComponent } from './property-monitoring/property-moni
 import { AbouteGazeComponent } from './aboute-gaze/aboute-gaze.component';
 import { WhyeGazeComponent } from './whye-gaze/whye-gaze.component';
 import { BlogsComponent } from './blogs/blogs.component';
+import { EgazeServicesComponent } from './egaze-services/egaze-services.component';
+import { PackageDescriptionComponent } from './package-description/package-description.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -56,6 +58,9 @@ const appRoutes: Routes = [
   { path: 'abouteGAZE', component: AbouteGazeComponent },
   { path: 'whyeGAZE', component: WhyeGazeComponent },
   { path: 'blogs', component: BlogsComponent },
+
+  { path: 'egaze-services', component: EgazeServicesComponent },
+  { path: 'package-description', component: PackageDescriptionComponent },
 
 
   { path: 'loginform', component: UserloginComponent },
@@ -101,7 +106,9 @@ const appRoutes: Routes = [
     PropertyMonitoringComponent,
     AbouteGazeComponent,
     WhyeGazeComponent,
-    BlogsComponent
+    BlogsComponent,
+    EgazeServicesComponent,
+    PackageDescriptionComponent
     
   ],
   entryComponents:[
