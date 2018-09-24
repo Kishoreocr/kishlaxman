@@ -5,29 +5,21 @@
     <p>Please enter registered email and password with Us!</p>
     <form [formGroup]="userloginForm" (ngSubmit)="saveUser(userloginForm)">
       <div class="form-group">
-        <!-- <label for="exampleInputEmail1">Username</label> -->
-        
-        <div class="textboxStyle">
-        <input [attr.disabled]="disabledField ? true : null" type="email"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-           formControlName="username" placeholder=" " [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-           <span>Enter Email</span>   
-        </div>
-    
+        <label for="exampleInputEmail1">Email</label>
+        <input [attr.disabled]="disabledField ? true : null" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          placeholder="Enter email" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Email is required</div>
-          </div>
-          
+          <div *ngIf="f.username.errors.required">Email is required</div>
+        </div>
+
       </div>
 
 
       <div class="form-group">
-        <!-- <label for="exampleInputPassword1">Password</label> -->
-        <div class="textboxStyle">
-        <input [attr.disabled]="disabledField ? true : null" type="password" class="form-control" id="exampleInputPassword1" placeholder=" "
+        <label for="exampleInputPassword1">Password</label>
+        <input [attr.disabled]="disabledField ? true : null" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password"
           formControlName="userpwd" [ngClass]="{ 'is-invalid': submitted && f.userpwd.errors }">
-          <span>Enter Password</span> 
-        </div>
-          <div *ngIf="submitted && f.userpwd.errors" class="invalid-feedback">
+        <div *ngIf="submitted && f.userpwd.errors" class="invalid-feedback">
           <div *ngIf="f.userpwd.errors.required">Password is required</div>
         </div>
 
@@ -44,7 +36,8 @@
       </div>
     </form>
     <div class="row justify-content-md-center" *ngIf="invalidCredential !='' ">
-      <p style="padding:10px;font-size:13px;color:red;">{{invalidCredential}}</p></div>
+      <p style="padding:10px;font-size:13px;color:red;">{{invalidCredential}}</p>
+    </div>
     <div class="row justify-content-md-center">
       <p style="padding:10px;font-size:13px;color:red;">{{attemptloginMessage}}</p>
     </div>
