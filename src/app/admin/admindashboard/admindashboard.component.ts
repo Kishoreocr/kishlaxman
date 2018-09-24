@@ -366,7 +366,7 @@ export class AdmindashboardComponent implements OnInit {
 
     this.submitted = true;
     if (this.commentForm.valid) {
-      this.EgazeService.savePropertyComments(this.propertyId, this.loginId, this.user.loginId, 'admin', description).subscribe(result => {
+      this.EgazeService.savePropertyComments(this.propertyId, this.loginId, this.user.loginId, 'admin', description.value).subscribe(result => {
 
         this.commentsmsg = result;
         if (this.commentsmsg) {
