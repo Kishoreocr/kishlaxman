@@ -180,12 +180,12 @@ export class EgazeService {
     let requestData = {
       'propertyId':propertyId,
       "loginId": userId,
-      "propertyType": objProperty.typeofProperty,
-      "propertyHolderName": objProperty.titleHolder,
-      "relationship": objProperty.relationshipTocustomer,
-      "doorNo": objProperty.surveyNoDrNo,
+      "propertyType": objProperty.propertyType,
+      "propertyHolderName": objProperty.propertyHolderName,
+      "relationship": objProperty.relationship,
+      "doorNo": objProperty.doorNo,
       "documentNo": objProperty.documentNo,
-      "boundaries": '',
+      "boundaries": 'boundaries',
       "boundariesEast": objProperty.boundariesEast,
       "boundariesNorth": objProperty.boundariesNorth,
       "boundariesWest": objProperty.boundariesWest,
@@ -193,23 +193,23 @@ export class EgazeService {
       "mandal": objProperty.mandal,
       "district": objProperty.district,
       "subRegisterOffice": objProperty.subRegisterOffice,
-      "extentOfProperty": objProperty.extentofProperty,
+      "extentOfProperty": objProperty.extentOfProperty,
       "address1": objProperty.address1,
       "address2": objProperty.address2,
-      "city": objProperty.villageCity,
+      "city": objProperty.city,
       "state": objProperty.state,
       "zip": objProperty.zip,
       "country": objProperty.country
     };
-    return this.http.post(this.baseUrl + 'egaze-api/update/property', requestData);
+    return this.http.post(this.baseUrl + 'update/property', requestData);
 
   }
   customerpackage(requestData) {
     return this.http.post(this.baseUrl + 'customerpackage', requestData);
 
   }
-  getPrpopertyDocs(customerId,propertyId) {
-    return this.http.get(this.baseUrl + "customer/propertydocs/"+customerId+"/"
+  getPrpopertyDocs(propertyId) {
+    return this.http.get(this.baseUrl + "customer/propertydocs/"+
     +propertyId);
 
   }

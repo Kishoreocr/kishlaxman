@@ -178,6 +178,10 @@
                                         <i class="fa fa-edit" style="font-size:13px;font-weight: 200"></i> Edit
                                     </div>
                                 </div>
+                                <div class="alert alert-success" id="propertyDestination" *ngIf="updateuserProfilestatus!=''">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>{{updateuserProfilestatus}}</strong>
+                                </div>
                                 <form [formGroup]="propertyForm1" (ngSubmit)="updatepropertyFun(propertyForm1)">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -186,7 +190,7 @@
                                                 <label for="exampleFormControlSelect1">Type of Property
                                                     <span class="mandatory">*</span>
                                                 </label>
-                                                <select class="form-control" [attr.disabled]="!isEditDisabled" formControlName="propertyType" (ngModelChange)="getType($event)"
+                                                <select class="form-control"  formControlName="propertyType" (ngModelChange)="getType($event)"
                                                     [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }">
                                                     <option value="" [selected]="selected">Select any Property</option>
                                                     <option value="Residential">Residential</option>
@@ -414,7 +418,7 @@
                                                 <input type="text" [readonly]="!isEditDisabled" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
                                                     id="stateFormControlInput" placeholder="Enter country">
                                                 <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.country.errors.required">State is required</div>
+                                                    <div *ngIf="f.country.errors.required">Country is required</div>
                                                 </div>
 
                                             </div>
@@ -442,7 +446,7 @@
 
 
                                     <div class="row">
-                                        <label for="Upload your documents">Upload your documents</label>
+                                        <label for="Upload your documents">Upload Property Documents</label>
                                     </div>
 
                                     <div class="form-inline" *ngFor="let item of items;let IndexId = index" style="margin-bottom:4px;">
@@ -565,3 +569,4 @@
 
         </div>
     </div>
+     <app-loading-div-component1 *ngIf="isLoading"></app-loading-div-component1> 

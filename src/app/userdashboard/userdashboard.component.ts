@@ -583,7 +583,7 @@ export class UserdashboardComponent implements OnInit {
     //alert("customerId="+customerId)
     //alert("propertyId="+propertyId)
     this.items=[];
-    this.EgazeService.getPrpopertyDocs(customerId, propertyId).subscribe(result => {
+    this.EgazeService.getPrpopertyDocs(propertyId).subscribe(result => {
       var ids: any = result;
       this.lengthCheckToaddMore=0;
       Object.keys(ids).forEach(key => {

@@ -14,6 +14,7 @@ import { PaymentApprovalComponent } from './payment-approval/payment-approval.co
 import { CustomPackagesComponent } from './custom-packages/custom-packages.component';
 import { PropertyCommentsComponent } from './property-comments/property-comments.component';
 import { PortalFeedbackComponent } from './portal-feedback/portal-feedback.component';
+import { LoadingDivComponent1Component } from './loading-div-component1/loading-div-component1.component';
 
 const appRoutes: Routes = [
   { path: 'adminlogin', component: LoginComponent },
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
 
   ],
-  declarations: [LoginComponent, AdmindashboardComponent, ModalComponent, PropertyApprovalComponent, AgentApprovalComponent, PaymentApprovalComponent, CustomPackagesComponent, PropertyCommentsComponent, PortalFeedbackComponent],
+  declarations: [LoginComponent, AdmindashboardComponent, ModalComponent, PropertyApprovalComponent, AgentApprovalComponent, PaymentApprovalComponent, CustomPackagesComponent, PropertyCommentsComponent, PortalFeedbackComponent, LoadingDivComponent1Component],
   providers: [ModalService]
 
 })

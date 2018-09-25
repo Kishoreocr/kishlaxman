@@ -125,6 +125,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
     ModalDialogModule.forRoot(),AdminModule
   ],
+  exports:[
+    LoadingDivComponent
+
+  ],
   providers: [EgazeService,SessionstorageService, ModalPropertyService],
   bootstrap: [AppComponent]
 })

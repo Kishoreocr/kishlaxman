@@ -81,7 +81,7 @@ export class AdmindashboardComponent implements OnInit {
     this.isEditDisabled = false;
     this.userEditprofileFlag = false;
     this.submitted = false;
-    this.getPropertyDetails();
+    //this.getPropertyDetails();
 
     this.propertytabModal = true;
     this.propertyDetails = true;
@@ -112,7 +112,10 @@ export class AdmindashboardComponent implements OnInit {
     this.commentForm = this.formBuilder.group({
       commentfield: ['', Validators.required]
     });
+    this.documentGrp = this.formBuilder.group({
+      file: [null, Validators.required]
 
+    });
   }
   get c() {
     return this.commentForm.controls;
@@ -121,7 +124,10 @@ export class AdmindashboardComponent implements OnInit {
     return this.propertyForm1.controls;
   }
 
-
+  getType(event) {
+    this.propertyForm1.value.typeofProperty = "" + event;
+    //alert(this.updateuserNewpwdForm.value.typeofProperty);
+  }
   userdashTabs(activeTab) {
     this.updateuserProfilestatus = "";
     //this.activeSelected = true;
@@ -171,6 +177,8 @@ export class AdmindashboardComponent implements OnInit {
         this.propertyDetails = false;
         this.propertyDocuments = true;
         this.isEditDisabled = false;
+        this.getPrpopertyDocs();
+
         break;
       case 'CommentsTab':
         this.propertytabModal = false;
@@ -195,7 +203,7 @@ export class AdmindashboardComponent implements OnInit {
     this.modalService1.open(id);
     this.isEditDisabled = false;
     this.loginId = this.property.loginId;
-    this.propertyId = this.property.propertyId;
+    this.propertyId = this.property.id;
 
     this.propertyForm1.setValue({
       propertyType: this.property.propertyType,
@@ -203,7 +211,7 @@ export class AdmindashboardComponent implements OnInit {
       relationship: this.property.relationship,
       doorNo: this.property.doorNo,
       documentNo: this.property.documentNo,
-      boundaries: this.property.boundaries,
+      boundaries: "boundaries",
       boundariesEast: this.property.boundariesEast,
       boundariesWest: this.property.boundariesWest,
       boundariesNorth: this.property.boundariesNorth,
@@ -217,8 +225,8 @@ export class AdmindashboardComponent implements OnInit {
       city: this.property.city,
       state: this.property.state,
       zip: this.property.zip,
-      country: this.property.country,
-      status: this.property.status
+      country: this.property.country
+     // status: this.property.status
 
     });
   }
@@ -267,23 +275,24 @@ export class AdmindashboardComponent implements OnInit {
     }
 
     this.errorMsg = '';
-
+//alert(this.propertyForm1.valid)
     if (this.propertyForm1.valid) {
       this.isLoading = true;
-
+//alert("dsdd")
       this.EgazeService.updatePropertybyAdmin(propertyForm1.value, this.loginId, this.propertyId).subscribe(result => {
         this.isLoading = false;
-        if (typeof result === "object") {
+        //alert("dsdd="+result)
+        const element = document.querySelector("#propertyDestination")
+        if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        window.scroll(0, 0);
+        this.updateuserProfilestatus = "Property updated Successfully";
+        this.isEditDisabled = false;
           this.isLoaderdiv = false;
-          const element = document.querySelector("#destination")
-          if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-          window.scroll(0, 0);
-
-          this.updateuserProfilestatus = "Profile updated Successfully";
-          this.isEditDisabled = false;
-        }
+          //alert("suss")
       }, error => {
         this.isLoaderdiv = false;
+       // alert("suss="+JSON.stringify(error));
+
         this.errorMsg = 'Server error has been occurred. Please try later.';
       });
     }
@@ -297,70 +306,108 @@ export class AdmindashboardComponent implements OnInit {
   public totalFileName = [];
   public lengthCheckToaddMore = 0;
   items: Array<PropertyDoc> = [];
-
   sfile: File;
   importfile(event: any, i) {
-    const file = event.target.files;
-    //alert(file[i]);
+    const [file] = event.target.files;
     if (event.target.files && event.target.files.length) {
-      this.sfile = file[i];
-    }
-    else {
-      alert('Please select the file');
+      this.sfile = file;
     }
   }
 
-  fileSelectionEvent(event: any, i) {
+  fileSelectionEvent(i) {
     const reader = new FileReader();
 
     if (this.sfile != null) {
       const file = this.sfile;
-      reader.readAsDataURL(file);
-      //alert(reader.readAsDataURL(file))
-
-      reader.onload = () => {
-        this.documentGrp.patchValue({
-          file: reader.result
-        });
-        //alert(reader.result);
-        this.EgazeService.savePropertyDoc(file, this.loginId, 2).subscribe(result => {
-          // result
-          var id = JSON.stringify(result['id']);
-          var down = this.EgazeService.getPropertyDocURL(id);
-          this.items.splice(i, 1);
-          this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
-          //alert(JSON.stringify(this.items))
-          this.isLoaderdiv = false;
-
-        }, error => {
-          alert(JSON.stringify(error));
-        });
-      };
-      this.sfile = null;
+      if (file.type === "application/pdf" || file.type.match("image")) {
+        if (file.size <= 4194304) {
+          this.isLoaderdiv = true;
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            this.documentGrp.patchValue({
+              file: reader.result
+            });
+            if(this.property!=null){
+              this.propertyId=this.property.id;
+            }
+           // alert(this.propertyId)
+            this.EgazeService.savePropertyDoc(file,  this.propertyId,this.loginId).subscribe(result => {
+              var id = JSON.stringify(result['id']);
+              var down = this.EgazeService.getPropertyDocURL(id);
+              this.items.splice(i, 1);
+              this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
+              this.isLoaderdiv = false;
+              this.sfile = null;
+            }, error => {
+              //alert(JSON.stringify(error));
+            });
+          };
+        } else {
+          alert("Please choose < 4MB Documents")
+        }
+      } else {
+        alert("Please choose images/pdf")
+      }
+    } else {
+      alert("Please choose the file");
     }
-    else {
-      alert('Please select the file');
-    }
-
   }
+
+
   addItem(): void {
-    this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
-    this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": "" });
+    var lemtn: any = false;
+    this.items.forEach(element => {
+      if (element.downoladUrl === '') {
+        lemtn = true;
+        return false
+
+      }
+      return true;
+    });
+    if (lemtn) {
+      alert("Please upload the file and then choose Add more")
+    } else {
+      if (this.lengthCheckToaddMore <= 14) {
+        this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
+        this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": "" });
+      } else {
+        alert("You can choose maximum of 15 documents")
+      }
+
+    }
   }
 
   removeItem(index: number) {
-
-    //this.totalfiles.splice(index);
-    //this.totalFileName.splice(index);
-    // alert(JSON.stringify(this.items))
     this.items.splice(index, 1);
     //alert(JSON.stringify(this.items))
     this.lengthCheckToaddMore = this.lengthCheckToaddMore - 1;
-    // console.log("name are ",this.totalFileName);
-
   }
+  getPrpopertyDocs() {
+    this.isLoaderdiv = true;
+    //alert("customerId="+customerId)
+    //alert("propertyId="+propertyId)
+    this.items=[];
+    this.EgazeService.getPrpopertyDocs(this.propertyId).subscribe(result => {
+      var ids: any = result;
+      this.lengthCheckToaddMore=0;
+      Object.keys(ids).forEach(key => {
+        //alert(ids[key]);
 
+        this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": this.EgazeService.getPropertyDocURL(ids[key]) });
+        this.lengthCheckToaddMore=this.lengthCheckToaddMore+1;
+      });
+       // alert(JSON.stringify(this.items))
 
+      //alert(id)
+      // var down = this.EgazeService.getPropertyDocURL(id);
+      //this.items.splice(i, 1);
+      // this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
+      this.isLoaderdiv = false;
+      //this.sfile = null;
+    }, error => {
+      alert(JSON.stringify(error));
+    });
+  }
   commentFun(description) {
     debugger;
 
