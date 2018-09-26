@@ -209,8 +209,8 @@
                                                                            <div class="form-group uploadfile-style">
                                                                                <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event,IndexId)">
                                                                            </div>
-                                                                           <button type="button" class="upload-btn" (click)="fileSelectionEvent(IndexId)">Upload</button>
-                                                                           <button type="button" class="remove-btn" (click)="removeItem(IndexId)" style="margin-left:5px;">Remove</button>
+                                                                           <button type="button" [disabled]="propertyStatusCode!='P'" class="upload-btn" (click)="fileSelectionEvent(IndexId)">Upload</button>
+                                                                           <button type="button" [disabled]="propertyStatusCode!='P'" class="remove-btn" (click)="removeItem(IndexId)" style="margin-left:5px;">Remove</button>
                                            
                                                                            <div *ngIf="item.downoladUrl!=''" style="margin-left:30px;color:#f9a069;font-size:16px;">
                                                                                <a href={{item.downoladUrl}}>Download</a>
@@ -219,14 +219,44 @@
                                                                        </div>
                                            
                                                                        <div class="col" align="center" style="margin-top:20px;">
-                                                                           <button type="button" class="addmore-btn" title="Add More" (click)="addItem()">Add More</button>
+                                                                           <button type="button" [disabled]="propertyStatusCode!='P'" class="addmore-btn" title="Add More" (click)="addItem()">Add More</button>
                                                                        </div>
                                            
                                                                    </form>
                                                                                </div>
 <br/>
                                     <div *ngIf="!propertytabModal && !documentstabModal && commentstabModal" class="col" align="center">
-                                        <p>No data available for comments </p>
+                                        <div class="col">
+                                            <form [formGroup]="commentForm" (ngSubmit)="commentFun(commentForm)">
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1">Comments:</label>
+        
+                                                    <textarea class="form-control" style="resize:none;text-align:left;" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
+                                                        class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }">
+                                                            </textarea>
+                                                    <div *ngIf="submitted && c.commentfield.errors" class="invalid-feedback">
+                                                        <div *ngIf="c.commentfield.errors.required">Comment is required</div>
+        
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col" align="center" style="margin-top:20px;">
+                                                    <button type="submit" class="addmore-btn">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+        
+                                        <div class='col'>
+                                            <div class="commentbox-style" *ngFor="let comment of comments;let IndexId = index" >
+                                                <p class="comment-role">By {{comment.role}},</p>
+                                                <p class="comment-description">{{comment.description}}</p>
+                                                <!-- <span class="comment-reply-btn">Reply</span> -->
+                                                <span class="comment-hrs">On {{comment.addedDate}}</span>
+                                            </div>
+        
+        </div>
+        
+                                       
                                     </div>
 
                                     <div class='col' align='center'>

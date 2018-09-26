@@ -66,6 +66,9 @@ export class UserdashboardComponent implements OnInit {
   propertyDetails: boolean = false;
   propertyDocuments: boolean = false;
   propertyId: any;
+  commentForm: FormGroup;
+  propertyStatusCode:any;
+
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private ModalPropertyService: ModalPropertyService) {
     this.modalService = modalService;
@@ -138,6 +141,9 @@ export class UserdashboardComponent implements OnInit {
     this.items.push({ "pdoc": "" + this.lengthCheckToaddMore, "downoladUrl": "" });
 
     this.propertiesShow();
+    this.commentForm = this.formBuilder.group({
+      commentfield: ['', Validators.required]
+    });
   }
   ngAfterViewChecked() {
     // you'll get your through 'elements' below code
@@ -248,6 +254,8 @@ export class UserdashboardComponent implements OnInit {
         this.propertytabModal = false;
         this.documentstabModal = false;
         this.commentstabModal = true;
+        this.getPrpopertyComments(this.propertyId);
+
         break;
 
       case 'propertyDetailsTab':
@@ -390,7 +398,7 @@ export class UserdashboardComponent implements OnInit {
             this.updateuserNewpwdForm.reset();
             this.submitted = false;
 
-            this.profilechndResultMsg = "Congrats, Successfully changed your password";
+            this.profilechndResultMsg = "Successfully password changedd";
             this.resultMsg = "";
           }
           if (result === 'Incorrect Old Password') {
@@ -490,6 +498,7 @@ export class UserdashboardComponent implements OnInit {
     this.property = property;
     this.ModalPropertyService.open(id);
     this.propertyId=this.property.id;
+    this.propertyStatusCode=this.property.status;
     this.getPrpopertyDocs(this.user.loginId, this.property.id)
   }
 
@@ -602,6 +611,36 @@ export class UserdashboardComponent implements OnInit {
       //this.sfile = null;
     }, error => {
       alert(JSON.stringify(error));
+    });
+  }
+  commentFun(description) {
+    this.submitted = true;
+    //alert(description.value.commentfield)
+    if (this.commentForm.valid) {
+      this.EgazeService.savePropertyComments(this.propertyId, this.user1.loginId,"0",  'Customer', description.value.commentfield).subscribe(result => {
+
+       // this.commentsmsg = result;
+        if (result) {
+          this.submitted = false;
+        }
+        //alert('success' + this.commentsmsg);
+        this.getPrpopertyComments(this.propertyId);
+      }, error => {
+        alert('error' + error);
+      });
+    }
+  }
+
+
+  comments: any = [];
+  getPrpopertyComments(description) {
+    this.EgazeService.getPrpopertyComments(this.propertyId).subscribe(result => {
+
+      this.comments = result;
+      // alert('success' + this.commentsmsg);
+
+    }, error => {
+      //alert('error' + error);
     });
   }
 

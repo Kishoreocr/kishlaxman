@@ -157,11 +157,18 @@ export class EgazeService {
 
   savePropertyComments(propetyId, userId,agentId,role,description): Observable<any> {
     let formdata: FormData = new FormData();
-    formdata.append('propetyId', propetyId);
+    formdata.append('propertyId', propetyId);
     // if admin then user id is zero.
-    formdata.append('userId', userId);
-
-    formdata.append('agentId', agentId);
+    if(role==='Admin'){
+      formdata.append('userId', "0");
+    }else{
+      formdata.append('userId', userId);
+    }
+    if(role==='Customer'){
+      formdata.append('agentId', "0");
+    }else{
+      formdata.append('agentId', agentId);
+    }
     formdata.append('role', role);
     formdata.append('description', description);
 
@@ -210,6 +217,11 @@ export class EgazeService {
   }
   getPrpopertyDocs(propertyId) {
     return this.http.get(this.baseUrl + "customer/propertydocs/"+
+    +propertyId);
+
+  }
+  getPrpopertyComments(propertyId) {
+    return this.http.get(this.baseUrl + "propertydocs/agent/"+
     +propertyId);
 
   }

@@ -185,6 +185,7 @@ export class AdmindashboardComponent implements OnInit {
         this.documentstabModal = false;
         this.commentstabModal = true;
         this.isEditDisabled = false;
+        this.getPrpopertyComments(this.propertyId);
         break;
 
 
@@ -226,7 +227,7 @@ export class AdmindashboardComponent implements OnInit {
       state: this.property.state,
       zip: this.property.zip,
       country: this.property.country
-     // status: this.property.status
+      // status: this.property.status
 
     });
   }
@@ -275,10 +276,10 @@ export class AdmindashboardComponent implements OnInit {
     }
 
     this.errorMsg = '';
-//alert(this.propertyForm1.valid)
+    //alert(this.propertyForm1.valid)
     if (this.propertyForm1.valid) {
       this.isLoading = true;
-//alert("dsdd")
+      //alert("dsdd")
       this.EgazeService.updatePropertybyAdmin(propertyForm1.value, this.loginId, this.propertyId).subscribe(result => {
         this.isLoading = false;
         //alert("dsdd="+result)
@@ -287,11 +288,11 @@ export class AdmindashboardComponent implements OnInit {
         window.scroll(0, 0);
         this.updateuserProfilestatus = "Property updated Successfully";
         this.isEditDisabled = false;
-          this.isLoaderdiv = false;
-          //alert("suss")
+        this.isLoaderdiv = false;
+        //alert("suss")
       }, error => {
         this.isLoaderdiv = false;
-       // alert("suss="+JSON.stringify(error));
+        // alert("suss="+JSON.stringify(error));
 
         this.errorMsg = 'Server error has been occurred. Please try later.';
       });
@@ -327,11 +328,11 @@ export class AdmindashboardComponent implements OnInit {
             this.documentGrp.patchValue({
               file: reader.result
             });
-            if(this.property!=null){
-              this.propertyId=this.property.id;
+            if (this.property != null) {
+              this.propertyId = this.property.id;
             }
-           // alert(this.propertyId)
-            this.EgazeService.savePropertyDoc(file,  this.propertyId,this.loginId).subscribe(result => {
+            // alert(this.propertyId)
+            this.EgazeService.savePropertyDoc(file, this.propertyId, this.loginId).subscribe(result => {
               var id = JSON.stringify(result['id']);
               var down = this.EgazeService.getPropertyDocURL(id);
               this.items.splice(i, 1);
@@ -386,17 +387,17 @@ export class AdmindashboardComponent implements OnInit {
     this.isLoaderdiv = true;
     //alert("customerId="+customerId)
     //alert("propertyId="+propertyId)
-    this.items=[];
+    this.items = [];
     this.EgazeService.getPrpopertyDocs(this.propertyId).subscribe(result => {
       var ids: any = result;
-      this.lengthCheckToaddMore=0;
+      this.lengthCheckToaddMore = 0;
       Object.keys(ids).forEach(key => {
         //alert(ids[key]);
 
         this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": this.EgazeService.getPropertyDocURL(ids[key]) });
-        this.lengthCheckToaddMore=this.lengthCheckToaddMore+1;
+        this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
       });
-       // alert(JSON.stringify(this.items))
+      // alert(JSON.stringify(this.items))
 
       //alert(id)
       // var down = this.EgazeService.getPropertyDocURL(id);
@@ -408,23 +409,36 @@ export class AdmindashboardComponent implements OnInit {
       alert(JSON.stringify(error));
     });
   }
-  commentFun(description) {
-    debugger;
 
+  commentFun(description) {
     this.submitted = true;
+    //alert(description.value.commentfield)
     if (this.commentForm.valid) {
-      this.EgazeService.savePropertyComments(this.propertyId, this.loginId, this.user.loginId, 'admin', description.value).subscribe(result => {
+      this.EgazeService.savePropertyComments(this.propertyId, "0", this.loginId, 'Admin', description.value.commentfield).subscribe(result => {
 
         this.commentsmsg = result;
         if (this.commentsmsg) {
           this.submitted = false;
         }
-        alert('success' + this.commentsmsg);
-
+        //alert('success' + this.commentsmsg);
+        this.getPrpopertyComments(this.propertyId);
       }, error => {
         alert('error' + error);
       });
     }
+  }
+
+
+  comments: any = [];
+  getPrpopertyComments(description) {
+    this.EgazeService.getPrpopertyComments(this.propertyId).subscribe(result => {
+
+      this.comments = result;
+      // alert('success' + this.commentsmsg);
+
+    }, error => {
+      //alert('error' + error);
+    });
   }
 
 }

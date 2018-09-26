@@ -494,15 +494,11 @@
                                 </div>
 
                                 <div class='col'>
-
-                                    <div class="commentbox-style">
-                                        <p class="comment-role">Admin</p>
-                                        <p class="comment-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                            Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                                            an unknown printer took a galley of type and scrambled it to make a type specimen
-                                            book</p>
-                                        <span class="comment-reply-btn">Reply</span>
-                                        <span class="comment-hrs">3 hours ago</span>
+                                    <div class="commentbox-style" *ngFor="let comment of comments;let IndexId = index" >
+                                        <p class="comment-role">By {{comment.role}},</p>
+                                        <p class="comment-description">{{comment.description}}</p>
+                                        <!-- <span class="comment-reply-btn">Reply</span> -->
+                                        <span class="comment-hrs">On {{comment.addedDate}}</span>
                                     </div>
 
 
@@ -536,6 +532,7 @@
                                     <th scope="col">Relationship</th>
                                     <th scope="col">Door Number</th>
                                     <th scope="col">Document Number</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">View</th>
 
                                 </tr>
@@ -548,8 +545,8 @@
                                     <td>{{property.relationship}}</td>
                                     <td>{{property.doorNo}}</td>
 
-                                    <td>{{property.documentNo}} sfasfg</td>
-
+                                    <td>{{property.documentNo}} </td>
+                                    <td><span *ngIf="property.status==='P'">Pending Approval</span></td>
                                     <td class="viewbtn">
                                         <!-- <i class="fa fa-eye" (click)="viewPropertyFun()"></i> -->
                                         <i class="fa fa-eye" (click)="openModal('custom-modal-33', property)"></i>
