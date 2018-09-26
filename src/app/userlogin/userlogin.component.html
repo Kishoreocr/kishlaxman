@@ -26,17 +26,21 @@
 
       </div>
 
-      <div class="col align-self-end" style="text-align: right;padding-right:0px;padding-bottom:10px;">
+      <div class="row">
+      <div class="col-md-6 align-self-start" style="text-align: left;padding-right:0px;padding-bottom:10px;">
+        <a routerLink="/registerform" routerLinkActive="activeClss">New User?</a>
+      </div>
+
+      <div class="col-md-6  align-self-end" style="text-align: right;padding-bottom:10px;">
         <a href="javascript:void()" (click)="forgetPWD($event)">Forgot your password?</a>
       </div>
+    </div>
 
       <div class="col" align="center">
         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
         <button type="submit" class="submit-btn">Login</button>
       </div>
-      <div class="col align-self-end" style="text-align: right;padding-right:0px;padding-bottom:10px;">
-        <a routerLink="/registerform" routerLinkActive="activeClss">New User?</a>
-      </div>
+  
     </form>
     <div class="row justify-content-md-center" *ngIf="invalidCredential !='' ">
       <p style="padding:10px;font-size:13px;color:red;">{{invalidCredential}}</p>
