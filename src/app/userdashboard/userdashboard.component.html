@@ -1023,7 +1023,8 @@
                                     <input type="password" formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
                                     />
                                     <div *ngIf="submitted && fpwdP.oldpwd.errors" class="invalid-feedback">
-                                        <div *ngIf="fpwdP.oldpwd.errors.required">Old Password is required</div>
+                                        <div *ngIf="fpwdP.oldpwd.errors.required">Old password is required</div>
+                                        <div *ngIf="fpwdP.oldpwd.errors.minlength">Old password must be at least 6 characters</div>
                                     </div>
                                 </div>
                             </div>
@@ -1034,8 +1035,9 @@
                                     <input type="password" formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
                                     />
                                     <div *ngIf="submitted && fpwdP.newpwd.errors" class="invalid-feedback">
-                                        <div *ngIf="fpwdP.newpwd.errors.required">New Password is required</div>
-                                    </div>
+                                        <div *ngIf="fpwdP.newpwd.errors.required">New password is required</div>
+                                        <div *ngIf="fpwdP.newpwd.errors.minlength">New password must be at least 6 characters</div>
+                                         </div>
 
 
                                 </div>
@@ -1046,7 +1048,10 @@
                                     <input type="password" formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
                                     />
                                     <div *ngIf="submitted && fpwdP.confirmpwd.errors" class="invalid-feedback">
-                                        <div *ngIf="fpwdP.confirmpwd.errors.required">New Password is required</div>
+                                        <div *ngIf="fpwdP.confirmpwd.errors.required">Confirm password is required</div>
+                                        <div *ngIf="fpwdP.confirmpwd.errors.minlength">Confirm password must be at least 6 characters</div>
+                                        <div *ngIf="fpwdP.confirmpwd.errors.notSame">New password and confirm password must be match</div>
+                        
                                     </div>
                                 </div>
 

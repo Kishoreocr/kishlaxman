@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { ModalDialogService } from 'ngx-modal-dialog';
 import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpopup.component'
@@ -19,7 +19,7 @@ export class UserregisterComponent implements OnInit {
   loading: string;
   existsUser: string;
   isLoading: boolean;
-
+  termsCheckederrors:any='';
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
 
     this.modalService = modalService;
@@ -45,24 +45,41 @@ export class UserregisterComponent implements OnInit {
       mobileNumber: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
       zipCode: ['', Validators.compose([Validators.required, Validators.maxLength(6)])],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+      confirmPassword: ['', [Validators.required, Validators.minLength(6),this.passwordConfirming]],
+      termsChecked: [false, Validators.required]
     });
     this.registerForm.controls['registerType'].setValue("customer");
-
-  }
+    this.registerForm.controls['termsChecked'].setValue("true");
+ }
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+ passwordConfirming(c: AbstractControl): any {
+    if(!c.parent || !c) return;
+    const pwd = c.parent.get('password');
+    const cpwd= c.parent.get('confirmPassword')
 
+    if(!pwd || !cpwd) return ;
+    if (pwd.value !== cpwd.value) {
+        return { notSame: true };
+
+}
+
+ }
   onSubmit(formData) {
     debugger;
     this.submitted = true;
     //console.log(JSON.stringify(this.registerForm))
     // stop here if form is invalid
-    if (this.registerForm.invalid) {
+    if ( this.registerForm.invalid) {
+      if(!formData.value.termsChecked)
+      this.termsCheckederrors="Please accept terms and conditions";
+      else
+      this.termsCheckederrors="";
       return;
     }
     else {
+      this.termsCheckederrors="";
       this.isLoading = true;
       this.EgazeService.existingUserFun(formData.value.email).subscribe(
         result => {

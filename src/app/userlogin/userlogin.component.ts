@@ -57,9 +57,11 @@ export class UserloginComponent implements OnInit {
 
   ngOnInit() {
     this.disabledField = false;
+    var emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+    
     this.userloginForm = this.fb.group({
-      username: ['', Validators.required],
-      userpwd: ['', Validators.required]
+      username: ['', [Validators.required, Validators.pattern(emailPattern)]],
+      userpwd: ['',[ Validators.required, Validators.minLength(6)]]
     });
   }
   // convenience getter for easy access to form fields
@@ -78,7 +80,7 @@ export class UserloginComponent implements OnInit {
           }
           else if (this.userloginForm.value.username && this.userloginForm.value.userpwd) {
             this.loginAttemptcount = this.loginAttemptcount - 1;
-            this.attemptloginMessage = 'Login Failed Now Only ' + this.loginAttemptcount + ' Login Attempts Available, Please enter valid Username and Password.';
+            this.attemptloginMessage = 'Only ' + this.loginAttemptcount + ' Login Attempts Available, Please enter valid Username and Password.';
             if (this.loginAttemptcount == 0) {
               this.disabledField = true;
             }

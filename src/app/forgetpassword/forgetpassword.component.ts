@@ -162,7 +162,7 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
         }
         else {
           this.isLoaderdiv = false;
-          this.emailnotExists = 'Sorry, This email not exists.'
+          this.emailnotExists = 'Sorry, The registered email does not exists'
         }
       },
         error => {

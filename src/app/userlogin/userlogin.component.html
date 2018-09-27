@@ -6,10 +6,11 @@
     <form [formGroup]="userloginForm" (ngSubmit)="saveUser(userloginForm)">
       <div class="form-group">
         <label for="exampleInputEmail1">Email</label>
-        <input [attr.disabled]="disabledField ? true : null" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-          placeholder="Enter email" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+        <input [attr.disabled]="disabledField ? true : null" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          placeholder="Enter registered email" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
           <div *ngIf="f.username.errors.required">Email is required</div>
+          <div *ngIf="f.username.errors.pattern">Please enter valid email</div>
         </div>
 
       </div>
@@ -21,6 +22,7 @@
           formControlName="userpwd" [ngClass]="{ 'is-invalid': submitted && f.userpwd.errors }">
         <div *ngIf="submitted && f.userpwd.errors" class="invalid-feedback">
           <div *ngIf="f.userpwd.errors.required">Password is required</div>
+          <div *ngIf="f.userpwd.errors.minlength">Password must be at least 6 characters</div>
         </div>
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef, ElementRef } from '@angular/core';
 import { ModalDialogService, IModalDialogSettings } from 'ngx-modal-dialog';
 import { ViewpropertyComponent } from '../viewproperty/viewproperty.component';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { EgazeService } from '../services/egaze.service';
 import { SessionstorageService } from '../services/sessionstorage.service';
@@ -129,9 +129,9 @@ export class UserdashboardComponent implements OnInit {
     });
 
     this.updateuserNewpwdForm = this.formBuilder.group({
-      oldpwd: ['', Validators.required],
-      newpwd: ['', Validators.required],
-      confirmpwd: ['', Validators.required],
+      oldpwd: ['', [ Validators.required, Validators.minLength(6)]],
+      newpwd: ['', [ Validators.required, Validators.minLength(6)]],
+      confirmpwd: ['', [ Validators.required, Validators.minLength(6),this.passwordConfirming]],
 
     });
     this.documentGrp = this.formBuilder.group({
@@ -145,6 +145,19 @@ export class UserdashboardComponent implements OnInit {
       commentfield: ['', Validators.required]
     });
   }
+
+  passwordConfirming(c: AbstractControl): any {
+    if(!c.parent || !c) return;
+    const pwd = c.parent.get('newpwd');
+    const cpwd= c.parent.get('confirmpwd')
+
+    if(!pwd || !cpwd) return ;
+    if (pwd.value !== cpwd.value) {
+        return { notSame: true };
+
+}
+
+ }
   ngAfterViewChecked() {
     // you'll get your through 'elements' below code
 
