@@ -651,7 +651,7 @@
                         <tr *ngFor="let user of mf.data">
                             <td>{{user.subject}}</td>
                             <td>{{user.description}}</td>
-                            <td >{{user.addedDate}}</td>
+                            <td >{{user.addedDate| date :'dd/MM/yyyy'}}</td>
                            
                         </tr>
                         </tbody>
