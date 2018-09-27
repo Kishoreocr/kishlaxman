@@ -78,8 +78,9 @@ export class UserdashboardComponent implements OnInit {
     this.getTransactions();
     this.getPropertiesCount();
   }
-
+  
   ngOnInit() {
+    
     //this.propertyForm.controls['typeofProperty'] = 'Residential';
     this.propertyTab = true;
     this.isEditDisabled = false;

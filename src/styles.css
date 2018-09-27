@@ -1,6 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
+.pagination {
+  display: inline-flex !important;
+  padding-left: 0 !important;
+  margin: 20px 0 !important ;
+  border-radius: 4px !important;
+  list-style: none;
+}
+
+.pull-right {
+  float: right !important;
+}
+.pagination > li {
+  display: inline !important;
+}
 .no-paddings{
     padding-left:0px !important;
     padding-right:0px !important;

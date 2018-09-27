@@ -41,6 +41,7 @@ import { WhyeGazeComponent } from './whye-gaze/whye-gaze.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { EgazeServicesComponent } from './egaze-services/egaze-services.component';
 import { PackageDescriptionComponent } from './package-description/package-description.component';
+import {DataTableModule} from "angular-6-datatable";
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -123,7 +124,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
-    ModalDialogModule.forRoot(),AdminModule
+    ModalDialogModule.forRoot(),AdminModule,DataTableModule
   ],
   exports:[
     LoadingDivComponent
