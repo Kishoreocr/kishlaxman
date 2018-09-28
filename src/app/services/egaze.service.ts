@@ -112,7 +112,7 @@ export class EgazeService {
       "city": objProperty.villageCity,
       "state": objProperty.state,
       "zip": objProperty.zip,
-      "country": objProperty.country
+      "country": " "
     };
     //alert(JSON.stringify(propertyDetails));
     return this.http.post(this.baseUrl + 'add/property', propertyDetails);
@@ -206,7 +206,7 @@ export class EgazeService {
       "city": objProperty.city,
       "state": objProperty.state,
       "zip": objProperty.zip,
-      "country": objProperty.country
+      "country": " "
     };
     return this.http.post(this.baseUrl + 'update/property', requestData);
 
@@ -223,6 +223,11 @@ export class EgazeService {
   getPrpopertyComments(propertyId) {
     return this.http.get(this.baseUrl + "propertydocs/agent/"+
     +propertyId);
+
+  }
+  removePropertyDoc(id) {
+    return this.http.delete(this.baseUrl + "customer/propertydocs/delete/"+
+    +id);
 
   }
 }

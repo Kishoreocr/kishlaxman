@@ -185,11 +185,6 @@
 
                                             </tr>
                                             <tr>
-                                                    <td>Country:</td>
-                                                    <td>{{property.country}}</td>
-    
-                                                </tr>
-                                            <tr>
                                                 <td>Zip:</td>
                                                 <td>{{property.zip}}</td>
 
@@ -200,27 +195,40 @@
 
 
                                     <div *ngIf="!propertytabModal && documentstabModal && !commentstabModal" class="col" align="center">
+                                       
+                                            <table border="1">
+                                                    <tr *ngFor="let doc of propertydocs">
+                                                            <td>{{doc.documentName}}</td>
+                                                            <td>{{doc.addedDate}}</td>
+                                                            <td><a (click)="removedoc(doc.id)" class="close" data-dismiss="alert">&times;</a></td>
+                                                            <td><a (click)="getDownloadUrl(doc.id)">
+                                                                      <i class="fa fa-download fa-x text-primary" aria-hidden="true"></i>
+                                                            </a></td>
+                                                            </tr>
+                                            </table>
                                         <form [formGroup]="documentGrp">
                                             <div class="row">
-                                                                           <label for="Upload your documents">Upload your documents</label>
+                                                                           <label for="Upload your documents">Upload property documents</label>
                                                                        </div>
+
+                                                                       
                                            
-                                                                       <div class="form-inline" *ngFor="let item of items;let IndexId = index" style="margin-bottom:4px;">
+                                                                       <div class="form-inline"  style="margin-bottom:4px;">
                                                                            <div class="form-group uploadfile-style">
-                                                                               <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event,IndexId)">
+                                                                               <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
                                                                            </div>
-                                                                           <button type="button" [disabled]="propertyStatusCode!='P'" class="upload-btn" (click)="fileSelectionEvent(IndexId)">Upload</button>
-                                                                           <button type="button" [disabled]="propertyStatusCode!='P'" class="remove-btn" (click)="removeItem(IndexId)" style="margin-left:5px;">Remove</button>
+                                                                           <button type="button"  class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
+                                                                           <!-- <button type="button" [disabled]="propertyStatusCode!='P'" class="remove-btn" (click)="removeItem(IndexId)" style="margin-left:5px;">Remove</button> -->
                                            
-                                                                           <div *ngIf="item.downoladUrl!=''" style="margin-left:30px;color:#f9a069;font-size:16px;">
+                                                                           <!-- <div *ngIf="item.downoladUrl!=''" style="margin-left:30px;color:#f9a069;font-size:16px;">
                                                                                <a href={{item.downoladUrl}}>Download</a>
                                                                            </div>
-                                           
+                                            -->
                                                                        </div>
                                            
-                                                                       <div class="col" align="center" style="margin-top:20px;">
+                                                                       <!-- <div class="col" align="center" style="margin-top:20px;">
                                                                            <button type="button" [disabled]="propertyStatusCode!='P'" class="addmore-btn" title="Add More" (click)="addItem()">Add More</button>
-                                                                       </div>
+                                                                       </div> -->
                                            
                                                                    </form>
                                                                                </div>
@@ -267,7 +275,8 @@
                             <div class="modal-background"></div>
                         </app-modal-property>
                         <div class="table-responsive">
-                            <table class="table">
+                                <div *ngIf='userAllpropertis.length == 0'>No Properties.</div>
+                            <table class="table" *ngIf='userAllpropertis.length !== 0'>
                                 <caption>List of Properties</caption>
                                 <thead>
                                     <tr>
@@ -303,17 +312,7 @@
                                             <i class="fa fa-eye" (click)="openModal('custom-modal-11',property)"></i>
                                         </td>
                                     </tr>
-                                    <tr *ngIf='userAllpropertis.length == 0'>
-                                        <td colspan="9" class='noAlerts'>No Properties.</td>
-                                    </tr>
-
-
-
-
-
-
-
-
+                                    
                                 </tbody>
                             </table>
 
@@ -372,9 +371,15 @@
                                         <label for="RelationshipTocustomer">Relationship to customer
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <input type="text" formControlName="relationshipTocustomer" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationshipTocustomer.errors }"
-                                            id="RelationshipTocustomerFormControlInput" placeholder="Enter Relationship to customer">
-                                        <div *ngIf="submitted && f.relationshipTocustomer.errors" class="invalid-feedback">
+                                            <select class="form-control" formControlName="relationshipTocustomer" (ngModelChange)="getreltionType($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationshipTocustomer.errors }">
+                                                    <option value="" [selected]="selected">Select Relationship</option>
+                                                    <option value="Self">Self</option>
+                                                    <option value="Spouse">Spouse</option>
+                                                    <option value="Parents">Parents</option>
+                                                    <option value="Children">Children</option>
+                                                </select>
+                                                
+                                            <div *ngIf="submitted && f.relationshipTocustomer.errors" class="invalid-feedback">
                                             <div *ngIf="f.relationshipTocustomer.errors.required">Relationship to customer is required</div>
                                         </div>
                                     </div>
@@ -557,32 +562,20 @@
                                         <label for="state">State
                                             <span class="mandatory">*</span>
                                         </label>
-
-                                        <input type="text" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
-                                            id="stateFormControlInput" placeholder="Enter State">
-                                        <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                        <select class="form-control" formControlName="state" (ngModelChange)="getstate($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                                                <option value="" [selected]="selected">Select State</option>
+                                                <option value="Andhrapradesh">Andhrapradesh</option>
+                                                <option value="Telangana">Telangana</option>
+                                                <option value="Banglore">Banglore</option>
+                                                
+                                            </select>
+                                            <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
                                             <div *ngIf="f.state.errors.required">State is required</div>
                                         </div>
 
                                     </div>
                                   
-                                    <div class="form-group">
-                                            <label for="state">Country
-                                                <span class="mandatory">*</span>
-                                            </label>
-    
-                                            <input type="text" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
-                                                id="stateFormControlInput" placeholder="Enter country">
-                                            <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
-                                                <div *ngIf="f.country.errors.required">State is required</div>
-                                            </div>
-    
-                                        </div>
-
-
-
-
-
+                                   
                                 </div>
                             </div>
 
@@ -595,27 +588,35 @@
                     </div>
                     <div class="col" *ngIf="propertyDocuments">
                     <!-- <div class="col" *ngIf="true"> -->
+                          
+                            <table>
+                                    <tr *ngFor="let doc of propertydocs">
+                                            <td>{{doc.documentName}}</td>
+                                            <td>Remove</td>
+                                            <td>Download</td>
+                                            </tr>
+                            </table>
                         <form [formGroup]="documentGrp">
  <div class="row">
-                                <label for="Upload your documents">Upload your documents</label>
+                                <label for="Upload your documents">Upload Property documents</label>
                             </div>
-
-                            <div class="form-inline" *ngFor="let item of items;let IndexId = index" style="margin-bottom:4px;">
+                            
+                            <div class="form-inline" style="margin-bottom:4px;">
                                 <div class="form-group uploadfile-style">
-                                    <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event,IndexId)">
+                                    <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
                                 </div>
-                                <button type="button" class="upload-btn" (click)="fileSelectionEvent(IndexId)">Upload</button>
-                                <button type="button" class="remove-btn" (click)="removeItem(IndexId)" style="margin-left:5px;">Remove</button>
+                                <button type="button" class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
+                                <!-- <button type="button" class="remove-btn" (click)="removeItem(IndexId)" style="margin-left:5px;">Remove</button> -->
 
-                                <div *ngIf="item.downoladUrl!=''" style="margin-left:30px;color:#f9a069;font-size:16px;">
+                                <!-- <div *ngIf="item.downoladUrl!=''" style="margin-left:30px;color:#f9a069;font-size:16px;">
                                     <a href={{item.downoladUrl}}>Download</a>
-                                </div>
+                                </div> -->
 
                             </div>
 
-                            <div class="col" align="center" style="margin-top:20px;">
+                            <!-- <div class="col" align="center" style="margin-top:20px;">
                                 <button type="button" class="addmore-btn" title="Add More" (click)="addItem()">Add More</button>
-                            </div>
+                            </div> -->
 
                         </form>
                     </div>

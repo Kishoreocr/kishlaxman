@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef, ElementRef } from '@angular/core';
 import { ModalDialogService, IModalDialogSettings } from 'ngx-modal-dialog';
 import { ViewpropertyComponent } from '../viewproperty/viewproperty.component';
-import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { EgazeService } from '../services/egaze.service';
 import { SessionstorageService } from '../services/sessionstorage.service';
@@ -9,10 +9,6 @@ import { LoadingDivComponent } from '../loading-div/loading-div.component';
 import { AppConstants } from '../services/constants';
 import { ModalPropertyService } from '../services/modal-property.service';
 // import { ModalPropertyComponent} from '../modal-property/modal-property.component'
-export interface PropertyDoc {
-  pdoc: String;
-  downoladUrl: String;
-}
 @Component({
   selector: 'app-userdashboard',
   templateUrl: './userdashboard.component.html',
@@ -67,8 +63,8 @@ export class UserdashboardComponent implements OnInit {
   propertyDocuments: boolean = false;
   propertyId: any;
   commentForm: FormGroup;
-  propertyStatusCode:any;
-
+  propertyStatusCode: any;
+  propertydocs: any = [];
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private ModalPropertyService: ModalPropertyService) {
     this.modalService = modalService;
@@ -78,9 +74,9 @@ export class UserdashboardComponent implements OnInit {
     this.getTransactions();
     this.getPropertiesCount();
   }
-  
+
   ngOnInit() {
-    
+
     //this.propertyForm.controls['typeofProperty'] = 'Residential';
     this.propertyTab = true;
     this.isEditDisabled = false;
@@ -110,8 +106,7 @@ export class UserdashboardComponent implements OnInit {
       mandal: ['', Validators.required],
       district: ['', Validators.required],
       zip: ['', Validators.required],
-      state: ['', Validators.required],
-      country: ['', Validators.required]
+      state: ['', Validators.required]
     });
 
     this.updateuserForm = this.formBuilder.group({
@@ -130,9 +125,9 @@ export class UserdashboardComponent implements OnInit {
     });
 
     this.updateuserNewpwdForm = this.formBuilder.group({
-      oldpwd: ['', [ Validators.required, Validators.minLength(6)]],
-      newpwd: ['', [ Validators.required, Validators.minLength(6)]],
-      confirmpwd: ['', [ Validators.required, Validators.minLength(6),this.passwordConfirming]],
+      oldpwd: ['', [Validators.required, Validators.minLength(6)]],
+      newpwd: ['', [Validators.required, Validators.minLength(6)]],
+      confirmpwd: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming]],
 
     });
     this.documentGrp = this.formBuilder.group({
@@ -148,17 +143,17 @@ export class UserdashboardComponent implements OnInit {
   }
 
   passwordConfirming(c: AbstractControl): any {
-    if(!c.parent || !c) return;
+    if (!c.parent || !c) return;
     const pwd = c.parent.get('newpwd');
-    const cpwd= c.parent.get('confirmpwd')
+    const cpwd = c.parent.get('confirmpwd')
 
-    if(!pwd || !cpwd) return ;
+    if (!pwd || !cpwd) return;
     if (pwd.value !== cpwd.value) {
-        return { notSame: true };
+      return { notSame: true };
 
-}
+    }
 
- }
+  }
   ngAfterViewChecked() {
     // you'll get your through 'elements' below code
 
@@ -190,7 +185,14 @@ export class UserdashboardComponent implements OnInit {
     this.propertyForm.value.typeofProperty = "" + event;
     //alert(this.updateuserNewpwdForm.value.typeofProperty);
   }
-
+  getreltionType(event) {
+    this.propertyForm.value.relationshipTocustomer = "" + event;
+    //alert(this.updateuserNewpwdForm.value.typeofProperty);
+  }
+  getstate(event) {
+    this.propertyForm.value.state = "" + event;
+    //alert(this.updateuserNewpwdForm.value.typeofProperty);
+  }
 
   propertyFun() {
     if (this.propertyCount != null) {
@@ -260,6 +262,15 @@ export class UserdashboardComponent implements OnInit {
 
         break;
       case 'DocumentsTab':
+        this.isLoaderdiv = true;
+        this.EgazeService.getPrpopertyDocs(this.propertyId).subscribe(result => {
+          this.propertydocs = result;
+          //alert(this.propertydocs)
+          this.isLoaderdiv = false;
+          //this.sfile = null;
+        }, error => {
+          alert(JSON.stringify(error));
+        });
         this.propertytabModal = false;
         this.documentstabModal = true;
         this.commentstabModal = false;
@@ -511,9 +522,9 @@ export class UserdashboardComponent implements OnInit {
     debugger;
     this.property = property;
     this.ModalPropertyService.open(id);
-    this.propertyId=this.property.id;
-    this.propertyStatusCode=this.property.status;
-    this.getPrpopertyDocs(this.user.loginId, this.property.id)
+    this.propertyId = this.property.id;
+    this.propertyStatusCode = this.property.status;
+    this.getPrpopertyDocs(this.property.id)
   }
 
   closeModal(id: string) {
@@ -523,17 +534,17 @@ export class UserdashboardComponent implements OnInit {
   public totalfiles: Array<File> = [];
   public totalFileName = [];
   public lengthCheckToaddMore = 1;
-  items: Array<PropertyDoc> = [];
+  items: any = [];
 
   sfile: File;
-  importfile(event: any, i) {
+  importfile(event: any) {
     const [file] = event.target.files;
     if (event.target.files && event.target.files.length) {
       this.sfile = file;
     }
   }
 
-  fileSelectionEvent(i) {
+  fileSelectionEvent() {
     const reader = new FileReader();
 
     if (this.sfile != null) {
@@ -546,17 +557,20 @@ export class UserdashboardComponent implements OnInit {
             this.documentGrp.patchValue({
               file: reader.result
             });
-            if(this.property!=null){
-              this.propertyId=this.property.id;
+            if (this.property != null) {
+              this.propertyId = this.property.id;
             }
-           // alert(this.propertyId)
-            this.EgazeService.savePropertyDoc(file,  this.propertyId,this.user.loginId).subscribe(result => {
+            // alert(this.propertyId)
+            this.EgazeService.savePropertyDoc(file, this.propertyId, this.user.loginId).subscribe(result => {
+              this.documentGrp.value.file = '';
               var id = JSON.stringify(result['id']);
               var down = this.EgazeService.getPropertyDocURL(id);
-              this.items.splice(i, 1);
-              this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
+              //this.items.splice(i, 1);
+              //this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
               this.isLoaderdiv = false;
               this.sfile = null;
+              // this.isLoaderdiv = true;
+              this.getPrpopertyDocs(this.propertyId);
             }, error => {
               alert(JSON.stringify(error));
             });
@@ -601,26 +615,11 @@ export class UserdashboardComponent implements OnInit {
     //alert(JSON.stringify(this.items))
     this.lengthCheckToaddMore = this.lengthCheckToaddMore - 1;
   }
-  getPrpopertyDocs(customerId, propertyId) {
+  getPrpopertyDocs(propertyId) {
     this.isLoaderdiv = true;
-    //alert("customerId="+customerId)
-    //alert("propertyId="+propertyId)
-    this.items=[];
     this.EgazeService.getPrpopertyDocs(propertyId).subscribe(result => {
-      var ids: any = result;
-      this.lengthCheckToaddMore=0;
-      Object.keys(ids).forEach(key => {
-        //alert(ids[key]);
-
-        this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": this.EgazeService.getPropertyDocURL(ids[key]) });
-        this.lengthCheckToaddMore=this.lengthCheckToaddMore+1;
-      });
-       // alert(JSON.stringify(this.items))
-
-      //alert(id)
-      // var down = this.EgazeService.getPropertyDocURL(id);
-      //this.items.splice(i, 1);
-      // this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
+      this.propertydocs = result;
+      //alert(this.propertydocs)
       this.isLoaderdiv = false;
       //this.sfile = null;
     }, error => {
@@ -631,9 +630,9 @@ export class UserdashboardComponent implements OnInit {
     this.submitted = true;
     //alert(description.value.commentfield)
     if (this.commentForm.valid) {
-      this.EgazeService.savePropertyComments(this.propertyId, this.user1.loginId,"0",  'Customer', description.value.commentfield).subscribe(result => {
+      this.EgazeService.savePropertyComments(this.propertyId, this.user1.loginId, "0", 'Customer', description.value.commentfield).subscribe(result => {
 
-       // this.commentsmsg = result;
+        // this.commentsmsg = result;
         if (result) {
           this.submitted = false;
         }
@@ -649,13 +648,19 @@ export class UserdashboardComponent implements OnInit {
   comments: any = [];
   getPrpopertyComments(description) {
     this.EgazeService.getPrpopertyComments(this.propertyId).subscribe(result => {
-
       this.comments = result;
-      // alert('success' + this.commentsmsg);
-
     }, error => {
-      //alert('error' + error);
     });
   }
 
+  getDownloadUrl(id) {
+    window.location.href = this.EgazeService.getPropertyDocURL(id);
+  }
+  removedoc(id) {
+    this.EgazeService.removePropertyDoc(id).subscribe(result => {
+      this.getPrpopertyDocs(this.propertyId);
+    }, error => {
+    });
+
+  }
 }
