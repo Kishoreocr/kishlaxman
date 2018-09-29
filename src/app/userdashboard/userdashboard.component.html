@@ -76,6 +76,14 @@
                             <div class="modal">
                                 <div class="modal-body">
                                     <!-- <h6>Property Details</h6> -->
+
+                                    <div class='col modal-heading'>
+                                        <p>Property View:
+                                        </p>
+                                    </div>
+
+
+
                                     <div class='row userdashboardTab'>
                                         <ul>
                                             <li [ngClass]="{'active': propertytabModal}" (click)="userdashTabs('PropertyDetailsTab')">Property Details</li>
@@ -85,186 +93,269 @@
                                     </div>
 
                                     <div style='position:absolute;right:20px;top:10px;'>
-                                        <i class="fa fa-times" aria-hidden="true" style='font-size:22px;color:#ffb384;cursor: pointer;' (click)="closeModal('custom-modal-11');"></i>
+                                        <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('custom-modal-11');"></i>
                                     </div>
 
                                     <div *ngIf="propertytabModal && !documentstabModal && !commentstabModal">
 
+                                        <div class="property-tab-style">
 
-                                        <table *ngIf="property!=''" class="table">
-                                            <tr>
-                                                <td>Type of Property:</td>
-                                                <td>{{property.propertyType}}</td>
+                                            <div class="row" *ngIf="property!=''">
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Type of Property:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.propertyType}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Title Holder:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.propertyHolderName}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Relationship to customer:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.relationship}}
+                                                        </div>
+                                                    </div>
 
-                                            </tr>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Survey No/Dr No:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.doorNo}}
+                                                        </div>
+                                                    </div>
 
-                                            <tr>
-                                                <td>Title Holder:</td>
-                                                <td>{{property.propertyHolderName}}</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Relationship to customer:</td>
-                                                <td>{{property.relationship}}</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Survey No/Dr No:</td>
-                                                <td>{{property.doorNo}}</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Sub Register Office:</td>
-                                                <td>{{property.subRegisterOffice}}</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Extent of Property:</td>
-                                                <td>{{property.extentOfProperty}}</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Boundaries North:</td>
-                                                <td>{{property.boundariesNorth}}</td>
-
-                                            </tr>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Sub Register Office:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.subRegisterOffice}}
+                                                        </div>
+                                                    </div>
 
 
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Extent of Property:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.extentOfProperty}}
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                            <tr>
-                                                <td>Boundaries East:</td>
-                                                <td>{{property.boundariesEast}}</td>
 
-                                            </tr>
 
-                                            <tr>
-                                                <td>Boundaries West:</td>
-                                                <td>{{property.boundariesWest}}</td>
 
-                                            </tr>
+                                                <div class="col-md-4">
 
-                                            <tr>
-                                                <td>Boundaries South:</td>
-                                                <td>{{property.boundariesSouth}}</td>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Boundaries North:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.boundariesNorth}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Boundaries East:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.boundariesEest}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Boundaries West:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.boundariesWest}}
+                                                        </div>
+                                                    </div>
 
-                                            </tr>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Boundaries South:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.boundariesSouth}}
+                                                        </div>
+                                                    </div>
 
-                                            <tr>
-                                                <td>Document No:</td>
-                                                <td>{{property.documentNo}}</td>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Document No:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.documentNo}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Address 1:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.address1}}
+                                                        </div>
+                                                    </div>
 
-                                            </tr>
-                                            <tr>
-                                                <td>Address 1:</td>
-                                                <td>{{property.address1}}</td>
 
-                                            </tr>
-                                            <tr>
-                                                <td>Address 2:</td>
-                                                <td>{{property.address2}}</td>
+                                                </div>
 
-                                            </tr>
-                                            <tr>
-                                                <td>Village/City:</td>
-                                                <td>{{property.city}}</td>
 
-                                            </tr>
-                                            <tr>
-                                                <td>Mandal:</td>
-                                                <td>{{property.mandal}}</td>
+                                                <div class="col-md-4">
 
-                                            </tr>
-                                            <tr>
-                                                <td>District:</td>
-                                                <td>{{property.district}}</td>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Address 1:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.address1}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Address 2:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.address2}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Village/City:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.city}}
+                                                        </div>
+                                                    </div>
 
-                                            </tr>
-                                            <tr>
-                                                <td>State:</td>
-                                                <td>{{property.state}}</td>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Mandal:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.mandal}}
+                                                        </div>
+                                                    </div>
 
-                                            </tr>
-                                            <tr>
-                                                <td>Zip:</td>
-                                                <td>{{property.zip}}</td>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">District:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.district}}
+                                                        </div>
+                                                    </div>
 
-                                            </tr>
 
-                                        </table>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">State:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.state}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Zip:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.zip}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                            </div>
+
+
+
+                                        </div>
                                     </div>
 
 
-                                    <div *ngIf="!propertytabModal && documentstabModal && !commentstabModal" class="col" align="center">
-                                       
-                                            <table border="1">
-                                                    <tr *ngFor="let doc of propertydocs">
-                                                            <td>{{doc.documentName}}</td>
-                                                            <td>{{doc.addedDate}}</td>
-                                                            <td><a (click)="removedoc(doc.id)" class="close" data-dismiss="alert">&times;</a></td>
-                                                            <td><a (click)="getDownloadUrl(doc.id)">
-                                                                      <i class="fa fa-download fa-x text-primary" aria-hidden="true"></i>
-                                                            </a></td>
-                                                            </tr>
-                                            </table>
-                                        <form [formGroup]="documentGrp">
-                                            <div class="row">
-                                                                           <label for="Upload your documents">Upload property documents</label>
-                                                                       </div>
+                                    <div *ngIf="!propertytabModal && documentstabModal && !commentstabModal" class="col table-container-style container-bg-style">
 
-                                                                       
-                                           
-                                                                       <div class="form-inline"  style="margin-bottom:4px;">
-                                                                           <div class="form-group uploadfile-style">
-                                                                               <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
-                                                                           </div>
-                                                                           <button type="button"  class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
-                                                                           <!-- <button type="button" [disabled]="propertyStatusCode!='P'" class="remove-btn" (click)="removeItem(IndexId)" style="margin-left:5px;">Remove</button> -->
-                                           
-                                                                           <!-- <div *ngIf="item.downoladUrl!=''" style="margin-left:30px;color:#f9a069;font-size:16px;">
+                                        <div>
+
+                                            <table class="table table-striped table-bordered">
+
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">S.no.</th>
+                                                        <th scope="col">Document Name</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col" style='text-align:center'>Delete</th>
+                                                        <th scope="col" style='text-align:center'>Download</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+
+                                                    <tr *ngFor="let doc of propertydocs; let index = index">
+                                                        <td>{{index + 1}}</td>
+                                                        <td>{{doc.documentName}}</td>
+                                                        <td>{{doc.addedDate}}</td>
+                                                        <td style='text-align:center'>
+                                                            <!-- <a (click)="removedoc(doc.id)" class="close" data-dismiss="alert">&times;</a> -->
+
+                                                            <i style="cursor: pointer" (click)="removedoc(doc.id)" class="fa fa-trash" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td style='text-align:center'>
+                                                            <!-- <a (click)="getDownloadUrl(doc.id)"> </a> -->
+                                                            <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)" class="fa fa-download" aria-hidden="true"></i>
+                                                            <!-- <i class="fa fa-download fa-x text-primary" aria-hidden="true"></i> -->
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
+
+                                        <div class='col upload-container-style'>
+
+                                            <form [formGroup]="documentGrp">
+                                                <div class="row">
+                                                    <label for="Upload your documents">Upload Property Documents:</label>
+                                                </div>
+
+                                                <div class="form-inline" style="margin-bottom:4px;">
+                                                    <div class="form-group uploadfile-style">
+                                                        <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
+                                                    </div>
+                                                    <button type="button" class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
+                                                    <!-- <button type="button" [disabled]="propertyStatusCode!='P'" class="remove-btn" (click)="removeItem(IndexId)" style="margin-left:5px;">Remove</button> -->
+
+                                                    <!-- <div *ngIf="item.downoladUrl!=''" style="margin-left:30px;color:#f9a069;font-size:16px;">
                                                                                <a href={{item.downoladUrl}}>Download</a>
                                                                            </div>
                                             -->
-                                                                       </div>
-                                           
-                                                                       <!-- <div class="col" align="center" style="margin-top:20px;">
+                                                </div>
+
+                                                <!-- <div class="col" align="center" style="margin-top:20px;">
                                                                            <button type="button" [disabled]="propertyStatusCode!='P'" class="addmore-btn" title="Add More" (click)="addItem()">Add More</button>
                                                                        </div> -->
-                                           
-                                                                   </form>
-                                                                               </div>
-<br/>
-                                    <div *ngIf="!propertytabModal && !documentstabModal && commentstabModal" class="col" align="center">
-                                        <div class="col">
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div *ngIf="!propertytabModal && !documentstabModal && commentstabModal">
+
+                                        <div class="col commentbox-style">
                                             <form [formGroup]="commentForm" (ngSubmit)="commentFun(commentForm)">
                                                 <div class="form-group">
                                                     <label for="exampleFormControlTextarea1">Comments:</label>
-        
+
                                                     <textarea class="form-control" style="resize:none;text-align:left;" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
                                                         class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }">
                                                             </textarea>
                                                     <div *ngIf="submitted && c.commentfield.errors" class="invalid-feedback">
                                                         <div *ngIf="c.commentfield.errors.required">Comment is required</div>
-        
+
                                                     </div>
                                                 </div>
-        
+
                                                 <div class="col" align="center" style="margin-top:20px;">
                                                     <button type="submit" class="addmore-btn">Submit</button>
                                                 </div>
                                             </form>
                                         </div>
-        
-                                        <div class='col'>
-                                            <div class="commentbox-style" *ngFor="let comment of comments;let IndexId = index" >
+
+                                        <div class='col comments-style' style="padding: 20px 20px 20px 0px;">
+                                            <div class="commentbox-style-1" *ngFor="let comment of comments;let IndexId = index">
                                                 <p class="comment-role">By {{comment.role}},</p>
                                                 <p class="comment-description">{{comment.description}}</p>
                                                 <!-- <span class="comment-reply-btn">Reply</span> -->
                                                 <span class="comment-hrs">On {{comment.addedDate}}</span>
                                             </div>
-        
-        </div>
-        
-                                       
+
+                                        </div>
                                     </div>
 
                                     <div class='col' align='center'>
@@ -274,10 +365,12 @@
                             </div>
                             <div class="modal-background"></div>
                         </app-modal-property>
+
+
                         <div class="table-responsive">
-                                <div *ngIf='userAllpropertis.length == 0'>No Properties.</div>
-                            <table class="table" *ngIf='userAllpropertis.length !== 0'>
-                                <caption>List of Properties</caption>
+                            <div *ngIf='userAllpropertis.length == 0'>No Properties.</div>
+                            <table class="table table-striped table-bordered table-hover" *ngIf='userAllpropertis.length !== 0'>
+                                <!-- <caption>List of Properties</caption> -->
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -288,7 +381,7 @@
                                         <th scope="col">Sub Register Office</th>
                                         <th scope="col">Extent of Property</th>
                                         <th scope="col">Boundaries</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col" style="text-align:center">Action</th>
 
                                     </tr>
 
@@ -306,22 +399,17 @@
                                         <td>{{property.boundaries}}</td>
                                         <td>{{property.mandal}}</td>
 
-                                        <td class="viewbtn">
-
+                                        <td class="viewbtn" style="text-align:center">
                                             <!-- <i class="fa fa-eye" (click)="viewPropertyFun(property)"></i> -->
                                             <i class="fa fa-eye" (click)="openModal('custom-modal-11',property)"></i>
                                         </td>
                                     </tr>
-                                    
+
                                 </tbody>
                             </table>
-
-
                         </div>
                     </div>
                 </div>
-
-
 
                 <div *ngIf="!addProperty && viewProperties" class="table-container-style">
                     <div class="alert alert-success" id="propertyDestination" *ngIf="propertyStatus && propertyStatus.length > 0">
@@ -371,15 +459,16 @@
                                         <label for="RelationshipTocustomer">Relationship to customer
                                             <span class="mandatory">*</span>
                                         </label>
-                                            <select class="form-control" formControlName="relationshipTocustomer" (ngModelChange)="getreltionType($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationshipTocustomer.errors }">
-                                                    <option value="" [selected]="selected">Select Relationship</option>
-                                                    <option value="Self">Self</option>
-                                                    <option value="Spouse">Spouse</option>
-                                                    <option value="Parents">Parents</option>
-                                                    <option value="Children">Children</option>
-                                                </select>
-                                                
-                                            <div *ngIf="submitted && f.relationshipTocustomer.errors" class="invalid-feedback">
+                                        <select class="form-control" formControlName="relationshipTocustomer" (ngModelChange)="getreltionType($event)" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f.relationshipTocustomer.errors }">
+                                            <option value="" [selected]="selected">Select Relationship</option>
+                                            <option value="Self">Self</option>
+                                            <option value="Spouse">Spouse</option>
+                                            <option value="Parents">Parents</option>
+                                            <option value="Children">Children</option>
+                                        </select>
+
+                                        <div *ngIf="submitted && f.relationshipTocustomer.errors" class="invalid-feedback">
                                             <div *ngIf="f.relationshipTocustomer.errors.required">Relationship to customer is required</div>
                                         </div>
                                     </div>
@@ -563,19 +652,19 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <select class="form-control" formControlName="state" (ngModelChange)="getstate($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
-                                                <option value="" [selected]="selected">Select State</option>
-                                                <option value="Andhrapradesh">Andhrapradesh</option>
-                                                <option value="Telangana">Telangana</option>
-                                                <option value="Banglore">Banglore</option>
-                                                
-                                            </select>
-                                            <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                            <option value="" [selected]="selected">Select State</option>
+                                            <option value="Andhrapradesh">Andhrapradesh</option>
+                                            <option value="Telangana">Telangana</option>
+                                            <option value="Banglore">Banglore</option>
+
+                                        </select>
+                                        <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
                                             <div *ngIf="f.state.errors.required">State is required</div>
                                         </div>
 
                                     </div>
-                                  
-                                   
+
+
                                 </div>
                             </div>
 
@@ -587,20 +676,20 @@
                         </form>
                     </div>
                     <div class="col" *ngIf="propertyDocuments">
-                    <!-- <div class="col" *ngIf="true"> -->
-                          
-                            <table>
-                                    <tr *ngFor="let doc of propertydocs">
-                                            <td>{{doc.documentName}}</td>
-                                            <td>Remove</td>
-                                            <td>Download</td>
-                                            </tr>
-                            </table>
+                        <!-- <div class="col" *ngIf="true"> -->
+
+                        <table>
+                            <tr *ngFor="let doc of propertydocs">
+                                <td>{{doc.documentName}}</td>
+                                <td>Remove</td>
+                                <td>Download</td>
+                            </tr>
+                        </table>
                         <form [formGroup]="documentGrp">
- <div class="row">
+                            <div class="row">
                                 <label for="Upload your documents">Upload Property documents</label>
                             </div>
-                            
+
                             <div class="form-inline" style="margin-bottom:4px;">
                                 <div class="form-group uploadfile-style">
                                     <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
@@ -632,39 +721,45 @@
             <!-- Alerts tab -->
             <div *ngIf="!propertyTab && alertsTab && !transactionsTab && !profileTab" class="table-container-style">
 
-                <div class='mainAlertcontainer'>
+                <div class='mainAlertcontainer table-responsive'>
                     <table class="table table-striped table-bordered table-hover" [mfData]="alerts" #mf="mfDataTable" [mfRowsOnPage]="5">
                         <thead>
-                        <tr>
-                            <th style="width: 20%">
-                                <mfDefaultSorter by="subject">Subject</mfDefaultSorter>
-                            </th>
-                            <th style="width: 50%">
-                                <mfDefaultSorter by="description">Description</mfDefaultSorter>
-                            </th>
-                            <th style="width: 10%">
-                                <mfDefaultSorter by="addedDate">Date</mfDefaultSorter>
-                            </th>
-                           
-                        </tr>
+                            <tr>
+                                <th>
+                                    <mfDefaultSorter by="index">S.No.</mfDefaultSorter>
+                                </th>
+
+                                <th>
+                                    <mfDefaultSorter by="subject">Subject</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="description">Description</mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="addedDate">Date</mfDefaultSorter>
+                                </th>
+
+                            </tr>
                         </thead>
+
                         <tbody>
-                        <tr *ngFor="let user of mf.data">
-                            <td>{{user.subject}}</td>
-                            <td>{{user.description}}</td>
-                            <td >{{user.addedDate| date :'dd/MM/yyyy'}}</td>
-                           
-                        </tr>
+                            <tr *ngFor="let user of mf.data; let index = index">
+                                <td>{{index + 1}}</td>
+                                <td>{{user.subject}}</td>
+                                <td>{{user.description}}</td>
+                                <td>{{user.addedDate| date :'dd/MM/yyyy'}}</td>
+
+                            </tr>
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="4">
-                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                            </td>
-                        </tr>
+                        <tfoot *ngIf="mf.data && mf.data.length > 5">
+                            <tr>
+                                <td colspan="4">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
                         </tfoot>
-                      </table>
-                      
+                    </table>
+
                     <!-- 
 
                     <table border="1" *ngIf="alerts.length!==0"><tr>
@@ -786,11 +881,11 @@
             <!-- transactions  tab -->
             <div *ngIf="!propertyTab && !alertsTab && transactionsTab && !profileTab" class="table-container-style">
                 <div class='mainAlertcontainer'>
-                    <table class="table">
-                        <caption>List of Transactions</caption>
+                    <table class="table table-striped table-bordered table-hover">
+                        <!-- <caption>List of Transactions</caption> -->
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th>S.No.</th>
                                 <th>Package Name</th>
                                 <th>Start Date</th>
                                 <th>Expiry Date</th>
@@ -1046,7 +1141,7 @@
                                     <div *ngIf="submitted && fpwdP.newpwd.errors" class="invalid-feedback">
                                         <div *ngIf="fpwdP.newpwd.errors.required">New password is required</div>
                                         <div *ngIf="fpwdP.newpwd.errors.minlength">New password must be at least 6 characters</div>
-                                         </div>
+                                    </div>
 
 
                                 </div>
@@ -1060,7 +1155,7 @@
                                         <div *ngIf="fpwdP.confirmpwd.errors.required">Confirm password is required</div>
                                         <div *ngIf="fpwdP.confirmpwd.errors.minlength">Confirm password must be at least 6 characters</div>
                                         <div *ngIf="fpwdP.confirmpwd.errors.notSame">New password and confirm password must be match</div>
-                        
+
                                     </div>
                                 </div>
 

@@ -44,13 +44,37 @@ box-shadow: 0px 0px 1px #1275af;
     width:100%;
 }
 .table-container-style thead{
-    background-color: #fdf8f5;
+   /** background-color: #fdf8f5; **/
+   background-color:#fd9958;
 }
+
 .table-container-style thead th{
     vertical-align: middle;
     color: #1275af;
-    font-size:14px;
+    font-size:15px;
+    color:#fff!important;
+    font-weight: 500;
 }
+
+.table-container-style thead th:first-child{
+    width:35px!important;
+}
+
+.table-container-style .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.04)!important;
+}
+
+.table-container-style .table-striped tbody tr:nth-of-type(even) {
+    background-color:#fff!important;
+}
+
+.table-container-style .table-bordered thead th, .table-bordered thead td {
+    border-bottom-width: 3px;
+    border-bottom-color: #30a2ec !important;
+}
+
+
+
 .table-container-style table td{
     font-size: 13px;
     min-width: 100px;
@@ -175,13 +199,22 @@ caption {
   
 }
 
+
+.container-bg-style{
+    padding: 30px !important;
+    background-color: #fbfbfb !important;
+    margin: 0px 0px 20px !important;
+    border-radius: 0px !important;
+    width: 100% !important;}
+
 .userdashboardTab{margin:0px;padding:0px;padding-top:20px;}
 .userdashboardTab ul{
     width:100%;
     display:inline-block;
-    background-color: #f5f5f5;
+    /** background-color: #f5f5f5; **/
     margin: 0px;
     padding: 0px;
+    border-bottom: 1px solid #f5f5f5;
 }
 .userdashboardTab ul li{
     list-style: none;
@@ -190,10 +223,16 @@ caption {
     color:#000;
     padding:5px 15px;
     cursor: pointer;
+    background-color:#f5f5f5;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    transition: all 0.5s ease;
+    margin-right:2px;
 }
-.userdashboardTab ul li.active{
-    background-color: #ccc;
 
+.userdashboardTab ul li.active{
+    background-color:#1275af !important;
+    color:#fff;
 }
 
 
@@ -244,10 +283,10 @@ background-color:#1275af;color:#fff;display:inline-block;border-radius:2px;}
     outline-style: none;
 }
 .upload-btn{
-    background-color: #f9a069;
+    background-color: #1275af;
     color: #fff;
     border-radius: 5px;
-    padding: 8px 15px;
+    padding: 9px 15px;
     font-size: 13px;
     text-transform: uppercase;
     font-weight: 500;
@@ -284,6 +323,7 @@ app-modal-property .modal {
 
             /* margin exposes part of the modal background */
             margin: 40px;
+            border-radius:5px;
         }
     
 
@@ -324,5 +364,54 @@ body.modal-open {
     cursor:pointer;color:#f9a069;font-size:16px;padding:5px 20px 5px 0px;
 }
 .comment-hrs{
-    color:#ccc;font-size:16px;padding:5px 20px 5px 0px;
+    color:#ccc;font-size:12px;padding:5px 20px 5px 0px;
+}
+
+.upload-container-style{
+    background-color:#fff;
+    padding: 15px 30px;
+    font-weight: 500;
+    color: #1275af;
+}
+.upload-container-style label{
+    padding-bottom:10px;
+
+}
+.closeIcon-style{
+    font-size:22px!important;
+    cursor: pointer !important;
+    color:#f3f2f2;
+    
+}
+.closeIcon-style:hover{
+    color:#eae8e8;
+}
+
+.modal-heading{
+    border-bottom: 1px solid #f5f5f5;
+    padding: 0px;
+}
+.modal-heading p{
+    margin-bottom: 10px;font-size:16px;font-weight:500;
+}
+.commentbox-style{
+    background-color: #fbfbfb !important;padding:20px;
+}
+.comments-style{
+    background-color: #fff !important;
+}
+.comments-style .commentbox-style-1{
+    background-color: #fff !important;
+    border-bottom: 1px solid #f5f5f5;
+    padding-bottom: 5px;
+    margin:5px 0px;
+}
+/* .commentbox-style label{
+    font-weight: 500;
+    color: #1275af;
+} */
+
+.property-tab-style{
+    background-color: #fbfbfb !important;padding:20px;
+    margin-bottom:20px;
 }
