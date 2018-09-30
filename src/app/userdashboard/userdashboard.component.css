@@ -233,6 +233,8 @@ caption {
 .userdashboardTab ul li.active{
     background-color:#1275af !important;
     color:#fff;
+    box-shadow: 0px -2px 4px #808080;
+
 }
 
 
@@ -247,12 +249,15 @@ background-color:#1275af;color:#fff;display:inline-block;
 border-top-left-radius: 13px;
 border-top-right-radius: 13px;
 margin-right: -5px;
+transition: all 0.5s ease;
+box-shadow: 0px -2px 4px #808080;
 }
 
 .verticalTab ul li.deactive{
     opacity:0.4;
     cursor:default;
     pointer-events: none;
+    box-shadow: 0px 0px 0px #808080;
 
 }
 
@@ -260,6 +265,7 @@ margin-right: -5px;
     margin-right: 5px;
     border: 1px solid rgba(0,0,0,0.1);
     padding: 3px;
+    margin-bottom:0px!important;
 }
 
 .addmore-btn{
@@ -381,6 +387,7 @@ body.modal-open {
 }
 .upload-container-style label{
     padding-bottom:10px;
+    font-size:15px!important;
 
 }
 .closeIcon-style{
@@ -435,4 +442,8 @@ body.modal-open {
 }
 label{
     font-size:14px;
+}
+
+.font-bold-label{
+    font-weight: 600;
 }
