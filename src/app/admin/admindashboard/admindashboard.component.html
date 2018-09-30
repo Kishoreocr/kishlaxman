@@ -55,12 +55,91 @@
 
                 <modal id="custom-modal-1">
                     <div class="modal">
-                        <div class="modal-body">
-                            <h6>Customer Details</h6>
-                            <div style='position:absolute;right:20px;top:10px;'>
-                                <i class="fa fa-times" aria-hidden="true" style='font-size:22px;color:#ffb384;cursor: pointer;' (click)="closeModal('custom-modal-1');"></i>
-                            </div>
-                            <table *ngIf="customer!=''" class="table">
+                        <div class="row justify-content-md-center no-gutters">
+                            <div class="modal-body col-md-7" style="padding:0px;">
+
+                                <div class='col modal-heading'>
+                                    <p style="padding:10px 20px;margin:0px;">Customer Details:
+                                    </p>
+                                </div>
+
+                                <div style='position:absolute;right:20px;top:10px;'>
+                                    <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('custom-modal-1');"></i>
+                                </div>
+                                <div class="row" *ngIf="customer!=''" style="padding:20px;">
+                                    <div class="col-md-6 col-">
+                                        <div class="form-group row">
+                                            <div class="col-sm-5 col-form-label">Name:</div>
+                                            <div class="col-sm-7 col-form-label">
+                                                {{customer.firstName}} {{customer.lastName}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5 col-form-label">Email:</div>
+                                            <div class="col-sm-7 col-form-label">
+                                                {{customer.email}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5 col-form-label">Mobile Number:</div>
+                                            <div class="col-sm-7 col-form-label">
+                                                {{customer.mobileNo}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5 col-form-label">Address Line1:</div>
+                                            <div class="col-sm-7 col-form-label">
+                                                {{customer.address1}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5 col-form-label">Address Line2:</div>
+                                            <div class="col-sm-7 col-form-label">
+                                                {{customer.address2}}
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-5 col-form-label">Address Line3:</div>
+                                            <div class="col-sm-7 col-form-label">
+                                                {{customer.address3}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5 col-form-label">City:</div>
+                                            <div class="col-sm-7 col-form-label">
+                                                {{customer.city}}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-5 col-form-label">State:</div>
+                                            <div class="col-sm-7 col-form-label">
+                                                {{customer.state}}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-5 col-form-label">Country:</div>
+                                            <div class="col-sm-7 col-form-label">
+                                                {{customer.country}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-5 col-form-label">Zip:</div>
+                                            <div class="col-sm-7 col-form-label">
+                                                {{customer.zip}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <!-- <table *ngIf="customer!=''" class="table">
                                 <tr>
                                     <td>Name:</td>
                                     <td>{{customer.firstName}} {{customer.lastName}}</td>
@@ -101,11 +180,12 @@
                                     <td>Zip:</td>
                                     <td>{{customer.zip}}</td>
                                 </tr>
-                            </table>
-                            <div class='col' align='center'>
-                                <button class="submit-btn" (click)="closeModal('custom-modal-1');">Close</button>
-                            </div>
+                            </table> -->
+                                <div class='col' align='center' style='padding:20px;'>
+                                    <button class="submit-btn" (click)="closeModal('custom-modal-1');">Close</button>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
                     <div class="modal-background"></div>
@@ -116,7 +196,7 @@
 
                 <div class="table-container-style table-th-styles">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -124,7 +204,7 @@
                                     <th scope="col">Email</th>
                                     <th scope="col">Mobile Number</th>
                                     <!-- <th scope="col">Status</th> -->
-                                    <th scope="col">View</th>
+                                    <th scope="col" class='text-center'>Action</th>
 
                                 </tr>
                             </thead>
@@ -135,7 +215,7 @@
                                     <td>{{customer.email}}</td>
                                     <td>{{customer.mobileNo}}</td>
                                     <!-- <td>{{customer.status}}</td> -->
-                                    <td class="viewbtn">
+                                    <td class="viewbtn text-center">
                                         <!-- <i class="fa fa-eye" (click)="viewPropertyFun()"></i> -->
                                         <i class="fa fa-eye" (click)="openModal('custom-modal-1',customer)"></i>
 
@@ -190,8 +270,7 @@
                                                 <label for="exampleFormControlSelect1">Type of Property
                                                     <span class="mandatory">*</span>
                                                 </label>
-                                                <select class="form-control"  formControlName="propertyType" (ngModelChange)="getType($event)"
-                                                    [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }">
+                                                <select class="form-control" formControlName="propertyType" (ngModelChange)="getType($event)" [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }">
                                                     <option value="" [selected]="selected">Select any Property</option>
                                                     <option value="Residential">Residential</option>
                                                     <option value="Commercial">Commercial</option>
@@ -494,7 +573,7 @@
                                 </div>
 
                                 <div class='col'>
-                                    <div class="commentbox-style" *ngFor="let comment of comments;let IndexId = index" >
+                                    <div class="commentbox-style" *ngFor="let comment of comments;let IndexId = index">
                                         <p class="comment-role">By {{comment.role}},</p>
                                         <p class="comment-description">{{comment.description}}</p>
                                         <!-- <span class="comment-reply-btn">Reply</span> -->
@@ -523,7 +602,7 @@
 
                 <div class="table-container-style table-th-styles">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -533,7 +612,7 @@
                                     <th scope="col">Door Number</th>
                                     <th scope="col">Document Number</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">View</th>
+                                    <th scope="col" class='text-center'>Action</th>
 
                                 </tr>
                             </thead>
@@ -546,8 +625,10 @@
                                     <td>{{property.doorNo}}</td>
 
                                     <td>{{property.documentNo}} </td>
-                                    <td><span *ngIf="property.status==='P'">Pending Approval</span></td>
-                                    <td class="viewbtn">
+                                    <td>
+                                        <span *ngIf="property.status==='P'">Pending Approval</span>
+                                    </td>
+                                    <td class="viewbtn text-center">
                                         <!-- <i class="fa fa-eye" (click)="viewPropertyFun()"></i> -->
                                         <i class="fa fa-eye" (click)="openModal('custom-modal-33', property)"></i>
 
@@ -566,4 +647,4 @@
 
         </div>
     </div>
-     <app-loading-div-component1 *ngIf="isLoading"></app-loading-div-component1> 
+    <app-loading-div-component1 *ngIf="isLoading"></app-loading-div-component1>
