@@ -37,7 +37,7 @@ export class UserloginComponent implements OnInit {
   isLoading: boolean;
   msg: any;
   user1: any;
-
+registrationsuccess:any="";
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private http: HttpClient) {
     this.disabledField = false;
     this.routerProperty = router;
@@ -63,6 +63,14 @@ export class UserloginComponent implements OnInit {
       username: ['', [Validators.required, Validators.pattern(emailPattern)]],
       userpwd: ['',[ Validators.required]] //, Validators.minLength(6)
     });
+   
+    if(sessionStorage.getItem("regsuc")!=null){
+      this.registrationsuccess=sessionStorage.getItem("regsuc");
+    setTimeout(() => {
+      this.registrationsuccess='';
+      sessionStorage.removeItem("regsuc");
+  }, 10000);
+}
   }
   // convenience getter for easy access to form fields
   get f() { return this.userloginForm.controls; }

@@ -64,8 +64,9 @@ export class MessagemodalpopupComponent implements OnInit, IModalDialog {
         this.isLoading = false;
         if (result) {
           sessionStorage.removeItem("formData");
+          sessionStorage.setItem("regsuc","success");
 
-          this.routerProperty.navigateByUrl('/success-register');
+          this.routerProperty.navigateByUrl('/loginform');
         }
       },
         error => {
