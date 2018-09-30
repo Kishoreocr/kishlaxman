@@ -76,6 +76,7 @@ export class UserdashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     //this.propertyForm.controls['typeofProperty'] = 'Residential';
     this.propertyTab = true;
@@ -113,7 +114,7 @@ export class UserdashboardComponent implements OnInit {
       firstName: ['', Validators.required],
       middleName: [],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(emailPattern)]],
       mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
       address1: ['', Validators.required],
       address2: [],
