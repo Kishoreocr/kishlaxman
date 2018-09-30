@@ -74,7 +74,7 @@
                     <div class="table-container-style table-th-styles">
                         <app-modal-property id="custom-modal-11">
                             <div class="modal">
-                               
+
                                 <div class="modal-body">
                                     <!-- <h6>Property Details</h6> -->
 
@@ -511,21 +511,13 @@
                                     </div>
 
 
-                                    <div class="form-group" style="margin-bottom:1px;">
+                                    <!-- <div class="form-group" style="margin-bottom:1px;">
                                         <label for="boundaries" style="margin-bottom:1px;">Boundaries
                                         </label>
-                                    </div>
+                                    </div> -->
 
-                                    <div class="form-group">
-                                        <label for="boundaries">North
-                                        </label>
-                                        <input type="text" formControlName="boundariesNorth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }"
-                                            id="boundariesFormControlInput" placeholder="Enter North">
-                                        <div *ngIf="submitted && f.boundariesNorth.errors" class="invalid-feedback">
-                                            <div *ngIf="f.boundariesNorth.errors.required">Boundaries is required</div>
-                                        </div>
-                                    </div>
-                                  
+
+
 
 
 
@@ -536,33 +528,42 @@
 
 
                                 <div class="col-md-4">
-                                        <div class="form-group">
-                                                <label for="boundaries">South
-                                                </label>
-                                                <input type="text" formControlName="boundariesSouth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }"
-                                                    id="boundariesFormControlInput" placeholder="Enter South">
-                                                <div *ngIf="submitted && f.boundariesSouth.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.boundariesSouth.errors.required">Boundaries is required</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="boundaries">East
-                                                </label>
-                                                <input type="text" formControlName="boundariesEast" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }"
-                                                    id="boundariesFormControlInput" placeholder="Enter East">
-                                                <div *ngIf="submitted && f.boundariesEast.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.boundariesEast.errors.required">Boundaries is required</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="boundaries">West
-                                                </label>
-                                                <input type="text" formControlName="boundariesWest" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }"
-                                                    id="boundariesFormControlInput" placeholder="Enter West">
-                                                <div *ngIf="submitted && f.boundariesWest.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.boundariesWest.errors.required">Boundaries is required</div>
-                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <label for="boundaries">Boundaries - North
+                                        </label>
+                                        <input type="text" formControlName="boundariesNorth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }"
+                                            id="boundariesFormControlInput" placeholder="Enter North">
+                                        <div *ngIf="submitted && f.boundariesNorth.errors" class="invalid-feedback">
+                                            <div *ngIf="f.boundariesNorth.errors.required">Boundaries is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="boundaries">Boundaries - South
+                                        </label>
+                                        <input type="text" formControlName="boundariesSouth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }"
+                                            id="boundariesFormControlInput" placeholder="Enter South">
+                                        <div *ngIf="submitted && f.boundariesSouth.errors" class="invalid-feedback">
+                                            <div *ngIf="f.boundariesSouth.errors.required">Boundaries is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="boundaries">Boundaries - East
+                                        </label>
+                                        <input type="text" formControlName="boundariesEast" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }"
+                                            id="boundariesFormControlInput" placeholder="Enter East">
+                                        <div *ngIf="submitted && f.boundariesEast.errors" class="invalid-feedback">
+                                            <div *ngIf="f.boundariesEast.errors.required">Boundaries is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="boundaries">Boundaries - West
+                                        </label>
+                                        <input type="text" formControlName="boundariesWest" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }"
+                                            id="boundariesFormControlInput" placeholder="Enter West">
+                                        <div *ngIf="submitted && f.boundariesWest.errors" class="invalid-feedback">
+                                            <div *ngIf="f.boundariesWest.errors.required">Boundaries is required</div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label for="documentno">Document No.
                                             <span class="mandatory">*</span>
@@ -585,6 +586,15 @@
                                         </div>
                                     </div>
 
+
+
+
+
+
+                                </div>
+
+
+                                <div class='col-md-4'>
                                     <div class="form-group">
                                         <label for="address2">Address 2
                                             <span class="mandatory">*</span>
@@ -595,15 +605,7 @@
                                             <div *ngIf="f.address2.errors.required">Address 2 is required</div>
                                         </div>
                                     </div>
-
-                                    
-
-
-                                </div>
-
-
-                          <div class='col-md-4'>
-                                <div class="form-group">
+                                    <div class="form-group">
                                         <label for="village/City">Village/City
                                             <span class="mandatory">*</span>
                                         </label>
@@ -676,12 +678,13 @@
 
 
 
-                          </div>
+                                </div>
 
 
                             </div>
 
-                            <div class="col" align="center">
+                            <div class="col" align="center" style='
+                            padding-top: 20px;'>
                                 <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
                                 <button type="submit" class="submit-btn">Submit</button>
                             </div>
