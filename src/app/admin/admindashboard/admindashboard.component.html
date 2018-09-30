@@ -69,31 +69,31 @@
                                 <div class="row" *ngIf="customer!=''" style="padding:20px;">
                                     <div class="col-md-6 col-">
                                         <div class="form-group row">
-                                            <div class="col-sm-5 col-form-label">Name:</div>
+                                            <div class="col-sm-5 col-form-label font-bold-label">Name:</div>
                                             <div class="col-sm-7 col-form-label">
                                                 {{customer.firstName}} {{customer.lastName}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-sm-5 col-form-label">Email:</div>
+                                            <div class="col-sm-5 col-form-label font-bold-label">Email:</div>
                                             <div class="col-sm-7 col-form-label">
                                                 {{customer.email}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-sm-5 col-form-label">Mobile Number:</div>
+                                            <div class="col-sm-5 col-form-label font-bold-label">Mobile Number:</div>
                                             <div class="col-sm-7 col-form-label">
                                                 {{customer.mobileNo}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-sm-5 col-form-label">Address Line1:</div>
+                                            <div class="col-sm-5 col-form-label font-bold-label">Address Line1:</div>
                                             <div class="col-sm-7 col-form-label">
                                                 {{customer.address1}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-sm-5 col-form-label">Address Line2:</div>
+                                            <div class="col-sm-5 col-form-label font-bold-label">Address Line2:</div>
                                             <div class="col-sm-7 col-form-label">
                                                 {{customer.address2}}
                                             </div>
@@ -102,34 +102,34 @@
                                     </div>
 
                                     <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <div class="col-sm-5 col-form-label">Address Line3:</div>
+                                        <!-- <div class="form-group row">
+                                            <div class="col-sm-5 col-form-label font-bold-label">Address Line3:</div>
                                             <div class="col-sm-7 col-form-label">
                                                 {{customer.address3}}
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group row">
-                                            <div class="col-sm-5 col-form-label">City:</div>
+                                            <div class="col-sm-5 col-form-label font-bold-label">City:</div>
                                             <div class="col-sm-7 col-form-label">
                                                 {{customer.city}}
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <div class="col-sm-5 col-form-label">State:</div>
+                                            <div class="col-sm-5 col-form-label font-bold-label">State:</div>
                                             <div class="col-sm-7 col-form-label">
                                                 {{customer.state}}
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <div class="col-sm-5 col-form-label">Country:</div>
+                                            <div class="col-sm-5 col-form-label font-bold-label">Country:</div>
                                             <div class="col-sm-7 col-form-label">
                                                 {{customer.country}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-sm-5 col-form-label">Zip:</div>
+                                            <div class="col-sm-5 col-form-label font-bold-label">Zip:</div>
                                             <div class="col-sm-7 col-form-label">
                                                 {{customer.zip}}
                                             </div>
@@ -263,7 +263,7 @@
 
                                         <div class="property-tab-style">
 
-                                            <div class='col' align='center'>
+                                            <div class='col' align='center' style='padding-bottom:10px;'>
 
                                                 <div class="propertyheading" (click)="profileeditFun()">
                                                     <i class="fa fa-edit" style="font-size:13px;font-weight: 200"></i> Edit
@@ -582,10 +582,85 @@
 
 
                                     <div *ngIf="!propertytabModal && documentstabModal && !commentstabModal">
-                                        <div class="property-tab-style">
+                                        <div class="property-tab-style table-container-style">
+
+                                                <div>
+
+                                                        <table class="table table-striped table-bordered">
+                
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">S.no.</th>
+                                                                    <th scope="col">Document Name</th>
+                                                                    <th scope="col">Date</th>
+                                                                    <th scope="col" style='text-align:center'>Delete</th>
+                                                                    <th scope="col" style='text-align:center'>Download</th>
+                                                                </tr>
+                                                            </thead>
+                
+                                                            <tbody>
+                
+                                                                <tr *ngFor="let doc of propertydocs; let index = index">
+                                                                    <td>{{index + 1}}</td>
+                                                                    <td>{{doc.documentName}}</td>
+                                                                    <td>{{doc.addedDate}}</td>
+                
+                                                                    <td style='text-align:center'>
+                
+                                                                        <i style="cursor: pointer" (click)="removedoc(doc.id)" class="fa fa-trash" aria-hidden="true"></i>
+                                                                    </td>
+                
+                                                                    <td style='text-align:center'>
+                
+                                                                        <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)" class="fa fa-download" aria-hidden="true"></i>
+                
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                
+                                                    </div>
+                                                    <div class='col upload-container-style'>
+                
+                                                            <form [formGroup]="documentGrp">
+                                                                <div class="row">
+                                                                    <label for="Upload your documents">Upload Property Documents:</label>
+                                                                </div>
+                
+                                                                <div class="form-inline" style="margin-bottom:4px;">
+                                                                    <div class="form-group uploadfile-style">
+                                                                        <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
+                                                                    </div>
+                                                                    <button type="button" class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
+                
+                                                                </div>
+                
+                
+                
+                                                            </form>
+                
+                                                        </div>
 
 
-                                            <div class='col upload-container-style'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            <!-- <div class='col upload-container-style'>
                                                 <form [formGroup]="documentGrp">
 
                                                     <div class="row">
@@ -610,7 +685,7 @@
                                                     </div>
 
                                                 </form>
-                                            </div>
+                                            </div> -->
 
                                         </div>
 

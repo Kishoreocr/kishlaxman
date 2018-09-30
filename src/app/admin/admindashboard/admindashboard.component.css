@@ -300,6 +300,7 @@ body.modal-open {
 .userdashboardTab ul li.active{
     background-color:#1275af !important;
     color:#fff;
+    box-shadow: 0px -2px 4px #808080;
 }
 
 .propertyheading{background-color:#fff;text-align:center;padding:5px 15px;color:#1275af;font-size:16px;
@@ -317,8 +318,8 @@ body.modal-open {
         margin-right: 5px;
         border: 1px solid rgba(0,0,0,0.1);
         padding: 3px;
+        margin-bottom:0px!important;
     }
-    
     .addmore-btn{
         background-color: #1275af;
         color: #fff;
@@ -346,7 +347,7 @@ body.modal-open {
         outline-style: none;
     }
     .upload-btn{
-        background-color: #f9a069;
+        background-color: #1275af;
         color: #fff;
         border-radius: 5px;
         padding: 8px 15px;
@@ -408,10 +409,10 @@ body.modal-open {
     }
     .upload-container-style label{
         padding-bottom:10px;
-    
+        font-size:15px!important;
     }
     .closeIcon-style{
-        font-size:22px!important;
+        font-size:22px !important;
         cursor: pointer !important;
         color:#f3f2f2;
         
@@ -479,5 +480,7 @@ body.modal-open {
     .text-center{
         text-align: center;
     }
-
+    .font-bold-label{
+        font-weight: 600;
+    }
     
