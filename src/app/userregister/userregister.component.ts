@@ -50,7 +50,7 @@ export class UserregisterComponent implements OnInit {
       confirmPassword: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming]],
       termsChecked: [false, Validators.required],
       country: [null],
-      countryCode:[null]
+      countryCode: [null]
     });
 
     this.registerForm.controls['registerType'].setValue("customer");
@@ -108,12 +108,14 @@ export class UserregisterComponent implements OnInit {
     this.submitted = true;
     //console.log(JSON.stringify(this.registerForm))
     // stop here if form is invalid
+
     if (this.registerForm.invalid) {
+      return;
+    } else if (!formData.value.termsChecked) {
       if (!formData.value.termsChecked)
         this.termsCheckederrors = "Please accept terms and conditions";
       else
         this.termsCheckederrors = "";
-      return;
     }
     else {
       this.termsCheckederrors = "";
