@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { SessionstorageService } from './services/sessionstorage.service';
 import{ AppConstants} from './services/constants'
+import { EgazeService } from './services/egaze.service';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +16,14 @@ export class AppComponent implements OnInit{
   title = 'app';
   user: Object={loginId: Number, email: String, role: String, status: String };
   flag: boolean = false;
+  user1:any;
   // navbarOpen = false;
   // toggleNavbar() {
   //   this.navbarOpen = !this.navbarOpen;
   // }
   routerProperty: any;
   activeColor: boolean = false;
-  constructor(router: Router, route: ActivatedRoute, private sessionstorageService: SessionstorageService) {
+  constructor(router: Router, route: ActivatedRoute, private sessionstorageService: SessionstorageService, private EgazeService: EgazeService) {
 
     this.routerProperty = router;
     this.user =this.sessionstorageService.getUserDetails();
@@ -30,14 +32,24 @@ export class AppComponent implements OnInit{
     //  alert(this.user)
       this.flag = true;
     }
-    // if (this.routerProperty.url === '/loginform') {
-    //   debugger
-    //   this.activeColor = true;
-    // }
   }
 
 
+  userdashboard() {
+    if(this.sessionstorageService.getUserDetails()!=null){
+    this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
+    this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
+      result => {
+        if (Object.keys(result).length === 0) {
+          window.location.href = AppConstants.packageURL;
+        }else{
+          window.location.href = AppConstants.userdashboardURL;
+        }
+      }
 
+    );
+    }
+  }
   logout(){
     this.sessionstorageService.removeUserDetails("user");
     window.location.href=AppConstants.loginURL;
