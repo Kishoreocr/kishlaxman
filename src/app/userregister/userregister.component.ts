@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { ModalDialogService } from 'ngx-modal-dialog';
 import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpopup.component'
@@ -19,70 +19,108 @@ export class UserregisterComponent implements OnInit {
   loading: string;
   existsUser: string;
   isLoading: boolean;
-  termsCheckederrors:any='';
+  termsCheckederrors: any = '';
+  mobileNumbererror: boolean = false;
+  country: any = "";
+  countryCode: any = "";
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
 
     this.modalService = modalService;
     this.viewRef = viewRef;
   }
- isNumberKey(evt)
-  {
-     var charCode = (evt.which) ? evt.which : evt.keyCode
-     if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
+  isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+      return false;
 
-     return true;
+    return true;
   }
 
   ngOnInit() {
     var emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-    
+
     this.registerForm = this.formBuilder.group({
-      registerType:[],
+      registerType: [],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern(emailPattern)]],
-      mobileNumber: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')]],
+      mobileNumber: ['', Validators.required],
       zipCode: ['', Validators.compose([Validators.required, Validators.maxLength(6)])],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6),this.passwordConfirming]],
-      termsChecked: [false, Validators.required]
+      confirmPassword: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming]],
+      termsChecked: [false, Validators.required],
+      country: [null],
+      countryCode:[null]
     });
+
     this.registerForm.controls['registerType'].setValue("customer");
     this.registerForm.controls['termsChecked'].setValue("true");
- }
-
+    this.registerForm.controls['country'].setValue("India");
+    this.registerForm.controls['countryCode'].setValue("in");
+  }
+  //  firstname(){
+  //    if(!this.registerForm.get('firstName').valid){
+  //     this.registerForm.get('firstName').setValidators(Validators.required);
+  //  }
+  //  }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
- passwordConfirming(c: AbstractControl): any {
-    if(!c.parent || !c) return;
+  passwordConfirming(c: AbstractControl): any {
+    if (!c.parent || !c) return;
     const pwd = c.parent.get('password');
-    const cpwd= c.parent.get('confirmPassword')
+    const cpwd = c.parent.get('confirmPassword')
 
-    if(!pwd || !cpwd) return ;
+    if (!pwd || !cpwd) return;
     if (pwd.value !== cpwd.value) {
-        return { notSame: true };
+      return { notSame: true };
 
-}
+    }
 
- }
+  }
+  telInputObject(obj) {
+    //console.log(obj);
+    obj.intlTelInput('setCountry', 'in');
+  }
+  onCountryChange(obj) {
+    //alert(JSON.stringify(obj))
+    if (obj != null) {
+      var name = obj.name;
+      var v = name.split('(')
+      this.registerForm.controls['country'].setValue(v[0]);
+      this.registerForm.controls['countryCode'].setValue(obj.iso2);
+
+    } else {
+      this.registerForm.controls['country'].setValue("India");
+      this.registerForm.controls['countryCode'].setValue("in");
+    }
+
+  }
+  getNumber(obj) {
+    this.registerForm.controls['mobileNumber'].setValue(obj);
+
+  }
+  hasError(obj) {
+    this.mobileNumbererror = obj;
+    //alert(this.mobileNumbererror)
+  }
   onSubmit(formData) {
-    debugger;
+    //alert(this.registerForm.get('countryCode').value)
     this.submitted = true;
     //console.log(JSON.stringify(this.registerForm))
     // stop here if form is invalid
-    if ( this.registerForm.invalid) {
-      if(!formData.value.termsChecked)
-      this.termsCheckederrors="Please accept terms and conditions";
+    if (this.registerForm.invalid) {
+      if (!formData.value.termsChecked)
+        this.termsCheckederrors = "Please accept terms and conditions";
       else
-      this.termsCheckederrors="";
+        this.termsCheckederrors = "";
       return;
     }
     else {
-      this.termsCheckederrors="";
+      this.termsCheckederrors = "";
       this.isLoading = true;
       this.EgazeService.existingUserFun(formData.value.email).subscribe(
         result => {
+          // alert(result)
           if (result) {
             this.isLoading = false;
             this.existsUser = "This email address already exists.";
@@ -103,7 +141,12 @@ export class UserregisterComponent implements OnInit {
       //this.router.navigateByUrl('/userdashboard');
     }
   }
-
+  terms() {
+    if (this.registerForm.get('termsChecked').value)
+      this.termsCheckederrors = "Please accept terms and conditions";
+    else
+      this.termsCheckederrors = "";
+  }
   openNewDialog(formData) {
     this.modalService.openDialog(this.viewRef, {
       title: 'Validate OTP(One Time Passcode)',

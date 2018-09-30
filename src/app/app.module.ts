@@ -42,6 +42,7 @@ import { BlogsComponent } from './blogs/blogs.component';
 import { EgazeServicesComponent } from './egaze-services/egaze-services.component';
 import { PackageDescriptionComponent } from './package-description/package-description.component';
 import {DataTableModule} from "angular-6-datatable";
+import {Ng2TelInputModule} from 'ng2-tel-input';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -124,7 +125,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
-    ModalDialogModule.forRoot(),AdminModule,DataTableModule
+    ModalDialogModule.forRoot(),AdminModule,DataTableModule,Ng2TelInputModule
   ],
   exports:[
     LoadingDivComponent

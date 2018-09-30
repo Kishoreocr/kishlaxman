@@ -1,5 +1,11 @@
+
+
 .userregisterForm{
     background-color:#f1f8fd;
     padding:15px;
     border-radius:10px;
+}
+.intl-tel-input {
+    position: relative important;
+    display: block !important; 
 }

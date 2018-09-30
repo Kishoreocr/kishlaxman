@@ -35,7 +35,9 @@ export class EgazeService {
       "mobile": userObject.mobileNumber,
       "zip": userObject.zipCode,
       "role": userObject.registerType,
-      "password": userObject.password
+      "password": userObject.password,
+      "country": userObject.country,
+      "countryCode": userObject.countryCode
     };
 
     return this.http.post(this.baseUrl + 'signup', payloadRequestData);
