@@ -15,6 +15,7 @@ import { CustomPackagesComponent } from './custom-packages/custom-packages.compo
 import { PropertyCommentsComponent } from './property-comments/property-comments.component';
 import { PortalFeedbackComponent } from './portal-feedback/portal-feedback.component';
 import { LoadingDivComponent1Component } from './loading-div-component1/loading-div-component1.component';
+import {DataTableModule} from "angular-6-datatable";
 
 const appRoutes: Routes = [
   { path: 'adminlogin', component: LoginComponent },
@@ -26,7 +27,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    RouterModule.forRoot(appRoutes, { enableTracing: true }),DataTableModule
 
   ],
   declarations: [LoginComponent, AdmindashboardComponent, ModalComponent, PropertyApprovalComponent, AgentApprovalComponent, PaymentApprovalComponent, CustomPackagesComponent, PropertyCommentsComponent, PortalFeedbackComponent, LoadingDivComponent1Component],

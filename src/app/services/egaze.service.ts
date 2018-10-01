@@ -145,7 +145,7 @@ export class EgazeService {
   }
   savePropertyDoc(file, propetyId, userId): Observable<any> {
     let formdata: FormData = new FormData();
-
+//alert(propetyId)
     formdata.append('file', file);
 
     return this.http.post(this.baseUrl + "uploadFile/propertydocs/" + propetyId + "/" + userId, formdata);

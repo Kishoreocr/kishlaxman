@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, ElementRef } from '@angular/core';
 import { ModalDialogService, IModalDialogSettings } from 'ngx-modal-dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { EgazeService } from '../../services/egaze.service';
 import { SessionstorageService } from '../../services/sessionstorage.service';

@@ -434,7 +434,7 @@ export class UserdashboardComponent implements OnInit {
           }
         },
         error => {
-          alert(JSON.stringify(error));
+         // alert(JSON.stringify(error));
           this.isLoaderdiv = false;
           this.resultMsg = "Sorry you entered wrong old password";
         }
@@ -523,6 +523,7 @@ export class UserdashboardComponent implements OnInit {
     debugger;
     this.property = property;
     this.ModalPropertyService.open(id);
+    //alert(this.property.id)
     this.propertyId = this.property.id;
     this.propertyStatusCode = this.property.status;
     this.getPrpopertyDocs(this.property.id)
@@ -558,10 +559,10 @@ export class UserdashboardComponent implements OnInit {
             this.documentGrp.patchValue({
               file: reader.result
             });
-            if (this.property != null) {
-              this.propertyId = this.property.id;
-            }
-            // alert(this.propertyId)
+            //if (this.property != null) {
+            //  this.propertyId = this.property.id;
+            //}
+             //alert(this.propertyId)
             this.EgazeService.savePropertyDoc(file, this.propertyId, this.user.loginId).subscribe(result => {
               this.documentGrp.value.file = '';
               var id = JSON.stringify(result['id']);
@@ -573,7 +574,7 @@ export class UserdashboardComponent implements OnInit {
               // this.isLoaderdiv = true;
               this.getPrpopertyDocs(this.propertyId);
             }, error => {
-              alert(JSON.stringify(error));
+              //alert(JSON.stringify(error));
             });
           };
         } else {
@@ -624,7 +625,7 @@ export class UserdashboardComponent implements OnInit {
       this.isLoaderdiv = false;
       //this.sfile = null;
     }, error => {
-      alert(JSON.stringify(error));
+     // alert(JSON.stringify(error));
     });
   }
   commentFun(description) {
@@ -640,7 +641,7 @@ export class UserdashboardComponent implements OnInit {
         //alert('success' + this.commentsmsg);
         this.getPrpopertyComments(this.propertyId);
       }, error => {
-        alert('error' + error);
+        //alert('error' + error);
       });
     }
   }

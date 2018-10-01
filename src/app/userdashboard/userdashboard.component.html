@@ -376,7 +376,7 @@
                                         <th scope="col">Survey No/Dr No</th>
                                         <th scope="col">Sub Register Office</th>
                                         <th scope="col">Extent of Property</th>
-                                        <th scope="col">Boundaries</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col" style="text-align:center">Action</th>
 
                                     </tr>
@@ -391,9 +391,10 @@
                                         <td>{{property.propertyHolderName}}</td>
                                         <td>{{property.relationship}}</td>
                                         <td>{{property.doorNo}}</td>
-                                        <td>{{property.documentNo}}</td>
-                                        <td>{{property.boundaries}}</td>
-                                        <td>{{property.mandal}}</td>
+                                        <td>{{property.subRegisterOffice}}</td>
+                                        <td>{{property.extentOfProperty}}</td>
+                                        <td> <span *ngIf="property.status==='P'">Pending Approval</span>
+                                            <span *ngIf="property.status==='A'"> Approved</span></td>
 
                                         <td class="viewbtn" style="text-align:center">
                                             <!-- <i class="fa fa-eye" (click)="viewPropertyFun(property)"></i> -->
@@ -796,7 +797,7 @@
 
                             </tr>
                         </tbody>
-                        <tfoot *ngIf="mf.data && mf.data.length > 5">
+                        <tfoot >
                             <tr>
                                 <td colspan="4">
                                     <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>

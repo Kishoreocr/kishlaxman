@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewContainerRef, ElementRef } from '@angular
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { EgazeService } from '../../services/egaze.service';
+import { ModalService } from '../../admin/service/modal.service';
 
 @Component({
   selector: 'app-property-approval',
@@ -10,13 +11,17 @@ import { EgazeService } from '../../services/egaze.service';
 })
 export class PropertyApprovalComponent implements OnInit {
   propertyApproval:any=[];
+  customer:any;
   @Input() propertyData:any;
-  constructor(private EgazeService: EgazeService) {
+  constructor(private EgazeService: EgazeService,private modalService1: ModalService) {
     this.getPropertyDetails();
    }
 
   ngOnInit() {
     this.getPropertyDetails();
+  }
+  closeModal(id: string) {
+    this.modalService1.close(id);
   }
   getPropertyDetails() {
     this.EgazeService.getPropertyApi().subscribe(result => {
