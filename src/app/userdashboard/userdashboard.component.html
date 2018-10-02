@@ -1012,7 +1012,7 @@
                                         </label>
                                         <div class="col-sm-7">
                                             <input type="text" [readonly]="true" maxlength="10" formControlName="mobileNumber"
-                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.mobileNumber.errors && isEditDisabled}" />
+                                                class="form-control"  />
 
                                             <div *ngIf="submitted && feditP.mobileNumber.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.mobileNumber.errors.required">Mobile Number Name is
@@ -1026,7 +1026,7 @@
 
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Address 1
-                                            <span class="mandatory">*</span>
+                                            <!-- <span class="mandatory">*</span> -->
                                         </label>
                                         <div class="col-sm-7">
                                             <input type="text" [readonly]="!isEditDisabled" formControlName="address1"
@@ -1066,7 +1066,7 @@
 
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">City
-                                            <span class="mandatory">*</span>
+                                            <!-- <span class="mandatory">*</span> -->
                                         </label>
                                         <div class="col-sm-7">
                                             <input type="text" [readonly]="!isEditDisabled" formControlName="city"
@@ -1083,7 +1083,7 @@
 
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">State
-                                            <span class="mandatory">*</span>
+                                            <!-- <span class="mandatory">*</span> -->
                                         </label>
                                         <div class="col-sm-7">
                                             <input type="text" [readonly]="!isEditDisabled" formControlName="state"
@@ -1098,7 +1098,7 @@
 
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">zip
-                                            <span class="mandatory">*</span>
+                                            <!-- <span class="mandatory">*</span> -->
                                         </label>
                                         <div class="col-sm-7">
                                             <input type="text" [readonly]="!isEditDisabled" maxlength="6"
@@ -1106,6 +1106,7 @@
 
                                             <div *ngIf="submitted && feditP.zipCode.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.zipCode.errors.required">Zip Code is required</div>
+                                                <div *ngIf="feditP.zipCode.errors.maxlength">ZipCode max value will be 6 digits only</div>
                                             </div>
                                         </div>
 
@@ -1115,7 +1116,7 @@
 
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Country
-                                            <span class="mandatory">*</span>
+                                            <!-- <span class="mandatory">*</span> -->
                                         </label>
                                         <div class="col-sm-7">
                                             <input type="text" [readonly]="!isEditDisabled" formControlName="country"

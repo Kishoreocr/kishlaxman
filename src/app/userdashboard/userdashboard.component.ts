@@ -115,14 +115,14 @@ export class UserdashboardComponent implements OnInit {
       middleName: [],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(emailPattern)]],
-      mobileNumber: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
-      address1: ['', Validators.required],
+      mobileNumber: [],
+      address1: [],
       address2: [],
       address3: [],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      zipCode: ['', Validators.compose([Validators.required, Validators.maxLength(6)])],
-      country: ['', Validators.required],
+      city: [],
+      state: [],
+      zipCode: ['',  Validators.maxLength(6)],
+      country: [],
     });
 
     this.updateuserNewpwdForm = this.formBuilder.group({
