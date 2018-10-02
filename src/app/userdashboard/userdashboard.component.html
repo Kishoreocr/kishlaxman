@@ -8,19 +8,19 @@
         </div> -->
         <div class="leftside-menu">
             <ul>
-                <li [ngClass]="{'activeTabdash': propertyTab}" (click)="userdashTabs('Properties')">
+                <li title="Add or View Properties" [ngClass]="{'activeTabdash': propertyTab}" (click)="userdashTabs('Properties')">
 
                     <i class="fa fa-home"></i> Properties
                 </li>
-                <li [ngClass]="{'activeTabdash': alertsTab}" (click)="userdashTabs('Alerts')">
+                <li title="System Generation Alerts" [ngClass]="{'activeTabdash': alertsTab}" (click)="userdashTabs('Alerts')">
 
                     <i class="fa fa-bell"></i> Alerts
                 </li>
-                <li [ngClass]="{'activeTabdash': transactionsTab}" (click)="userdashTabs('Transactions')">
+                <li title="Your Transactions" [ngClass]="{'activeTabdash': transactionsTab}" (click)="userdashTabs('Transactions')">
 
                     <i class="fa fa-credit-card"></i> Transactions
                 </li>
-                <li [ngClass]="{'activeTabdash': profileTab}" (click)="userdashTabs('Profile')">
+                <li title="Profile View" [ngClass]="{'activeTabdash': profileTab}" (click)="userdashTabs('Profile')">
                     <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
                     <i class="fa fa-user"></i> Profile
                 </li>
@@ -80,7 +80,7 @@
                                         <!-- <h6>Property Details</h6> -->
 
                                         <div class='col modal-heading'>
-                                            <p>Property View:
+                                            <p>Property View
                                             </p>
                                         </div>
 
@@ -342,13 +342,35 @@
 
                                             <div class="col commentbox-style">
                                                 <form [formGroup]="commentForm" (ngSubmit)="commentFun(commentForm)">
-                                                    <div class="form-group">
-                                                        <label for="exampleFormControlTextarea1">Comments:</label>
+                                                    <h6>Add Comment</h6>
+                                                    <div class="form-group row">
 
-                                                        <textarea class="form-control" style="resize:none;text-align:left;" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }">
+                                                        <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Current Status
+                                                            <span class="mandatory">*</span>
+                                                        </label>
+                                                        <div class="col-sm-4">
+                                                            <select class="form-control" formControlName="typeofProperty" (ngModelChange)="getType($event)" class="form-control">
+
+                                                                <option value="nochanges">No Changes</option>
+                                                                <option value="roadexpansion">Road Expansion</option>
+
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="form-group row">
+                                                        <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Comments 
+                                                            <span class="mandatory">*</span>
+                                                        </label>
+                                                        <div class="col-sm-10">
+                                                            <textarea class="form-control" style="resize:none;text-align:left;" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
+                                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }">
 
                                                             </textarea>
+
+                                                        </div>
                                                         <div *ngIf="submitted && c.commentfield.errors" class="invalid-feedback">
                                                             <div *ngIf="c.commentfield.errors.required">Comment is required
                                                             </div>
@@ -356,13 +378,58 @@
                                                         </div>
                                                     </div>
 
+
+
+
+                                                    <div class="form-group row">
+
+                                                        <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Upload Document
+                                                           
+                                                        </label>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group uploadfile-style">
+                                                                <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+
+
+                                                    <!-- <div class='col upload-container-style'>
+
+                                                        <form [formGroup]="documentGrp">
+                                                            <div class="row">
+                                                                <label for="Upload your documents">Upload Document:</label>
+                                                            </div>
+
+                                                            <div class="form-inline" style="margin-bottom:4px;">
+                                                                <div class="form-group uploadfile-style">
+                                                                    <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
+                                                                </div>
+                                                                <button type="button" class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
+
+                                                            </div>
+
+
+
+                                                        </form>
+
+                                                    </div> -->
+
+
+
                                                     <div class="col" align="center" style="margin-top:20px;">
-                                                        <button type="submit" class="addmore-btn">Submit</button>
+                                                        <button type="submit" class="submit-btn">Submit</button>
                                                     </div>
                                                 </form>
                                             </div>
 
-                                            <div class='col comments-style' style="padding: 20px 20px 20px 0px;overflow-x: auto">
+                                            <div class="col comment-heading">
+                                                <h6>Property Comments</h6>
+                                            </div>
+                                            <div class='col comments-style scrolling-comment'>
                                                 <table [mfData]="comments" #mf="mfDataTable" [mfRowsOnPage]="5">
                                                     <tbody>
                                                         <tr *ngFor="let comment of mf.data;let IndexId = index">

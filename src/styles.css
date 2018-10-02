@@ -12,6 +12,14 @@
   list-style: none;
 }
 
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #1275af;
+  border-color: #1275af;
+
+}
+
 .pull-right {
   float: right !important;
 }
