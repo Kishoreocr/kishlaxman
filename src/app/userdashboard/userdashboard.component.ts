@@ -203,7 +203,8 @@ export class UserdashboardComponent implements OnInit {
 
         // this.addProperty = !this.addProperty;
         // this.viewProperties = !this.viewProperties;
-        alert("Your can not add the properties. Your Property add Limit has completed")
+       this. openpropertylimitModal('custom-modal-property-limit');
+        //alert("Your can not add the properties. Your Property add Limit has completed")
       } else {
         this.addProperty = !this.addProperty;
         this.viewProperties = !this.viewProperties;
@@ -517,7 +518,9 @@ export class UserdashboardComponent implements OnInit {
   }
 
 
-
+  openpropertylimitModal(id: string) {
+    this.ModalPropertyService.open(id);
+    }
 
   openModal(id: string, property) {
     debugger;
@@ -663,6 +666,10 @@ export class UserdashboardComponent implements OnInit {
       this.getPrpopertyDocs(this.propertyId);
     }, error => {
     });
+
+  }
+  upgrade(){
+    window.location.href = AppConstants.packageURL;
 
   }
 }

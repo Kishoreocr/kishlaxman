@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { ModalDialogService, IModalDialogButton } from 'ngx-modal-dialog';
 import { PackageconfirmComponent } from '../packageconfirm/packageconfirm.component'
 import { EgazeService } from '../services/egaze.service';
+import { ModalPropertyService } from '../services/modal-property.service';
+import { SessionstorageService } from '../services/sessionstorage.service';
 
 @Component({
   selector: 'app-packages',
@@ -18,15 +20,17 @@ export class PackagesComponent implements OnInit {
   viewRef: any;
   isLoading: boolean = true;
   packages: any;
-
-
-  constructor(private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
+  selectedPlan:string='';
+  user:any;
+  selectedPlanId:any;
+  constructor(private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private ModalPropertyService: ModalPropertyService,private sessionstorageService: SessionstorageService) {
+    this.user =JSON.parse(this.sessionstorageService.getUserDetails()+"");
 
     this.modalService = modalService;
     this.viewRef = viewRef;
     this.EgazeService.getPackages().subscribe(
       result => {
-        this.isLoading=false;
+        this.isLoading = false;
         this.packages = result;
 
       }
@@ -40,20 +44,20 @@ export class PackagesComponent implements OnInit {
     this.YEARLY = true;
     //window.location.reload(true);
   }
-  addActiveClass(id){
+  addActiveClass(id) {
     //alert(id+"")
     return {
       'active-package-tab': id
-      };
-   }
-  packageFun(selected, id) {
+    };
+  }
+  packageFun(selected, id,mid) {
 
     // if (selected === 'custom') {
     //   this.router.navigateByUrl('/userdashboard');
     // }
-   
+
     if (selected === 'CUSTOM' || selected === 'YEARLY' || selected === 'MONTHLY') {
-      this.openNewDialog(selected, id);
+      this.openModal(mid, selected+"$$"+id);
     }
   }
 
@@ -91,5 +95,36 @@ export class PackagesComponent implements OnInit {
       childComponent: PackageconfirmComponent,
       data: selected + "$$" + id, settings: { modalClass: 'modal fade ngx-modal blue' }
     });
+  }
+  openModal(id: string, property) {
+    var prop=property.split("$$");
+    this.selectedPlan=prop[0]
+    this.selectedPlanId=prop[1];
+    this.ModalPropertyService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.ModalPropertyService.close(id);
+  }
+  confirmPackage(){
+    let data1 ={
+      "loginId": this.user.loginId,
+      "email": this.user.email,
+      "packageId": this.selectedPlanId
+   
+  }
+  //alert(this.user.email);
+  this.isLoading = true;
+  
+  this.EgazeService.customerpackage(data1).subscribe(
+      result => {
+        if (result==true) {
+          this.isLoading = false;
+          this.router.navigateByUrl('/userdashboard');
+  
+        }
+      }
+  
+    );
   }
 }
