@@ -330,7 +330,7 @@ app-modal-property .modal {
         display: inline-block;
     }
     app-modal-property .modal .modal-body {
-            padding: 20px;
+            padding: 5px 20px;
             background: #fff;
 
             /* margin exposes part of the modal background */

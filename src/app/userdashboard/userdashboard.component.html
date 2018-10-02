@@ -361,7 +361,7 @@
 
 
                                                     <div class="form-group row">
-                                                        <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Comments 
+                                                        <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Comments
                                                             <span class="mandatory">*</span>
                                                         </label>
                                                         <div class="col-sm-10">
@@ -384,7 +384,7 @@
                                                     <div class="form-group row">
 
                                                         <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Upload Document
-                                                           
+
                                                         </label>
                                                         <div class="col-sm-4">
                                                             <div class="form-group uploadfile-style">
@@ -411,14 +411,8 @@
                                                                 <button type="button" class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
 
                                                             </div>
-
-
-
                                                         </form>
-
                                                     </div> -->
-
-
 
                                                     <div class="col" align="center" style="margin-top:20px;">
                                                         <button type="submit" class="submit-btn">Submit</button>
@@ -430,7 +424,7 @@
                                                 <h6>Property Comments</h6>
                                             </div>
                                             <div class='col comments-style scrolling-comment'>
-                                                <table [mfData]="comments" #mf="mfDataTable" [mfRowsOnPage]="5">
+                                                <table class="col-sm-12" [mfData]="comments" #mf="mfDataTable" [mfRowsOnPage]="5">
                                                     <tbody>
                                                         <tr *ngFor="let comment of mf.data;let IndexId = index">
                                                             <td>
