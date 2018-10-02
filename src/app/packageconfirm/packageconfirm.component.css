@@ -1,3 +1,4 @@
+
 .confirm-btn
     {
         padding: 4px 10px;
@@ -11,4 +12,30 @@
         font-weight: 500;
         margin:0px auto;
     
+}
+.modal-footer botton .confirm-btn
+    {
+        padding: 4px 10px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #fd8236;
+        border-radius: 3px;
+        cursor: pointer;
+        display: inline-block;
+        border: 0px;
+        font-weight: 500;
+        margin:0px auto;
+    
+}
+.modal-content .modal-footer > button.btn-primary{
+
+    padding: 4px 10px !important;
+    font-size: 14px !important;
+    color: #fff !important;
+    background-color: #fd8236 !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+    border: 0px !important;
+    font-weight: 500 !important;
+
 }
