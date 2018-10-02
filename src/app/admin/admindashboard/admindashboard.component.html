@@ -8,33 +8,34 @@
       </div> -->
         <div class="leftside-menu">
             <ul>
-                <li [ngClass]="{'activeTabdash': propertyTab}" (click)="userdashTabs('Properties')">
+                <li title='customer details' [ngClass]="{'activeTabdash': propertyTab}" (click)="userdashTabs('Properties')">
 
                     <i class="fa fa-home"></i> Customer Details
                 </li>
-                <li [ngClass]="{'activeTabdash': alertsTab}" (click)="userdashTabs('Alerts')">
+                <li title='Property details and approval' [ngClass]="{'activeTabdash': alertsTab}" (click)="userdashTabs('Alerts')">
 
                     <i class="fa fa-bell"></i> Property Approval
                 </li>
-                <li [ngClass]="{'activeTabdash': transactionsTab}" (click)="userdashTabs('Transactions')">
+                <li title='Agent approval' [ngClass]="{'activeTabdash': transactionsTab}" (click)="userdashTabs('Transactions')">
 
                     <i class="fa fa-credit-card"></i> Agent Approval
                 </li>
-                <li [ngClass]="{'activeTabdash': profileTab}" (click)="userdashTabs('Profile')">
-                    <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
-                    <i class="fa fa-user"></i> Payment Approval
+               
+                <li title='System generation alerts' [ngClass]="{'activeTabdash': profileTab}" (click)="userdashTabs('Profile')">
+                 
+                    <i class="fa fa-user"></i> Alerts
                 </li>
 
-                <li (click)="userdashTabs('Profile')">
+                <li title='Custom packages for customers' (click)="userdashTabs('Profile')">
                     <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
                     <i class="fa fa-user"></i> Custom packages
                 </li>
-                <li (click)="userdashTabs('Profile')">
-                    <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
+                <!-- <li (click)="userdashTabs('Profile')">
+                  
                     <i class="fa fa-user"></i> Property comments
 
-                </li>
-                <li (click)="userdashTabs('Profile')">
+                </li> -->
+                <li title='Portal feedback' (click)="userdashTabs('Profile')">
                     <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
                     <i class="fa fa-user"></i> Portal feedback
 
@@ -899,5 +900,13 @@
 
 
         </div>
+    
+        <div *ngIf="!propertyTab && !alertsTab && transactionsTab && !profileTab">
+    <app-agent-approval> </app-agent-approval>
     </div>
+    
+    </div>
+
+
+
     <app-loading-div-component1 *ngIf="isLoading"></app-loading-div-component1>

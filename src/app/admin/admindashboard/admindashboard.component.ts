@@ -10,6 +10,7 @@ import { ModalService } from '../../admin/service/modal.service';
 
 import { PropertyApprovalComponent } from '../../admin/property-approval/property-approval.component';
 
+//import { AgentApprovalComponent } from '../agent-approval/agent-approval.component';
 export interface PropertyDoc {
   pdoc: String;
   downoladUrl: String;
