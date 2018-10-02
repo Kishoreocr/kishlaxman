@@ -447,3 +447,44 @@ label{
 .font-bold-label{
     font-weight: 600;
 }
+
+/** **/
+.modal-heading{
+    border-bottom: 1px solid #f5f5f5;
+    padding: 0px;
+}
+.modal-heading p{
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    margin: 0px 0px 0px 0px;
+    padding: 7px 15px;
+}
+.content-style{
+    padding: 15px 15px !important;
+}
+.content-style p{
+    font-size:14px;
+}
+.close-icon-style{
+    position: absolute;
+    right: 15px;
+    top: 9px;
+}
+.btn-bottom-style{
+    padding:20px;text-align:center
+}
+
+.submit-btn-upgrade{
+    background-color: #1275af;
+    color: #fff;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 0px;
+    cursor: pointer;
+    outline: 0;
+    outline-style: none;
+}

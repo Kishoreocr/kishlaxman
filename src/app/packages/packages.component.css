@@ -161,6 +161,9 @@
 .content-style{
     padding: 15px 15px !important;
 }
+.content-style p{
+    font-size:14px;
+}
 .close-icon-style{
     position: absolute;
     right: 15px;
