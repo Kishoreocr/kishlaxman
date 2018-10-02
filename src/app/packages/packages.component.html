@@ -170,44 +170,44 @@
 
     <app-modal-property id="custom-modal-package-choosen">
       <div class="modal">
-          <div class="row justify-content-md-center no-gutters">
-              <div class="modal-body col-md-7" style="padding:0px;">
-    
-                  <div class='col modal-heading'>
-                      <p style="padding:10px 20px;margin:0px;">Confirm Plan choosen?
-                      </p>
-                  </div>
-                  <app-loading-div *ngIf="isLoading"></app-loading-div> 
+        <div class="row justify-content-md-center justify-content-sm-center no-gutters">
+          <div class="modal-body col-md-4 col-sm-6" style="padding:0px;">
 
-                  <div style='position:absolute;right:20px;top:10px;'>
-                      <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('custom-modal-package-choosen');"></i>
-                  </div>
-                  <div class="row"  style="padding:20px;">
-                    <p>
-                      Please confirm your PLAN <b> {{selectedPlan}}</b>
-                    </p>
-                   </div> 
-                   <div class='col'  style='padding:20px;'>
-                    <button class="submit-btn" (click)="confirmPackage();">Confirm</button>
-                    <button class="submit-btn" (click)="closeModal('custom-modal-package-choosen');">Cancel</button>
-                </div> 
-                  <div class='col' align='center' style='padding:20px;'>
+            <div class='col modal-heading'>
+              <p>Confirm Plan Choosen?
+              </p>
+            </div>
+            <app-loading-div *ngIf="isLoading"></app-loading-div>
+
+            <div class="close-icon-style">
+              <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('custom-modal-package-choosen');"></i>
+            </div>
+            <div class="col content-style">
+              <p>
+                Please confirm your PLAN
+                <b>{{selectedPlan}}</b>
+              </p>
+            </div>
+            <div class='col btn-bottom-style'>
+              <button class="submit-btn-confirm" (click)="confirmPackage();">Confirm</button>
+              <button class="submit-btn" (click)="closeModal('custom-modal-package-choosen');">Cancel</button>
+            </div>
+            <!-- <div class='col' align='center' style='padding:20px;'>
                       <button class="submit-btn" (click)="closeModal('custom-modal-package-choosen');">Close</button>
                   </div>
-    
-              </div>
+     -->
           </div>
+        </div>
       </div>
-      
+
       <div class="modal-background"></div>
     </app-modal-property>
-    
-    
+
+
 
 
 
   </div>
 
 </div>
- <!-- <app-loading-div *ngIf="isLoading"></app-loading-div>  -->
-
+<!-- <app-loading-div *ngIf="isLoading"></app-loading-div>  -->
