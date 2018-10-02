@@ -756,12 +756,12 @@
                                             <th>
                                                 <mfDefaultSorter by="relationship">Relationship</mfDefaultSorter>
                                             </th>
-                                            <th>
+                                            <!-- <th>
                                                     <mfDefaultSorter by="doorNo">Door Number</mfDefaultSorter>
-                                                </th>
-                                                <!-- <th>
-                                                    <mfDefaultSorter by="documentNo">Document Number</mfDefaultSorter>
                                                 </th> -->
+                                                <th>
+                                                    <mfDefaultSorter by="documentNo">Document Number</mfDefaultSorter>
+                                                </th>
                                                 <th>
                                                     <mfDefaultSorter by="status">Status</mfDefaultSorter>
                                                 </th>
@@ -777,9 +777,9 @@
                                     <td>{{property.propertyType}}</td>
                                     <td>{{property.propertyHolderName}}</td>
                                     <td>{{property.relationship}}</td>
-                                    <td>{{property.doorNo}}</td>
+                                    <!-- <td>{{property.doorNo}}</td> -->
 
-                                    <!-- <td>{{property.documentNo}} </td> -->
+                                    <td>{{property.documentNo}} </td>
                                     <td>
                                         <span *ngIf="property.status==='P'">Pending Approval</span>
                                         <span *ngIf="property.status==='A'"> Approved</span>
@@ -793,7 +793,7 @@
                             </tbody>
                             <tfoot >
                                 <tr>
-                                    <td colspan="6">
+                                    <td colspan="6" style="border:0px !important;">
                                         <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
                                     </td>
                                 </tr>
