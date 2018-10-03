@@ -1282,15 +1282,53 @@
                     <div class="close-icon-style">
                         <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('custom-modal-property-limit');"></i>
                     </div>
-                    <div class="col content-style">
-                        <p>
-                            Your can not add the properties. Your Property add Limit has exceded.
-                        </p>
+                    <div *ngIf="upgradePlanmessage && !upgradePlanprocess">
+                        <div class="col content-style">
+                            <p>
+                                You can't add the more properties. Your Property add Limit has been exceeded.
+                            </p>
+                        </div>
+                        <div class='col btn-bottom-style'>
+                            <button class="submit-btn-upgrade" (click)="upgrade();">Upgrade</button>
+                            <button class="submit-btn" (click)="closeModal('custom-modal-property-limit');">Cancel</button>
+                        </div>
+
                     </div>
-                    <div class='col btn-bottom-style'>
-                        <button class="submit-btn-upgrade" (click)="upgrade();">Upgrade</button>
-                        <button class="submit-btn" (click)="closeModal('custom-modal-property-limit');">Cancel</button>
+
+
+
+
+
+                    <div *ngIf="upgradePlanprocess && !upgradePlanmessage">
+                        <form [formGroup]="upgradePlanForm" (ngSubmit)="upgradePlanFun(upgradePlanForm)">
+                            <div class="col content-style">
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Your Plan Details</label>
+
+                                    <textarea class="form-control no-resize" id="exampleFormControlTextarea1" rows="3" placeholder="Enter your plan details" formControlName="upgradePlanForm.controls.plandetailsField"
+                                        [ngClass]="{ 'is-invalid': submitted && upgradePlanForm.controls.plandetailsField.errors }"></textarea>
+
+                                    <div *ngIf="submitted && upgradePlanForm.controls.plandetailsField.errors" class="invalid-feedback">
+                                        <div *ngIf="upgradePlanForm.controls.plandetailsField.errors.required">Your Plan Details is required
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col btn-bottom-style'>
+                                <button type='submit' class="submit-btn">Submit</button>
+                                <!-- <button class="submit-btn" (click)="closeModal('custom-modal-property-limit');">Cancel</button> -->
+                            </div>
+                            <div class='col' align='center' *ngIf="errorMsg.length > 0 && errorMsg !=''">
+                                <p class='error-message'>{{errorMsg}}</p>
+                            </div>
+                        </form>
+
                     </div>
+
+
+
                     <!-- <div class='col' align='center' style='padding:20px;'>
                         <button class="submit-btn" (click)="closeModal('custom-modal-property-limit');">Close</button>
                     </div> -->

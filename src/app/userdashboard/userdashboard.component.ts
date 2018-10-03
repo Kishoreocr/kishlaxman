@@ -65,6 +65,11 @@ export class UserdashboardComponent implements OnInit {
   commentForm: FormGroup;
   propertyStatusCode: any;
   propertydocs: any = [];
+
+  upgradePlanForm: FormGroup;
+  upgradePlanprocess: boolean = false;
+  upgradePlanmessage: boolean = false;
+
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private ModalPropertyService: ModalPropertyService) {
     this.modalService = modalService;
@@ -87,6 +92,7 @@ export class UserdashboardComponent implements OnInit {
 
     this.propertytabModal = true;
     this.propertyDetails = true;
+    this.upgradePlanmessage = true;
 
     this.propertyForm = this.formBuilder.group({
       typeofProperty: ['', Validators.required],
@@ -121,7 +127,7 @@ export class UserdashboardComponent implements OnInit {
       address3: [],
       city: [],
       state: [],
-      zipCode: ['',  Validators.maxLength(6)],
+      zipCode: ['', Validators.maxLength(6)],
       country: [],
     });
 
@@ -140,6 +146,10 @@ export class UserdashboardComponent implements OnInit {
     this.propertiesShow();
     this.commentForm = this.formBuilder.group({
       commentfield: ['', Validators.required]
+    });
+
+    this.upgradePlanForm = this.formBuilder.group({
+      plandetailsField: ['', Validators.required]
     });
   }
 
@@ -203,7 +213,7 @@ export class UserdashboardComponent implements OnInit {
 
         // this.addProperty = !this.addProperty;
         // this.viewProperties = !this.viewProperties;
-       this. openpropertylimitModal('custom-modal-property-limit');
+        this.openpropertylimitModal('custom-modal-property-limit');
         //alert("Your can not add the properties. Your Property add Limit has completed")
       } else {
         this.addProperty = !this.addProperty;
@@ -435,7 +445,7 @@ export class UserdashboardComponent implements OnInit {
           }
         },
         error => {
-         // alert(JSON.stringify(error));
+          // alert(JSON.stringify(error));
           this.isLoaderdiv = false;
           this.resultMsg = "Sorry you entered wrong old password";
         }
@@ -520,7 +530,7 @@ export class UserdashboardComponent implements OnInit {
 
   openpropertylimitModal(id: string) {
     this.ModalPropertyService.open(id);
-    }
+  }
 
   openModal(id: string, property) {
     debugger;
@@ -565,7 +575,7 @@ export class UserdashboardComponent implements OnInit {
             //if (this.property != null) {
             //  this.propertyId = this.property.id;
             //}
-             //alert(this.propertyId)
+            //alert(this.propertyId)
             this.EgazeService.savePropertyDoc(file, this.propertyId, this.user.loginId).subscribe(result => {
               this.documentGrp.value.file = '';
               var id = JSON.stringify(result['id']);
@@ -628,7 +638,7 @@ export class UserdashboardComponent implements OnInit {
       this.isLoaderdiv = false;
       //this.sfile = null;
     }, error => {
-     // alert(JSON.stringify(error));
+      // alert(JSON.stringify(error));
     });
   }
   commentFun(description) {
@@ -668,8 +678,33 @@ export class UserdashboardComponent implements OnInit {
     });
 
   }
-  upgrade(){
-    window.location.href = AppConstants.packageURL;
+  upgrade() {
+    this.upgradePlanmessage = false;
+    this.upgradePlanprocess = true;
+    //window.location.href = AppConstants.packageURL;
+  }
+
+  upgradePlanFun(upgradePlanForm) {
+    this.errorMsg = '';
+    if (this.upgradePlanForm.valid) {
+      this.isLoading = true;
+      this.submitted = false;
+
+      this.EgazeService.updateprofile(upgradePlanForm.value, this.user.loginId).subscribe(result => {
+        this.isLoading = false;
+
+      }, error => {
+        this.isLoaderdiv = false;
+        this.errorMsg = 'Server error has been occurred. Please try later.';
+      });
+
+    }
+    else {
+      this.submitted = true;
+    }
+
 
   }
+
+
 }
