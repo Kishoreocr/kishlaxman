@@ -1,0 +1,17 @@
+.container-bg-style{
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+}
+.no-resize{
+    resize: none;
+}
+.in-months{
+    font-size: 11px;
+    padding-left: 46px;
+    top: 28px;
+    position: absolute
+}
+.label-relative{
+    position:relative;
+}

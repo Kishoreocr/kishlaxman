@@ -1,3 +1,66 @@
-<p>
-  custom-packages works!
-</p>
+<div class="container-bg-style">
+  <form [formGroup]="customPackagesForm" (ngSubmit)="saveCustomPackage(customPackagesForm)">
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Description</label>
+      <div class="col-sm-4">
+        <textarea class="form-control no-resize" id="exampleFormControlTextarea1" rows="3" placeholder="Enter description" formControlName="descriptionCustom"
+          [ngClass]="{ 'is-invalid': submitted && f.descriptionCustom.errors }"></textarea>
+
+        <div *ngIf="submitted && f.descriptionCustom.errors" class="invalid-feedback">
+          <div *ngIf="f.descriptionCustom.errors.required">Description is required</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Package Limit</label>
+      <div class="col-sm-4">
+        <input type="text" formControlName="packageLimit" class="form-control" placeholder="Enter package limit" [ngClass]="{ 'is-invalid': submitted && f.packageLimit.errors }"
+          (keypress)="isNumber($event)" />
+
+
+        <div *ngIf="submitted && f.packageLimit.errors" class="invalid-feedback">
+          <div *ngIf="f.packageLimit.errors.required">Package limit is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label label-relative">Package Period
+        <br>
+        <span class="in-months">( In Months )</span>
+      </label>
+      <div class="col-sm-4">
+        <input type="text" formControlName="packagePeriod" class="form-control" placeholder="Enter package period" [ngClass]="{ 'is-invalid': submitted && f.packagePeriod.errors }"
+          (keypress)="isNumber($event)" />
+        <div *ngIf="submitted && f.packagePeriod.errors" class="invalid-feedback">
+          <div *ngIf="f.packagePeriod.errors.required">Package limit is required</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Customer</label>
+      <div class="col-sm-4">
+        <input type="text" formControlName="customerCustom" class="form-control" placeholder="Enter customer name" [ngClass]="{ 'is-invalid': submitted && f.customerCustom.errors }"
+        />
+        <div *ngIf="submitted && f.customerCustom.errors" class="invalid-feedback">
+          <div *ngIf="f.customerCustom.errors.required">Customer name is required</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-group col-sm-6" align="center" style="margin-top:25px;">
+      <button type="submit" class="submit-btn">SAVE</button>
+    </div>
+
+
+
+  </form>
+</div>
