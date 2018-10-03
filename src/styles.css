@@ -282,3 +282,15 @@ body.modal-open {
    font-size:12px;
    text-align:center;
  }
+ .seach-box{
+  background-color: #1275af;
+  padding: 10px 10px 5px 15px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+ }
+
+ .search-label{
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+ }
