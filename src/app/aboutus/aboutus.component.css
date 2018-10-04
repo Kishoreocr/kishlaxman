@@ -17,3 +17,13 @@
     border-radius: 4px;
     margin-bottom: 30px;
 }
+p.content-style{
+    font-size: 14px;
+    line-height: 18px;
+}
+
+p.content-style b{
+    font-size: 20px;
+    font-weight: 500;
+
+}
