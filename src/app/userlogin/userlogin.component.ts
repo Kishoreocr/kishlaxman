@@ -37,7 +37,7 @@ export class UserloginComponent implements OnInit {
   isLoading: boolean;
   msg: any;
   user1: any;
-registrationsuccess:any="";
+  registrationsuccess: any = "";
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private http: HttpClient) {
     this.disabledField = false;
     this.routerProperty = router;
@@ -58,19 +58,20 @@ registrationsuccess:any="";
   ngOnInit() {
     this.disabledField = false;
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    
+
     this.userloginForm = this.fb.group({
       username: ['', [Validators.required, Validators.pattern(emailPattern)]],
-      userpwd: ['',[ Validators.required]] //, Validators.minLength(6)
+      userpwd: ['', [Validators.required]] //, Validators.minLength(6)
     });
-   
-    if(sessionStorage.getItem("regsuc")!=null){
-      this.registrationsuccess=sessionStorage.getItem("regsuc");
-    setTimeout(() => {
-      this.registrationsuccess='';
-      sessionStorage.removeItem("regsuc");
-  }, 10000);
-}
+
+    if (sessionStorage.getItem("regsuc") != null) {
+      this.registrationsuccess = sessionStorage.getItem("regsuc");
+      setTimeout(() => {
+        this.registrationsuccess = '';
+        sessionStorage.removeItem("regsuc");
+      }, 10000);
+    }
+
   }
   // convenience getter for easy access to form fields
   get f() { return this.userloginForm.controls; }
@@ -102,7 +103,7 @@ registrationsuccess:any="";
           this.isLoading = true;
           this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
           // alert(this.user1.loginId)
-          if(this.user1.role==='admin'){
+          if (this.user1.role === 'admin') {
             window.location.href = AppConstants.AdminloginURL;
           }
           this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(

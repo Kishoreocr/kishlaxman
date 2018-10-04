@@ -59,15 +59,15 @@ export class EgazeService {
     return this.http.get(this.baseUrl + 'profile/' + id);
   }
 
-  updateprofile(userObj, id) {
+  updateprofile(userObj, id,email,mobileNumber) {
     debugger;
     let requestPayload = {
       "loginId": id,
       "firstName": userObj.firstName,
       "middleName": userObj.middleName,
       "lastName": userObj.lastName,
-      "email": userObj.email,
-      "mobileNo": userObj.mobileNumber,
+      "email": email,
+      "mobileNo": mobileNumber,
       "address1": userObj.address1,
       "address2": userObj.address2,
       "address3": userObj.address3,

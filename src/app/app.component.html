@@ -120,8 +120,8 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkAccount">
                                 <!-- <a class="dropdown-item" routerLink="/loginform" routerLinkActive="activeClss">Logout</a> -->
                                 <a *ngIf="this.user.role==='admin'" class="dropdown-item" routerLink="/admindashboard" routerLinkActive="activeClss">Dashboard</a>
-                                <a *ngIf="this.user.role==='customer'" class="dropdown-item" (click)="userdashboard()">Dashboard</a>
-                                <a *ngIf="this.user.role==='customer'" class="dropdown-item" routerLink="/profile">Profile</a>
+                                <a *ngIf="this.user.role==='customer'" class="dropdown-item" (click)="userdashboard()" style="cursor:pointer">Dashboard</a>
+                                <a *ngIf="this.user.role==='customer'" class="dropdown-item" routerLink="/profile" routerLinkActive="activeClss">Profile</a>
                      
                                 <a class="dropdown-item" (click)="logout()" style="cursor:pointer">Logout</a>
                             </div>

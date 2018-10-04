@@ -378,37 +378,7 @@ export class UserdashboardComponent implements OnInit {
 
   }
 
-  updateuserFun(updateuserobj) {
-    this.submitted = true;
-    this.errorMsg = '';
-
-    if (this.updateuserForm.valid) {
-      this.isLoading = true;
-
-      this.EgazeService.updateprofile(updateuserobj.value, this.user.loginId).subscribe(result => {
-        this.isLoading = false;
-        if (typeof result === "object") {
-          this.isLoaderdiv = false;
-          // setTimeout(function () {
-          //   window.location.reload(true);
-          // }, 2000);
-          const element = document.querySelector("#destination")
-          if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-          window.scroll(0, 0);
-
-          this.updateuserProfilestatus = "Profile updated Successfully";
-          this.isEditDisabled = false;
-        }
-      }, error => {
-        this.isLoaderdiv = false;
-        this.errorMsg = 'Server error has occurred. Please try later.';
-      });
-
-    }
-
-
-  }
-
+  
   profileeditFun() {
     this.isEditDisabled = !this.isEditDisabled;
     this.userchangepwdflag = true;

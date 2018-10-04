@@ -1,5 +1,4 @@
 <div class="container container-style">
-
     <div class="row justify-content-center">
         <div class="propertyheading" (click)="profileeditFun()">
             <i class="fa fa-edit" style="font-size:13px;font-weight: 200"></i> Edit Profile
@@ -68,13 +67,12 @@
                                 <span class="mandatory">*</span>
                             </label>
                             <div class="col-sm-7">
-                                <input type="text" [readonly]="true" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.email.errors && isEditDisabled}"
-                                />
+                                <input type="text" [readonly]="true"  class="form-control"  [value]="this.email"    />
 
-                                <div *ngIf="submitted && feditP.email.errors" class="invalid-feedback">
+                                <!-- <div *ngIf="submitted && feditP.email.errors" class="invalid-feedback">
                                     <div *ngIf="feditP.email.errors.required">Email Name is required</div>
                                     <div *ngIf="feditP.email.errors.pattern">Please enter valid email</div>fgvtr
-                                </div>
+                                </div> -->
                             </div>
 
                         </div>
@@ -83,12 +81,12 @@
                                 <span class="mandatory">*</span>
                             </label>
                             <div class="col-sm-7">
-                                <input type="text" [readonly]="true" maxlength="10" formControlName="mobileNumber" class="form-control" />
+                                <input type="text" [readonly]="true" maxlength="10"  class="form-control"  [value]="this.mobileNo"/>
 
-                                <div *ngIf="submitted && feditP.mobileNumber.errors" class="invalid-feedback">
+                                <!-- <div *ngIf="submitted && feditP.mobileNumber.errors" class="invalid-feedback">
                                     <div *ngIf="feditP.mobileNumber.errors.required">Mobile Number Name is required
                                     </div>
-                                </div>
+                                </div> -->
 
                             </div>
 
@@ -207,7 +205,7 @@
 
 
 
-                <div class="form-group" align="center" style="margin-top:15px;">
+                <div class="form-group" align="center" style="margin-top:15px;" *ngIf="isEditDisabled">
                     <button [disabled]="!isEditDisabled" class="submit-btn">SAVE</button>
                 </div>
                 <div class='col' align='center' *ngIf="errorMsg!=''">
@@ -283,7 +281,7 @@
 
 
 
-
+    <app-loading-div *ngIf="isLoading"></app-loading-div>
 
 
 </div>
