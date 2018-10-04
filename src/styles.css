@@ -294,3 +294,19 @@ body.modal-open {
   font-size: 16px;
   font-weight: 500;
  }
+ /** arrow up **/
+ .backtotopstyle {
+  background: url("../src/assets/images/toparrow.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  height: 60px;
+  width: 66px;
+  outline: 0px !important;
+  outline-style: none !important;
+  border: none;
+  position: fixed;
+  z-index: 22;
+  display: block;
+  right: 20px;
+  bottom: 20px;
+  opacity: 0.5;
+}
+/**  arrow up  **/
