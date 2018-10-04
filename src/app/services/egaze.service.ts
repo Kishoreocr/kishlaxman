@@ -145,7 +145,7 @@ export class EgazeService {
   }
   savePropertyDoc(file, propetyId, userId): Observable<any> {
     let formdata: FormData = new FormData();
-//alert(propetyId)
+    //alert(propetyId)
     formdata.append('file', file);
 
     return this.http.post(this.baseUrl + "uploadFile/propertydocs/" + propetyId + "/" + userId, formdata);
@@ -157,18 +157,25 @@ export class EgazeService {
 
   }
 
-  savePropertyComments(propetyId, userId,agentId,role,description): Observable<any> {
+  getPropertyCommentDocURL(id) {
+    return this.baseUrl + 'downloadFile/propertydocs/agent/' + id;
+
+  }
+  savePropertyComments(propetyId, userId, agentId, role, description,status,file): Observable<any> {
     let formdata: FormData = new FormData();
     formdata.append('propertyId', propetyId);
+    formdata.append('status', status);
+    //alert(file)
+    formdata.append('file', file);
     // if admin then user id is zero.
-    if(role==='Admin'){
+    if (role === 'Admin') {
       formdata.append('userId', "0");
-    }else{
+    } else {
       formdata.append('userId', userId);
     }
-    if(role==='Customer'){
+    if (role === 'Customer') {
       formdata.append('agentId', "0");
-    }else{
+    } else {
       formdata.append('agentId', agentId);
     }
     formdata.append('role', role);
@@ -178,16 +185,16 @@ export class EgazeService {
 
   }
 
-  getPropertyApi(){
+  getPropertyApi() {
 
-   return this.http.get(this.baseUrl + "all/properties");
+    return this.http.get(this.baseUrl + "all/properties");
 
   }
 
-  updatePropertybyAdmin(objProperty,userId, propertyId){
+  updatePropertybyAdmin(objProperty, userId, propertyId) {
     debugger;
     let requestData = {
-      'propertyId':propertyId,
+      'propertyId': propertyId,
       "loginId": userId,
       "propertyType": objProperty.propertyType,
       "propertyHolderName": objProperty.propertyHolderName,
@@ -218,18 +225,44 @@ export class EgazeService {
 
   }
   getPrpopertyDocs(propertyId) {
-    return this.http.get(this.baseUrl + "customer/propertydocs/"+
-    +propertyId);
+    return this.http.get(this.baseUrl + "customer/propertydocs/" +
+      +propertyId);
 
   }
   getPrpopertyComments(propertyId) {
-    return this.http.get(this.baseUrl + "propertydocs/agent/"+
-    +propertyId);
+    return this.http.get(this.baseUrl + "propertydocs/agent/" +
+      +propertyId);
 
   }
   removePropertyDoc(id) {
-    return this.http.delete(this.baseUrl + "customer/propertydocs/delete/"+
-    +id);
+    return this.http.delete(this.baseUrl + "customer/propertydocs/delete/" +
+      +id);
 
   }
+  savecontactus(requestData) {
+    var data = {
+      "email": requestData.email,
+      "name": requestData.name,
+      "description": requestData.description,
+      "type": requestData.type,
+      "mobileNo": requestData.mobileNo
+
+    }
+    return this.http.post(this.baseUrl + 'save/contactus', data);
+  }
+  updatePropertyStatus(propetyId, status): Observable<any> {
+    let formdata: FormData = new FormData();
+    formdata.append('propertyId', propetyId);
+    formdata.append('status', status);
+    return this.http.post(this.baseUrl + 'update/property/status', formdata);
+  }
+
+  upgradePackageRequest(requestData){
+    var data = {
+      "email": requestData.email,
+      "description": requestData.description
+      }
+    return this.http.post(this.baseUrl + 'save/contactus', data);
+  }
+  
 }

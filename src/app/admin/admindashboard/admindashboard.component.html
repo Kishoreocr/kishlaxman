@@ -761,7 +761,7 @@
                                                     </label>
                                                     <div class="col-sm-4">
                                                         <div class="form-group uploadfile-style">
-                                                            <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
+                                                            <input type="file" name="commentfile" formControlName="commentfile" title="Browse Document" class="form-control-file" (change)="fileSelectionEventcomments($event)">
                                                         </div>
                                                     </div>
 
@@ -796,7 +796,9 @@
                                                             <div class="commentbox-style-1">
                                                                 <p class="comment-role">By {{comment.role}},</p>
                                                                 <p class="comment-description">{{comment.description}}</p>
-                                                                <!-- <span class="comment-reply-btn">Reply</span> -->
+                                                                <span class="comment-reply-btn" >  
+                                                                        <i style="cursor: pointer" *ngIf="comment.documentName!==comment.documentType" (click)="getporpertyCommentdocDownloadUrl(comment.id)" class="fa fa-download" aria-hidden="true"></i>
+                                                                                </span> 
                                                                 <span class="comment-hrs">On {{comment.addedDate}}</span>
                                                             </div>
                                                         </td>

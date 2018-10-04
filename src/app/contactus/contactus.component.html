@@ -41,7 +41,7 @@
           </label>
 
           <select class="form-control" formControlName="type" (ngModelChange)="getType($event)" [ngClass]="{ 'is-invalid': submitted && f.type.errors }" class="form-control">
-            <option value="Issue" [selected]="selected">Issue</option>
+            <option value="Issue" >Issue</option>
             <option value="Feedback">Feedback</option>
             <option value="General enquiry">General enquiry</option>
 

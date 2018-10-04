@@ -32,6 +32,11 @@ export class ContactusComponent implements OnInit {
 
     return true;
   }
+  getType(event){
+    
+  }
+  
+
   get f() { return this.contactusForm.controls; }
 
   savedata(contactusform) {

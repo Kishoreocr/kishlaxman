@@ -34,17 +34,18 @@
         <div class="col tabActions" style="background-color:#f7fcff;">
 
             <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
-
+ <div *ngIf="!customdiv">
                 <div *ngIf="addProperty && !viewProperties" class="propertyheading" (click)="propertyFun()">
                     <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
                 </div>
-                <!-- <div *ngIf="addProperty && !viewProperties" class="propertyheading">
-                    <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
-                </div> -->
                 <div *ngIf="!addProperty && viewProperties" class="propertyheading" (click)="propertyFunView()">
                     <i class="fa fa-eye" style="font-size:13px;font-weight: 200"></i> View Properties
                 </div>
-
+            </div>
+            <div class="alert alert-success" style="margin-top: 100px;" id="propertyDestination1" *ngIf="customdiv">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <strong>You have choosen CUSTOM PLAN. Admin will contact you soon..</strong>
+                </div>
             </div>
 
 
@@ -65,7 +66,7 @@
 
         </div>
 
-        <div class="col" style="padding-bottom:7px;">
+        <div  class="col" style="padding-bottom:7px;">
 
             <!--Property Tab start here -->
             <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
@@ -322,7 +323,7 @@
 
                                                     <div class="form-inline" style="margin-bottom:4px;">
                                                         <div class="form-group uploadfile-style">
-                                                            <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
+                                                            <input type="file" name="file"  formControlName="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
                                                         </div>
                                                         <button type="button" class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
 
@@ -351,7 +352,7 @@
                                                         <div class="col-sm-4">
                                                             <select class="form-control" formControlName="typeofProperty" (ngModelChange)="getType($event)" class="form-control">
 
-                                                                <option value="nochanges">No Changes</option>
+                                                                <option value="nochanges" >No Changes</option>
                                                                 <option value="roadexpansion">Road Expansion</option>
 
                                                             </select>
@@ -388,7 +389,7 @@
                                                         </label>
                                                         <div class="col-sm-4">
                                                             <div class="form-group uploadfile-style">
-                                                                <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
+                                                                <input type="file" name="commentfile" formControlName="commentfile" title="Browse Document" class="form-control-file" (change)="fileSelectionEventcomments($event)">
                                                             </div>
                                                         </div>
 
@@ -431,7 +432,9 @@
                                                                 <div class="commentbox-style-1">
                                                                     <p class="comment-role">By {{comment.role}},</p>
                                                                     <p class="comment-description">{{comment.description}}</p>
-                                                                    <!-- <span class="comment-reply-btn">Reply</span> -->
+                                                             <span class="comment-reply-btn" *ngIf="comment.documentName!=''">  
+                                                     <i style="cursor: pointer" (click)="getporpertyCommentdocDownloadUrl(comment.id)" class="fa fa-download" aria-hidden="true"></i>
+                                                             </span> 
                                                                     <span class="comment-hrs">On {{comment.addedDate}}</span>
                                                                 </div>
                                                             </td>
@@ -457,8 +460,8 @@
                             <div class="modal-background"></div>
                         </app-modal-property>
 
-
-                        <div class="table-responsive">
+                        <div *ngIf="!customdiv">
+                        <div class="table-responsive" >
                             <div *ngIf='userAllpropertis.length == 0'>No Properties.</div>
                             <div class="col-sm-12 seach-box">
 
@@ -531,7 +534,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                        </div>
+                        </div></div>
                     </div>
                 </div>
 

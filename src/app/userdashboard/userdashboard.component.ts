@@ -69,7 +69,7 @@ export class UserdashboardComponent implements OnInit {
   upgradePlanForm: FormGroup;
   upgradePlanprocess: boolean = false;
   upgradePlanmessage: boolean = false;
-
+  customdiv: boolean = false;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private ModalPropertyService: ModalPropertyService) {
     this.modalService = modalService;
@@ -145,9 +145,12 @@ export class UserdashboardComponent implements OnInit {
 
     this.propertiesShow();
     this.commentForm = this.formBuilder.group({
-      commentfield: ['', Validators.required]
+      commentfield: ['', Validators.required],
+      typeofProperty:['', Validators.required],
+      commentfile: [null]
     });
-
+    
+    this.commentForm.controls['typeofProperty'].setValue("nochanges");
     this.upgradePlanForm = this.formBuilder.group({
       plandetailsField: ['', Validators.required]
     });
@@ -187,6 +190,7 @@ export class UserdashboardComponent implements OnInit {
   }
   // convenience getter for easy access to form fields
   get f() { return this.propertyForm.controls; }
+  get c() { return this.commentForm.controls; }
 
   get feditP() { return this.updateuserForm.controls }
 
@@ -498,6 +502,12 @@ export class UserdashboardComponent implements OnInit {
     this.EgazeService.getCustomerPackageLatestRecord(this.user.loginId).subscribe(result => {
       debugger;
       this.propertyCount = result;
+      if (this.propertyCount != null) {
+        var data = JSON.stringify(this.propertyCount);
+        if (this.propertyCount.packageName === 'CUSTOM PLAN' && this.propertyCount.purchaseDate === this.propertyCount.expiryDate) {
+          this.customdiv = true;
+        }
+      }
     }, error => {
 
     });
@@ -558,6 +568,38 @@ export class UserdashboardComponent implements OnInit {
       this.sfile = file;
     }
   }
+  fileSelectionEventcomments(event: any) {
+    const reader = new FileReader();
+    const [file] = event.target.files;
+    if (event.target.files && event.target.files.length) {
+      this.sfile = file;
+    }
+   // console.log(this.sfile)
+    if (this.sfile != null) {
+      const file = this.sfile;
+      if (file.type === "application/pdf" || file.type.match("image")) {
+        if (file.size <= 4194304) {
+          this.isLoaderdiv = true;
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            this.commentForm.patchValue({
+              commentfile: reader.result
+            });
+          }
+        } else {
+          alert("Please choose < 4MB Documents")
+          this.commentForm.controls['commentfile'].setValue(null);
+        }
+      } else {
+        alert("Please choose images/pdf")
+        this.commentForm.controls['commentfile'].setValue(null);
+
+      }
+    } else {
+      alert("Please choose the file");
+      this.commentForm.controls['commentfile'].setValue(null);
+    }
+  }
 
   fileSelectionEvent() {
     const reader = new FileReader();
@@ -591,13 +633,16 @@ export class UserdashboardComponent implements OnInit {
             });
           };
         } else {
-          alert("Please choose < 4MB Documents")
+          alert("Please choose < 4MB Documents");
+          this.documentGrp.controls['file'].setValue("");
         }
       } else {
-        alert("Please choose images/pdf")
+        alert("Please choose images/pdf");
+        this.documentGrp.controls['file'].setValue("");
       }
     } else {
       alert("Please choose the file");
+      this.documentGrp.controls['file'].setValue("");
     }
   }
 
@@ -643,13 +688,17 @@ export class UserdashboardComponent implements OnInit {
   }
   commentFun(description) {
     this.submitted = true;
-    //alert(description.value.commentfield)
+    //alert(JSON.stringify(description.value));
     if (this.commentForm.valid) {
-      this.EgazeService.savePropertyComments(this.propertyId, this.user1.loginId, "0", 'Customer', description.value.commentfield).subscribe(result => {
+      this.EgazeService.savePropertyComments(this.propertyId, this.user1.loginId, "0", 'Customer', description.value.commentfield,description.value.typeofProperty,this.sfile).subscribe(result => {
 
         // this.commentsmsg = result;
         if (result) {
           this.submitted = false;
+          this.commentForm.controls['commentfile'].setValue("");
+          this.commentForm.controls['commentfield'].setValue("");
+          this.sfile=null;
+
         }
         //alert('success' + this.commentsmsg);
         this.getPrpopertyComments(this.propertyId);
@@ -671,6 +720,9 @@ export class UserdashboardComponent implements OnInit {
   getDownloadUrl(id) {
     window.location.href = this.EgazeService.getPropertyDocURL(id);
   }
+  getporpertyCommentdocDownloadUrl(id) {
+    window.location.href = this.EgazeService.getPropertyCommentDocURL(id);
+  }
   removedoc(id) {
     this.EgazeService.removePropertyDoc(id).subscribe(result => {
       this.getPrpopertyDocs(this.propertyId);
@@ -690,13 +742,13 @@ export class UserdashboardComponent implements OnInit {
       this.isLoading = true;
       this.submitted = false;
 
-      this.EgazeService.updateprofile(upgradePlanForm.value, this.user.loginId).subscribe(result => {
-        this.isLoading = false;
+      // this.EgazeService.updateprofile(upgradePlanForm.value, this.user.loginId).subscribe(result => {
+      //   this.isLoading = false;
 
-      }, error => {
-        this.isLoaderdiv = false;
-        this.errorMsg = 'Server error has been occurred. Please try later.';
-      });
+      // }, error => {
+      //   this.isLoaderdiv = false;
+      //   this.errorMsg = 'Server error has been occurred. Please try later.';
+      // });
 
     }
     else {

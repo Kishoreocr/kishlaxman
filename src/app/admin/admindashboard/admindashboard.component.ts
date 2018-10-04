@@ -111,8 +111,12 @@ export class AdmindashboardComponent implements OnInit {
     });
 
     this.commentForm = this.formBuilder.group({
-      commentfield: ['', Validators.required]
+      commentfield: ['', Validators.required],
+      typeofProperty:['', Validators.required],
+      commentfile: [null]
     });
+    
+    this.commentForm.controls['typeofProperty'].setValue("nochanges");
     this.documentGrp = this.formBuilder.group({
       file: [null, Validators.required]
 
@@ -415,11 +419,14 @@ export class AdmindashboardComponent implements OnInit {
     this.submitted = true;
     //alert(description.value.commentfield)
     if (this.commentForm.valid) {
-      this.EgazeService.savePropertyComments(this.propertyId, "0", this.loginId, 'Admin', description.value.commentfield).subscribe(result => {
+      this.EgazeService.savePropertyComments(this.propertyId, "0", this.loginId, 'Admin', description.value.commentfield,description.value.typeofProperty,this.sfile).subscribe(result => {
 
         this.commentsmsg = result;
         if (this.commentsmsg) {
           this.submitted = false;
+          this.commentForm.controls['commentfile'].setValue("");
+          this.commentForm.controls['commentfield'].setValue("");
+          this.sfile=null;
         }
         //alert('success' + this.commentsmsg);
         this.getPrpopertyComments(this.propertyId);
@@ -441,5 +448,39 @@ export class AdmindashboardComponent implements OnInit {
       //alert('error' + error);
     });
   }
+  fileSelectionEventcomments(event: any) {
+    const reader = new FileReader();
+    const [file] = event.target.files;
+    if (event.target.files && event.target.files.length) {
+      this.sfile = file;
+    }
+   // console.log(this.sfile)
+    if (this.sfile != null) {
+      const file = this.sfile;
+      if (file.type === "application/pdf" || file.type.match("image")) {
+        if (file.size <= 4194304) {
+          this.isLoaderdiv = true;
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            this.commentForm.patchValue({
+              commentfile: reader.result
+            });
+          }
+        } else {
+          alert("Please choose < 4MB Documents")
+          this.commentForm.controls['commentfile'].setValue("");
+        }
+      } else {
+        alert("Please choose images/pdf")
+        this.commentForm.controls['commentfile'].setValue("");
 
+      }
+    } else {
+      alert("Please choose the file");
+      this.commentForm.controls['commentfile'].setValue("");
+    }
+  }
+  getporpertyCommentdocDownloadUrl(id) {
+    window.location.href = this.EgazeService.getPropertyCommentDocURL(id);
+  }
 }
