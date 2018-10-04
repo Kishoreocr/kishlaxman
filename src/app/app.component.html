@@ -121,6 +121,8 @@
                                 <!-- <a class="dropdown-item" routerLink="/loginform" routerLinkActive="activeClss">Logout</a> -->
                                 <a *ngIf="this.user.role==='admin'" class="dropdown-item" routerLink="/admindashboard" routerLinkActive="activeClss">Dashboard</a>
                                 <a *ngIf="this.user.role==='customer'" class="dropdown-item" (click)="userdashboard()">Dashboard</a>
+                                <a *ngIf="this.user.role==='customer'" class="dropdown-item" routerLink="/profile">Profile</a>
+                     
                                 <a class="dropdown-item" (click)="logout()" style="cursor:pointer">Logout</a>
                             </div>
                         </li>
@@ -242,13 +244,13 @@
                     <section id="lab_social_icon_footer">
                         <div>
                             <div class="text-center center-block">
-                                <a href="javascript.void(0)">
+                                <a href="https://www.facebook.com/egaze" target="_new">
                                     <i id="social-fb" class="fa fa-facebook-square fa-3x social"></i>
                                 </a>
-                                <a href="javascript.void(0)">
+                                <a href="https://twitter.com/egaze1" target="_new">
                                     <i id="social-tw" class="fa fa-twitter-square fa-3x social"></i>
                                 </a>
-                                <a href="javascript.void(0)">
+                                <a href="https://www.youtube.com/channel/UCXWgWp696nA1LiOG_nYr5oA?view_as=subscriber" target="_new">
                                     <i id="social-gp" class="fa fa-youtube-square fa-3x social"></i>
                                 </a>
 

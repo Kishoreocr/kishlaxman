@@ -43,6 +43,7 @@ import { EgazeServicesComponent } from './egaze-services/egaze-services.componen
 import { PackageDescriptionComponent } from './package-description/package-description.component';
 import {DataTableModule} from "angular-6-datatable";
 import {Ng2TelInputModule} from 'ng2-tel-input';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -75,6 +76,8 @@ const appRoutes: Routes = [
   { path: 'success-register', component: SuccessregsiterComponent },
   { path: 'package-choose', component: PackagesComponent },
   { path: 'forget-password', component: ForgetpasswordComponent },
+
+  { path: 'profile', component: ProfileComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 
@@ -110,7 +113,8 @@ const appRoutes: Routes = [
     WhyeGazeComponent,
     BlogsComponent,
     EgazeServicesComponent,
-    PackageDescriptionComponent
+    PackageDescriptionComponent,
+    ProfileComponent
     
   ],
   entryComponents:[

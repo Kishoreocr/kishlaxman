@@ -1,0 +1,289 @@
+<div class="container container-style">
+
+    <div class="row justify-content-center">
+        <div class="propertyheading" (click)="profileeditFun()">
+            <i class="fa fa-edit" style="font-size:13px;font-weight: 200"></i> Edit Profile
+        </div>
+        <div class="propertyheading" (click)="profileChangepwdFun()">
+            <i class="fa fa-key" style="font-size:13px;font-weight: 200"></i> Change Password
+        </div>
+    </div>
+
+
+
+    <div class="table-container-style">
+        <div class="alert alert-success" id="destination" *ngIf="updateuserProfilestatus!=''">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>{{updateuserProfilestatus}}</strong>
+        </div>
+
+
+        <div *ngIf="!userEditprofileFlag && userchangepwdflag">
+            <form [formGroup]="updateuserForm" (ngSubmit)="updateuserFun(updateuserForm)">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">First Name
+                                <span class="mandatory">*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="!isEditDisabled" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.firstName.errors && isEditDisabled }"
+                                />
+                                <div *ngIf="submitted && feditP.firstName.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.firstName.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Middle Name</label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="!isEditDisabled" formControlName="middleName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.middleName.errors && isEditDisabled }"
+                                />
+                                <div *ngIf="submitted && feditP.middleName.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.middleName.errors.required">Middle Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Last Name
+                                <span class="mandatory">*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="!isEditDisabled" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.lastName.errors && isEditDisabled}"
+                                />
+                                <div *ngIf="submitted && feditP.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.lastName.errors.required">Name is required</div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Email
+                                <span class="mandatory">*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="true" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.email.errors && isEditDisabled}"
+                                />
+
+                                <div *ngIf="submitted && feditP.email.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.email.errors.required">Email Name is required</div>
+                                    <div *ngIf="feditP.email.errors.pattern">Please enter valid email</div>fgvtr
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Mobile Number
+                                <span class="mandatory">*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="true" maxlength="10" formControlName="mobileNumber" class="form-control" />
+
+                                <div *ngIf="submitted && feditP.mobileNumber.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.mobileNumber.errors.required">Mobile Number Name is required
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Address 1
+                                <!-- <span class="mandatory">*</span> -->
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="!isEditDisabled" formControlName="address1" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address1.errors && isEditDisabled}"
+                                />
+                                <div *ngIf="submitted && feditP.address1.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.address1.errors.required">Address is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Address 2</label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="!isEditDisabled" formControlName="address2" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address2.errors && isEditDisabled}"
+                                />
+                                <div *ngIf="submitted && feditP.address2.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.address2.errors.required">Address is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Address 3</label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="!isEditDisabled" formControlName="address3" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address3.errors && isEditDisabled}"
+                                />
+                                <div *ngIf="submitted && feditP.address3.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.address3.errors.required">Address is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">City
+                                <!-- <span class="mandatory">*</span> -->
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="!isEditDisabled" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.city.errors && isEditDisabled}"
+                                />
+                                <div *ngIf="submitted && feditP.city.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.city.errors.required">City is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">State
+                                <!-- <span class="mandatory">*</span> -->
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="!isEditDisabled" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.state.errors && isEditDisabled}"
+                                />
+                                <div *ngIf="submitted && feditP.state.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.state.errors.required">State is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">zip
+                                <!-- <span class="mandatory">*</span> -->
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="!isEditDisabled" maxlength="6" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.zipCode.errors && isEditDisabled}"
+                                />
+
+                                <div *ngIf="submitted && feditP.zipCode.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.zipCode.errors.required">Zip Code is required</div>
+                                    <div *ngIf="feditP.zipCode.errors.maxlength">ZipCode max value will be 6 digits only</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Country
+                                <!-- <span class="mandatory">*</span> -->
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" [readonly]="!isEditDisabled" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.country.errors && isEditDisabled}"
+                                />
+                                <div *ngIf="submitted && feditP.country.errors" class="invalid-feedback">
+                                    <div *ngIf="feditP.country.errors.required">country is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+                <div class="form-group" align="center" style="margin-top:15px;">
+                    <button [disabled]="!isEditDisabled" class="submit-btn">SAVE</button>
+                </div>
+                <div class='col' align='center' *ngIf="errorMsg!=''">
+                    <p style='color:red;font-size:14px;'>{{errorMsg}}</p>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div *ngIf="!userchangepwdflag && userEditprofileFlag">
+
+            <div class="alert alert-success" id="profilechndpwd" *ngIf="profilechndResultMsg !=''">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>{{profilechndResultMsg}}</strong>
+            </div>
+
+            <form [formGroup]="updateuserNewpwdForm" (ngSubmit)="profileChangepwdSubmit(updateuserNewpwdForm)">
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Old Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
+                        />
+                        <div *ngIf="submitted && fpwdP.oldpwd.errors" class="invalid-feedback">
+                            <div *ngIf="fpwdP.oldpwd.errors.required">Old password is required</div>
+                            <div *ngIf="fpwdP.oldpwd.errors.minlength">Old password must be at least 6 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">New Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
+                        />
+                        <div *ngIf="submitted && fpwdP.newpwd.errors" class="invalid-feedback">
+                            <div *ngIf="fpwdP.newpwd.errors.required">New password is required</div>
+                            <div *ngIf="fpwdP.newpwd.errors.minlength">New password must be at least 6 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Confirm Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
+                        />
+                        <div *ngIf="submitted && fpwdP.confirmpwd.errors" class="invalid-feedback">
+                            <div *ngIf="fpwdP.confirmpwd.errors.required">Confirm password is required</div>
+                            <div *ngIf="fpwdP.confirmpwd.errors.minlength">Confirm password must be at least 6 characters</div>
+                            <div *ngIf="fpwdP.confirmpwd.errors.notSame">New password and confirm password must be match</div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group" align="center" style="margin-top:15px;">
+                    <button class="submit-btn">SAVE</button>
+                </div>
+            </form>
+
+            <div class='col' align='center' *ngIf="resultMsg!=''">
+                <p style='color:red;font-size:14px;'>{{resultMsg}} </p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+</div>
