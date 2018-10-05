@@ -26,7 +26,7 @@
                     <i class="fa fa-user"></i> Custom packages
                 </li>
 
-                <li title='Custom packages for customers' (click)="userdashTabs('Profile')">
+                <li title='Custom packages for customers' [ngClass]="{'activeTabdash': adminalertTab}" (click)="userdashTabs('adminalert')">
                     <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
                     <i class="fa fa-user"></i> Alerts
                 </li>
@@ -35,7 +35,7 @@
                     <i class="fa fa-user"></i> Property comments
 
                 </li> -->
-                <li title='Portal feedback' (click)="userdashTabs('Profile')">
+                <li title='Portal feedback' (click)="userdashTabs('')">
                     <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
                     <i class="fa fa-user"></i> Portal feedback
 
@@ -197,32 +197,41 @@
 
                 <div class="table-container-style table-th-styles">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-striped table-bordered" [mfData]="customers" #mf="mfDataTable"
+                            [mfRowsOnPage]="5">
+
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Mobile Number</th>
-                                    <!-- <th scope="col">Status</th> -->
-                                    <th scope="col" class='text-center'>Action</th>
-
+                                    <th>
+                                        <mfDefaultSorter by="firstName"> Name</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="mobileNo">Mobile Number</mfDefaultSorter>
+                                    </th>
+                                    <th class='text-center'>Action
+                                    </th>
                                 </tr>
                             </thead>
+
                             <tbody>
-                                <tr *ngFor="let customer of customers;let IndexId = index">
-                                    <td>{{IndexId+1}}</td>
+
+                                <tr *ngFor="let customer of mf.data; let index = index">
                                     <td>{{customer.firstName}} {{customer.lastName}}</td>
                                     <td>{{customer.email}}</td>
                                     <td>{{customer.mobileNo}}</td>
-                                    <!-- <td>{{customer.status}}</td> -->
-                                    <td class="viewbtn text-center">
-                                        <!-- <i class="fa fa-eye" (click)="viewPropertyFun()"></i> -->
+                                    <td style='text-align:center'>
                                         <i class="fa fa-eye" (click)="openModal('custom-modal-1',customer)"></i>
-
                                     </td>
                                 </tr>
                             </tbody>
+                            <tr>
+                                <td colspan="4" style="border:0px !important;">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -253,7 +262,8 @@
                                 <div style='padding: 10px 20px 20px 20px;'>
                                     <div class='row userdashboardTab'>
                                         <ul>
-                                            <li [ngClass]="{'active': propertytabModal}" (click)="userdashTabs('PropertyDetailsTab')">Property Details</li>
+                                            <li [ngClass]="{'active': propertytabModal}" (click)="userdashTabs('PropertyDetailsTab')">Property
+                                                Details</li>
                                             <li [ngClass]="{'active': documentstabModal}" (click)="userdashTabs('DocumentsTab')">Documents</li>
                                             <li [ngClass]="{'active': commentstabModal}" (click)="userdashTabs('CommentsTab')">Comments</li>
                                         </ul>
@@ -267,7 +277,8 @@
                                             <div class='col' align='center' style='padding-bottom:10px;'>
 
                                                 <div class="propertyheading" (click)="profileeditFun()">
-                                                    <i class="fa fa-edit" style="font-size:13px;font-weight: 200"></i> Edit
+                                                    <i class="fa fa-edit" style="font-size:13px;font-weight: 200"></i>
+                                                    Edit
                                                 </div>
                                             </div>
                                             <div class="alert alert-success" id="propertyDestination" *ngIf="updateuserProfilestatus!=''">
@@ -283,26 +294,31 @@
                                                             <label for="exampleFormControlSelect1">Type of Property
                                                                 <span class="mandatory">*</span>
                                                             </label>
-                                                            <select class="form-control" formControlName="propertyType" (ngModelChange)="getType($event)" [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }">
-                                                                <option value="" [selected]="selected">Select any Property</option>
+                                                            <select class="form-control" formControlName="propertyType"
+                                                                (ngModelChange)="getType($event)" [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }">
+                                                                <option value="" [selected]="selected">Select any
+                                                                    Property</option>
                                                                 <option value="Residential">Residential</option>
                                                                 <option value="Commercial">Commercial</option>
                                                                 <option value="Land">Land/Plots/Agricultural</option>
                                                                 <option value="Industrial">Industrial</option>
                                                             </select>
                                                             <div *ngIf="submitted && f.propertyType.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.propertyType.errors.required">Type of Property is required</div>
+                                                                <div *ngIf="f.propertyType.errors.required">Type of
+                                                                    Property is required</div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="titleHolder">Title Holder
                                                                 <span class="mandatory">*</span>
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="propertyHolderName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.propertyHolderName.errors }"
-                                                                id="titleHolderFormControlInput" placeholder="Enter Title Holder"
-                                                            />
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="propertyHolderName" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.propertyHolderName.errors }"
+                                                                id="titleHolderFormControlInput" placeholder="Enter Title Holder" />
                                                             <div *ngIf="submitted && f.propertyHolderName.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.propertyHolderName.errors.required">Title Holder is required</div>
+                                                                <div *ngIf="f.propertyHolderName.errors.required">Title
+                                                                    Holder is required</div>
                                                             </div>
                                                         </div>
 
@@ -310,10 +326,13 @@
                                                             <label for="relationship">Relationship to customer
                                                                 <span class="mandatory">*</span>
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="relationship" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationship.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="relationship" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.relationship.errors }"
                                                                 id="relationship" placeholder="Enter Relationship to customer">
                                                             <div *ngIf="submitted && f.relationship.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.relationship.errors.required">Relationship to customer is required</div>
+                                                                <div *ngIf="f.relationship.errors.required">Relationship
+                                                                    to customer is required</div>
                                                             </div>
                                                         </div>
 
@@ -321,20 +340,25 @@
                                                             <label for="doorNo">Survey No/Dr No
                                                                 <span class="mandatory">*</span>
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="doorNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.doorNo.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="doorNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.doorNo.errors }"
                                                                 id="doorNo" placeholder="Enter Survey No/Dr No">
                                                             <div *ngIf="submitted && f.doorNo.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.doorNo.errors.required">Survey No/Dr No is required</div>
+                                                                <div *ngIf="f.doorNo.errors.required">Survey No/Dr No
+                                                                    is required</div>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="subRegisterOffice">Sub Register Office
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="subRegisterOffice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="subRegisterOffice" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
                                                                 id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office">
                                                             <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is required
+                                                                <div *ngIf="f.subRegisterOffice.errors.required">Sub
+                                                                    Register Office is required
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -344,10 +368,13 @@
                                                             <label for="extentOfProperty">Extent of Property
                                                                 <span class="mandatory">*</span>
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="extentOfProperty" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentOfProperty.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="extentOfProperty" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.extentOfProperty.errors }"
                                                                 id="extentOfProperty" placeholder="Enter Extent of Property">
                                                             <div *ngIf="submitted && f.extentOfProperty.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.extentOfProperty.errors.required">Extent of Property is required</div>
+                                                                <div *ngIf="f.extentOfProperty.errors.required">Extent
+                                                                    of Property is required</div>
                                                             </div>
                                                         </div>
 
@@ -360,10 +387,13 @@
                                                         <div class="form-group">
                                                             <label for="boundaries">Boundaries - North
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesNorth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="boundariesNorth" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }"
                                                                 id="boundariesFormControlInput" placeholder="Enter North">
                                                             <div *ngIf="submitted && f.boundariesNorth.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.boundariesNorth.errors.required">Boundaries is required</div>
+                                                                <div *ngIf="f.boundariesNorth.errors.required">Boundaries
+                                                                    is required</div>
                                                             </div>
                                                         </div>
 
@@ -380,38 +410,50 @@
                                                         <div class="form-group">
                                                             <label for="boundaries">Boundaries - South
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesSouth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="boundariesSouth" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }"
                                                                 id="boundariesFormControlInput" placeholder="Enter South">
                                                             <div *ngIf="submitted && f.boundariesSouth.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.boundariesSouth.errors.required">Boundaries is required</div>
+                                                                <div *ngIf="f.boundariesSouth.errors.required">Boundaries
+                                                                    is required</div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="boundaries">Boundaries - East
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesEast" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="boundariesEast" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }"
                                                                 id="boundariesFormControlInput" placeholder="Enter East">
                                                             <div *ngIf="submitted && f.boundariesEast.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.boundariesEast.errors.required">Boundaries is required</div>
+                                                                <div *ngIf="f.boundariesEast.errors.required">Boundaries
+                                                                    is required</div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="boundaries">Boundaries - West
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesWest" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="boundariesWest" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }"
                                                                 id="boundariesFormControlInput" placeholder="Enter West">
                                                             <div *ngIf="submitted && f.boundariesWest.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.boundariesWest.errors.required">Boundaries is required</div>
+                                                                <div *ngIf="f.boundariesWest.errors.required">Boundaries
+                                                                    is required</div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="documentno">Document No.
                                                                 <span class="mandatory">*</span>
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="documentNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="documentNo" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
                                                                 id="documentNoFormControlInput" placeholder="Enter document no.">
                                                             <div *ngIf="submitted && f.documentNo.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.documentNo.errors.required">Document No. is required</div>
+                                                                <div *ngIf="f.documentNo.errors.required">Document No.
+                                                                    is required</div>
                                                             </div>
                                                         </div>
 
@@ -419,10 +461,13 @@
                                                             <label for="address1">Address 1
                                                                 <span class="mandatory">*</span>
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="address1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address1.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="address1" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.address1.errors }"
                                                                 id="address1FormControlInput" placeholder="Enter Address 1">
                                                             <div *ngIf="submitted && f.address1.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.address1.errors.required">Address 1 is required</div>
+                                                                <div *ngIf="f.address1.errors.required">Address 1 is
+                                                                    required</div>
                                                             </div>
                                                         </div>
 
@@ -430,10 +475,13 @@
                                                             <label for="address2">Address 2
                                                                 <span class="mandatory">*</span>
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="address2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address2.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="address2" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.address2.errors }"
                                                                 id="address1FormControlInput" placeholder="Enter Address 2">
                                                             <div *ngIf="submitted && f.address2.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.address2.errors.required">Address 2 is required</div>
+                                                                <div *ngIf="f.address2.errors.required">Address 2 is
+                                                                    required</div>
                                                             </div>
                                                         </div>
 
@@ -449,10 +497,12 @@
                                                             <label for="city">Village/City
                                                                 <span class="mandatory">*</span>
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
                                                                 id="city" placeholder="Enter City">
                                                             <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.city.errors.required">Village/City is required</div>
+                                                                <div *ngIf="f.city.errors.required">Village/City is
+                                                                    required</div>
                                                             </div>
 
                                                         </div>
@@ -463,10 +513,12 @@
                                                                 <span class="mandatory">*</span>
                                                             </label>
 
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
                                                                 id="mandalFormControlInput" placeholder="Enter Mandal">
                                                             <div *ngIf="submitted && f.mandal.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.mandal.errors.required">Mandal is required</div>
+                                                                <div *ngIf="f.mandal.errors.required">Mandal is
+                                                                    required</div>
                                                             </div>
                                                         </div>
 
@@ -476,10 +528,13 @@
                                                                 <span class="mandatory">*</span>
                                                             </label>
 
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="district" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
                                                                 id="districtFormControlInput" placeholder="Enter District">
                                                             <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.district.errors.required">District is required</div>
+                                                                <div *ngIf="f.district.errors.required">District is
+                                                                    required</div>
                                                             </div>
 
 
@@ -488,11 +543,13 @@
                                                             <label for="zip">zip
                                                                 <span class="mandatory">*</span>
                                                             </label>
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }"
                                                                 id="zipFormControlInput" placeholder="Enter zipCode">
                                                             <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
                                                                 <div *ngIf="f.zip.errors.required">zipCode is required</div>
-                                                                <div *ngIf="f.zip.errors.maxlength">ZipCode max value will be 6 digits only</div>
+                                                                <div *ngIf="f.zip.errors.maxlength">ZipCode max value
+                                                                    will be 6 digits only</div>
 
                                                             </div>
                                                         </div>
@@ -504,7 +561,8 @@
                                                                 <span class="mandatory">*</span>
                                                             </label>
 
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
                                                                 id="stateFormControlInput" placeholder="Enter State">
                                                             <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
                                                                 <div *ngIf="f.state.errors.required">State is required</div>
@@ -516,10 +574,13 @@
                                                                 <span class="mandatory">*</span>
                                                             </label>
 
-                                                            <input type="text" [readonly]="!isEditDisabled" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
+                                                            <input type="text" [readonly]="!isEditDisabled"
+                                                                formControlName="country" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
                                                                 id="stateFormControlInput" placeholder="Enter country">
                                                             <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
-                                                                <div *ngIf="f.country.errors.required">Country is required</div>
+                                                                <div *ngIf="f.country.errors.required">Country is
+                                                                    required</div>
                                                             </div>
 
                                                         </div>
@@ -608,12 +669,14 @@
 
                                                             <td style='text-align:center'>
 
-                                                                <i style="cursor: pointer" (click)="removedoc(doc.id)" class="fa fa-trash" aria-hidden="true"></i>
+                                                                <i style="cursor: pointer" (click)="removedoc(doc.id)"
+                                                                    class="fa fa-trash" aria-hidden="true"></i>
                                                             </td>
 
                                                             <td style='text-align:center'>
 
-                                                                <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)" class="fa fa-download" aria-hidden="true"></i>
+                                                                <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)"
+                                                                    class="fa fa-download" aria-hidden="true"></i>
 
                                                             </td>
                                                         </tr>
@@ -630,7 +693,8 @@
 
                                                     <div class="form-inline" style="margin-bottom:4px;">
                                                         <div class="form-group uploadfile-style">
-                                                            <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
+                                                            <input type="file" name="file" title="Browse Document"
+                                                                class="form-control-file" (change)="importfile($event)">
                                                         </div>
                                                         <button type="button" class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
 
@@ -701,11 +765,13 @@
                                                 <h6>Add Comment</h6>
                                                 <div class="form-group row">
 
-                                                    <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Current Status
+                                                    <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Current
+                                                        Status
                                                         <span class="mandatory">*</span>
                                                     </label>
                                                     <div class="col-sm-4">
-                                                        <select class="form-control" formControlName="typeofProperty" (ngModelChange)="getType($event)" class="form-control">
+                                                        <select class="form-control" formControlName="typeofProperty"
+                                                            (ngModelChange)="getType($event)" class="form-control">
 
                                                             <option value="nochanges">No Changes</option>
                                                             <option value="roadexpansion">Road Expansion</option>
@@ -722,8 +788,11 @@
                                                         <span class="mandatory">*</span>
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <textarea class="form-control" style="resize:none;text-align:left;" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
+                                                        <textarea class="form-control" style="resize:none;text-align:left;"
+                                                            id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
                                                             class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }">
+
+
 
                                                         </textarea>
 
@@ -756,12 +825,15 @@
 
                                                 <div class="form-group row">
 
-                                                    <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Upload Document
+                                                    <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Upload
+                                                        Document
 
                                                     </label>
                                                     <div class="col-sm-4">
                                                         <div class="form-group uploadfile-style">
-                                                            <input type="file" name="commentfile" formControlName="commentfile" title="Browse Document" class="form-control-file" (change)="fileSelectionEventcomments($event)">
+                                                            <input type="file" name="commentfile" formControlName="commentfile"
+                                                                title="Browse Document" class="form-control-file"
+                                                                (change)="fileSelectionEventcomments($event)">
                                                         </div>
                                                     </div>
 
@@ -789,16 +861,19 @@
                                             <h6>Property Comments</h6>
                                         </div>
                                         <div class='col comments-style scrolling-comment'>
-                                            <table class="col-sm-12" [mfData]="comments" #mf="mfDataTable" [mfRowsOnPage]="5">
+                                            <table class="col-sm-12" [mfData]="comments" #mf="mfDataTable"
+                                                [mfRowsOnPage]="5">
                                                 <tbody>
                                                     <tr *ngFor="let comment of mf.data;let IndexId = index">
                                                         <td>
                                                             <div class="commentbox-style-1">
                                                                 <p class="comment-role">By {{comment.role}},</p>
                                                                 <p class="comment-description">{{comment.description}}</p>
-                                                                <span class="comment-reply-btn" >  
-                                                                        <i style="cursor: pointer" *ngIf="comment.documentName!==comment.documentType" (click)="getporpertyCommentdocDownloadUrl(comment.id)" class="fa fa-download" aria-hidden="true"></i>
-                                                                                </span> 
+                                                                <span class="comment-reply-btn">
+                                                                    <i style="cursor: pointer" *ngIf="comment.documentName!==comment.documentType"
+                                                                        (click)="getporpertyCommentdocDownloadUrl(comment.id)"
+                                                                        class="fa fa-download" aria-hidden="true"></i>
+                                                                </span>
                                                                 <span class="comment-hrs">On {{comment.addedDate}}</span>
                                                             </div>
                                                         </td>
@@ -832,24 +907,25 @@
 
 
                 <div class="table-container-style table-th-styles">
-                   
-                        <div class="col-sm-12 seach-box">
 
-                                <form class="form-inline">
-                                    <div class="form-group mb-2">
-                                        <label for="search" class="search-label">Search</label>
-                                    </div>
-                                    <div class="form-group mx-sm-3 mb-2">
-                                        <input type="text" class="form-control" id="search" placeholder="Search..">
-                                    </div>
-                                    <button type="submit" class="btn mb-2">Search</button>
-                                </form>
+                    <div class="col-sm-12 seach-box">
+
+                        <form class="form-inline">
+                            <div class="form-group mb-2">
+                                <label for="search" class="search-label">Search</label>
                             </div>
-                   
-                   
-                   
+                            <div class="form-group mx-sm-3 mb-2">
+                                <input type="text" class="form-control" id="search" placeholder="Search..">
+                            </div>
+                            <button type="submit" class="btn mb-2">Search</button>
+                        </form>
+                    </div>
+
+
+
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" [mfData]="propertyApproval" #mf="mfDataTable" [mfRowsOnPage]="5">
+                        <table class="table table-striped table-bordered table-hover" [mfData]="propertyApproval" #mf="mfDataTable"
+                            [mfRowsOnPage]="5">
                             <thead>
                                 <tr>
                                     <!-- <th>
@@ -926,7 +1002,45 @@
         <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab">
             <app-custom-packages></app-custom-packages>
         </div>
+        <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && !profileTab && adminalertTab">
+            <div class="table-container-style table-th-styles table-responsive">
+            <div class="container-bg-style">
+            <table class="table table-striped table-bordered table-hover" [mfData]="adminalerts" #mf="mfDataTable" [mfRowsOnPage]="5">
+                <thead>
+                    <tr>
+                       
+                        <th>
+                            <mfDefaultSorter by="subject">Subject</mfDefaultSorter>
+                        </th>
+                        <th>
+                            <mfDefaultSorter by="description">Description</mfDefaultSorter>
+                        </th>
+                        <th>
+                            <mfDefaultSorter by="addedDate">Date</mfDefaultSorter>
+                        </th>
 
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let user of mf.data; let index = index">
+                        <!-- <td>{{index + 1}}</td> -->
+                        <td>{{user.subject}}</td>
+                        <td>{{user.description}}</td>
+                        <td>{{user.addedDate| date :'dd/MM/yyyy'}}</td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" style="border:0px !important;">
+                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>    </div></div>
+        </div>
+        
     </div>
 
 

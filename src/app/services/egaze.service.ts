@@ -245,9 +245,10 @@ export class EgazeService {
       "name": requestData.name,
       "description": requestData.description,
       "type": requestData.type,
-      "mobileNo": requestData.mobileNo
+      "mobileNo": requestData.mobile
 
     }
+    //alert(JSON.stringify(data))
     return this.http.post(this.baseUrl + 'save/contactus', data);
   }
   updatePropertyStatus(propetyId, status): Observable<any> {

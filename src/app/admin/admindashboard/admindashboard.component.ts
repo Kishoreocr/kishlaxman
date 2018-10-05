@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef, ElementRef } from '@angular/core';
 import { ModalDialogService, IModalDialogSettings } from 'ngx-modal-dialog';
-import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { EgazeService } from '../../services/egaze.service';
 import { SessionstorageService } from '../../services/sessionstorage.service';
@@ -28,6 +28,7 @@ export class AdmindashboardComponent implements OnInit {
   propertyTab: boolean = false;
   alertsTab: boolean = false;
   transactionsTab: boolean = false;
+  adminalertTab: boolean = false;
   profileTab: boolean = false;
   modalService: any;
   viewRef: any;
@@ -65,7 +66,7 @@ export class AdmindashboardComponent implements OnInit {
   commentsmsg: any;
   user: any;
   commentForm: FormGroup;
-
+  adminalerts: any;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
@@ -112,10 +113,10 @@ export class AdmindashboardComponent implements OnInit {
 
     this.commentForm = this.formBuilder.group({
       commentfield: ['', Validators.required],
-      typeofProperty:['', Validators.required],
+      typeofProperty: ['', Validators.required],
       commentfile: [null]
     });
-    
+
     this.commentForm.controls['typeofProperty'].setValue("nochanges");
     this.documentGrp = this.formBuilder.group({
       file: [null, Validators.required]
@@ -142,11 +143,13 @@ export class AdmindashboardComponent implements OnInit {
         this.alertsTab = false;
         this.transactionsTab = false;
         this.profileTab = false;
+        this.adminalertTab = false;
         break;
       case 'Alerts':
         this.propertyTab = false;
         this.alertsTab = true;
         this.transactionsTab = false;
+        this.adminalertTab = false;
         this.profileTab = false;
         this.getPropertyDetails();
         break;
@@ -154,15 +157,25 @@ export class AdmindashboardComponent implements OnInit {
         this.propertyTab = false;
         this.alertsTab = false;
         this.transactionsTab = true;
+        this.adminalertTab = false;
         this.profileTab = false;
         break;
       case 'Profile':
         this.propertyTab = false;
         this.alertsTab = false;
         this.transactionsTab = false;
+        this.adminalertTab = false;
         this.profileTab = true;
         this.updateuserProfilestatus = "";
         this.isEditDisabled = false;
+        break;
+      case 'adminalert':
+        this.propertyTab = false;
+        this.alertsTab = false;
+        this.transactionsTab = false;
+        this.adminalertTab = true;
+        this.profileTab = false;
+        this.getAlerts();
         break;
       case 'PropertyDetailsTab':
         this.propertytabModal = true;
@@ -419,14 +432,14 @@ export class AdmindashboardComponent implements OnInit {
     this.submitted = true;
     //alert(description.value.commentfield)
     if (this.commentForm.valid) {
-      this.EgazeService.savePropertyComments(this.propertyId, "0", this.loginId, 'Admin', description.value.commentfield,description.value.typeofProperty,this.sfile).subscribe(result => {
+      this.EgazeService.savePropertyComments(this.propertyId, "0", this.loginId, 'Admin', description.value.commentfield, description.value.typeofProperty, this.sfile).subscribe(result => {
 
         this.commentsmsg = result;
         if (this.commentsmsg) {
           this.submitted = false;
           this.commentForm.controls['commentfile'].setValue("");
           this.commentForm.controls['commentfield'].setValue("");
-          this.sfile=null;
+          this.sfile = null;
         }
         //alert('success' + this.commentsmsg);
         this.getPrpopertyComments(this.propertyId);
@@ -454,7 +467,7 @@ export class AdmindashboardComponent implements OnInit {
     if (event.target.files && event.target.files.length) {
       this.sfile = file;
     }
-   // console.log(this.sfile)
+    // console.log(this.sfile)
     if (this.sfile != null) {
       const file = this.sfile;
       if (file.type === "application/pdf" || file.type.match("image")) {
@@ -482,5 +495,14 @@ export class AdmindashboardComponent implements OnInit {
   }
   getporpertyCommentdocDownloadUrl(id) {
     window.location.href = this.EgazeService.getPropertyCommentDocURL(id);
+  }
+  getAlerts() {
+    this.EgazeService.getAlerts(1).subscribe(result => {
+      debugger;
+      this.adminalerts = result;
+    }, error => {
+
+    });
+
   }
 }
