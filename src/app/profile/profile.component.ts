@@ -28,9 +28,33 @@ export class ProfileComponent implements OnInit {
   email: any;
   mobileNo: any;
 
+  showText: boolean;
+  showIconEye: boolean = false;
+  hideIconEye: boolean = false;
+
+  showText1: boolean;
+  showIconEye1: boolean = false;
+  hideIconEye1: boolean = false;
+
+  showText2: boolean;
+  showIconEye2: boolean = false;
+  hideIconEye2: boolean = false;
+
+
   constructor(private formBuilder: FormBuilder, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, ) {
     this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
     this.getsaveprofile();
+    this.showText = false;
+    this.showIconEye = false;
+    this.hideIconEye = true;
+
+    this.showText1 = false;
+    this.showIconEye1 = false;
+    this.hideIconEye1 = true;
+
+    this.showText2 = false;
+    this.showIconEye2 = false;
+    this.hideIconEye2 = true;
   }
 
 
@@ -217,7 +241,29 @@ this.updateuserProfilestatus="";
   }
 
 
+  showTextPwd(updateuserNewpwdForm) {
+    if (updateuserNewpwdForm.value.oldpwd) {
+      this.showText = !this.showText;
+      this.showIconEye = !this.showIconEye;
+      this.hideIconEye = !this.hideIconEye;
+    }
+  }
 
+  showTextPwd1(updateuserNewpwdForm) {
+    if (updateuserNewpwdForm.value.newpwd) {
+      this.showText1 = !this.showText1;
+      this.showIconEye1 = !this.showIconEye1;
+      this.hideIconEye1 = !this.hideIconEye1;
+    }
+  }
+
+  showTextPwd2(updateuserNewpwdForm) {
+    if (updateuserNewpwdForm.value.confirmpwd) {
+      this.showText2 = !this.showText2;
+      this.showIconEye2 = !this.showIconEye2;
+      this.hideIconEye2 = !this.hideIconEye2;
+    }
+  }
 
 
 }

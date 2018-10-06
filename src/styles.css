@@ -310,3 +310,19 @@ body.modal-open {
   opacity: 0.5;
 }
 /**  arrow up  **/
+
+/** show/hide password **/
+
+.passwordInput{
+  position:relative;
+}
+.showHideText{
+  position: absolute;
+  right: 25px;
+  top: 1;
+  top: 6px;
+  cursor: pointer;
+}
+.showHideText i.fa{
+ font-size:18px;
+}

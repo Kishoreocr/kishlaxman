@@ -67,7 +67,7 @@
                                 <span class="mandatory">*</span>
                             </label>
                             <div class="col-sm-7">
-                                <input type="text" [readonly]="true"  class="form-control"  [value]="this.email"    />
+                                <input type="text" [readonly]="true" class="form-control" [value]="this.email" />
 
                                 <!-- <div *ngIf="submitted && feditP.email.errors" class="invalid-feedback">
                                     <div *ngIf="feditP.email.errors.required">Email Name is required</div>
@@ -81,7 +81,7 @@
                                 <span class="mandatory">*</span>
                             </label>
                             <div class="col-sm-7">
-                                <input type="text" [readonly]="true" maxlength="10"  class="form-control"  [value]="this.mobileNo"/>
+                                <input type="text" [readonly]="true" maxlength="10" class="form-control" [value]="this.mobileNo" />
 
                                 <!-- <div *ngIf="submitted && feditP.mobileNumber.errors" class="invalid-feedback">
                                     <div *ngIf="feditP.mobileNumber.errors.required">Mobile Number Name is required
@@ -166,7 +166,7 @@
 
 
                         <div class="form-group row">
-                            
+
                             <label class="col-sm-4 col-form-label">Zip Code
                                 <!-- <span class="mandatory">*</span> -->
                             </label>
@@ -228,9 +228,16 @@
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Old Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
+                    <div class="col-sm-4 passwordInput">
+                        <input [type]="showText ? 'text' : 'password' " formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
                         />
+
+                        <div class="showHideText" (click)="showTextPwd(updateuserNewpwdForm)">
+                            <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
+                            <i class="fa fa-eye" *ngIf="showIconEye"></i>
+                        </div>
+
+
                         <div *ngIf="submitted && fpwdP.oldpwd.errors" class="invalid-feedback">
                             <div *ngIf="fpwdP.oldpwd.errors.required">Old password is required</div>
                             <div *ngIf="fpwdP.oldpwd.errors.minlength">Old password must be at least 6 characters
@@ -241,9 +248,15 @@
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">New Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
+                    <div class="col-sm-4 passwordInput">
+                        <input [type]="showText1 ? 'text' : 'password' " formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
                         />
+
+                        <div class="showHideText" (click)="showTextPwd1(updateuserNewpwdForm)">
+                            <i class="fa fa-eye-slash" *ngIf="hideIconEye1"></i>
+                            <i class="fa fa-eye" *ngIf="showIconEye1"></i>
+                        </div>
+
                         <div *ngIf="submitted && fpwdP.newpwd.errors" class="invalid-feedback">
                             <div *ngIf="fpwdP.newpwd.errors.required">New password is required</div>
                             <div *ngIf="fpwdP.newpwd.errors.minlength">New password must be at least 6 characters
@@ -253,9 +266,15 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Confirm Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
+                    <div class="col-sm-4 passwordInput">
+                        <input [type]="showText2 ? 'text' : 'password' " formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
                         />
+
+                        <div class="showHideText" (click)="showTextPwd2(updateuserNewpwdForm)">
+                            <i class="fa fa-eye-slash" *ngIf="hideIconEye2"></i>
+                            <i class="fa fa-eye" *ngIf="showIconEye2"></i>
+                        </div>
+
                         <div *ngIf="submitted && fpwdP.confirmpwd.errors" class="invalid-feedback">
                             <div *ngIf="fpwdP.confirmpwd.errors.required">Confirm password is required</div>
                             <div *ngIf="fpwdP.confirmpwd.errors.minlength">Confirm password must be at least 6 characters</div>
