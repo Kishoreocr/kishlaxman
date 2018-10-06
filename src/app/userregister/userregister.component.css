@@ -12,3 +12,13 @@
 .mandatory{
     color: red;
 }
+
+/** show/hide text style **/
+.showHideText {
+    position: absolute;
+    right: 12px;
+    top: 1;
+    top: 6px;
+    cursor: pointer;
+}
+/** show/hide text style **/

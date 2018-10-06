@@ -38,6 +38,14 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
   emailnotExists: string = '';
   updateOTP: any = '';
 
+  showText: boolean;
+  showIconEye: boolean = false;
+  hideIconEye: boolean = false;
+
+  showText1: boolean;
+  showIconEye1: boolean = false;
+  hideIconEye1: boolean = false;
+
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, private Pwdvalidation: Pwdvalidation, private EgazeService: EgazeService) {
     this.routerProperty = router;
     this.modalService = modalService;
@@ -46,6 +54,14 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
     //   { text: 'I will always close', onAction: () => true },
     //   { text: 'I never close', onAction: () => false }
     // ];
+
+    this.showText = false;
+    this.showIconEye = false;
+    this.hideIconEye = true;
+
+    this.showText1 = false;
+    this.showIconEye1 = false;
+    this.hideIconEye1 = true;
   }
 
   ngOnInit() {
@@ -175,4 +191,22 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
 
   }
 
+
+
+
+  showTextPwd(registerForm) {
+    if (registerForm.value.newpwd) {
+      this.showText = !this.showText;
+      this.showIconEye = !this.showIconEye;
+      this.hideIconEye = !this.hideIconEye;
+    }
+  }
+
+  showTextPwd1(registerForm) {
+    if (registerForm.value.confirmnewpwd) {
+      this.showText1 = !this.showText1;
+      this.showIconEye1 = !this.showIconEye1;
+      this.hideIconEye1 = !this.hideIconEye1;
+    }
+  }
 } 

@@ -23,10 +23,29 @@ export class UserregisterComponent implements OnInit {
   mobileNumbererror: boolean = false;
   country: any = "";
   countryCode: any = "";
+
+  showText: boolean;
+  showIconEye: boolean = false;
+  hideIconEye: boolean = false;
+
+  showText1: boolean;
+  showIconEye1: boolean = false;
+  hideIconEye1: boolean = false;
+
+
+
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
 
     this.modalService = modalService;
     this.viewRef = viewRef;
+
+    this.showText = false;
+    this.showIconEye = false;
+    this.hideIconEye = true;
+
+    this.showText1 = false;
+    this.showIconEye1 = false;
+    this.hideIconEye1 = true;
   }
   isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : evt.keyCode
@@ -155,4 +174,27 @@ export class UserregisterComponent implements OnInit {
       childComponent: MessagemodalpopupComponent
     });
   }
+
+
+
+  showTextPwd(registerForm) {
+    if (registerForm.value.password) {
+      this.showText = !this.showText;
+      this.showIconEye = !this.showIconEye;
+      this.hideIconEye = !this.hideIconEye;
+    }
+  }
+
+  showTextPwd1(registerForm) {
+    if (registerForm.value.confirmPassword) {
+      this.showText1 = !this.showText1;
+      this.showIconEye1 = !this.showIconEye1;
+      this.hideIconEye1 = !this.hideIconEye1;
+    }
+  }
+
+
+
+
+
 }
