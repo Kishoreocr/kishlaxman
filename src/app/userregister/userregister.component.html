@@ -54,11 +54,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>zipCode <span class="mandatory">*</span></label>
+                        <label>Zip Code <span class="mandatory">*</span></label>
                         <input type="text" maxlength="6" formControlName="zipCode" placeholder="Enter zip code" (keypress)="isNumberKey($event)"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
                         <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
-                            <div *ngIf="f.zipCode.errors.required">Zipcode is required</div>
-                            <div *ngIf="f.zipCode.errors.maxlength">ZipCode max value will be 6 digits only</div>
+                            <div *ngIf="f.zipCode.errors.required">Zip code is required</div>
+                            <div *ngIf="f.zipCode.errors.maxlength">Zip Code max value will be 6 digits only</div>
                         </div>
                     </div>
                     <div class="form-group">

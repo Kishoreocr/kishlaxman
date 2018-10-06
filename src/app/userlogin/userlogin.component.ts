@@ -38,12 +38,20 @@ export class UserloginComponent implements OnInit {
   msg: any;
   user1: any;
   registrationsuccess: any = "";
+  showText: boolean;
+  showIconEye: boolean = false;
+  hideIconEye: boolean = false;
+
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private http: HttpClient) {
     this.disabledField = false;
     this.routerProperty = router;
     this.modalService = modalService;
     this.viewRef = viewRef;
     this.sessionstorageService.removeUserDetails("user");
+
+    this.showText = false;
+    this.showIconEye = false;
+    this.hideIconEye = true;
     // if (this.routerProperty.url === '/loginform')
     //       {
     //         this.activeColor = true;
@@ -159,6 +167,14 @@ export class UserloginComponent implements OnInit {
       title: 'Forgot your Password?',
       childComponent: ForgetpasswordComponent
     });
+  }
+
+  showTextPwd(userloginForm) {
+    if (userloginForm.value.userpwd) {
+      this.showText = !this.showText;
+      this.showIconEye = !this.showIconEye;
+      this.hideIconEye = !this.hideIconEye;
+    }
   }
 
 }

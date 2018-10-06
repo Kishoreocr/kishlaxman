@@ -44,6 +44,7 @@ import { PackageDescriptionComponent } from './package-description/package-descr
 import {DataTableModule} from "angular-6-datatable";
 import {Ng2TelInputModule} from 'ng2-tel-input';
 import { ProfileComponent } from './profile/profile.component';
+import { AgentregisterComponent } from './agentregister/agentregister.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -78,6 +79,8 @@ const appRoutes: Routes = [
   { path: 'forget-password', component: ForgetpasswordComponent },
 
   { path: 'profile', component: ProfileComponent },
+  { path: 'agent-register', component: AgentregisterComponent },
+
   { path: '**', component: PagenotfoundComponent }
 ];
 
@@ -114,7 +117,8 @@ const appRoutes: Routes = [
     BlogsComponent,
     EgazeServicesComponent,
     PackageDescriptionComponent,
-    ProfileComponent
+    ProfileComponent,
+    AgentregisterComponent
     
   ],
   entryComponents:[

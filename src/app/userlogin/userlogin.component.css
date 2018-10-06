@@ -66,3 +66,17 @@ div.textboxStyle {
     opacity:1;
     transform: scale(0.75) translateY(-100%) translateX(-30px);
   }
+
+  .passwordInput{
+    position:relative;
+  }
+  .showHideText{
+    position: absolute;
+    right: 10px;
+    top: 1;
+    top: 6px;
+    cursor: pointer;
+  }
+  .showHideText i.fa{
+   font-size:18px;
+  }
