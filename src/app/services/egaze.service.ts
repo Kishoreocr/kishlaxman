@@ -59,7 +59,7 @@ export class EgazeService {
     return this.http.get(this.baseUrl + 'profile/' + id);
   }
 
-  updateprofile(userObj, id,email,mobileNumber) {
+  updateprofile(userObj, id, email, mobileNumber) {
     debugger;
     let requestPayload = {
       "loginId": id,
@@ -161,7 +161,7 @@ export class EgazeService {
     return this.baseUrl + 'downloadFile/propertydocs/agent/' + id;
 
   }
-  savePropertyComments(propetyId, userId, agentId, role, description,status,file): Observable<any> {
+  savePropertyComments(propetyId, userId, agentId, role, description, status, file): Observable<any> {
     let formdata: FormData = new FormData();
     formdata.append('propertyId', propetyId);
     formdata.append('status', status);
@@ -258,12 +258,34 @@ export class EgazeService {
     return this.http.post(this.baseUrl + 'update/property/status', formdata);
   }
 
-  upgradePackageRequest(requestData){
+  upgradePackageRequest(requestData) {
     var data = {
       "email": requestData.email,
       "description": requestData.description
-      }
+    }
     return this.http.post(this.baseUrl + 'save/contactus', data);
   }
-  
+  getCustomPlanUsers() {
+    return this.http.get(this.baseUrl + "customplan/user/details")
+
+  }
+  createCustomPackage(requestData) {
+    let c = requestData.customerCustom;
+    let cc = c.split('##');
+    var data = {
+      "email": cc[1],
+      "loginId": cc[0],
+      "price": requestData.price,
+      "propertyLimit": requestData.packageLimit,
+      "propertyPeriod": requestData.packagePeriod,
+      "description": requestData.descriptionCustom
+
+    }
+    //alert(JSON.stringify(data));
+    return this.http.post(this.baseUrl + 'create/package', data);
+  }
+  getCustomPlanUserRecords() {
+    return this.http.get(this.baseUrl + "customer/customplan/details")
+
+  }
 }

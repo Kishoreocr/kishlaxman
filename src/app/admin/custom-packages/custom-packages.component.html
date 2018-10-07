@@ -1,6 +1,11 @@
 <div class="container-bg-style">
   <form [formGroup]="customPackagesForm" (ngSubmit)="saveCustomPackage(customPackagesForm)">
+<h6>Custom Package:</h6>
 
+<div class="alert alert-success" id="destination" *ngIf="status" >
+  <a href="#" class="close" data-dismiss="alert">&times;</a>
+  <strong>Successfully created the package.</strong>
+</div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Description</label>
       <div class="col-sm-4">
@@ -18,7 +23,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Package Limit</label>
       <div class="col-sm-4">
-        <input type="text" formControlName="packageLimit" class="form-control" placeholder="Enter package limit" [ngClass]="{ 'is-invalid': submitted && f.packageLimit.errors }"
+        <input type="text" formControlName="packageLimit" maxlength="2" class="form-control" placeholder="Enter package limit" [ngClass]="{ 'is-invalid': submitted && f.packageLimit.errors }"
           (keypress)="isNumber($event)" />
 
 
@@ -34,10 +39,23 @@
         <span class="in-months">( In Months )</span>
       </label>
       <div class="col-sm-4">
-        <input type="text" formControlName="packagePeriod" class="form-control" placeholder="Enter package period" [ngClass]="{ 'is-invalid': submitted && f.packagePeriod.errors }"
+        <input type="text" formControlName="packagePeriod" maxlength="2" class="form-control" placeholder="Enter package period" [ngClass]="{ 'is-invalid': submitted && f.packagePeriod.errors }"
           (keypress)="isNumber($event)" />
         <div *ngIf="submitted && f.packagePeriod.errors" class="invalid-feedback">
           <div *ngIf="f.packagePeriod.errors.required">Package limit is required</div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label label-relative">Price
+      </label>
+      <div class="col-sm-4">
+        <input type="text" formControlName="price" class="form-control" placeholder="Enter price" [ngClass]="{ 'is-invalid': submitted && f.price.errors }"
+          (keypress)="isNumber($event)" />
+        <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+          <div *ngIf="f.price.errors.required">Price is required</div>
         </div>
 
       </div>
@@ -47,10 +65,16 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Customer</label>
       <div class="col-sm-4">
-        <input type="text" formControlName="customerCustom" class="form-control" placeholder="Enter customer name" [ngClass]="{ 'is-invalid': submitted && f.customerCustom.errors }"
-        />
+        <!-- <input type="text" formControlName="customerCustom" class="form-control" placeholder="Enter customer name" [ngClass]="{ 'is-invalid': submitted && f.customerCustom.errors }"
+        /> -->
+        <select class="form-control" formControlName="customerCustom" class="form-control" (ngModelChange)="type($event)" [ngClass]="{ 'is-invalid': submitted && f.customerCustom.errors }">
+          <option value="" >Select Customer</option>
+          <option *ngFor="let doc of customPlanUsers" value="{{doc.loginId}}##{{doc.email}}">{{doc.email}}</option>
+         
+      </select>
+      
         <div *ngIf="submitted && f.customerCustom.errors" class="invalid-feedback">
-          <div *ngIf="f.customerCustom.errors.required">Customer name is required</div>
+          <div *ngIf="f.customerCustom.errors.required">Customer is required</div>
         </div>
 
       </div>
@@ -63,4 +87,45 @@
 
 
   </form>
+  <div class="property-tab-style table-container-style">
+  <table *ngIf="customPlanUserRecords.length > 0" class="table table-striped table-bordered" [mfData]="customPlanUserRecords" #mf="mfDataTable" [mfRowsOnPage]="5">
+
+    <thead>
+        <tr>
+            <th>
+                <mfDefaultSorter by="email">Email</mfDefaultSorter>
+            </th>
+            <th>
+                <mfDefaultSorter by="purchaseDate">Purchase Date</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="expiryDate">Expiry Date</mfDefaultSorter>
+          </th>
+          <th>
+            <mfDefaultSorter by="propertiesLimit">Properties Limit</mfDefaultSorter>
+        </th>
+        <th>
+          <mfDefaultSorter by="addedDate">Added Date</mfDefaultSorter>
+      </th>
+          
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr *ngFor="let doc of mf.data; let index = index">
+            <td>{{doc.email}}</td>
+            <td>{{doc.purchaseDate}}</td>
+            <td>{{doc.expiryDate}}</td>
+            <td>{{doc.propertiesLimit}}</td>
+            <td>{{doc.addedDate | date :'dd/MM/yyyy'}}</td>
+         
+        </tr>
+    </tbody>
+    <tr>
+        <td colspan="5" style="border:0px !important;">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+        </td>
+    </tr>
+</table></div>
 </div>
