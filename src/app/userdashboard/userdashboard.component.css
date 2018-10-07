@@ -330,7 +330,7 @@ app-modal-property .modal {
         display: inline-block;
     }
     app-modal-property .modal .modal-body {
-            padding: 5px 20px;
+            padding: 5px 20px 20px 20px;
             background: #fff;
 
             /* margin exposes part of the modal background */
@@ -494,9 +494,9 @@ label{
 
 .scrolling-comment{
     padding: 0px 0px 20px 0px;
-    height: 300px;
+    max-height: 300px;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin-top: 10px;
     margin-bottom:20px;
 }
@@ -516,4 +516,12 @@ label{
 }
 ::-webkit-scrollbar-thumb {
     background: #fdbc93;
+}
+
+app-modal-property .modal.confirmDocumentDelete{
+z-index:9;
+}
+
+app-modal-property#confirm-delete-document > .modal-background{
+    z-index:8;
 }

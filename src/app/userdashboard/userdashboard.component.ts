@@ -40,7 +40,7 @@ export class UserdashboardComponent implements OnInit {
 
   updateuserProfile: any;
   updateuserProfilestatus: any;
-  isLoading: boolean;
+  isLoading: boolean = false;
   alerts: any = [];
 
   isLoaderdiv: boolean = false;
@@ -70,6 +70,9 @@ export class UserdashboardComponent implements OnInit {
   upgradePlanprocess: boolean = false;
   upgradePlanmessage: boolean = false;
   customdiv: boolean = false;
+
+  documentId: any;
+
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private ModalPropertyService: ModalPropertyService) {
     this.modalService = modalService;
@@ -146,10 +149,10 @@ export class UserdashboardComponent implements OnInit {
     this.propertiesShow();
     this.commentForm = this.formBuilder.group({
       commentfield: ['', Validators.required],
-      typeofProperty:['', Validators.required],
+      typeofProperty: ['', Validators.required],
       commentfile: [null]
     });
-    
+
     this.commentForm.controls['typeofProperty'].setValue("nochanges");
     this.upgradePlanForm = this.formBuilder.group({
       plandetailsField: ['', Validators.required]
@@ -378,7 +381,7 @@ export class UserdashboardComponent implements OnInit {
 
   }
 
-  
+
   profileeditFun() {
     this.isEditDisabled = !this.isEditDisabled;
     this.userchangepwdflag = true;
@@ -513,8 +516,10 @@ export class UserdashboardComponent implements OnInit {
   }
 
   openModal(id: string, property) {
-    debugger;
     this.property = property;
+    this.propertytabModal = true;
+    this.documentstabModal = false;
+    this.commentstabModal = false;
     this.ModalPropertyService.open(id);
     //alert(this.property.id)
     this.propertyId = this.property.id;
@@ -544,7 +549,7 @@ export class UserdashboardComponent implements OnInit {
     if (event.target.files && event.target.files.length) {
       this.sfile = file;
     }
-   // console.log(this.sfile)
+    // console.log(this.sfile)
     if (this.sfile != null) {
       const file = this.sfile;
       if (file.type === "application/pdf" || file.type.match("image")) {
@@ -577,33 +582,30 @@ export class UserdashboardComponent implements OnInit {
     if (this.sfile != null) {
       const file = this.sfile;
       if (file.type === "application/pdf" || file.type.match("image")) {
-       // alert(file.size)
+        // alert(file.size)
         if (file.size <= 4194304) {
           this.isLoaderdiv = true;
           reader.readAsDataURL(file);
-         // reader.onload = () => {
-            // this.documentGrp.patchValue({
-            //   file: reader.result
-            // });
-            //alert(file)
-            //if (this.property != null) {
-            //  this.propertyId = this.property.id;
-            //}
-           // alert(this.propertyId)
-            this.EgazeService.savePropertyDoc(this.sfile, this.propertyId, this.user.loginId).subscribe(result => {
-             // this.documentGrp.value.file = '';
-              var id = JSON.stringify(result['id']);
-              var down = this.EgazeService.getPropertyDocURL(id);
-              //this.items.splice(i, 1);
-              //this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
-              this.isLoaderdiv = false;
-              this.sfile = null;
-              // this.isLoaderdiv = true;
-              this.getPrpopertyDocs(this.propertyId);
-            }, error => {
-              //alert(JSON.stringify(error));
-            });
-         // };
+          // reader.onload = () => {
+          // this.documentGrp.patchValue({
+          //   file: reader.result
+          // });
+          //alert(file)
+          //if (this.property != null) {
+          //  this.propertyId = this.property.id;
+          //}
+          // alert(this.propertyId)
+          this.EgazeService.savePropertyDoc(this.sfile, this.propertyId, this.user.loginId).subscribe(result => {
+            this.isLoaderdiv = false;
+            this.documentGrp.controls['file'].setValue("");
+
+            this.sfile = null;
+            // this.isLoaderdiv = true;
+            this.getPrpopertyDocs(this.propertyId);
+          }, error => {
+            //alert(JSON.stringify(error));
+          });
+          // };
         } else {
           alert("Please choose < 4MB Documents");
           this.documentGrp.controls['file'].setValue("");
@@ -662,22 +664,23 @@ export class UserdashboardComponent implements OnInit {
     this.submitted = true;
     //alert(JSON.stringify(description.value));
     if (this.commentForm.valid) {
-      this.EgazeService.savePropertyComments(this.propertyId, this.user1.loginId, "0", 'Customer', description.value.commentfield,description.value.typeofProperty,this.sfile).subscribe(result => {
-
-        // this.commentsmsg = result;
+      this.isLoading = true;
+      this.EgazeService.savePropertyComments(this.propertyId, this.user1.loginId, "0", 'Customer', description.value.commentfield, description.value.typeofProperty, this.sfile).subscribe(result => {
         if (result) {
           this.submitted = false;
           this.commentForm.controls['commentfile'].setValue("");
           this.commentForm.controls['commentfield'].setValue("");
-          this.sfile=null;
+          this.sfile = null;
+          this.isLoading = false;
 
         }
-        //alert('success' + this.commentsmsg);
         this.getPrpopertyComments(this.propertyId);
       }, error => {
-        //alert('error' + error);
+        this.isLoading = false;
       });
+
     }
+
   }
 
 
@@ -695,13 +698,32 @@ export class UserdashboardComponent implements OnInit {
   getporpertyCommentdocDownloadUrl(id) {
     window.location.href = this.EgazeService.getPropertyCommentDocURL(id);
   }
-  removedoc(id) {
-    this.EgazeService.removePropertyDoc(id).subscribe(result => {
+
+  // removedoc(id) {
+  //   this.EgazeService.removePropertyDoc(id).subscribe(result => {
+  //     this.getPrpopertyDocs(this.propertyId);
+  //   }, error => {
+  //   });
+  // }
+
+  modalDeleteDocument(id: string, documentId) {
+    this.documentId = documentId;
+    this.ModalPropertyService.open(id);
+    //this.deldocFun(documentId);
+  }
+
+  deldocFun() {
+    debugger;
+    this.isLoading = true;
+    this.EgazeService.removePropertyDoc(this.documentId).subscribe(result => {
+      this.isLoading = false;
       this.getPrpopertyDocs(this.propertyId);
+      this.documentId = '';
+      this.ModalPropertyService.close('confirm-delete-document');
     }, error => {
     });
-
   }
+
   upgrade() {
     this.upgradePlanmessage = false;
     this.upgradePlanprocess = true;

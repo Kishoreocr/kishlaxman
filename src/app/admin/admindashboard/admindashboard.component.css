@@ -468,9 +468,9 @@ body.modal-open {
 
 .scrolling-comment{
     padding: 0px 0px 20px 0px;
-    height: 300px;
+    max-height: 300px;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin-top: 10px;
     margin-bottom:20px;
 }
