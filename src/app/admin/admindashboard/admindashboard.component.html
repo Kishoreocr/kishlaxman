@@ -673,7 +673,7 @@
 
                                                             <td style='text-align:center'>
 
-                                                                <i style="cursor: pointer" (click)="removedoc(doc.id)" class="fa fa-trash" aria-hidden="true"></i>
+                                                                <i style="cursor: pointer" (click)="modalDeleteDocument('confirm-delete-document', doc.id)" class="fa fa-trash" aria-hidden="true"></i>
                                                             </td>
 
                                                             <td style='text-align:center'>
@@ -810,7 +810,7 @@
                                                                 <p class="comment-role">By {{comment.role}},</p>
                                                                 <p class="comment-description">{{comment.description}}</p>
                                                                 <span class="comment-reply-btn">
-                                                                    <i style="cursor: pointer" *ngIf="comment.documentName!==comment.documentType"
+                                                                    <i style="cursor: pointer" *ngIf="comment.documentName!==null"
                                                                         (click)="getporpertyCommentdocDownloadUrl(comment.id)"
                                                                         class="fa fa-download" aria-hidden="true"></i>
                                                                 </span>
@@ -841,8 +841,56 @@
                     </div>
 
                     <div class="modal-background"></div>
-                    <app-loading-div-component1 *ngIf="isLoading"></app-loading-div-component1>
+                    <app-loading-div-component1 *ngIf="isLoaderdiv"></app-loading-div-component1>
                 </modal>
+
+
+
+    <!-- confirm modal for delete action-->
+    <modal id="confirm-delete-document">
+        <div class="modal confirmDocumentDelete">
+            <div class="row justify-content-md-center justify-content-sm-center no-gutters">
+                <div class="modal-body col-md-5 col-sm-8" style="padding:0px;">
+
+                    <div class='col modal-heading'>
+                        <p class="padding-heading-modal">Confirm?
+                        </p>
+                    </div>
+                    <!-- <app-loading-div *ngIf="isLoading"></app-loading-div> -->
+
+                    <div class="close-icon-style">
+                        <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('confirm-delete-document');"></i>
+                    </div>
+                    <div>
+                        <div class="col content-style">
+                            <p>
+                                Are you sure to delete this Document?
+                            </p>
+                        </div>
+                        <div class='col btn-bottom-style'>
+                            <button class="submit-btn-delete" (click)="deldocFun();">Delete</button>
+                            <button class="submit-btn" (click)="closeModal('confirm-delete-document');">Cancel</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-background"></div>
+        <app-loading-div-component1 *ngIf="isLoading"></app-loading-div-component1>
+    </modal>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

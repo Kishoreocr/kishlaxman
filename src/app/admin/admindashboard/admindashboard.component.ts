@@ -68,6 +68,7 @@ export class AdmindashboardComponent implements OnInit {
   commentForm: FormGroup;
   adminalerts: any;
   propertydocs:any;
+  documentId: any;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
@@ -216,6 +217,9 @@ export class AdmindashboardComponent implements OnInit {
   }
 
   openModal(id: string, cust) {
+    this.propertytabModal = true;
+        this.documentstabModal = false;
+        this.commentstabModal = false;
 
     this.customer = cust;
     this.property = cust;
@@ -454,7 +458,7 @@ export class AdmindashboardComponent implements OnInit {
       const file = this.sfile;
       if (file.type === "application/pdf" || file.type.match("image")) {
         if (file.size <= 4194304) {
-          this.isLoading = true;
+          //this.isLoading = true;
 
         } else {
           alert("Please choose < 4MB Documents")
@@ -485,12 +489,30 @@ export class AdmindashboardComponent implements OnInit {
   getDownloadUrl(id) {
     window.location.href = this.EgazeService.getPropertyDocURL(id);
   }
-  removedoc(id) {
-    this.EgazeService.removePropertyDoc(id).subscribe(result => {
+  // removedoc(id) {
+  //   this.EgazeService.removePropertyDoc(id).subscribe(result => {
+  //     this.getPrpopertyDocs();
+  //   }, error => {
+  //   });
+
+  // }
+
+  modalDeleteDocument(id: string, documentId) {
+    this.documentId = documentId;
+    this.modalService1.open(id);
+    //this.deldocFun(documentId);
+  }
+
+  deldocFun() {
+    debugger;
+    this.isLoading = true;
+    this.EgazeService.removePropertyDoc(this.documentId).subscribe(result => {
+      this.isLoading = false;
       this.getPrpopertyDocs();
+      this.documentId = '';
+      this.modalService1.close('confirm-delete-document');
     }, error => {
     });
-
   }
 
 }
