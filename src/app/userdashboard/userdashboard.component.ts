@@ -549,13 +549,13 @@ export class UserdashboardComponent implements OnInit {
       const file = this.sfile;
       if (file.type === "application/pdf" || file.type.match("image")) {
         if (file.size <= 4194304) {
-          this.isLoaderdiv = true;
-          reader.readAsDataURL(file);
-          reader.onload = () => {
-            this.commentForm.patchValue({
-              commentfile: reader.result
-            });
-          }
+          //this.isLoaderdiv = true;
+          // reader.readAsDataURL(file);
+          // reader.onload = () => {
+          //   this.commentForm.patchValue({
+          //     commentfile: reader.result
+          //   });
+          // }
         } else {
           alert("Please choose < 4MB Documents")
           this.commentForm.controls['commentfile'].setValue(null);
@@ -577,19 +577,21 @@ export class UserdashboardComponent implements OnInit {
     if (this.sfile != null) {
       const file = this.sfile;
       if (file.type === "application/pdf" || file.type.match("image")) {
+       // alert(file.size)
         if (file.size <= 4194304) {
           this.isLoaderdiv = true;
           reader.readAsDataURL(file);
-          reader.onload = () => {
-            this.documentGrp.patchValue({
-              file: reader.result
-            });
+         // reader.onload = () => {
+            // this.documentGrp.patchValue({
+            //   file: reader.result
+            // });
+            //alert(file)
             //if (this.property != null) {
             //  this.propertyId = this.property.id;
             //}
-            //alert(this.propertyId)
-            this.EgazeService.savePropertyDoc(file, this.propertyId, this.user.loginId).subscribe(result => {
-              this.documentGrp.value.file = '';
+           // alert(this.propertyId)
+            this.EgazeService.savePropertyDoc(this.sfile, this.propertyId, this.user.loginId).subscribe(result => {
+             // this.documentGrp.value.file = '';
               var id = JSON.stringify(result['id']);
               var down = this.EgazeService.getPropertyDocURL(id);
               //this.items.splice(i, 1);
@@ -601,7 +603,7 @@ export class UserdashboardComponent implements OnInit {
             }, error => {
               //alert(JSON.stringify(error));
             });
-          };
+         // };
         } else {
           alert("Please choose < 4MB Documents");
           this.documentGrp.controls['file'].setValue("");

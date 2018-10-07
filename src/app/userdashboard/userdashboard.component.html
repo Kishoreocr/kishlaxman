@@ -269,7 +269,7 @@
                                             <div>
 
 
-                                                <table class="table table-striped table-bordered" [mfData]="propertydocs" #mf="mfDataTable" [mfRowsOnPage]="5">
+                                                <table *ngIf="propertydocs.length>0" class="table table-striped table-bordered" [mfData]="propertydocs" #mf="mfDataTable" [mfRowsOnPage]="5">
 
                                                     <thead>
                                                         <tr>
@@ -826,7 +826,7 @@
 
                         <div>
 
-                            <table class="table table-striped table-bordered" [mfData]="propertydocs" #mf="mfDataTable" [mfRowsOnPage]="5">
+                            <table  *ngIf="propertydocs.length>0"class="table table-striped table-bordered" [mfData]="propertydocs" #mf="mfDataTable" [mfRowsOnPage]="5">
 
                                 <thead>
                                     <tr>

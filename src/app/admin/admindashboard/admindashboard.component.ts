@@ -67,6 +67,7 @@ export class AdmindashboardComponent implements OnInit {
   user: any;
   commentForm: FormGroup;
   adminalerts: any;
+  propertydocs:any;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
@@ -107,8 +108,8 @@ export class AdmindashboardComponent implements OnInit {
       address2: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      zip: ['', Validators.required],
-      country: ['', Validators.required]
+      zip: ['', Validators.required]
+     // country: ['', Validators.required]
     });
 
     this.commentForm = this.formBuilder.group({
@@ -203,7 +204,7 @@ export class AdmindashboardComponent implements OnInit {
         this.documentstabModal = false;
         this.commentstabModal = true;
         this.isEditDisabled = false;
-        this.getPrpopertyComments(this.propertyId);
+        this.getPrpopertyComments();
         break;
 
 
@@ -243,8 +244,8 @@ export class AdmindashboardComponent implements OnInit {
       address2: this.property.address2,
       city: this.property.city,
       state: this.property.state,
-      zip: this.property.zip,
-      country: this.property.country
+      zip: this.property.zip
+    //  country: this.property.country
       // status: this.property.status
 
     });
@@ -334,41 +335,35 @@ export class AdmindashboardComponent implements OnInit {
   }
 
   fileSelectionEvent(i) {
-    const reader = new FileReader();
-
     if (this.sfile != null) {
       const file = this.sfile;
       if (file.type === "application/pdf" || file.type.match("image")) {
         if (file.size <= 4194304) {
-          this.isLoaderdiv = true;
-          reader.readAsDataURL(file);
-          reader.onload = () => {
-            this.documentGrp.patchValue({
-              file: reader.result
-            });
+          this.isLoading = true;
             if (this.property != null) {
               this.propertyId = this.property.id;
             }
-            // alert(this.propertyId)
-            this.EgazeService.savePropertyDoc(file, this.propertyId, this.loginId).subscribe(result => {
-              var id = JSON.stringify(result['id']);
-              var down = this.EgazeService.getPropertyDocURL(id);
-              this.items.splice(i, 1);
-              this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
-              this.isLoaderdiv = false;
+            this.EgazeService.savePropertyDoc(this.sfile, this.propertyId, this.loginId).subscribe(result => {
+              this.isLoading = false;
               this.sfile = null;
+              this.getPrpopertyDocs();
+              this.documentGrp.controls['file'].setValue("");
+
             }, error => {
-              //alert(JSON.stringify(error));
+  //            alert(JSON.stringify(error));
             });
-          };
         } else {
-          alert("Please choose < 4MB Documents")
+          alert("Please choose < 4MB Documents");
+          this.documentGrp.controls['file'].setValue("");
         }
       } else {
-        alert("Please choose images/pdf")
+        alert("Please choose images/pdf");
+        this.documentGrp.controls['file'].setValue("");
       }
     } else {
       alert("Please choose the file");
+      this.documentGrp.controls['file'].setValue("");
+
     }
   }
 
@@ -403,24 +398,9 @@ export class AdmindashboardComponent implements OnInit {
   }
   getPrpopertyDocs() {
     this.isLoaderdiv = true;
-    //alert("customerId="+customerId)
-    //alert("propertyId="+propertyId)
     this.items = [];
     this.EgazeService.getPrpopertyDocs(this.propertyId).subscribe(result => {
-      var ids: any = result;
-      this.lengthCheckToaddMore = 0;
-      Object.keys(ids).forEach(key => {
-        //alert(ids[key]);
-
-        this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": this.EgazeService.getPropertyDocURL(ids[key]) });
-        this.lengthCheckToaddMore = this.lengthCheckToaddMore + 1;
-      });
-      // alert(JSON.stringify(this.items))
-
-      //alert(id)
-      // var down = this.EgazeService.getPropertyDocURL(id);
-      //this.items.splice(i, 1);
-      // this.items.push({ "pdoc": this.lengthCheckToaddMore + "", "downoladUrl": down });
+      this.propertydocs = result;
       this.isLoaderdiv = false;
       //this.sfile = null;
     }, error => {
@@ -431,8 +411,12 @@ export class AdmindashboardComponent implements OnInit {
   commentFun(description) {
     this.submitted = true;
     //alert(description.value.commentfield)
+
     if (this.commentForm.valid) {
+      this.isLoaderdiv = true;
+
       this.EgazeService.savePropertyComments(this.propertyId, "0", this.loginId, 'Admin', description.value.commentfield, description.value.typeofProperty, this.sfile).subscribe(result => {
+        this.isLoaderdiv = false;
 
         this.commentsmsg = result;
         if (this.commentsmsg) {
@@ -442,16 +426,16 @@ export class AdmindashboardComponent implements OnInit {
           this.sfile = null;
         }
         //alert('success' + this.commentsmsg);
-        this.getPrpopertyComments(this.propertyId);
+        this.getPrpopertyComments();
       }, error => {
-        alert('error' + error);
+        //alert('error' + error);
       });
     }
   }
 
 
   comments: any = [];
-  getPrpopertyComments(description) {
+  getPrpopertyComments() {
     this.EgazeService.getPrpopertyComments(this.propertyId).subscribe(result => {
 
       this.comments = result;
@@ -462,23 +446,16 @@ export class AdmindashboardComponent implements OnInit {
     });
   }
   fileSelectionEventcomments(event: any) {
-    const reader = new FileReader();
     const [file] = event.target.files;
     if (event.target.files && event.target.files.length) {
       this.sfile = file;
     }
-    // console.log(this.sfile)
     if (this.sfile != null) {
       const file = this.sfile;
       if (file.type === "application/pdf" || file.type.match("image")) {
         if (file.size <= 4194304) {
-          this.isLoaderdiv = true;
-          reader.readAsDataURL(file);
-          reader.onload = () => {
-            this.commentForm.patchValue({
-              commentfile: reader.result
-            });
-          }
+          this.isLoading = true;
+
         } else {
           alert("Please choose < 4MB Documents")
           this.commentForm.controls['commentfile'].setValue("");
@@ -505,4 +482,15 @@ export class AdmindashboardComponent implements OnInit {
     });
 
   }
+  getDownloadUrl(id) {
+    window.location.href = this.EgazeService.getPropertyDocURL(id);
+  }
+  removedoc(id) {
+    this.EgazeService.removePropertyDoc(id).subscribe(result => {
+      this.getPrpopertyDocs();
+    }, error => {
+    });
+
+  }
+
 }

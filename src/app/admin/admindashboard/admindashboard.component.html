@@ -569,7 +569,7 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="form-group">
+                                                       <!--  <div class="form-group">
                                                             <label for="state">Country
                                                                 <span class="mandatory">*</span>
                                                             </label>
@@ -583,7 +583,7 @@
                                                                     required</div>
                                                             </div>
 
-                                                        </div>
+                                                        </div> -->
 
 
 
@@ -648,41 +648,47 @@
 
                                             <div>
 
-                                                <table class="table table-striped table-bordered">
+                                                <table *ngIf="propertydocs.length>0" class="table table-striped table-bordered" [mfData]="propertydocs" #mf="mfDataTable" [mfRowsOnPage]="5">
 
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">S.no.</th>
-                                                            <th scope="col">Document Name</th>
-                                                            <th scope="col">Date</th>
-                                                            <th scope="col" style='text-align:center'>Delete</th>
-                                                            <th scope="col" style='text-align:center'>Download</th>
+                                                            <th>
+                                                                <mfDefaultSorter by="documentName">Document Name</mfDefaultSorter>
+                                                            </th>
+                                                            <th>
+                                                                <mfDefaultSorter by="addedDate">Uploaded Date</mfDefaultSorter>
+                                                            </th>
+                                                            <th>Remove
+                                                            </th>
+                                                            <th>Download
+                                                            </th>
                                                         </tr>
                                                     </thead>
 
                                                     <tbody>
 
-                                                        <tr *ngFor="let doc of propertydocs; let index = index">
-                                                            <td>{{index + 1}}</td>
+                                                        <tr *ngFor="let doc of mf.data; let index = index">
                                                             <td>{{doc.documentName}}</td>
                                                             <td>{{doc.addedDate}}</td>
 
                                                             <td style='text-align:center'>
 
-                                                                <i style="cursor: pointer" (click)="removedoc(doc.id)"
-                                                                    class="fa fa-trash" aria-hidden="true"></i>
+                                                                <i style="cursor: pointer" (click)="removedoc(doc.id)" class="fa fa-trash" aria-hidden="true"></i>
                                                             </td>
 
                                                             <td style='text-align:center'>
 
-                                                                <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)"
-                                                                    class="fa fa-download" aria-hidden="true"></i>
+                                                                <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)" class="fa fa-download" aria-hidden="true"></i>
 
                                                             </td>
                                                         </tr>
                                                     </tbody>
+                                                    <tr>
+                                                        <td colspan="4" style="border:0px !important;">
+                                                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                                        </td>
+                                                    </tr>
                                                 </table>
-
                                             </div>
                                             <div class='col upload-container-style'>
 
@@ -693,7 +699,7 @@
 
                                                     <div class="form-inline" style="margin-bottom:4px;">
                                                         <div class="form-group uploadfile-style">
-                                                            <input type="file" name="file" title="Browse Document"
+                                                            <input type="file" name="file" formControlName="file" title="Browse Document"
                                                                 class="form-control-file" (change)="importfile($event)">
                                                         </div>
                                                         <button type="button" class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
@@ -705,52 +711,6 @@
                                                 </form>
 
                                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                            <!-- <div class='col upload-container-style'>
-                                                <form [formGroup]="documentGrp">
-
-                                                    <div class="row">
-                                                        <label for="Upload your documents">Upload Property Documents</label>
-                                                    </div>
-
-                                                    <div class="form-inline" *ngFor="let item of items;let IndexId = index" style="margin-bottom:4px;">
-                                                        <div class="form-group uploadfile-style">
-                                                            <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event,IndexId)">
-                                                        </div>
-                                                        <button type="button" class="upload-btn" (click)="fileSelectionEvent(IndexId)">Upload</button>
-                                                        <button type="button" class="remove-btn" (click)="removeItem(IndexId)" style="margin-left:5px;">Remove</button>
-
-                                                        <div *ngIf="item.downoladUrl!=''" style="margin-left:30px;color:#f9a069;font-size:16px;">
-                                                            <a href={{item.downoladUrl}}>Download</a>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="col" align="center" style="margin-top:20px;">
-                                                        <button type="button" class="addmore-btn" title="Add More" (click)="addItem()">Add More</button>
-                                                    </div>
-
-                                                </form>
-                                            </div> -->
 
                                         </div>
 
@@ -803,26 +763,6 @@
 
                                                     </div>
                                                 </div>
-
-
-
-
-
-
-                                                <!-- <div class="form-group">
-                                                    <label for="exampleFormControlTextarea1">Comments:</label>
-
-                                                    <textarea class="form-control" style="resize:none;text-align:left;" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
-                                                        class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }">
-                                                    </textarea>
-                                                    <div *ngIf="submitted && c.commentfield.errors" class="invalid-feedback">
-                                                        <div *ngIf="c.commentfield.errors.required">Comment is required</div>
-
-                                                    </div>
-                                                </div> -->
-
-
-
                                                 <div class="form-group row">
 
                                                     <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Upload
@@ -901,6 +841,7 @@
                     </div>
 
                     <div class="modal-background"></div>
+                    <app-loading-div-component1 *ngIf="isLoading"></app-loading-div-component1>
                 </modal>
 
 
