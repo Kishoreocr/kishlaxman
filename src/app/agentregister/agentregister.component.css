@@ -1,0 +1,24 @@
+
+
+.userregisterForm{
+    background-color:#f1f8fd;
+    padding:15px;
+    border-radius:10px;
+}
+.intl-tel-input {
+    position: relative important;
+    display: block !important; 
+}
+.mandatory{
+    color: red;
+}
+
+/** show/hide text style **/
+.showHideText {
+    position: absolute;
+    right: 12px;
+    top: 1;
+    top: 6px;
+    cursor: pointer;
+}
+/** show/hide text style **/

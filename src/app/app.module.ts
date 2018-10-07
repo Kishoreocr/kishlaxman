@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
@@ -19,8 +19,8 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { ViewpropertyComponent } from './viewproperty/viewproperty.component';
 import { PwdchangesuccessComponent } from './pwdchangesuccess/pwdchangesuccess.component';
 import { PackageconfirmComponent } from './packageconfirm/packageconfirm.component';
-import { EgazeService} from './services/egaze.service';
-import {SessionstorageService} from './services/sessionstorage.service';
+import { EgazeService } from './services/egaze.service';
+import { SessionstorageService } from './services/sessionstorage.service';
 import { LoadingDivComponent } from './loading-div/loading-div.component';
 import { AdminModule } from './admin/admin.module';
 import { ModalPropertyComponent } from './modal-property/modal-property.component';
@@ -41,8 +41,8 @@ import { WhyeGazeComponent } from './whye-gaze/whye-gaze.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { EgazeServicesComponent } from './egaze-services/egaze-services.component';
 import { PackageDescriptionComponent } from './package-description/package-description.component';
-import {DataTableModule} from "angular-6-datatable";
-import {Ng2TelInputModule} from 'ng2-tel-input';
+import { DataTableModule } from "angular-6-datatable";
+import { Ng2TelInputModule } from 'ng2-tel-input';
 import { ProfileComponent } from './profile/profile.component';
 import { AgentregisterComponent } from './agentregister/agentregister.component';
 
@@ -69,7 +69,8 @@ const appRoutes: Routes = [
 
   { path: 'loginform', component: UserloginComponent },
   { path: 'registerform', component: UserregisterComponent },
-  { path: '',
+  {
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
@@ -79,7 +80,7 @@ const appRoutes: Routes = [
   { path: 'forget-password', component: ForgetpasswordComponent },
 
   { path: 'profile', component: ProfileComponent },
-  { path: 'agent-register', component: AgentregisterComponent },
+  { path: 'agent-registration', component: AgentregisterComponent },
 
   { path: '**', component: PagenotfoundComponent }
 ];
@@ -119,9 +120,9 @@ const appRoutes: Routes = [
     PackageDescriptionComponent,
     ProfileComponent,
     AgentregisterComponent
-    
+
   ],
-  entryComponents:[
+  entryComponents: [
     MessagemodalpopupComponent,
     ForgetpasswordComponent,
     ViewpropertyComponent,
@@ -133,13 +134,13 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
-    ModalDialogModule.forRoot(),AdminModule,DataTableModule,Ng2TelInputModule
+    ModalDialogModule.forRoot(), AdminModule, DataTableModule, Ng2TelInputModule
   ],
-  exports:[
+  exports: [
     LoadingDivComponent
 
   ],
-  providers: [EgazeService,SessionstorageService, ModalPropertyService],
+  providers: [EgazeService, SessionstorageService, ModalPropertyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
