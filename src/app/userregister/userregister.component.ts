@@ -34,7 +34,7 @@ export class UserregisterComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
+  constructor(private route: ActivatedRoute,private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
 
     this.modalService = modalService;
     this.viewRef = viewRef;
@@ -56,6 +56,8 @@ export class UserregisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     this.registerForm = this.formBuilder.group({
@@ -69,13 +71,21 @@ export class UserregisterComponent implements OnInit {
       confirmPassword: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming]],
       termsChecked: [false, Validators.required],
       country: [null],
-      countryCode: [null]
+      countryCode: [null],
+      type: [null]
     });
 
     this.registerForm.controls['registerType'].setValue("customer");
     this.registerForm.controls['termsChecked'].setValue("true");
     this.registerForm.controls['country'].setValue("India");
     this.registerForm.controls['countryCode'].setValue("in");
+    this.route.queryParamMap.subscribe(params => {
+      if(params.get('type')==='free'){
+        this.registerForm.controls['type'].setValue("free");
+      }else{
+        this.registerForm.controls['type'].setValue("normal");
+      }
+    });
   }
   //  firstname(){
   //    if(!this.registerForm.get('firstName').valid){

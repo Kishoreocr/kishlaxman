@@ -25,7 +25,7 @@ export class MessagemodalpopupComponent implements OnInit, IModalDialog {
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, private EgazeService: EgazeService) {
     this.routerProperty = router;
     this.userFormValue = JSON.parse(sessionStorage.getItem("formData"));
-    debugger;
+    //debugger;
     this.isLoading = true;
     this.EgazeService.getOTP(this.userFormValue.email).subscribe(otp => {
       this.isLoading = false;

@@ -50,7 +50,7 @@
             vacancies faster.</p>
         </div>
         <div class="col-lg-4">
-          <a routerLink="/registerform" routerLinkActive="activeClss">
+          <a routerLink="/registerform" [queryParams]="{ type: 'free'}" routerLinkActive="activeClss">
             <img src="assets/images/start_trial_btn.png" class="img-fluid" />
           </a>
         </div>
