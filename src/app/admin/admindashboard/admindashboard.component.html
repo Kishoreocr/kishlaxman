@@ -35,7 +35,7 @@
                     <i class="fa fa-user"></i> Property comments
 
                 </li> -->
-                <li title='Portal feedback' (click)="userdashTabs('')">
+                <li title='Portal feedback' [ngClass]="{'activeTabdash': feedbackTab}" (click)="userdashTabs('feedback')">
                     <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
                     <i class="fa fa-user"></i> Portal feedback
 
@@ -52,7 +52,7 @@
         <div class="col" style="padding-bottom:7px;">
             <!--Property Tab start here -->
 
-            <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
+            <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab  && !feedbackTab">
 
                 <modal id="custom-modal-1">
                     <div class="modal">
@@ -239,7 +239,7 @@
 
             </div>
 
-            <div *ngIf="!propertyTab && alertsTab && !transactionsTab && !profileTab">
+            <div *ngIf="!propertyTab && alertsTab && !transactionsTab && !profileTab  && !feedbackTab">
                 <!-- <app-property-approval [propertyData]="propertyApproval"></app-property-approval> -->
 
                 <modal id="custom-modal-33">
@@ -984,14 +984,18 @@
 
         </div>
 
-        <div *ngIf="!propertyTab && !alertsTab && transactionsTab && !profileTab">
+        <div *ngIf="!propertyTab && !alertsTab && transactionsTab && !profileTab && !feedbackTab">
             <app-agent-approval> </app-agent-approval>
         </div>
+        <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && !profileTab && feedbackTab">
+            <app-admin-contactus> </app-admin-contactus>
+        </div>
 
-        <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab">
+
+        <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab  && !feedbackTab">
             <app-custom-packages></app-custom-packages>
         </div>
-        <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && !profileTab && adminalertTab">
+        <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && !profileTab && adminalertTab  && !feedbackTab">
             <div class="table-container-style table-th-styles table-responsive">
             <div class="container-bg-style">
             <table class="table table-striped table-bordered table-hover" [mfData]="adminalerts" #mf="mfDataTable" [mfRowsOnPage]="5">

@@ -285,7 +285,21 @@ export class EgazeService {
     return this.http.post(this.baseUrl + 'create/package', data);
   }
   getCustomPlanUserRecords() {
-    return this.http.get(this.baseUrl + "customer/customplan/details")
+    return this.http.get(this.baseUrl + "customer/customplan/details");
 
   }
+getAllContactUsRequests(){
+  return this.http.get(this.baseUrl + "getall/contactus")
+}
+updatecontactus(requestData,freq) {
+  var data = {
+    "id": freq.id,
+    "status": requestData.status,
+    "description": requestData.description,
+    "type": freq.type
+  }
+  //alert(JSON.stringify(data));
+    
+  return this.http.post(this.baseUrl + 'update/contactus', data);
+}
 }

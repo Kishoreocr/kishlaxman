@@ -67,8 +67,9 @@ export class AdmindashboardComponent implements OnInit {
   user: any;
   commentForm: FormGroup;
   adminalerts: any;
-  propertydocs:any;
+  propertydocs: any;
   documentId: any;
+  feedbackTab = false;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
@@ -110,7 +111,7 @@ export class AdmindashboardComponent implements OnInit {
       city: ['', Validators.required],
       state: ['', Validators.required],
       zip: ['', Validators.required]
-     // country: ['', Validators.required]
+      // country: ['', Validators.required]
     });
 
     this.commentForm = this.formBuilder.group({
@@ -146,6 +147,7 @@ export class AdmindashboardComponent implements OnInit {
         this.transactionsTab = false;
         this.profileTab = false;
         this.adminalertTab = false;
+        this.feedbackTab = false;
         break;
       case 'Alerts':
         this.propertyTab = false;
@@ -154,6 +156,7 @@ export class AdmindashboardComponent implements OnInit {
         this.adminalertTab = false;
         this.profileTab = false;
         this.getPropertyDetails();
+        this.feedbackTab = false;
         break;
       case 'Transactions':
         this.propertyTab = false;
@@ -161,6 +164,7 @@ export class AdmindashboardComponent implements OnInit {
         this.transactionsTab = true;
         this.adminalertTab = false;
         this.profileTab = false;
+        this.feedbackTab = false;
         break;
       case 'Profile':
         this.propertyTab = false;
@@ -170,6 +174,7 @@ export class AdmindashboardComponent implements OnInit {
         this.profileTab = true;
         this.updateuserProfilestatus = "";
         this.isEditDisabled = false;
+        this.feedbackTab = false;
         break;
       case 'adminalert':
         this.propertyTab = false;
@@ -177,6 +182,16 @@ export class AdmindashboardComponent implements OnInit {
         this.transactionsTab = false;
         this.adminalertTab = true;
         this.profileTab = false;
+        this.feedbackTab = false;
+        this.getAlerts();
+        break;
+      case 'feedback':
+        this.propertyTab = false;
+        this.alertsTab = false;
+        this.transactionsTab = false;
+        this.adminalertTab = false;
+        this.profileTab = false;
+        this.feedbackTab = true;
         this.getAlerts();
         break;
       case 'PropertyDetailsTab':
@@ -218,8 +233,8 @@ export class AdmindashboardComponent implements OnInit {
 
   openModal(id: string, cust) {
     this.propertytabModal = true;
-        this.documentstabModal = false;
-        this.commentstabModal = false;
+    this.documentstabModal = false;
+    this.commentstabModal = false;
 
     this.customer = cust;
     this.property = cust;
@@ -249,7 +264,7 @@ export class AdmindashboardComponent implements OnInit {
       city: this.property.city,
       state: this.property.state,
       zip: this.property.zip
-    //  country: this.property.country
+      //  country: this.property.country
       // status: this.property.status
 
     });
@@ -344,18 +359,18 @@ export class AdmindashboardComponent implements OnInit {
       if (file.type === "application/pdf" || file.type.match("image")) {
         if (file.size <= 4194304) {
           this.isLoading = true;
-            if (this.property != null) {
-              this.propertyId = this.property.id;
-            }
-            this.EgazeService.savePropertyDoc(this.sfile, this.propertyId, this.loginId).subscribe(result => {
-              this.isLoading = false;
-              this.sfile = null;
-              this.getPrpopertyDocs();
-              this.documentGrp.controls['file'].setValue("");
+          if (this.property != null) {
+            this.propertyId = this.property.id;
+          }
+          this.EgazeService.savePropertyDoc(this.sfile, this.propertyId, this.loginId).subscribe(result => {
+            this.isLoading = false;
+            this.sfile = null;
+            this.getPrpopertyDocs();
+            this.documentGrp.controls['file'].setValue("");
 
-            }, error => {
-  //            alert(JSON.stringify(error));
-            });
+          }, error => {
+            //            alert(JSON.stringify(error));
+          });
         } else {
           alert("Please choose < 4MB Documents");
           this.documentGrp.controls['file'].setValue("");

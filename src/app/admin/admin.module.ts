@@ -16,6 +16,7 @@ import { PropertyCommentsComponent } from './property-comments/property-comments
 import { PortalFeedbackComponent } from './portal-feedback/portal-feedback.component';
 import { LoadingDivComponent1Component } from './loading-div-component1/loading-div-component1.component';
 import {DataTableModule} from "angular-6-datatable";
+import { AdminContactusComponent } from './admin-contactus/admin-contactus.component';
 
 const appRoutes: Routes = [
   { path: 'adminlogin', component: LoginComponent },
@@ -30,7 +31,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: true }),DataTableModule
 
   ],
-  declarations: [LoginComponent, AdmindashboardComponent, ModalComponent, PropertyApprovalComponent, AgentApprovalComponent, PaymentApprovalComponent, CustomPackagesComponent, PropertyCommentsComponent, PortalFeedbackComponent, LoadingDivComponent1Component],
+  declarations: [LoginComponent, AdmindashboardComponent, ModalComponent, PropertyApprovalComponent, AgentApprovalComponent, PaymentApprovalComponent, CustomPackagesComponent, PropertyCommentsComponent, PortalFeedbackComponent, LoadingDivComponent1Component, AdminContactusComponent],
   providers: [ModalService]
 
 })

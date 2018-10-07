@@ -135,17 +135,16 @@
         <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
 
           <div class="carousel-inner" style='padding-bottom:100px;'>
-            <div class="carousel-item active">
-
-              <p class="Testimonials-title">Mr. Rock Adi</p>
+             
+            <div *ngFor="let property of feedbacks; let IndexId = index" class="carousel-item" [ngClass]="{ 'active' : IndexId === 0 ,''  : IndexId !== 0  }"  >
+<div *ngIf="property.status==='Show in Portal'">
+              <p class="Testimonials-title">{{property.name}}</p>
               <div>
-                <p class="Testimonials-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-                  to mak e a type specimen book..</p>
-              </div>
-            </div>
-
-
+                <p class="Testimonials-content">{{property.shortDescription}}</p>
+              </div></div>
+           
+</div>
+<!-- 
             <div class="carousel-item">
 
               <p class="Testimonials-title">Mr. Kishore</p>
@@ -165,7 +164,7 @@
                     to mak e a type specimen book Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
                   standard dummy text ever since the 1500s...</p>
               </div>
-            </div>
+            </div> -->
 
 
           </div>
@@ -173,10 +172,10 @@
 
           <div class="Testimonials-circles-slides">
 
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators3" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators3" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators3" data-slide-to="2"></li>
+            <ol class="carousel-indicators" >
+              <li data-target="#carouselExampleIndicators3" *ngFor="let property of feedbacks; let IndexId = index" data-slide-to=IndexId [ngClass]="{ 'active' : IndexId === 0 ,''  : IndexId !== 0  }"></li>
+              <!-- <li data-target="#carouselExampleIndicators3" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators3" data-slide-to="2"></li> -->
             </ol>
 
             <!-- <ul>
