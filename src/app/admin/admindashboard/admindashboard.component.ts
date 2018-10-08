@@ -129,7 +129,9 @@ export class AdmindashboardComponent implements OnInit {
     });
     this.searchGrp = this.formBuilder.group({
       searchType: [null],
-      searchText: [null]
+      searchText: [null],
+      searchTextdate1: [null],
+      searchTextdate2: [null]
 
     });
     this.searchGrp.controls['searchType'].setValue("propertyHolderName");
@@ -577,6 +579,22 @@ export class AdmindashboardComponent implements OnInit {
   searchType: any = 'propertyHolderName';
   propertyApproval1: any;
   filterItem() {
+    //alert(this.searchGrp.value.searchTextdate1)
+    if (this.searchType === 'daterange') {
+      if (this.searchGrp.value.searchTextdate1 === null) {
+        alert("Please select from date")
+      } else if (this.searchGrp.value.searchTextdate2 === null) {
+        alert("Please select to date")
+
+      } else {
+        this.propsearch();
+      }
+    } else {
+      this.propsearch();
+    }
+
+  }
+  propsearch() {
     this.propertyApproval = this.propertyApproval1;
     //this.getPropertyDetails();
     this.filterpropertyApproval = [];
@@ -607,6 +625,13 @@ export class AdmindashboardComponent implements OnInit {
           if (item.district.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1) {
             this.filterpropertyApproval.push(item);
           }
+        } else if (this.searchType === 'daterange') {
+          var date = new Date(item.addedDate);
+          var fdate = new Date(this.searchGrp.value.searchTextdate1);
+          var tdate = new Date(this.searchGrp.value.searchTextdate2);
+          if (date.getTime() >= fdate.getTime() && date.getTime() <= tdate.getTime()) {
+            this.filterpropertyApproval.push(item);
+          }
         }
       }
     );
@@ -614,11 +639,6 @@ export class AdmindashboardComponent implements OnInit {
     this.propertyApproval = this.filterpropertyApproval;
 
     //console.log(this.filterpropertyApproval);
-  }
-  getSearchType1(event) {
-    this.searchType = "" + event;
-    //this.searchGrp.controls['searchType'].setValue(""+event);
-
   }
 
   filtercust: any[] = [];
@@ -686,6 +706,8 @@ export class AdmindashboardComponent implements OnInit {
 
   }
   daterangecust: any = false;
+  daterange: any = false;
+
   getSearchTypecust(event) {
     this.searchTypecust = "" + event;
     if (this.searchTypecust === 'daterange') {
@@ -697,6 +719,30 @@ export class AdmindashboardComponent implements OnInit {
       this.daterangecust = false;
     }
   }
+  getSearchType1(event) {
+    this.searchType = "" + event;
+    if (this.searchType === 'daterange') {
+      this.searchGrp.controls['searchTextdate1'].setValue("");
+      this.searchGrp.controls['searchTextdate2'].setValue("");
 
+      this.daterange = true;
+    } else {
+      this.daterange = false;
+    }
+  }
+  propClear() {
+    this.propertyApproval = this.propertyApproval1;
+    this.searchGrp.controls['searchText'].setValue("");
+    this.searchGrp.controls['searchTextdate1'].setValue("");
+    this.searchGrp.controls['searchTextdate2'].setValue("");
+    this.searchGrp.controls['searchType'].setValue("propertyHolderName");
+  }
+  custClear() {
+    this.customers = this.customersbkp;
+    this.searchGrpcust.controls['searchTextcust'].setValue("");
+    this.searchGrpcust.controls['searchTextcustdate1'].setValue("");
+    this.searchGrpcust.controls['searchTextcustdate2'].setValue("");
+    this.searchGrpcust.controls['searchTypecust'].setValue("firstName");
+  }
 
 }

@@ -230,7 +230,7 @@
                     <label class="col-sm-2 col-form-label">Old Password</label>
                     <div class="col-sm-4 passwordInput">
                         <input [type]="showText ? 'text' : 'password' " formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
-                        />
+                          maxlength="20"/>
 
                         <div class="showHideText" (click)="showTextPwd(updateuserNewpwdForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
@@ -250,7 +250,7 @@
                     <label class="col-sm-2 col-form-label">New Password</label>
                     <div class="col-sm-4 passwordInput">
                         <input [type]="showText1 ? 'text' : 'password' " formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
-                        />
+                         maxlength="20"/>
 
                         <div class="showHideText" (click)="showTextPwd1(updateuserNewpwdForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye1"></i>
@@ -268,7 +268,7 @@
                     <label class="col-sm-2 col-form-label">Confirm Password</label>
                     <div class="col-sm-4 passwordInput">
                         <input [type]="showText2 ? 'text' : 'password' " formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
-                        />
+                        maxlength="20" />
 
                         <div class="showHideText" (click)="showTextPwd2(updateuserNewpwdForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye2"></i>

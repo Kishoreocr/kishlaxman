@@ -464,7 +464,7 @@
                         <div *ngIf="!customdiv">
                             <div class="table-responsive">
                                 <div *ngIf='userAllpropertis.length == 0'>No Properties.</div>
-                                <div class="col-sm-12 seach-box">
+                                <!-- <div class="col-sm-12 seach-box">
 
                                     <form class="form-inline">
                                         <div class="form-group mb-2">
@@ -475,8 +475,8 @@
                                         </div>
                                         <button type="submit" class="btn mb-2">Search</button>
                                     </form>
-                                </div>
-                                <table class="table table-striped table-bordered table-hover" [mfData]="userAllpropertis" #mf="mfDataTable" [mfRowsOnPage]="5">
+                                </div> -->
+                                <table *ngIf='userAllpropertis.length != 0' class="table table-striped table-bordered table-hover" [mfData]="userAllpropertis" #mf="mfDataTable" [mfRowsOnPage]="5">
                                     <thead>
                                         <tr>
                                             <!-- <th>
@@ -581,7 +581,7 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <input type="text" formControlName="titleHolder" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.titleHolder.errors }"
-                                            id="titleHolderFormControlInput" placeholder="Enter Title Holder" />
+                                            id="titleHolderFormControlInput" placeholder="Enter Title Holder" maxlength="30"/>
                                         <div *ngIf="submitted && f.titleHolder.errors" class="invalid-feedback">
                                             <div *ngIf="f.titleHolder.errors.required">Title Holder is required</div>
                                         </div>
@@ -610,7 +610,7 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <input type="text" formControlName="surveyNoDrNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.surveyNoDrNo.errors }"
-                                            id="surveyNo/DrNoFormControlInput" placeholder="Enter Survey No/Dr No">
+                                            id="surveyNo/DrNoFormControlInput" placeholder="Enter Survey No/Dr No"  maxlength="30">
                                         <div *ngIf="submitted && f.surveyNoDrNo.errors" class="invalid-feedback">
                                             <div *ngIf="f.surveyNoDrNo.errors.required">Survey No/Dr No is required</div>
                                         </div>
@@ -620,7 +620,7 @@
                                         <label for="subRegisterOffice">Sub Register Office
                                         </label>
                                         <input type="text" formControlName="subRegisterOffice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
-                                            id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office">
+                                            id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office"  maxlength="30">
                                         <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
                                             <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is required
                                             </div>
@@ -633,7 +633,7 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <input type="text" formControlName="extentofProperty" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentofProperty.errors }"
-                                            id="extentofPropertyFormControlInput" placeholder="Enter Extent of Property">
+                                            id="extentofPropertyFormControlInput" placeholder="Enter Extent of Property"  maxlength="30">
                                         <div *ngIf="submitted && f.extentofProperty.errors" class="invalid-feedback">
                                             <div *ngIf="f.extentofProperty.errors.required">Extent of Property is required
                                             </div>
@@ -662,7 +662,7 @@
                                         <label for="boundaries">Boundaries - North
                                         </label>
                                         <input type="text" formControlName="boundariesNorth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }"
-                                            id="boundariesFormControlInput" placeholder="Enter North">
+                                            id="boundariesFormControlInput" placeholder="Enter North"  maxlength="30">
                                         <div *ngIf="submitted && f.boundariesNorth.errors" class="invalid-feedback">
                                             <div *ngIf="f.boundariesNorth.errors.required">Boundaries is required</div>
                                         </div>
@@ -671,7 +671,7 @@
                                         <label for="boundaries">Boundaries - South
                                         </label>
                                         <input type="text" formControlName="boundariesSouth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }"
-                                            id="boundariesFormControlInput" placeholder="Enter South">
+                                            id="boundariesFormControlInput" placeholder="Enter South"  maxlength="30">
                                         <div *ngIf="submitted && f.boundariesSouth.errors" class="invalid-feedback">
                                             <div *ngIf="f.boundariesSouth.errors.required">Boundaries is required</div>
                                         </div>
@@ -680,7 +680,7 @@
                                         <label for="boundaries">Boundaries - East
                                         </label>
                                         <input type="text" formControlName="boundariesEast" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }"
-                                            id="boundariesFormControlInput" placeholder="Enter East">
+                                            id="boundariesFormControlInput" placeholder="Enter East"  maxlength="30">
                                         <div *ngIf="submitted && f.boundariesEast.errors" class="invalid-feedback">
                                             <div *ngIf="f.boundariesEast.errors.required">Boundaries is required</div>
                                         </div>
@@ -689,7 +689,7 @@
                                         <label for="boundaries">Boundaries - West
                                         </label>
                                         <input type="text" formControlName="boundariesWest" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }"
-                                            id="boundariesFormControlInput" placeholder="Enter West">
+                                            id="boundariesFormControlInput" placeholder="Enter West"  maxlength="30">
                                         <div *ngIf="submitted && f.boundariesWest.errors" class="invalid-feedback">
                                             <div *ngIf="f.boundariesWest.errors.required">Boundaries is required</div>
                                         </div>
@@ -699,7 +699,7 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <input type="text" formControlName="documentNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
-                                            id="documentNoFormControlInput" placeholder="Enter document no.">
+                                            id="documentNoFormControlInput" placeholder="Enter document no."  maxlength="30">
                                         <div *ngIf="submitted && f.documentNo.errors" class="invalid-feedback">
                                             <div *ngIf="f.documentNo.errors.required">Document No. is required</div>
                                         </div>
@@ -710,7 +710,7 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <input type="text" formControlName="address1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address1.errors }"
-                                            id="address1FormControlInput" placeholder="Enter Address 1">
+                                            id="address1FormControlInput" placeholder="Enter Address 1"  maxlength="30">
                                         <div *ngIf="submitted && f.address1.errors" class="invalid-feedback">
                                             <div *ngIf="f.address1.errors.required">Address 1 is required</div>
                                         </div>
@@ -730,7 +730,7 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <input type="text" formControlName="address2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address2.errors }"
-                                            id="address1FormControlInput" placeholder="Enter Address 2">
+                                            id="address1FormControlInput" placeholder="Enter Address 2"  maxlength="30">
                                         <div *ngIf="submitted && f.address2.errors" class="invalid-feedback">
                                             <div *ngIf="f.address2.errors.required">Address 2 is required</div>
                                         </div>
@@ -740,7 +740,7 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <input type="text" formControlName="villageCity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.villageCity.errors }"
-                                            id="villageCityFormControlInput" placeholder="Enter Village/City">
+                                            id="villageCityFormControlInput" placeholder="Enter Village/City"  maxlength="30">
                                         <div *ngIf="submitted && f.villageCity.errors" class="invalid-feedback">
                                             <div *ngIf="f.villageCity.errors.required">Village/City is required</div>
                                         </div>
@@ -754,7 +754,7 @@
                                         </label>
 
                                         <input type="text" formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
-                                            id="mandalFormControlInput" placeholder="Enter Mandal">
+                                            id="mandalFormControlInput" placeholder="Enter Mandal"  maxlength="30">
                                         <div *ngIf="submitted && f.mandal.errors" class="invalid-feedback">
                                             <div *ngIf="f.mandal.errors.required">Mandal is required</div>
                                         </div>
@@ -767,7 +767,7 @@
                                         </label>
 
                                         <input type="text" formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
-                                            id="districtFormControlInput" placeholder="Enter District">
+                                            id="districtFormControlInput" placeholder="Enter District"  maxlength="30">
                                         <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
                                             <div *ngIf="f.district.errors.required">District is required</div>
                                         </div>

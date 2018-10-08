@@ -18,7 +18,7 @@
                         <span class="mandatory">*</span>
                     </label>
                     <input type="text" formControlName="firstName" class="form-control" placeholder="Enter fisrt name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
-                    />
+                    maxlength="30" />
                     <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                         <div *ngIf="f.firstName.errors.required">First Name is required</div>
                     </div>
@@ -28,7 +28,7 @@
                         <span class="mandatory">*</span>
                     </label>
                     <input type="text" formControlName="lastName" class="form-control" placeholder="Enter last name" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
-                    />
+                     maxlength="30" />
                     <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                         <div *ngIf="f.lastName.errors.required">Last Name is required</div>
                     </div>
@@ -38,7 +38,7 @@
                         <span class="mandatory">*</span>
                     </label>
                     <input type="text" formControlName="email" class="form-control" placeholder="Enter email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-                    />
+                    maxlength="30" />
                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                         <div *ngIf="f.email.errors.required">Email is required</div>
                         <div *ngIf="f.email.errors.pattern">Please enter valid email</div>
@@ -80,7 +80,7 @@
                     </label>
                     <div class="passwordInput">
                         <input [type]="showText ? 'text' : 'password' " formControlName="password" class="form-control" placeholder="Enter password"
-                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" maxlength="20"/>
 
                         <div class="showHideText" (click)="showTextPwd(registerForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
@@ -101,7 +101,7 @@
                     </label>
                     <div class="passwordInput">
                         <input [type]="showText1 ? 'text' : 'password' " formControlName="confirmPassword" placeholder="Enter confirm password" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                            [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" maxlength="20"/>
 
                         <div class="showHideText" (click)="showTextPwd1(registerForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye1"></i>

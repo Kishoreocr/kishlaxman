@@ -140,48 +140,6 @@
 
                                 </div>
 
-                                <!-- <table *ngIf="customer!=''" class="table">
-                                <tr>
-                                    <td>Name:</td>
-                                    <td>{{customer.firstName}} {{customer.lastName}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Email:</td>
-                                    <td>{{customer.email}} </td>
-                                </tr>
-                                <tr>
-                                    <td>Mobile Number:</td>
-                                    <td>{{customer.mobileNo}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Address Line1:</td>
-                                    <td>{{customer.address1}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Address Line2:</td>
-                                    <td>{{customer.address2}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Address Line3:</td>
-                                    <td>{{customer.address3}}</td>
-                                </tr>
-                                <tr>
-                                    <td>City:</td>
-                                    <td>{{customer.city}}</td>
-                                </tr>
-                                <tr>
-                                    <td>State:</td>
-                                    <td>{{customer.state}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Country:</td>
-                                    <td>{{customer.country}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Zip:</td>
-                                    <td>{{customer.zip}}</td>
-                                </tr>
-                            </table> -->
                                 <div class='col' align='center' style='padding:20px;'>
                                     <button class="submit-btn" (click)="closeModal('custom-modal-1');">Close</button>
                                 </div>
@@ -218,6 +176,8 @@
                                             <input type="date" class="form-control" formControlName="searchTextcustdate2" id="searchTextcustdate2" placeholder="Search..">
                                         </div>
                                     <button type="submit" class="btn mb-2" (click)="filterItemcust()">Search</button>
+                                    &nbsp; &nbsp;
+                            <button type="submit" class="btn mb-2" (click)="custClear()">Clear</button>
                                 </form>
                             </div>
                     <div class="table-responsive">
@@ -236,7 +196,7 @@
                                         <mfDefaultSorter by="mobileNo">Mobile Number</mfDefaultSorter>
                                     </th>
                                     <th>
-                                            <mfDefaultSorter by="addedDate">Created Date</mfDefaultSorter>
+                                            <mfDefaultSorter by="addedDate">Added Date</mfDefaultSorter>
                                         </th>
                                     <th class='text-center'>Action
                                     </th>
@@ -939,13 +899,21 @@
                                     <option value="state">State</option>
                                     <option value="city">City</option>
                                     <option value="documentNo">Document No</option>
-                                    <option value="district">District</option> -->
+                                    <option value="district">District</option>
+                                     <option value="daterange">Date Range</option> 
                                 </select>
                             </div>
-                            <div class="form-group mx-sm-3 mb-2">
+                            <div class="form-group mx-sm-3 mb-2" *ngIf="!daterange">
                                 <input type="text" class="form-control" formControlName="searchText" id="searchText" placeholder="Search..">
                             </div>
-                            <button type="submit" class="btn mb-2" (click)="filterItem()">Search</button>
+                            <div class="form-group mx-sm-3 mb-2"  *ngIf="daterange">
+                                    <input type="date" class="form-control" formControlName="searchTextdate1" id="searchTextdate1" placeholder="Search..">
+                                    &nbsp;&nbsp;
+                                    <input type="date" class="form-control" formControlName="searchTextdate2" id="searchTextdate2" placeholder="Search..">
+                                </div>
+                            <button type="submit" class="btn mb-2" (click)="filterItem()">Search</button> 
+                            &nbsp; &nbsp;
+                            <button type="submit" class="btn mb-2" (click)="propClear()">Clear</button>
                         </form>
                     </div>
 
@@ -976,6 +944,9 @@
                                         <mfDefaultSorter by="documentNo">Document Number</mfDefaultSorter>
                                     </th>
                                     <th>
+                                            <mfDefaultSorter by="addedDate">Added Date</mfDefaultSorter>
+                                        </th>
+                                    <th>
                                         <mfDefaultSorter by="status">Status</mfDefaultSorter>
                                     </th>
                                     <th class='text-center'>
@@ -993,6 +964,7 @@
                                     <!-- <td>{{property.doorNo}}</td> -->
 
                                     <td>{{property.documentNo}} </td>
+                                    <td>{{property.addedDate | date :'dd/MM/yyyy'}} </td>
                                     <td>
                                         <span *ngIf="property.status==='P'">Pending Approval</span>
                                         <span *ngIf="property.status==='A'"> Approved</span>
@@ -1035,8 +1007,10 @@
             <app-custom-packages></app-custom-packages>
         </div>
         <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && !profileTab && adminalertTab  && !feedbackTab">
+            
             <div class="table-container-style table-th-styles table-responsive">
             <div class="container-bg-style">
+                    <h6>Alerts:</h6>
             <table class="table table-striped table-bordered table-hover" [mfData]="adminalerts" #mf="mfDataTable" [mfRowsOnPage]="5">
                 <thead>
                     <tr>
