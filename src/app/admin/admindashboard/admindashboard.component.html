@@ -196,6 +196,24 @@
 
 
                 <div class="table-container-style table-th-styles">
+                        <div class="col-sm-12 seach-box">
+
+                                <form class="form-inline" [formGroup]="searchGrpcust">
+                                    <div class="form-group mb-2">
+                                            <select class="form-control" formControlName="searchTypecust" name="searchTypecust" (ngModelChange)="getSearchTypecust($event)" >
+                                            <option value="firstName">Name</option>
+                                            <option value="state">State</option>
+                                            <option value="city">City</option>
+                                            <option value="email">Email</option>
+                                            <option value="mobileNo">MobileNo</option> -->
+                                        </select>
+                                    </div>
+                                    <div class="form-group mx-sm-3 mb-2">
+                                        <input type="text" class="form-control" formControlName="searchTextcust" id="searchTextcust" placeholder="Search..">
+                                    </div>
+                                    <button type="submit" class="btn mb-2" (click)="filterItemcust()">Search</button>
+                                </form>
+                            </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" [mfData]="customers" #mf="mfDataTable"
                             [mfRowsOnPage]="5">
@@ -275,7 +293,12 @@
                                         <div class="property-tab-style">
 
                                             <div class='col' align='center' style='padding-bottom:10px;'>
-
+                                                    <div class="propertyheading" (click)="approve('A')" *ngIf="propertystatus==='P'">
+                                                             Approve
+                                                        </div>
+                                                        <div class="propertyheading" (click)="approve('P')" *ngIf="propertystatus!=='P'">
+                                                                Revert
+                                                           </div>
                                                 <div class="propertyheading" (click)="profileeditFun()">
                                                     <i class="fa fa-edit" style="font-size:13px;font-weight: 200"></i>
                                                     Edit
@@ -899,14 +922,20 @@
 
                     <div class="col-sm-12 seach-box">
 
-                        <form class="form-inline">
+                        <form class="form-inline" [formGroup]="searchGrp">
                             <div class="form-group mb-2">
-                                <label for="search" class="search-label">Search</label>
+                                    <select class="form-control" formControlName="searchType" name="searchType" (ngModelChange)="getSearchType1($event)" >
+                                    <option value="propertyHolderName">Name</option>
+                                    <option value="state">State</option>
+                                    <option value="city">City</option>
+                                    <option value="documentNo">Document No</option>
+                                    <option value="district">District</option> -->
+                                </select>
                             </div>
                             <div class="form-group mx-sm-3 mb-2">
-                                <input type="text" class="form-control" id="search" placeholder="Search..">
+                                <input type="text" class="form-control" formControlName="searchText" id="searchText" placeholder="Search..">
                             </div>
-                            <button type="submit" class="btn mb-2">Search</button>
+                            <button type="submit" class="btn mb-2" (click)="filterItem()">Search</button>
                         </form>
                     </div>
 

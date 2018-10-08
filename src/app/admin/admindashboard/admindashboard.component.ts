@@ -36,7 +36,7 @@ export class AdmindashboardComponent implements OnInit {
   submitted = false;
   isEditDisabled: boolean = false;
   userEditprofileFlag: boolean = false;
-
+  propertystatus: any;
 
   updateuserProfile: any;
   updateuserProfilestatus: any;
@@ -70,6 +70,8 @@ export class AdmindashboardComponent implements OnInit {
   propertydocs: any;
   documentId: any;
   feedbackTab = false;
+  searchGrp:FormGroup;
+  searchGrpcust:FormGroup;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
@@ -125,6 +127,18 @@ export class AdmindashboardComponent implements OnInit {
       file: [null, Validators.required]
 
     });
+    this.searchGrp= this.formBuilder.group({
+      searchType: [null],
+      searchText:[null]
+
+    });
+    this.searchGrp.controls['searchType'].setValue("propertyHolderName");
+    this.searchGrpcust= this.formBuilder.group({
+      searchTypecust: [null],
+      searchTextcust:[null]
+
+    });
+    this.searchGrpcust.controls['searchTypecust'].setValue("firstName");
   }
   get c() {
     return this.commentForm.controls;
@@ -148,6 +162,9 @@ export class AdmindashboardComponent implements OnInit {
         this.profileTab = false;
         this.adminalertTab = false;
         this.feedbackTab = false;
+        this.searchGrp.controls['searchType'].setValue("propertyHolderName");
+        this.searchGrp.controls['searchText'].setValue("");
+        
         break;
       case 'Alerts':
         this.propertyTab = false;
@@ -157,6 +174,8 @@ export class AdmindashboardComponent implements OnInit {
         this.profileTab = false;
         this.getPropertyDetails();
         this.feedbackTab = false;
+        this.searchGrpcust.controls['searchTypecust'].setValue("firstName");
+        this.searchGrpcust.controls['searchTextcust'].setValue("");
         break;
       case 'Transactions':
         this.propertyTab = false;
@@ -235,7 +254,7 @@ export class AdmindashboardComponent implements OnInit {
     this.propertytabModal = true;
     this.documentstabModal = false;
     this.commentstabModal = false;
-
+    this.updateuserProfilestatus = '';
     this.customer = cust;
     this.property = cust;
 
@@ -243,7 +262,7 @@ export class AdmindashboardComponent implements OnInit {
     this.isEditDisabled = false;
     this.loginId = this.property.loginId;
     this.propertyId = this.property.id;
-
+    this.propertystatus = this.property.status;
     this.propertyForm1.setValue({
       propertyType: this.property.propertyType,
       propertyHolderName: this.property.propertyHolderName,
@@ -277,6 +296,7 @@ export class AdmindashboardComponent implements OnInit {
     this.EgazeService.getCustomerDetails().subscribe(result => {
       //debugger;
       this.customers = result;
+      this.customersbkp=result;
     }, error => {
 
     });
@@ -291,8 +311,10 @@ export class AdmindashboardComponent implements OnInit {
   }
 
   getPropertyDetails() {
+    this.updateuserProfilestatus = "";
     this.EgazeService.getPropertyApi().subscribe(result => {
       this.propertyApproval = result;
+      this.propertyApproval1=result;
       this.isEditDisabled = false;
     }, error => {
 
@@ -529,5 +551,115 @@ export class AdmindashboardComponent implements OnInit {
     }, error => {
     });
   }
+  approve(status) {
+    this.isLoading = true;
+
+    this.EgazeService.updatePropertyStatus(this.propertyId, status).subscribe(result => {
+      this.isLoading = false;
+      this.getPropertyDetails();
+      if (status === 'A') {
+        this.updateuserProfilestatus = 'Property is Approved';
+        this.propertystatus = 'A';
+      } else {
+        this.updateuserProfilestatus = 'Property is Reverted';
+        this.propertystatus = 'P';
+      }
+
+    }, error => {
+    });
+
+  }
+  filterpropertyApproval:any[]=[];
+  
+ searchType:any='propertyHolderName';
+ propertyApproval1:any;
+  filterItem(){
+    this.propertyApproval=this.propertyApproval1;
+    //this.getPropertyDetails();
+    this.filterpropertyApproval=[];
+    //alert(this.searchType +'---'+this.searchGrp.value.searchText)
+    //if(!this.searchGrp.value.searchText) this.assignCopy(); //when nothing has typed
+    this.propertyApproval = this.propertyApproval.filter(
+       item => {
+         if(this.searchType==='propertyHolderName'){
+        if(item.propertyHolderName.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1){
+          this.filterpropertyApproval.push(item);
+        }
+      }else if(this.searchType==='state'){
+        if(item.state.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1){
+          this.filterpropertyApproval.push(item);
+        }
+      }
+      else if(this.searchType==='city'){
+        if(item.city.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1){
+          this.filterpropertyApproval.push(item);
+        }
+      }
+      else if(this.searchType==='documentNo'){
+        if(item.documentNo.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1){
+          this.filterpropertyApproval.push(item);
+        }
+      }
+      else if(this.searchType==='district'){
+        if(item.district.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1){
+          this.filterpropertyApproval.push(item);
+        }
+      }
+       }
+    );
+    this.propertyApproval=[];
+    this.propertyApproval=this.filterpropertyApproval;
+
+    console.log(this.filterpropertyApproval);
+ }
+ getSearchType1(event){
+   this.searchType=""+event;
+  //this.searchGrp.controls['searchType'].setValue(""+event);
+
+ }
+
+ filtercust:any[]=[];
+ customersbkp:any;
+ searchTypecust:any='firstName';
+  filterItemcust(){
+    this.customers=this.customersbkp;
+    this.filtercust=[];
+    this.customers = this.customers.filter(
+       item => {
+         if(this.searchTypecust==='firstName'){
+        if(item.firstName.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1){
+          this.filtercust.push(item);
+        }
+      }else if(this.searchTypecust==='state'){
+        if(item.state.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1){
+          this.filtercust.push(item);
+        }
+      }
+      else if(this.searchTypecust==='city'){
+        if(item.city.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1){
+          this.filtercust.push(item);
+        }
+      }
+       else if(this.searchTypecust==='email'){
+        if(item.email.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1){
+          this.filtercust.push(item);
+        }
+      }
+      else if(this.searchTypecust==='mobileNo'){
+        if(item.mobileNo.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1){
+          this.filtercust.push(item);
+        }
+      }
+       }
+    );
+    this.customers=[];
+    this.customers=this.filtercust;
+ }
+ getSearchTypecust(event){
+   this.searchTypecust=""+event;
+  //this.searchGrp.controls['searchType'].setValue(""+event);
+
+ }
+
 
 }

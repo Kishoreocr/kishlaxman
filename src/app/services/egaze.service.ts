@@ -302,4 +302,7 @@ updatecontactus(requestData,freq) {
     
   return this.http.post(this.baseUrl + 'update/contactus', data);
 }
+getAllContactUsRequestsByStatus(status){
+  return this.http.get(this.baseUrl + "getall/status/contactus/"+status)
+}
 }

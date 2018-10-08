@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   }
 
   getAllContactUsRequests() {
-    this.egazeService.getAllContactUsRequests().subscribe(result => {
+    this.egazeService.getAllContactUsRequestsByStatus('SP').subscribe(result => {
      // alert(this.feedbacks)
       this.feedbacks = result;
     }, error => {
