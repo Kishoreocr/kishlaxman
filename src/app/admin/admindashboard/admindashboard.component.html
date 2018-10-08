@@ -205,12 +205,18 @@
                                             <option value="state">State</option>
                                             <option value="city">City</option>
                                             <option value="email">Email</option>
-                                            <option value="mobileNo">MobileNo</option> -->
+                                            <option value="mobileNo">MobileNo</option> 
+                                            <option value="daterange">Date Range</option> 
                                         </select>
                                     </div>
-                                    <div class="form-group mx-sm-3 mb-2">
+                                    <div class="form-group mx-sm-3 mb-2" *ngIf="!daterangecust">
                                         <input type="text" class="form-control" formControlName="searchTextcust" id="searchTextcust" placeholder="Search..">
                                     </div>
+                                    <div class="form-group mx-sm-3 mb-2"  *ngIf="daterangecust">
+                                            <input type="date" class="form-control" formControlName="searchTextcustdate1" id="searchTextcustdate1" placeholder="Search..">
+                                            &nbsp;&nbsp;
+                                            <input type="date" class="form-control" formControlName="searchTextcustdate2" id="searchTextcustdate2" placeholder="Search..">
+                                        </div>
                                     <button type="submit" class="btn mb-2" (click)="filterItemcust()">Search</button>
                                 </form>
                             </div>
@@ -229,6 +235,9 @@
                                     <th>
                                         <mfDefaultSorter by="mobileNo">Mobile Number</mfDefaultSorter>
                                     </th>
+                                    <th>
+                                            <mfDefaultSorter by="addedDate">Created Date</mfDefaultSorter>
+                                        </th>
                                     <th class='text-center'>Action
                                     </th>
                                 </tr>
@@ -240,13 +249,14 @@
                                     <td>{{customer.firstName}} {{customer.lastName}}</td>
                                     <td>{{customer.email}}</td>
                                     <td>{{customer.mobileNo}}</td>
+                                    <td>{{customer.addedDate| date:'dd/MM/yyyy'}}</td>
                                     <td style='text-align:center'>
                                         <i class="fa fa-eye" (click)="openModal('custom-modal-1',customer)"></i>
                                     </td>
                                 </tr>
                             </tbody>
                             <tr>
-                                <td colspan="4" style="border:0px !important;">
+                                <td colspan="6" style="border:0px !important;">
                                     <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
                                 </td>
                             </tr>

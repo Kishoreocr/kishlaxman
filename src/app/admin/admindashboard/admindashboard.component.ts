@@ -70,8 +70,8 @@ export class AdmindashboardComponent implements OnInit {
   propertydocs: any;
   documentId: any;
   feedbackTab = false;
-  searchGrp:FormGroup;
-  searchGrpcust:FormGroup;
+  searchGrp: FormGroup;
+  searchGrpcust: FormGroup;
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
@@ -127,15 +127,17 @@ export class AdmindashboardComponent implements OnInit {
       file: [null, Validators.required]
 
     });
-    this.searchGrp= this.formBuilder.group({
+    this.searchGrp = this.formBuilder.group({
       searchType: [null],
-      searchText:[null]
+      searchText: [null]
 
     });
     this.searchGrp.controls['searchType'].setValue("propertyHolderName");
-    this.searchGrpcust= this.formBuilder.group({
+    this.searchGrpcust = this.formBuilder.group({
       searchTypecust: [null],
-      searchTextcust:[null]
+      searchTextcust: [null],
+      searchTextcustdate1: [null],
+      searchTextcustdate2: [null]
 
     });
     this.searchGrpcust.controls['searchTypecust'].setValue("firstName");
@@ -164,7 +166,7 @@ export class AdmindashboardComponent implements OnInit {
         this.feedbackTab = false;
         this.searchGrp.controls['searchType'].setValue("propertyHolderName");
         this.searchGrp.controls['searchText'].setValue("");
-        
+
         break;
       case 'Alerts':
         this.propertyTab = false;
@@ -176,6 +178,7 @@ export class AdmindashboardComponent implements OnInit {
         this.feedbackTab = false;
         this.searchGrpcust.controls['searchTypecust'].setValue("firstName");
         this.searchGrpcust.controls['searchTextcust'].setValue("");
+        this.getCustomerDetails();
         break;
       case 'Transactions':
         this.propertyTab = false;
@@ -296,7 +299,7 @@ export class AdmindashboardComponent implements OnInit {
     this.EgazeService.getCustomerDetails().subscribe(result => {
       //debugger;
       this.customers = result;
-      this.customersbkp=result;
+      this.customersbkp = result;
     }, error => {
 
     });
@@ -314,7 +317,7 @@ export class AdmindashboardComponent implements OnInit {
     this.updateuserProfilestatus = "";
     this.EgazeService.getPropertyApi().subscribe(result => {
       this.propertyApproval = result;
-      this.propertyApproval1=result;
+      this.propertyApproval1 = result;
       this.isEditDisabled = false;
     }, error => {
 
@@ -569,97 +572,131 @@ export class AdmindashboardComponent implements OnInit {
     });
 
   }
-  filterpropertyApproval:any[]=[];
-  
- searchType:any='propertyHolderName';
- propertyApproval1:any;
-  filterItem(){
-    this.propertyApproval=this.propertyApproval1;
+  filterpropertyApproval: any[] = [];
+
+  searchType: any = 'propertyHolderName';
+  propertyApproval1: any;
+  filterItem() {
+    this.propertyApproval = this.propertyApproval1;
     //this.getPropertyDetails();
-    this.filterpropertyApproval=[];
+    this.filterpropertyApproval = [];
     //alert(this.searchType +'---'+this.searchGrp.value.searchText)
     //if(!this.searchGrp.value.searchText) this.assignCopy(); //when nothing has typed
     this.propertyApproval = this.propertyApproval.filter(
-       item => {
-         if(this.searchType==='propertyHolderName'){
-        if(item.propertyHolderName.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1){
-          this.filterpropertyApproval.push(item);
+      item => {
+        if (this.searchType === 'propertyHolderName') {
+          if (item.propertyHolderName.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1) {
+            this.filterpropertyApproval.push(item);
+          }
+        } else if (this.searchType === 'state') {
+          if (item.state.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1) {
+            this.filterpropertyApproval.push(item);
+          }
         }
-      }else if(this.searchType==='state'){
-        if(item.state.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1){
-          this.filterpropertyApproval.push(item);
+        else if (this.searchType === 'city') {
+          if (item.city.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1) {
+            this.filterpropertyApproval.push(item);
+          }
+        }
+        else if (this.searchType === 'documentNo') {
+          if (item.documentNo.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1) {
+            this.filterpropertyApproval.push(item);
+          }
+        }
+        else if (this.searchType === 'district') {
+          if (item.district.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1) {
+            this.filterpropertyApproval.push(item);
+          }
         }
       }
-      else if(this.searchType==='city'){
-        if(item.city.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1){
-          this.filterpropertyApproval.push(item);
-        }
-      }
-      else if(this.searchType==='documentNo'){
-        if(item.documentNo.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1){
-          this.filterpropertyApproval.push(item);
-        }
-      }
-      else if(this.searchType==='district'){
-        if(item.district.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1){
-          this.filterpropertyApproval.push(item);
-        }
-      }
-       }
     );
-    this.propertyApproval=[];
-    this.propertyApproval=this.filterpropertyApproval;
+    this.propertyApproval = [];
+    this.propertyApproval = this.filterpropertyApproval;
 
-    console.log(this.filterpropertyApproval);
- }
- getSearchType1(event){
-   this.searchType=""+event;
-  //this.searchGrp.controls['searchType'].setValue(""+event);
+    //console.log(this.filterpropertyApproval);
+  }
+  getSearchType1(event) {
+    this.searchType = "" + event;
+    //this.searchGrp.controls['searchType'].setValue(""+event);
 
- }
+  }
 
- filtercust:any[]=[];
- customersbkp:any;
- searchTypecust:any='firstName';
-  filterItemcust(){
-    this.customers=this.customersbkp;
-    this.filtercust=[];
+  filtercust: any[] = [];
+  customersbkp: any;
+  searchTypecust: any = 'firstName';
+  filterItemcust() {
+
+    if (this.searchTypecust === 'daterange') {
+      if (this.searchGrpcust.value.searchTextcustdate1 === '') {
+        alert("Please select from date")
+      } else if (this.searchGrpcust.value.searchTextcustdate2 === '') {
+        alert("Please select to date")
+
+      } else {
+        this.custsearch();
+      }
+    } else {
+      this.custsearch();
+    }
+
+  }
+
+  custsearch() {
+    this.customers = this.customersbkp;
+    this.filtercust = [];
     this.customers = this.customers.filter(
-       item => {
-         if(this.searchTypecust==='firstName'){
-        if(item.firstName.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1){
-          this.filtercust.push(item);
+      item => {
+        if (this.searchTypecust === 'firstName') {
+          if (item.firstName.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1) {
+            this.filtercust.push(item);
+          }
+        } else if (this.searchTypecust === 'state') {
+          if (item.state.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1) {
+            this.filtercust.push(item);
+          }
         }
-      }else if(this.searchTypecust==='state'){
-        if(item.state.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1){
-          this.filtercust.push(item);
+        else if (this.searchTypecust === 'city') {
+          if (item.city.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1) {
+            this.filtercust.push(item);
+          }
         }
-      }
-      else if(this.searchTypecust==='city'){
-        if(item.city.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1){
-          this.filtercust.push(item);
+        else if (this.searchTypecust === 'email') {
+          if (item.email.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1) {
+            this.filtercust.push(item);
+          }
         }
-      }
-       else if(this.searchTypecust==='email'){
-        if(item.email.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1){
-          this.filtercust.push(item);
+        else if (this.searchTypecust === 'mobileNo') {
+          if (item.mobileNo.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1) {
+            this.filtercust.push(item);
+          }
+        } else if (this.searchTypecust === 'daterange') {
+          var date = new Date(item.addedDate);
+          var fdate = new Date(this.searchGrpcust.value.searchTextcustdate1);
+          var tdate = new Date(this.searchGrpcust.value.searchTextcustdate2);
+          if (date.getTime() >= fdate.getTime() && date.getTime() <= tdate.getTime()) {
+            this.filtercust.push(item);
+          }
         }
-      }
-      else if(this.searchTypecust==='mobileNo'){
-        if(item.mobileNo.toLowerCase().indexOf(this.searchGrpcust.value.searchTextcust.toLowerCase()) > -1){
-          this.filtercust.push(item);
-        }
-      }
-       }
-    );
-    this.customers=[];
-    this.customers=this.filtercust;
- }
- getSearchTypecust(event){
-   this.searchTypecust=""+event;
-  //this.searchGrp.controls['searchType'].setValue(""+event);
 
- }
+
+      }
+    );
+    this.customers = [];
+    this.customers = this.filtercust;
+
+  }
+  daterangecust: any = false;
+  getSearchTypecust(event) {
+    this.searchTypecust = "" + event;
+    if (this.searchTypecust === 'daterange') {
+      this.searchGrpcust.controls['searchTextcustdate1'].setValue("");
+      this.searchGrpcust.controls['searchTextcustdate2'].setValue("");
+
+      this.daterangecust = true;
+    } else {
+      this.daterangecust = false;
+    }
+  }
 
 
 }
