@@ -84,7 +84,7 @@
 
                         <div class="showHideText" (click)="showTextPwd(registerForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
-                            <i class="fa fa-eye" *ngIf="showIconEye"></i>
+                            <i class="fa fa-eye" *ngIf="showIconEye" (mouseleave)="mouseoverpwd()"></i>
                         </div>
 
 
@@ -105,7 +105,7 @@
 
                         <div class="showHideText" (click)="showTextPwd1(registerForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye1"></i>
-                            <i class="fa fa-eye" *ngIf="showIconEye1"></i>
+                            <i class="fa fa-eye" *ngIf="showIconEye1" (mouseleave)="mouseoverpwd1()"></i>
                         </div>
 
                         <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">

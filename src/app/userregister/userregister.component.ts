@@ -203,7 +203,16 @@ export class UserregisterComponent implements OnInit {
     }
   }
 
-
+  mouseoverpwd(){
+    this.showText=false;
+    this.showIconEye = false;
+      this.hideIconEye = true;
+  }
+  mouseoverpwd1(){
+    this.showText1=false;
+    this.showIconEye1 = false;
+      this.hideIconEye1 = true;
+  }
 
 
 
