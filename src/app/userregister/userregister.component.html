@@ -38,7 +38,7 @@
                         <span class="mandatory">*</span>
                     </label>
                     <input type="text" formControlName="email" class="form-control" placeholder="Enter email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-                    maxlength="30" />
+                    maxlength="45" />
                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                         <div *ngIf="f.email.errors.required">Email is required</div>
                         <div *ngIf="f.email.errors.pattern">Please enter valid email</div>

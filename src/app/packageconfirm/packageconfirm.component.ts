@@ -52,7 +52,8 @@ confirmPackage(){
   let data1 ={
     "loginId": this.user.loginId,
     "email": this.user.email,
-    "packageId": this.data[1]
+    "packageId": this.data[1],
+    "type": this.user.type
  
 }
 //alert(this.user.email);

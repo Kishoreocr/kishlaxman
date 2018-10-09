@@ -266,7 +266,7 @@
 
                                         <div *ngIf="!propertytabModal && documentstabModal && !commentstabModal" class="col table-container-style container-bg-style">
 
-                                            <div>
+                                            <div class="table-responsive">
 
 
                                                 <table *ngIf="propertydocs.length>0" class="table table-striped table-bordered" [mfData]="propertydocs" #mf="mfDataTable"
@@ -462,7 +462,7 @@
                         </app-modal-property>
 
                         <div *ngIf="!customdiv">
-                            <div class="table-responsive">
+                            <div class="mainAlertcontainer  table-responsive ">
                                 <div *ngIf='userAllpropertis.length == 0'>No Properties.</div>
                                 <!-- <div class="col-sm-12 seach-box">
 
@@ -827,7 +827,7 @@
                         <!-- <div class="col" *ngIf="true"> -->
 
 
-                        <div>
+                        <div class="table-responsive">
 
                             <table *ngIf="propertydocs.length>0" class="table table-striped table-bordered" [mfData]="propertydocs" #mf="mfDataTable"
                                 [mfRowsOnPage]="5">
@@ -958,7 +958,7 @@
 
             <!-- transactions  tab -->
             <div *ngIf="!propertyTab && !alertsTab && transactionsTab && !profileTab" class="table-container-style">
-                <div class='mainAlertcontainer'>
+                <div class='mainAlertcontainer table-responsive'>
                     <table class="table table-striped table-bordered table-hover">
                         <!-- <caption>List of Transactions</caption> -->
                         <thead>
@@ -966,6 +966,7 @@
                                 <th>Package Name</th>
                                 <th>Start Date</th>
                                 <th>Expiry Date</th>
+                                <th>Properties Limit</th>
                                 <th>No of Properties Used</th>
                                 <th>Status</th>
                             </tr>
@@ -975,6 +976,7 @@
                                 <td>{{transaction.packageName}}</td>
                                 <td>{{transaction.purchaseDate | date: 'dd/MM/yyyy'}}</td>
                                 <td>{{transaction.expiryDate | date: 'dd/MM/yyyy'}}</td>
+                                <td>{{transaction.propertiesLimit}}</td>
                                 <td>{{transaction.propertiesUSed}}</td>
                                 <td>{{transaction.status}}</td>
                             </tr>

@@ -110,7 +110,8 @@ export class PackagesComponent implements OnInit {
     let data1 ={
       "loginId": this.user.loginId,
       "email": this.user.email,
-      "packageId": this.selectedPlanId
+      "packageId": this.selectedPlanId,
+      "type": this.user.type
    
   }
   //alert(this.user.email);

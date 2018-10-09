@@ -77,15 +77,15 @@ export class AgentregisterComponent implements OnInit {
       type: [null]
     });
 
-    this.registerForm.controls['registerType'].setValue("customer");
+    this.registerForm.controls['registerType'].setValue("agent");
     this.registerForm.controls['termsChecked'].setValue("true");
     this.registerForm.controls['country'].setValue("India");
     this.registerForm.controls['countryCode'].setValue("in");
     this.route.queryParamMap.subscribe(params => {
       if (params.get('type') === 'free') {
-        this.registerForm.controls['type'].setValue("free");
+        this.registerForm.controls['type'].setValue("Free");
       } else {
-        this.registerForm.controls['type'].setValue("normal");
+        this.registerForm.controls['type'].setValue("Normal");
       }
     });
   }

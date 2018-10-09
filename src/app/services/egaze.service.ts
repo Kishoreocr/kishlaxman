@@ -28,18 +28,38 @@ export class EgazeService {
   }
 
   registerFun(userObject) {
-    let payloadRequestData = {
-      "firstName": userObject.firstName,
-      "lastName": userObject.lastName,
-      "email": userObject.email,
-      "mobile": userObject.mobileNumber,
-      "zip": userObject.zipCode,
-      "role": userObject.registerType,
-      "password": userObject.password,
-      "country": userObject.country,
-      "countryCode": userObject.countryCode
-    };
-
+    let payloadRequestData ;
+    if(userObject.registerType==='agent'){
+      payloadRequestData= {
+        "firstName": userObject.firstName,
+        "lastName": userObject.lastName,
+        "email": userObject.email,
+        "mobile": userObject.mobileNumber,
+        "zip": userObject.zipCode,
+        "role": userObject.registerType,
+        "password": userObject.password,
+        "country": userObject.country,
+        "countryCode": userObject.countryCode,
+        "type":userObject.type,
+        "description":userObject.briefDescription
+      };
+  
+    }else{
+      payloadRequestData= {
+        "firstName": userObject.firstName,
+        "lastName": userObject.lastName,
+        "email": userObject.email,
+        "mobile": userObject.mobileNumber,
+        "zip": userObject.zipCode,
+        "role": userObject.registerType,
+        "password": userObject.password,
+        "country": userObject.country,
+        "countryCode": userObject.countryCode,
+        "type":userObject.type
+      };
+  
+    }
+    //alert(JSON.stringify(payloadRequestData))
     return this.http.post(this.baseUrl + 'signup', payloadRequestData);
   }
 

@@ -81,9 +81,9 @@ export class UserregisterComponent implements OnInit {
     this.registerForm.controls['countryCode'].setValue("in");
     this.route.queryParamMap.subscribe(params => {
       if(params.get('type')==='free'){
-        this.registerForm.controls['type'].setValue("free");
+        this.registerForm.controls['type'].setValue("Free");
       }else{
-        this.registerForm.controls['type'].setValue("normal");
+        this.registerForm.controls['type'].setValue("Normal");
       }
     });
   }
