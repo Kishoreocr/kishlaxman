@@ -29,7 +29,7 @@ export class CustomPackagesComponent implements OnInit {
 
     this.customPackagesForm = this.fb.group({
       descriptionCustom: ['', [Validators.required]],
-      packageLimit: ['', [Validators.required, Validators.pattern(RegExpNumber)]],
+      packageLimit: ['', [Validators.required]],
       packagePeriod: ['', [Validators.required]],
       customerCustom: ['', [Validators.required]],
       price:['', [Validators.required]]

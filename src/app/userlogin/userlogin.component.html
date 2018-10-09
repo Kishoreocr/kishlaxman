@@ -28,8 +28,8 @@
           <input [attr.disabled]="disabledField ? true : null" [type]="showText ? 'text' : 'password' " class="form-control" id="exampleInputPassword1"
             placeholder="Enter Password" formControlName="userpwd" [ngClass]="{ 'is-invalid': submitted && f.userpwd.errors }">
           <div class="showHideText" (click)="showTextPwd(userloginForm)">
-            <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
-            <i class="fa fa-eye" *ngIf="showIconEye"></i>
+            <i class="fa fa-eye-slash" *ngIf="hideIconEye" ></i>
+            <i class="fa fa-eye" *ngIf="showIconEye" (mouseleave)="mouseoverpwd()"></i>
           </div>
 
           <div *ngIf="submitted && f.userpwd.errors" class="invalid-feedback">

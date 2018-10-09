@@ -176,5 +176,9 @@ export class UserloginComponent implements OnInit {
       this.hideIconEye = !this.hideIconEye;
     }
   }
-
+  mouseoverpwd(){
+    this.showText=false;
+    this.showIconEye = false;
+      this.hideIconEye = true;
+  }
 }
