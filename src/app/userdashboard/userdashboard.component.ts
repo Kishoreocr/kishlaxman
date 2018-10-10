@@ -73,6 +73,12 @@ export class UserdashboardComponent implements OnInit {
 
   documentId: any;
 
+  firstFormStep: boolean = false;
+  secondFormStep: boolean = false;
+  thirdFormStep: boolean = false;
+
+
+
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private ModalPropertyService: ModalPropertyService) {
     this.modalService = modalService;
@@ -81,6 +87,10 @@ export class UserdashboardComponent implements OnInit {
     this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
     this.getTransactions();
     this.getPropertiesCount();
+
+    this.firstFormStep = true;
+    this.secondFormStep = false;
+    this.thirdFormStep = false;
   }
 
   ngOnInit() {
@@ -338,8 +348,49 @@ export class UserdashboardComponent implements OnInit {
 
   addPropertyFun(objProperty) {
     debugger;
-    this.submitted = true;
-    if (this.propertyForm.valid) {
+    event.stopPropagation();
+    if (this.propertyForm.controls.typeofProperty.valid
+      && this.propertyForm.controls.titleHolder.valid
+      && this.propertyForm.controls.relationshipTocustomer.valid
+      && this.propertyForm.controls.surveyNoDrNo.valid
+      && this.propertyForm.controls.extentofProperty.valid) {
+
+      this.submitted = false;
+
+      this.firstFormStep = false;
+      this.secondFormStep = true;
+      this.thirdFormStep = false;
+    }
+    else {
+      this.submitted = true;
+    }
+
+    if (this.propertyForm.controls.documentNo.valid) {
+
+      this.submitted = false;
+
+      this.firstFormStep = false;
+      this.secondFormStep = false;
+      this.thirdFormStep = true;
+    }
+    else {
+      this.submitted = true;
+    }
+
+    if (this.propertyForm.controls.address1.valid
+      && this.propertyForm.controls.address2.valid
+      && this.propertyForm.controls.villageCity.valid
+      && this.propertyForm.controls.mandal.valid
+      && this.propertyForm.controls.district.valid
+      && this.propertyForm.controls.zip.valid
+      && this.propertyForm.controls.state.valid) {
+
+      this.submitted = false;
+
+      this.firstFormStep = false;
+      this.secondFormStep = false;
+      this.thirdFormStep = true;
+
       this.isLoaderdiv = true;
       this.EgazeService.addProperty(objProperty.value, this.user.loginId, this.user.email).subscribe(
         result => {
@@ -361,7 +412,6 @@ export class UserdashboardComponent implements OnInit {
             this.propertyDetails = false;
 
           }
-
         },
         error => {
           console.log(error);
@@ -370,17 +420,26 @@ export class UserdashboardComponent implements OnInit {
 
       );
 
+    }
+    // else {
+    //   this.submitted = true;
+    // }
 
+  }
 
+  PreviousForm(PreviousForm) {
+    if (PreviousForm === 'FirstForm') {
+      this.firstFormStep = true;
+      this.secondFormStep = false;
+      this.thirdFormStep = false;
+    }
+    if (PreviousForm === 'SecondForm') {
+      this.firstFormStep = false;
+      this.secondFormStep = true;
+      this.thirdFormStep = false;
     }
 
-
   }
-
-  ChangingValue() {
-
-  }
-
 
   profileeditFun() {
     this.isEditDisabled = !this.isEditDisabled;
