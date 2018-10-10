@@ -504,7 +504,7 @@ label{
     padding: 20px 0px 0px 0px;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 0.6em;
     height: 4em
 }
@@ -516,7 +516,7 @@ label{
 }
 ::-webkit-scrollbar-thumb {
     background: #fdbc93;
-}
+} */
 
 app-modal-property .modal.confirmDocumentDelete{
 z-index:9;

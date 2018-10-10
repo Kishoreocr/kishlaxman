@@ -478,19 +478,19 @@ body.modal-open {
     padding: 20px 0px 0px 0px;
 }
 
-::-webkit-scrollbar {
+/* .scrolling-comment ::-webkit-scrollbar {
     width: 0.6em;
     height: 4em
 }
-::-webkit-scrollbar-button {
+.scrolling-comment ::-webkit-scrollbar-button {
     background: #ccc
 }
-::-webkit-scrollbar-track-piece {
+.scrolling-comment ::-webkit-scrollbar-track-piece {
     background: #ccc;
 }
-::-webkit-scrollbar-thumb {
+.scrolling-comment ::-webkit-scrollbar-thumb {
     background: #fdbc93;
-}
+} */
 
 modal .modal.confirmDocumentDelete{
     z-index:9;
