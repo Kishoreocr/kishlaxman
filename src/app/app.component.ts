@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   // }
   routerProperty: any;
   activeColor: boolean = false;
-  constructor(router: Router, route: ActivatedRoute, private sessionstorageService: SessionstorageService, private EgazeService: EgazeService) {
+  constructor(private activatedRoute: ActivatedRoute,router: Router, route: ActivatedRoute, private sessionstorageService: SessionstorageService, private EgazeService: EgazeService) {
 
     this.routerProperty = router;
     this.user = this.sessionstorageService.getUserDetails();
@@ -56,6 +56,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    const path = this.activatedRoute.snapshot.queryParams['path'];
+const navigateTo = '/' + path;
+
+if (path) {
+    window.location.href=navigateTo;
+
+}
     this.routerProperty.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;

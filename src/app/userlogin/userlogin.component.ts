@@ -74,10 +74,7 @@ export class UserloginComponent implements OnInit {
 
     if (sessionStorage.getItem("regsuc") != null) {
       this.registrationsuccess = sessionStorage.getItem("regsuc");
-      setTimeout(() => {
-        this.registrationsuccess = '';
-        sessionStorage.removeItem("regsuc");
-      }, 10000);
+    
     }
 
   }

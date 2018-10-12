@@ -39,7 +39,9 @@ export class ModalPropertyComponent implements OnInit {
   // remove self from modal service when directive is destroyed
   ngOnDestroy(): void {
       this.modalService.remove(this.id);
-      this.element.remove();
+      //this.element.remove();
+      this.element.parentNode && this.element.parentNode.removeChild(this.element);
+
   }
 
   // open modal

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
@@ -45,6 +45,7 @@ import { DataTableModule } from "angular-6-datatable";
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { ProfileComponent } from './profile/profile.component';
 import { AgentregisterComponent } from './agentregister/agentregister.component';
+import {NonceQueryParamInterceptorService} from './services/nonce-query-param-interceptor.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -140,6 +141,10 @@ const appRoutes: Routes = [
     LoadingDivComponent
 
   ],
+  // ,{ 
+  //   provide: HTTP_INTERCEPTORS, 
+  //   useClass: NonceQueryParamInterceptorService, multi: true 
+  // }
   providers: [EgazeService, SessionstorageService, ModalPropertyService],
   bootstrap: [AppComponent]
 })
