@@ -209,6 +209,7 @@ export class UserdashboardComponent implements OnInit {
 
   get fpwdP() { return this.updateuserNewpwdForm.controls }
 
+  get ugplan() {return this.upgradePlanForm.controls }
   getType(event) {
     this.propertyForm.value.typeofProperty = "" + event;
     //alert(this.updateuserNewpwdForm.value.typeofProperty);
@@ -353,7 +354,7 @@ export class UserdashboardComponent implements OnInit {
       && this.propertyForm.controls.titleHolder.valid
       && this.propertyForm.controls.relationshipTocustomer.valid
       && this.propertyForm.controls.surveyNoDrNo.valid
-      && this.propertyForm.controls.extentofProperty.valid) {
+      && this.propertyForm.controls.extentofProperty.valid && this.firstFormStep) {
 
       this.submitted = false;
 
@@ -361,23 +362,21 @@ export class UserdashboardComponent implements OnInit {
       this.secondFormStep = true;
       this.thirdFormStep = false;
     }
-    else {
-      this.submitted = true;
-    }
+    // else {
+    //   this.submitted = true;
+    // }
 
-    if (this.propertyForm.controls.documentNo.valid) {
-
+    else if (this.propertyForm.controls.documentNo.valid && this.secondFormStep) {
+     debugger;
       this.submitted = false;
 
       this.firstFormStep = false;
       this.secondFormStep = false;
       this.thirdFormStep = true;
     }
-    else {
-      this.submitted = true;
-    }
+   
 
-    if (this.propertyForm.controls.address1.valid
+    else if (this.propertyForm.controls.address1.valid
       && this.propertyForm.controls.address2.valid
       && this.propertyForm.controls.villageCity.valid
       && this.propertyForm.controls.mandal.valid
@@ -421,9 +420,9 @@ export class UserdashboardComponent implements OnInit {
       );
 
     }
-    // else {
-    //   this.submitted = true;
-    // }
+    else {
+      this.submitted = true;
+    }
 
   }
 
@@ -789,7 +788,8 @@ export class UserdashboardComponent implements OnInit {
     //window.location.href = AppConstants.packageURL;
   }
 
-  upgradePlanFun(upgradePlanForm) {
+  upgradePlanFun() {
+    debugger;
     this.errorMsg = '';
     if (this.upgradePlanForm.valid) {
       this.isLoading = true;

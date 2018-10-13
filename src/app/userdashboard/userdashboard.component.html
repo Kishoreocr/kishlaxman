@@ -1360,16 +1360,16 @@
 
 
                     <div *ngIf="upgradePlanprocess && !upgradePlanmessage">
-                        <form [formGroup]="upgradePlanForm" (ngSubmit)="upgradePlanFun(upgradePlanForm)">
+                        <form [formGroup]="upgradePlanForm" (ngSubmit)="upgradePlanFun()">
                             <div class="col content-style">
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1"> Provide Upgrade Plan Details(like Property limit)</label>
 
                                     <textarea class="form-control no-resize" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Upgrade plan details"
-                                        formControlName="upgradePlanForm.controls.plandetailsField" [ngClass]="{ 'is-invalid': submitted && upgradePlanForm.controls.plandetailsField.errors }"></textarea>
+                                    formControlName="plandetailsField" [ngClass]="{ 'is-invalid': submitted && ugplan.plandetailsField.errors }"></textarea>
 
-                                    <div *ngIf="submitted && upgradePlanForm.controls.plandetailsField.errors" class="invalid-feedback">
-                                        <div *ngIf="upgradePlanForm.controls.plandetailsField.errors.required"> Upgrade Plan Details is required
+                                    <div *ngIf="submitted && ugplan.plandetailsField.errors" class="invalid-feedback">
+                                        <div *ngIf="ugplan.plandetailsField.errors.required"> Upgrade Plan Details is required
                                         </div>
 
                                     </div>
