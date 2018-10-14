@@ -216,7 +216,7 @@ export class AdmindashboardComponent implements OnInit {
         this.adminalertTab = false;
         this.profileTab = false;
         this.feedbackTab = true;
-        this.getAlerts();
+        //this.getAlerts();
         break;
       case 'PropertyDetailsTab':
         this.propertytabModal = true;

@@ -278,12 +278,13 @@ export class EgazeService {
     return this.http.post(this.baseUrl + 'update/property/status', formdata);
   }
 
-  upgradePackageRequest(requestData) {
+  upgradePackageRequest(requestData,email) {
     var data = {
-      "email": requestData.email,
-      "description": requestData.description
+      "email": email,
+      "description": requestData.plandetailsField
     }
-    return this.http.post(this.baseUrl + 'save/contactus', data);
+   // alert(JSON.stringify(data))
+    return this.http.post(this.baseUrl + 'upgrade/package', data);
   }
   getCustomPlanUsers() {
     return this.http.get(this.baseUrl + "customplan/user/details")

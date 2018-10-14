@@ -549,12 +549,13 @@
                         <strong>{{propertyStatus}}</strong>
                     </div>
 
-                    <div class="col verticalTab" style='margin:0px'>
-                        <ul>
-                            <li [ngClass]="{'deactive': !propertyDetails}" (click)="userdashTabs('propertyDetailsTab')">Property Details
+                    <div class="col verticalTab" style='margin:0px' *ngIf="propertyDetails">
+                            <h5 class="tab-active-heading">Add Property Details</h5>
+                        <!-- <ul>
+                            <li [ngClass]="{'deactive': !propertyDetails}" (click)="userdashTabs('propertyDetailsTab')">Add Property Details
                             </li>
-                            <li [ngClass]="{'deactive': !propertyDocuments}" (click)="userdashTabs('propertyDocumentsTab')">Documents</li>
-                        </ul>
+                            <li [ngClass]="{'deactive': !propertyDocuments}" (click)="userdashTabs('propertyDocumentsTab')">Documents</li> 
+                        </ul> -->
                     </div>
 
                     <div class="col" *ngIf="propertyDetails" style='background-color: #fbfbfb !important;
@@ -635,34 +636,33 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="subRegisterOffice" class="col-sm-2 col-form-label">Sub Register Office
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <input type="text" formControlName="subRegisterOffice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
-                                                id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office"
-                                                maxlength="30">
-                                            <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
-                                                <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is required
+                                            <label for="extentofProperty" class="col-sm-2 col-form-label">Extent of Property
+                                                <span class="mandatory">*</span>
+                                            </label>
+                                            <div class="col-sm-4">
+                                                <input type="text" formControlName="extentofProperty" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentofProperty.errors }"
+                                                    id="extentofPropertyFormControlInput" placeholder="Enter Extent of Property"
+                                                    maxlength="30">
+                                                <div *ngIf="submitted && f.extentofProperty.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.extentofProperty.errors.required">Extent of Property is required
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
 
                                     <div class="form-group row">
-                                        <label for="extentofProperty" class="col-sm-2 col-form-label">Extent of Property
-                                            <span class="mandatory">*</span>
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <input type="text" formControlName="extentofProperty" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentofProperty.errors }"
-                                                id="extentofPropertyFormControlInput" placeholder="Enter Extent of Property"
-                                                maxlength="30">
-                                            <div *ngIf="submitted && f.extentofProperty.errors" class="invalid-feedback">
-                                                <div *ngIf="f.extentofProperty.errors.required">Extent of Property is required
+                                            <label for="documentno" class="col-sm-2 col-form-label">Document No.
+                                                <span class="mandatory">*</span>
+                                            </label>
+                                            <div class="col-sm-4">
+                                                <input type="text" formControlName="documentNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
+                                                    id="documentNoFormControlInput" placeholder="Enter document no." maxlength="30">
+                                                <div *ngIf="submitted && f.documentNo.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.documentNo.errors.required">Document No. is required</div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                   
                                     <div class="col offset-sm-2" style='
                                         padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
@@ -675,6 +675,19 @@
 
 
                                 <div *ngIf="secondFormStep" class="col-md-12">
+                                        <div class="form-group row">
+                                                <label for="subRegisterOffice" class="col-sm-2 col-form-label">Sub Register Office
+                                                </label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" formControlName="subRegisterOffice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
+                                                        id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office"
+                                                        maxlength="30">
+                                                    <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     <div class="form-group row">
                                         <label for="boundaries" class="col-sm-2 col-form-label">Boundaries - North
                                         </label>
@@ -723,18 +736,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="documentno" class="col-sm-2 col-form-label">Document No.
-                                            <span class="mandatory">*</span>
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <input type="text" formControlName="documentNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
-                                                id="documentNoFormControlInput" placeholder="Enter document no." maxlength="30">
-                                            <div *ngIf="submitted && f.documentNo.errors" class="invalid-feedback">
-                                                <div *ngIf="f.documentNo.errors.required">Document No. is required</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
+                                    
 
                                     <div class="col  offset-sm-2" style='
                                         padding-top: 20px;'>
@@ -1348,7 +1351,7 @@
                     <div *ngIf="upgradePlanmessage && !upgradePlanprocess">
                         <div class="col content-style">
                             <p>
-                                You can't add the more properties. Your Property add Limit has been exceeded.
+                                You can't add the property. Your Property add Limit has been exceeded.
                             </p>
                         </div>
                         <div class='col btn-bottom-style'>
@@ -1364,7 +1367,13 @@
 
                     <div *ngIf="upgradePlanprocess && !upgradePlanmessage">
                         <form [formGroup]="upgradePlanForm" (ngSubmit)="upgradePlanFun()">
-                            <div class="col content-style">
+                                <div class="alert alert-success" id="propertyDestination" *ngIf="upgraderequestsucc!=''" style="width: 80%;text-align: center;margin-left: 61px;margin-top: 18px;">
+                                        <!-- <a href="#" class="close" data-dismiss="alert">&times;</a> -->
+                                        <h4>{{upgraderequestsucc}}</h4>
+                                      
+                                      </div>
+                            <div class="col content-style" *ngIf="upgraderequestsucc===''">
+                                
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1"> Provide Upgrade Plan Details(like Property limit)</label>
 
@@ -1379,7 +1388,7 @@
                                 </div>
                             </div>
 
-                            <div class='col btn-bottom-style'>
+                            <div class='col btn-bottom-style' *ngIf="upgraderequestsucc===''">
                                 <button type='submit' class="submit-btn">Submit</button>
                                 <!-- <button class="submit-btn" (click)="closeModal('custom-modal-property-limit');">Cancel</button> -->
                             </div>

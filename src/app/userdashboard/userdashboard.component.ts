@@ -224,6 +224,7 @@ export class UserdashboardComponent implements OnInit {
   }
 
   propertyFun() {
+    this.upgraderequestsucc='';
     if (this.propertyCount != null) {
       var data = JSON.stringify(this.propertyCount);
       // alert(data)
@@ -242,9 +243,20 @@ export class UserdashboardComponent implements OnInit {
       this.viewProperties = !this.viewProperties;
     }
   }
+  selected=true;
   propertyFunView() {
+      this.updateuserProfilestatus = "";
+    this.propertyStatus = "";
+    this.profilechndResultMsg = "";
+    this.resultMsg = '';
+    this.propertyDetails=true;
     this.addProperty = !this.addProperty;
     this.viewProperties = !this.viewProperties;
+    this.firstFormStep=true;
+    this.thirdFormStep=false;
+    this.secondFormStep=false;
+    this.selected=true;
+
   }
   userdashTabs(activeTab) {
     this.updateuserProfilestatus = "";
@@ -313,16 +325,16 @@ export class UserdashboardComponent implements OnInit {
 
         break;
 
-      case 'propertyDetailsTab':
+      // case 'propertyDetailsTab':
 
-        this.propertyDetails = true;
-        this.propertyDocuments = false;
-        break;
-      case 'propertyDocumentsTab':
-        this.propertyDetails = false;
-        if (this.propertyStatus != '') {
-          this.propertyDocuments = true;
-        }
+      //   this.propertyDetails = true;
+      //   this.propertyDocuments = false;
+      //   break;
+      // case 'propertyDocumentsTab':
+      //   this.propertyDetails = false;
+      //   if (this.propertyStatus != '') {
+      //     this.propertyDocuments = true;
+      //   }
 
 
       default:
@@ -354,6 +366,7 @@ export class UserdashboardComponent implements OnInit {
       && this.propertyForm.controls.titleHolder.valid
       && this.propertyForm.controls.relationshipTocustomer.valid
       && this.propertyForm.controls.surveyNoDrNo.valid
+      && this.propertyForm.controls.documentNo.valid 
       && this.propertyForm.controls.extentofProperty.valid && this.firstFormStep) {
 
       this.submitted = false;
@@ -400,14 +413,14 @@ export class UserdashboardComponent implements OnInit {
             if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
             this.propertyId = JSON.stringify(result['id']);
             //alert(this.propertyId)
-            this.propertyStatus = "Property added Successfully";
+            this.propertyStatus = "Property added Successfully.Please click on 'View Properties' button to view your propery.";
             this.propertyForm.reset();
             this.submitted = false;
             this.propertiesShow();
             this.getPropertiesCount();
             this.getTransactions();
 
-            this.propertyDocuments = true;
+           // this.propertyDocuments = true;
             this.propertyDetails = false;
 
           }
@@ -587,6 +600,7 @@ export class UserdashboardComponent implements OnInit {
 
   closeModal(id: string) {
     this.ModalPropertyService.close(id);
+    this.upgraderequestsucc='';
   }
 
   public totalfiles: Array<File> = [];
@@ -787,7 +801,7 @@ export class UserdashboardComponent implements OnInit {
     this.upgradePlanprocess = true;
     //window.location.href = AppConstants.packageURL;
   }
-
+upgraderequestsucc='';
   upgradePlanFun() {
     debugger;
     this.errorMsg = '';
@@ -795,13 +809,14 @@ export class UserdashboardComponent implements OnInit {
       this.isLoading = true;
       this.submitted = false;
 
-      // this.EgazeService.updateprofile(upgradePlanForm.value, this.user.loginId).subscribe(result => {
-      //   this.isLoading = false;
-
-      // }, error => {
-      //   this.isLoaderdiv = false;
-      //   this.errorMsg = 'Server error has been occurred. Please try later.';
-      // });
+      this.EgazeService.upgradePackageRequest(this.upgradePlanForm.value, this.user.email).subscribe(result => {
+        this.isLoading = false;
+        this.upgraderequestsucc='Your Upgrade request sent to Admin.Admin will contact you soon.'
+        this.upgradePlanForm.controls['plandetailsField'].setValue("");
+      }, error => {
+        this.isLoaderdiv = false;
+        this.errorMsg = 'Server error has been occurred. Please try later.';
+      });
 
     }
     else {

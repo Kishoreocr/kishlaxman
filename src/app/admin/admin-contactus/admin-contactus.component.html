@@ -36,11 +36,10 @@
             <span *ngIf="user.status==='P'">Pending Approval</span>
             <span *ngIf="user.status!=='P'">{{user.status}}</span></td>
           <td>{{user.addedDate| date :'dd/MM/yyyy'}}</td>
-          <td style='text-align:center; cursor: pointer;' *ngIf="user.type==='Feedback'">
+          <td style='text-align:center; cursor: pointer;' >
             <i class="fa fa-eye" (click)="openModal('custom-modal-feedback',user)"></i>
           </td>
-          <td style='text-align:center; cursor: pointer;' *ngIf="user.type!=='Feedback'">
-            </td>
+         
         </tr>
       </tbody>
       <tfoot>

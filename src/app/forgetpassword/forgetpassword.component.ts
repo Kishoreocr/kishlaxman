@@ -129,9 +129,7 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
             this.pwschanged = "Successfully password has been changed. Please LOGIN with new password.";
             this.errorMessage = '';
             let this_ = this;
-            // setTimeout(function () {
-            //   window.location.reload(true);
-            // }, 2000);
+            
           }
         },
           error => {

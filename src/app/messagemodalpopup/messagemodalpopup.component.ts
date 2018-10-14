@@ -27,10 +27,7 @@ export class MessagemodalpopupComponent implements OnInit, IModalDialog {
     this.userFormValue = JSON.parse(sessionStorage.getItem("formData"));
     //debugger;
     this.isLoading = true;
-    this.EgazeService.getOTP(this.userFormValue.email).subscribe(otp => {
-      this.isLoading = false;
-      this.otpValue = otp;
-    });
+    
   }
 
   ngOnInit() {
@@ -38,6 +35,10 @@ export class MessagemodalpopupComponent implements OnInit, IModalDialog {
       otp: ['', Validators.required]
     });
     this.otpValue = this.otpValue;
+    this.EgazeService.getOTP(this.userFormValue.email).subscribe(otp => {
+      this.isLoading = false;
+      this.otpValue = otp;
+    });
   }
   // convenience getter for easy access to form fields
   get f() { return this.otpForm.controls; }

@@ -14,7 +14,7 @@ export class CustomPackagesComponent implements OnInit {
   isLoading = false;
   customPlanUsers:any;
   status=false;
-  customPlanUserRecords:any;
+  customPlanUserRecords:any=[];
   constructor(private fb: FormBuilder, private EgazeService: EgazeService) {
 
     this.getCustomPlanUsers();
