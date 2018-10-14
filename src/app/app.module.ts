@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
@@ -46,6 +47,9 @@ import { Ng2TelInputModule } from 'ng2-tel-input';
 import { ProfileComponent } from './profile/profile.component';
 import { AgentregisterComponent } from './agentregister/agentregister.component';
 import {NonceQueryParamInterceptorService} from './services/nonce-query-param-interceptor.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { Home1Component } from './home1/home1.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -82,6 +86,7 @@ const appRoutes: Routes = [
 
   { path: 'profile', component: ProfileComponent },
   { path: 'agent-registration', component: AgentregisterComponent },
+  { path: 'home1', component: Home1Component },
 
   { path: '**', component: PagenotfoundComponent }
 ];
@@ -120,7 +125,10 @@ const appRoutes: Routes = [
     EgazeServicesComponent,
     PackageDescriptionComponent,
     ProfileComponent,
-    AgentregisterComponent
+    AgentregisterComponent,
+    HeaderComponent,
+    FooterComponent,
+    Home1Component
 
   ],
   entryComponents: [
@@ -135,7 +143,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
-    ModalDialogModule.forRoot(), AdminModule, DataTableModule, Ng2TelInputModule
+    ModalDialogModule.forRoot(), AdminModule, DataTableModule, Ng2TelInputModule,
+    BrowserAnimationsModule
   ],
   exports: [
     LoadingDivComponent

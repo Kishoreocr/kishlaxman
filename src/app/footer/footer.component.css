@@ -1,0 +1,155 @@
+
+.footer-bg{
+    background-color:#1275af;
+    padding:10px 5px 5px;
+  }
+  h1 {
+      color: #369;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 250%;
+    }
+  
+    .footer-menu-1{
+      width:200px;
+      margin-right:10px;
+      display:inline-block;
+      vertical-align: top;
+      background-image: url(../../assets/images/rightbar_3.png);
+      background-repeat: no-repeat;
+      background-position: 93% 0px;
+      min-height: 200px;
+  }
+    .footer-menu-1:first-child{
+      background-image:url(../../assets/images/rightbar_3.png);
+      background-repeat: no-repeat;
+      background-position:none;
+      width:200px;
+    }
+    .footer-menu-1:last-child{
+      background-image:none;
+      background-repeat: no-repeat;
+      background-position:none;
+      width:150px;
+    }
+  
+  @media screen and (max-width:640px){
+    .footer-menu-1{
+      width:250px!important;
+    }
+    .text-center{
+      text-align: left!important;
+    }
+  }
+  
+  
+  @media screen and (max-width:1000px){
+    .footer-menu-1{
+      width:200px;
+      background-image:none;
+      background-repeat: no-repeat;
+      background-position:none;
+      min-height:auto;
+    }
+  } 
+  .footer-menu-1:first-child{
+    margin-right:20px;
+  }
+  
+  .footer-menu-1::after{
+    /* background: linear-gradient(90deg, red, blue);
+    width:2px;
+    height:190px;
+    background-color:red;
+    content:''; */
+    width:2px;
+    height: 200px;
+    background-color: #fe843d; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to top, #fe843d, #ffffff, #fe843d); /* Standard syntax (must be last) */
+  }
+  
+  .footer-menu-1 ul{
+      margin:0px;
+      padding:0px;
+  }
+  .footer-menu-1 ul li{
+      padding:2px 10px;;
+      list-style: none;
+      display: block;
+      text-align:left;
+  }
+  .footer-menu-1 ul li a{
+    font-size:16px;
+      color:#fff;
+      display: block;
+      text-decoration: none;
+  }
+  .gradient-line {
+    width:100%;
+    height: 8px;
+    background-color: #fe843d; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right, #fe843d, #ffffff, #fe843d); /* Standard syntax (must be last) */
+  }
+  .footer-copyright{
+    background-color:#f5f5f5;
+    padding:10px 10px;
+  }
+  .footer-copyright > p{padding:0px;
+    margin:0px;
+    font-size:16px;
+  }
+  .heading-location{
+    color:#fff;padding:0px 5px 5px;margin:0px;font-size:18px;text-align:left;
+    font-weight: 500;
+  }
+  
+  .content-container{
+    min-height:400px;padding:50px 0px;font-size:18px;
+    text-align:center;
+  }
+  
+  /*** footer icons ***/
+  
+  
+  #lab_social_icon_footer {
+    padding: 0px 0;
+  }
+  
+  #lab_social_icon_footer a {
+    color: #f5f5f5;
+  }
+  
+  #lab_social_icon_footer .social:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+  }
+  
+  #lab_social_icon_footer .social {
+    -webkit-transform: scale(0.8);
+    /* Browser Variations: */
+    
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+  }
+  /*
+      Multicoloured Hover Variations
+  */
+  
+  #lab_social_icon_footer #social-fb:hover {
+    color: #3B5998;
+  }
+  
+  #lab_social_icon_footer #social-tw:hover {
+    color: #4099FF;
+  }
+  
+  #lab_social_icon_footer #social-gp:hover {
+    color: #d34836;
+  }
+  
+  #lab_social_icon_footer #social-em:hover {
+    color: #f39c12;
+  }
