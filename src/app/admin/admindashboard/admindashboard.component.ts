@@ -58,6 +58,10 @@ export class AdmindashboardComponent implements OnInit {
   documentstabModal: boolean = false;
   commentstabModal: boolean = false;
 
+  customerdetailstabModal = true;
+  customerpackagestabModal = false;
+  customerpropertiestabModal = false;
+
   propertyDetails: boolean = false;
   propertyDocuments: boolean = false;
   loginId: any;
@@ -72,6 +76,11 @@ export class AdmindashboardComponent implements OnInit {
   feedbackTab = false;
   searchGrp: FormGroup;
   searchGrpcust: FormGroup;
+  custlist = true;
+  custdetailstabs = false;
+  custtransactions: any = [];
+  userproperties: any = [];
+
   constructor(private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private elem: ElementRef,
     private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private modalService1: ModalService) {
     this.modalService = modalService;
@@ -168,7 +177,8 @@ export class AdmindashboardComponent implements OnInit {
         this.feedbackTab = false;
         this.searchGrp.controls['searchType'].setValue("propertyHolderName");
         this.searchGrp.controls['searchText'].setValue("");
-
+        this.custlist = true;
+        this.custdetailstabs = false;
         break;
       case 'Alerts':
         this.propertyTab = false;
@@ -181,6 +191,8 @@ export class AdmindashboardComponent implements OnInit {
         this.searchGrpcust.controls['searchTypecust'].setValue("firstName");
         this.searchGrpcust.controls['searchTextcust'].setValue("");
         this.getCustomerDetails();
+        this.custlist = true;
+        this.custdetailstabs = false;
         break;
       case 'Transactions':
         this.propertyTab = false;
@@ -189,6 +201,8 @@ export class AdmindashboardComponent implements OnInit {
         this.adminalertTab = false;
         this.profileTab = false;
         this.feedbackTab = false;
+        this.custlist = true;
+        this.custdetailstabs = false;
         break;
       case 'Profile':
         this.propertyTab = false;
@@ -199,6 +213,8 @@ export class AdmindashboardComponent implements OnInit {
         this.updateuserProfilestatus = "";
         this.isEditDisabled = false;
         this.feedbackTab = false;
+        this.custlist = true;
+        this.custdetailstabs = false;
         break;
       case 'adminalert':
         this.propertyTab = false;
@@ -208,6 +224,8 @@ export class AdmindashboardComponent implements OnInit {
         this.profileTab = false;
         this.feedbackTab = false;
         this.getAlerts();
+        this.custlist = true;
+        this.custdetailstabs = false;
         break;
       case 'feedback':
         this.propertyTab = false;
@@ -216,6 +234,8 @@ export class AdmindashboardComponent implements OnInit {
         this.adminalertTab = false;
         this.profileTab = false;
         this.feedbackTab = true;
+        this.custlist = true;
+        this.custdetailstabs = false;
         //this.getAlerts();
         break;
       case 'PropertyDetailsTab':
@@ -226,7 +246,6 @@ export class AdmindashboardComponent implements OnInit {
         this.getPropertyDetails();
         this.propertyDetails = true;
         this.propertyDocuments = false;
-
 
         break;
       case 'DocumentsTab':
@@ -246,21 +265,40 @@ export class AdmindashboardComponent implements OnInit {
         this.isEditDisabled = false;
         this.getPrpopertyComments();
         break;
-
-
+      case 'CustomerDetailsTab':
+        this.customerdetailstabModal = true;
+        this.customerpackagestabModal = false;
+        this.customerpropertiestabModal = false;
+        break;
+      case 'CustomerPackagesTab':
+        this.getTransactions();
+        this.customerdetailstabModal = false;
+        this.customerpackagestabModal = true;
+        this.customerpropertiestabModal = false;
+        break;
+      case 'CustomerPropertiesTab':
+        this.custproperties();
+        this.customerdetailstabModal = false;
+        this.customerpackagestabModal = false;
+        this.customerpropertiestabModal = true;
+        break;
       default:
         this.propertyTab = true;
         this.propertyDetails = true;
         this.propertytabModal = true;
     }
   }
-
+  custdetails(cust) {
+    this.custlist = false;
+    this.custdetailstabs = true;
+    this.customer = cust;
+  }
   openModal(id: string, cust) {
     this.propertytabModal = true;
     this.documentstabModal = false;
     this.commentstabModal = false;
     this.updateuserProfilestatus = '';
-    this.customer = cust;
+    // this.customer = cust;
     this.property = cust;
 
     this.modalService1.open(id);
@@ -330,7 +368,17 @@ export class AdmindashboardComponent implements OnInit {
     this.isEditDisabled = !this.isEditDisabled;
     this.submitted = false;
   }
+  custproperties() {
 
+    this.EgazeService.getAllproperties(this.customer.loginId).subscribe(
+      result => {
+        //debugger;
+        this.userproperties = result;
+      },
+      error => { }
+    );
+
+  }
 
   updatepropertyFun(propertyForm1) {
     if (!this.isEditDisabled) {
@@ -453,7 +501,29 @@ export class AdmindashboardComponent implements OnInit {
       alert(JSON.stringify(error));
     });
   }
+  getTransactions() {
+    this.isLoaderdiv = true;
+    this.EgazeService.getCustomerPackages(this.customer.loginId).subscribe(
+      result => {
+        this.custtransactions = result;
+        this.isLoaderdiv = false;
+      }
 
+    );
+  }
+  custback() {
+    this.custdetailstabs = false;
+    this.custlist = true;
+    this.propertyTab = true;
+    this.alertsTab = false;
+    this.transactionsTab = false;
+    this.profileTab = false;
+    this.adminalertTab = false;
+    this.feedbackTab = false;
+    this.customerdetailstabModal = true;
+    this.customerpackagestabModal = false;
+    this.customerpropertiestabModal = false;
+  }
   commentFun(description) {
     this.submitted = true;
     //alert(description.value.commentfield)

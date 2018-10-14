@@ -1,11 +1,13 @@
-<div class="alert alert-success" id="propertyDestination" *ngIf="registrationsuccess!=''" style="width: 80%;text-align: center;margin-left: 118px;margin-top: 18px;">
-  <a href="#" class="close" data-dismiss="alert">&times;</a>
-  <h4>Congratulations!.. You Have successfully Registered</h4>
 
-</div>
-<div class="row justify-content-md-center row no-gutters" style="padding-top:100px;padding:30px;">
+<div class="container" style="padding-top:150px;">
 
+<div class="row justify-content-md-center row no-gutters" style="padding:30px;">
 
+    <div class="alert alert-success" id="propertyDestination" *ngIf="registrationsuccess!=''" style="width: 80%;text-align: center;margin-left: 118px;margin-top: 18px;">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <h4>Congratulations!.. You Have successfully Registered</h4>
+      
+      </div>
   <div class="col col-md-4 userloginForm">
     <h4>Login</h4>
     <p>Please enter registered email and password with Us!</p>
@@ -99,5 +101,5 @@
 
 
 
-</div>
+</div></div>
 <app-loading-div *ngIf="isLoading"></app-loading-div>

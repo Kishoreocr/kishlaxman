@@ -22,8 +22,8 @@ export class EgazeService {
     return this.http.get(requestURL);
   }
 
-  getOTP(emialId) {
-    let requestURL = this.baseUrl + 'otp/' + emialId + '/REGISTRATION';
+  getOTP(emialId,mobi) {
+    let requestURL = this.baseUrl + 'otp/reg/' + emialId + '/'+mobi;
     return this.http.get(requestURL);
   }
 
@@ -64,7 +64,7 @@ export class EgazeService {
   }
 
   forgotuserpwd(userId) {
-    return this.http.get(this.baseUrl + 'otp/' + userId + '/FORGOTPASSWORD');
+    return this.http.get(this.baseUrl + 'otp/forgot/' + userId );
   }
 
   pwdchange(userpw, useremail) {

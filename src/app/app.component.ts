@@ -35,25 +35,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  userdashboard() {
-    if (this.sessionstorageService.getUserDetails() != null) {
-      this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
-      this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
-        result => {
-          if (Object.keys(result).length === 0) {
-            window.location.href = AppConstants.packageURL;
-          } else {
-            window.location.href = AppConstants.userdashboardURL;
-          }
-        }
-
-      );
-    }
-  }
-  logout() {
-    this.sessionstorageService.removeUserDetails("user");
-    window.location.href = AppConstants.loginURL;
-  }
+  
 
   ngOnInit() {
     const path = this.activatedRoute.snapshot.queryParams['path'];

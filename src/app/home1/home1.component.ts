@@ -31,14 +31,14 @@ export class Home1Component implements OnInit {
 
   }
 
-  @HostListener('document:click', ['$event']) 
-  clickedOutside($event){
+  // @HostListener('document:click', ['$event']) 
+  // clickedOutside($event){
    
-    if (!this._eref.nativeElement.contains(event.target)){
-    this.bgColorchange = false;
-    this.animationState = this.animationState === 'out' ? 'in' : 'out';
-    }
-  }
+  //   if (!this._eref.nativeElement.contains(event.target)){
+  //   this.bgColorchange = false;
+  //   this.animationState = this.animationState === 'out' ? 'in' : 'out';
+  //   }
+  // }
 
 
   @HostListener('window:scroll', ['$event'])

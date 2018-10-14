@@ -76,7 +76,7 @@ const appRoutes: Routes = [
   { path: 'registerform', component: UserregisterComponent },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/home1',
     pathMatch: 'full'
   },
   { path: 'userdashboard', component: UserdashboardComponent },

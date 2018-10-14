@@ -12,9 +12,9 @@ export class CustomPackagesComponent implements OnInit {
   customPackagesForm: FormGroup;
   submitted = false;
   isLoading = false;
-  customPlanUsers:any;
-  status=false;
-  customPlanUserRecords:any=[];
+  customPlanUsers: any;
+  status = false;
+  customPlanUserRecords: any = [];
   constructor(private fb: FormBuilder, private EgazeService: EgazeService) {
 
     this.getCustomPlanUsers();
@@ -32,7 +32,7 @@ export class CustomPackagesComponent implements OnInit {
       packageLimit: ['', [Validators.required]],
       packagePeriod: ['', [Validators.required]],
       customerCustom: ['', [Validators.required]],
-      price:['', [Validators.required]]
+      price: ['', [Validators.required]]
     });
     this.customPackagesForm.controls['customerCustom'].setValue("");
 
@@ -47,25 +47,25 @@ export class CustomPackagesComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.customPackagesForm.controls; }
 
-  type(event){
+  type(event) {
     this.customPackagesForm.value.customerCustom = "" + event;
     //alert(event+"")
 
   }
 
   saveCustomPackage(customPackageForm) {
-    this.status=false;
+    this.status = false;
     if (this.customPackagesForm.valid) {
       this.isLoading = true;
       this.EgazeService.createCustomPackage(this.customPackagesForm.value).subscribe(message => {
         this.isLoading = false;
-        this.status=true;
+        this.status = true;
         this.customPackagesForm.controls['customerCustom'].setValue("");
         this.customPackagesForm.controls['price'].setValue("");
         this.customPackagesForm.controls['packageLimit'].setValue("");
         this.customPackagesForm.controls['packagePeriod'].setValue("");
         this.customPackagesForm.controls['descriptionCustom'].setValue("");
-
+        this.getCustomPlanUserRecords();
       });
     }
     else {
@@ -83,19 +83,19 @@ export class CustomPackagesComponent implements OnInit {
   }
   getCustomPlanUsers() {
     this.EgazeService.getCustomPlanUsers().subscribe(result => {
-     // debugger;
+      // debugger;
       this.customPlanUsers = result;
     }, error => {
 
     });
 
   }
-  getCustomPlanUserRecords(){
+  getCustomPlanUserRecords() {
     this.EgazeService.getCustomPlanUserRecords().subscribe(result => {
       // debugger;
-       this.customPlanUserRecords = result;
-     }, error => {
- 
-     });
+      this.customPlanUserRecords = result;
+    }, error => {
+
+    });
   }
 }

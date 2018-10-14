@@ -159,7 +159,7 @@ export class UserregisterComponent implements OnInit {
           }
           else {
             this.isLoading = false;
-            sessionStorage.setItem("formData", JSON.stringify(formData.value));
+            sessionStorage.setItem("formData", JSON.stringify(this.registerForm.value));
             this.registerModal('registermodal');
             //this.openNewDialog(formData);
           }
