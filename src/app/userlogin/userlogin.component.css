@@ -265,11 +265,11 @@ label{
 
 
 
-app-modal-property .modal.confirmDocumentDelete{
+app-modal-property .modal.forgotpwdmodal{
 z-index:9;
 }
 
-app-modal-property#confirm-delete-document > .modal-background{
+app-modal-property#forgotpwdmodal > .modal-background{
   z-index:8;
 }
 /*** modal style close here ***/

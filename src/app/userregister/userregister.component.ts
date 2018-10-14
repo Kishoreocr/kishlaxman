@@ -5,7 +5,7 @@ import { ModalDialogService } from 'ngx-modal-dialog';
 import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpopup.component'
 import { EgazeService } from '../services/egaze.service';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
-
+import { ModalPropertyService } from '../services/modal-property.service';
 @Component({
   selector: 'app-userregister',
   templateUrl: './userregister.component.html',
@@ -34,7 +34,7 @@ export class UserregisterComponent implements OnInit {
 
 
 
-  constructor(private route: ActivatedRoute,private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
+  constructor(private route: ActivatedRoute,private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private ModalPropertyService: ModalPropertyService) {
 
     this.modalService = modalService;
     this.viewRef = viewRef;
@@ -133,6 +133,7 @@ export class UserregisterComponent implements OnInit {
     //alert(this.mobileNumbererror)
   }
   onSubmit(formData) {
+   debugger;
     //alert(this.registerForm.get('countryCode').value)
     this.submitted = true;
     //console.log(JSON.stringify(this.registerForm))
@@ -159,7 +160,8 @@ export class UserregisterComponent implements OnInit {
           else {
             this.isLoading = false;
             sessionStorage.setItem("formData", JSON.stringify(formData.value));
-            this.openNewDialog(formData);
+            this.registerModal('registermodal');
+            //this.openNewDialog(formData);
           }
         }
 
@@ -178,13 +180,22 @@ export class UserregisterComponent implements OnInit {
     else
       this.termsCheckederrors = "";
   }
-  openNewDialog(formData) {
-    this.modalService.openDialog(this.viewRef, {
-      title: 'Validate OTP(One Time Passcode)',
-      childComponent: MessagemodalpopupComponent
-    });
-  }
+ 
+  // openNewDialog(formData) {
+  //   this.modalService.openDialog(this.viewRef, {
+  //     title: 'Validate OTP(One Time Passcode)',
+  //     childComponent: MessagemodalpopupComponent
+  //   });
+  // }
 
+/** register modal code */
+registerModal(id: string) {
+    this.ModalPropertyService.open(id);
+  }
+  closeModal(id: string) {
+    this.ModalPropertyService.close(id);
+  }
+/** register modal code close here*/
 
 
   showTextPwd(registerForm) {
