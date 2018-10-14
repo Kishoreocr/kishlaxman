@@ -20,10 +20,10 @@ h1 {
     min-height: 200px;
 }
   .footer-menu-1:first-child{
-    background-image:none;
+    background-image:url(../assets/images/rightbar_3.png);
     background-repeat: no-repeat;
     background-position:none;
-    width:240px;
+    width:200px;
   }
   .footer-menu-1:last-child{
     background-image:none;

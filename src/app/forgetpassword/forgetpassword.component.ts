@@ -72,9 +72,10 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
       newpwd: ['', Validators.required],
       confirmnewpwd: ['', Validators.required]
     });
+    var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     this.userForgtForm = this.fb.group({
-      emailidForget: ['', Validators.required]
+      emailidForget: ['', [Validators.required, Validators.pattern(emailPattern)]]
     });
   }
   // convenience getter for easy access to form fields
@@ -128,13 +129,9 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
             this.pwschanged = "Successfully password has been changed. Please LOGIN with new password.";
             this.errorMessage = '';
             let this_ = this;
-            // this.actionButtons[1].onAction();
-            setTimeout(function () {
-              //this_.routerProperty.navigateByUrl('/registerform');
-              //window.location.href = '/loginform'
-              window.location.reload(true);
-
-            }, 2000);
+            // setTimeout(function () {
+            //   window.location.reload(true);
+            // }, 2000);
           }
         },
           error => {
@@ -208,5 +205,15 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
       this.showIconEye1 = !this.showIconEye1;
       this.hideIconEye1 = !this.hideIconEye1;
     }
+  }
+  mouseoverpwd() {
+    this.showText = false;
+    this.showIconEye = false;
+    this.hideIconEye = true;
+  }
+  mouseoverpwd1() {
+    this.showText1 = false;
+    this.showIconEye1 = false;
+    this.hideIconEye1 = true;
   }
 } 
