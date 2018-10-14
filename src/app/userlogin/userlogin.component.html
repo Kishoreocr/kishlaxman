@@ -28,7 +28,7 @@
           <input [attr.disabled]="disabledField ? true : null" [type]="showText ? 'text' : 'password' " class="form-control" id="exampleInputPassword1"
             placeholder="Enter Password" formControlName="userpwd" [ngClass]="{ 'is-invalid': submitted && f.userpwd.errors }">
           <div class="showHideText" (click)="showTextPwd(userloginForm)">
-            <i class="fa fa-eye-slash" *ngIf="hideIconEye" ></i>
+            <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
             <i class="fa fa-eye" *ngIf="showIconEye" (mouseleave)="mouseoverpwd()"></i>
           </div>
 
@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-md-6  align-self-end" style="text-align: right;padding-bottom:10px;">
-          <a href="javascript:void()" (click)="forgetPWD($event)">Forgot your password?</a>
+          <a href="javascript:void()" (click)="forgotpwdmodal('forgotpwdmodal')">Forgot your password?</a>
         </div>
       </div>
 
@@ -65,5 +65,39 @@
 
 
   </div>
+
+
+  <!-- forgot password modal-->
+  <app-modal-property id="forgotpwdmodal">
+    <div class="modal forgotpwdmodal">
+      <div class="row justify-content-md-center justify-content-sm-center no-gutters">
+        <div class="modal-body col-md-4 col-sm-8" style="padding:0px;">
+
+          <div class='col modal-heading'>
+            <p>Forgot your Password?
+            </p>
+          </div>
+
+          <div class="close-icon-style">
+            <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('forgotpwdmodal');"></i>
+          </div>
+
+          <div class="modal-content-padding">
+            <app-forgetpassword></app-forgetpassword>
+            <!-- <div class='col btn-bottom-style'>
+                          <button class="submit-btn" (click)="closeModal('forgotpwdmodal');">Cancel</button>
+                      </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-background"></div>
+    <app-loading-div *ngIf="isLoading"></app-loading-div>
+  </app-modal-property>
+  <!-- forgot password modal -->
+
+
+
+
 </div>
 <app-loading-div *ngIf="isLoading"></app-loading-div>

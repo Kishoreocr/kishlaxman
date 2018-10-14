@@ -11,7 +11,7 @@ import { AppConstants } from '../services/constants';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-
+import { ModalPropertyService } from '../services/modal-property.service';
 @Component({
   selector: 'app-userlogin',
   templateUrl: './userlogin.component.html',
@@ -42,7 +42,7 @@ export class UserloginComponent implements OnInit {
   showIconEye: boolean = false;
   hideIconEye: boolean = false;
 
-  constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private http: HttpClient) {
+  constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private http: HttpClient, private ModalPropertyService: ModalPropertyService) {
     this.disabledField = false;
     this.routerProperty = router;
     this.modalService = modalService;
@@ -155,16 +155,25 @@ export class UserloginComponent implements OnInit {
     }
   }
 
-  forgetPWD(event) {
-    event.preventDefault();
-    this.openNewDialog();
+  // forgetPWD(event) {
+  //   event.preventDefault();
+  //   this.openNewDialog();
+  // }
+  // openNewDialog() {
+  //   this.modalService.openDialog(this.viewRef, {
+  //     title: 'Forgot your Password?',
+  //     childComponent: ForgetpasswordComponent
+  //   });
+  // }
+
+/** forgot Modal code */
+  forgotpwdmodal(id: string) {
+    this.ModalPropertyService.open(id);
   }
-  openNewDialog() {
-    this.modalService.openDialog(this.viewRef, {
-      title: 'Forgot your Password?',
-      childComponent: ForgetpasswordComponent
-    });
+  closeModal(id: string) {
+    this.ModalPropertyService.close(id);
   }
+/** forgot Modal code close here*/
 
   showTextPwd(userloginForm) {
     if (userloginForm.value.userpwd) {

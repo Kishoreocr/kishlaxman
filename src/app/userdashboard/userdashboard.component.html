@@ -463,6 +463,8 @@
 
                         <div *ngIf="!customdiv">
                             <div class="mainAlertcontainer  table-responsive ">
+
+                                <h5 class="tab-active-heading">Properties</h5>
                                 <div *ngIf='userAllpropertis.length == 0'>No Properties.</div>
                                 <!-- <div class="col-sm-12 seach-box">
 
@@ -950,7 +952,7 @@
 
             <!-- Alerts tab -->
             <div *ngIf="!propertyTab && alertsTab && !transactionsTab && !profileTab" class="table-container-style">
-
+                    <h5 class="tab-active-heading">Alerts</h5>
                 <div class='mainAlertcontainer table-responsive'>
                     <table class="table table-striped table-bordered table-hover" [mfData]="alerts" #mf="mfDataTable" [mfRowsOnPage]="5">
                         <thead>
@@ -998,6 +1000,7 @@
 
             <!-- transactions  tab -->
             <div *ngIf="!propertyTab && !alertsTab && transactionsTab && !profileTab" class="table-container-style">
+                    <h5 class="tab-active-heading">Transactions</h5>
                 <div class='mainAlertcontainer table-responsive'>
                     <table class="table table-striped table-bordered table-hover">
                         <!-- <caption>List of Transactions</caption> -->

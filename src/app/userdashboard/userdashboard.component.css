@@ -519,10 +519,11 @@ label{
     background: #fdbc93;
 } */
 
-app-modal-property .modal.confirmDocumentDelete{
+app-modal-property .modal.forgotpwdmodal{
 z-index:9;
 }
 
-app-modal-property#confirm-delete-document > .modal-background{
+app-modal-property#forgotpwdmodal > .modal-background{
     z-index:8;
 }
+

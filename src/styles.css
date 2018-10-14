@@ -479,3 +479,8 @@ body.modal-open {
 
 /*** **/
 
+.tab-active-heading{
+  color: #1275af;
+  font-size: 20px;
+  padding-bottom: 5px!important;
+}
