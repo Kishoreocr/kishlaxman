@@ -66,7 +66,7 @@ const appRoutes: Routes = [
   { path: 'property-monitoring', component: PropertyMonitoringComponent },
   { path: 'abouteGAZE', component: AbouteGazeComponent },
   { path: 'whyeGAZE', component: WhyeGazeComponent },
-  { path: 'blogs', component: BlogsComponent },
+  { path: 'blog', component: BlogsComponent },
 
   { path: 'egaze-services', component: EgazeServicesComponent },
   { path: 'package-description', component: PackageDescriptionComponent },

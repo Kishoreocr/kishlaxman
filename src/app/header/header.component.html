@@ -124,8 +124,8 @@ position: relative;">
 </div>
 </header> -->
 
-<div id="header" Class="launch-sticky-header" [ngClass]=" isScollDown ? 'affix' : 'affix-top' " data-spy="affix"
-  data-offset-top="187" data-offset-bottom="0">
+<div id="header" Class="launch-sticky-header" [ngClass]=" isScollDown ? 'affix' : 'affix-top' " data-spy="affix" data-offset-top="187"
+  data-offset-bottom="0">
   <div class="top">
     <div class="container">
       <div class="logo">
@@ -165,7 +165,7 @@ position: relative;">
             <a>{{user.email}}</a>
           </li>
           <li>
-            <a  (click)="logout()" style="cursor:pointer">Logout</a>
+            <a (click)="logout()" style="cursor:pointer">Logout</a>
           </li>
 
         </ul>
@@ -191,7 +191,7 @@ position: relative;">
             </li>
 
             <li>
-              <a routerLink="/property-monitoring" routerLinkActive="activeClss">Services</a>
+              <a>Services</a>
               <ul>
                 <li>
                   <a routerLink="/property-monitoring" routerLinkActive="activeClss">Property Monitoring</a>
@@ -215,13 +215,13 @@ position: relative;">
               </ul>
             </li>
             <li>
-              <a routerLink="/abouteGAZE" routerLinkActive="activeClss">About</a>
+              <a>About</a>
               <ul>
                 <li>
                   <a routerLink="/abouteGAZE" routerLinkActive="activeClss">About eGAZE</a>
                 </li>
                 <li>
-                  <a routerLink="/why-egaze" routerLinkActive="activeClss">Why eGAZE</a>
+                  <a routerLink="/whyeGAZE" routerLinkActive="activeClss">Why eGAZE</a>
                 </li>
 
               </ul>
@@ -237,18 +237,38 @@ position: relative;">
               <a routerLink="/contactus" routerLinkActive="activeClss">Contact</a>
             </li>
             <li *ngIf="!flag">
-              <a routerLink="/Help" routerLinkActive="activeClss">Help</a>
+              <a routerLink="/help" routerLinkActive="activeClss">Help</a>
             </li>
+
+            <li *ngIf="!flag">
+              <a>Legals</a>
+              <ul>
+                <li>
+                  <a routerLink="/terms-conditions" routerLinkActive="activeClss">Terms &amp; Conditions</a>
+                </li>
+                <li>
+                  <a routerLink="/privacy-policy" routerLinkActive="activeClss">Privacy Policy</a>
+                </li>
+                <li>
+                  <a routerLink="/disclaimer" routerLinkActive="activeClss">Disclaimer</a>
+                </li>
+
+              </ul>
+            </li>
+
+
+
+
             <li *ngIf="!flag">
               <a routerLink="/blog" routerLinkActive="activeClss">Blog</a>
             </li>
             <li *ngIf="flag">
               <a *ngIf="this.user.role==='admin'" routerLink="/admindashboard" routerLinkActive="activeClss">Dashboard</a>
-              <a *ngIf="this.user.role==='customer'"  (click)="userdashboard()" >Dashboard</a>
+              <a *ngIf="this.user.role==='customer'" (click)="userdashboard()">Dashboard</a>
 
             </li>
             <li *ngIf="flag">
-              <a *ngIf="this.user.role==='customer'"  routerLink="/profile" routerLinkActive="activeClss">Profile</a>
+              <a *ngIf="this.user.role==='customer'" routerLink="/profile" routerLinkActive="activeClss">Profile</a>
 
 
             </li>
@@ -272,15 +292,15 @@ position: relative;">
     <a href="tel: 404-44-333">040 - 111 222</a>
   </div>
   <div class="logins" *ngIf="flag">
-      <a>{{user.email}}</a>
-    </div>
+    <a>{{user.email}}</a>
+  </div>
   <ul>
     <li>
       <a routerLink="/home1" routerLinkActive="activeClss">Home</a>
     </li>
 
     <li>
-      <a routerLink="/property-monitoring" routerLinkActive="activeClss">Services</a>
+      <a>Services</a>
       <ul>
         <li>
           <a routerLink="/property-monitoring" routerLinkActive="activeClss">Property Monitoring</a>
@@ -304,7 +324,7 @@ position: relative;">
       </ul>
     </li>
     <li>
-      <a routerLink="/abouteGAZE" routerLinkActive="activeClss">About</a>
+      <a>About</a>
       <ul>
         <li>
           <a routerLink="/abouteGAZE" routerLinkActive="activeClss">About eGAZE</a>
@@ -325,23 +345,40 @@ position: relative;">
     <li>
       <a routerLink="/contactus" routerLinkActive="activeClss">Contact</a>
     </li>
-    <li *ngIf="!flag">
-        <a routerLink="/Help" routerLinkActive="activeClss">Help</a>
-      </li>
-      <li *ngIf="!flag">
-        <a routerLink="/blog" routerLinkActive="activeClss">Blog</a>
-      </li>
-      <li *ngIf="flag">
-        <a *ngIf="this.user.role==='admin'" routerLink="/admindashboard" routerLinkActive="activeClss">Dashboard</a>
-        <a *ngIf="this.user.role==='customer'"  (click)="userdashboard()" >Dashboard</a>
 
-      </li>
-      <li *ngIf="flag">
-        <a *ngIf="this.user.role==='customer'"  routerLink="/profile" routerLinkActive="activeClss">Profile</a>
-      </li>
-      <li *ngIf="flag">
-          <a  (click)="logout()" style="cursor:pointer">Logout</a>
+
+    <li>
+      <a>Legals</a>
+      <ul>
+        <li>
+          <a routerLink="/terms-conditions" routerLinkActive="activeClss">Terms &amp; Conditions</a>
         </li>
+        <li>
+          <a routerLink="/privacy-policy" routerLinkActive="activeClss">Privacy Policy</a>
+        </li>
+        <li>
+          <a routerLink="/disclaimer" routerLinkActive="activeClss">Disclaimer</a>
+        </li>
+
+      </ul>
+    </li>
+    <li *ngIf="!flag">
+      <a routerLink="/Help" routerLinkActive="activeClss">Help</a>
+    </li>
+    <li *ngIf="!flag">
+      <a routerLink="/blog" routerLinkActive="activeClss">Blog</a>
+    </li>
+    <li *ngIf="flag">
+      <a *ngIf="this.user.role==='admin'" routerLink="/admindashboard" routerLinkActive="activeClss">Dashboard</a>
+      <a *ngIf="this.user.role==='customer'" (click)="userdashboard()">Dashboard</a>
+
+    </li>
+    <li *ngIf="flag">
+      <a *ngIf="this.user.role==='customer'" routerLink="/profile" routerLinkActive="activeClss">Profile</a>
+    </li>
+    <li *ngIf="flag">
+      <a (click)="logout()" style="cursor:pointer">Logout</a>
+    </li>
   </ul>
 </div>
 

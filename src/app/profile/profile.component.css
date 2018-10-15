@@ -9,7 +9,7 @@
         background-color: #fffbfb;
         border-radius: 6px;
         width: 100%;
-        margin: 20px auto;
+        margin: 0px auto!important;
         border-radius: 10px;
     }
     .table-container-style{

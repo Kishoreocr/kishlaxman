@@ -42,8 +42,9 @@ export class ProfileComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, ) {
-    this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
-    this.getsaveprofile();
+    // this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
+    debugger;
+    // this.getsaveprofile();
     this.showText = false;
     this.showIconEye = false;
     this.hideIconEye = true;
@@ -101,7 +102,9 @@ export class ProfileComponent implements OnInit {
       confirmpwd: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming]],
 
     });
-
+    debugger;
+    this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
+    this.getsaveprofile();
   }
 
   get feditP() { return this.updateuserForm.controls }

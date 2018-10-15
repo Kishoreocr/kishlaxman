@@ -1,5 +1,5 @@
 <!-- row justify-content-md-center no-gutters -->
-<div class="row no-gutters" style="padding-top: 180px;">
+<div class="row no-gutters container-top-padding">
 
     <div class="col-md-2" style="background-color:#cce8fc;padding:0px;">
         <!-- <div class="registeruserName">
@@ -30,7 +30,7 @@
     </div>
 
     <div class="col-md-10 right-content-bg" style="padding:15px;">
-        <div class="col tabActions" style="background-color:#f7fcff;">
+        <div *ngIf="propertyTab" class="col tabActions" style="background-color:#f7fcff;">
 
             <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
                 <div *ngIf="!customdiv">

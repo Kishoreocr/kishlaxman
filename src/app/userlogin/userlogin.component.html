@@ -1,5 +1,5 @@
 
-<div class="container" style="padding-top:150px;">
+<div class="container container-top-padding">
 
 <div class="row justify-content-md-center row no-gutters" style="padding:30px;">
 
@@ -8,7 +8,7 @@
         <h4>Congratulations!.. You Have successfully Registered</h4>
       
       </div>
-  <div class="col col-md-4 userloginForm">
+  <div class="col-md-6 col-lg-5 col-sm-12 userloginForm">
     <h4>Login</h4>
     <p>Please enter registered email and password with Us!</p>
     <form [formGroup]="userloginForm" (ngSubmit)="saveUser(userloginForm)">
@@ -43,11 +43,11 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6 align-self-start" style="text-align: left;padding-right:0px;padding-bottom:10px;">
+        <div class="col-md-6 align-self-start col-sm-6" style="text-align: left;padding-right:0px;padding-bottom:10px;">
           <a routerLink="/registerform" routerLinkActive="activeClss">New User?</a>
         </div>
 
-        <div class="col-md-6  align-self-end" style="text-align: right;padding-bottom:10px;">
+        <div class="col-md-6  col-sm-6 align-self-end" style="text-align: right;padding-bottom:10px;">
           <a href="javascript:void()" (click)="forgotpwdmodal('forgotpwdmodal')">Forgot your password?</a>
         </div>
       </div>
