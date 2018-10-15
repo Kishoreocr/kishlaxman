@@ -495,3 +495,6 @@ body.modal-open {
     height: 5px;
     background-color: #1672a5;
 }
+.mandatory{
+  color:red;
+}
