@@ -326,4 +326,7 @@ updatecontactus(requestData,freq) {
 getAllContactUsRequestsByStatus(status){
   return this.http.get(this.baseUrl + "getall/status/contactus/"+status)
 }
+getAllStates(){
+  return this.http.get(this.baseUrl + "state/details")
+}
 }
