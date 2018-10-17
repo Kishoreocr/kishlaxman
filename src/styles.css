@@ -248,7 +248,7 @@ app-modal-property .modal {
         left: 0;
 
         /* z-index must be higher than .modal-background */
-        z-index: 2;
+        z-index: 3!important;
         
         /* enables scrolling for tall modals */
         overflow: auto;
@@ -277,7 +277,7 @@ app-modal-property .modal {
         opacity: 0.75;
         
         /* z-index must be below .modal and above everything else  */
-        z-index: 1;
+        z-index: 2!important;
     }
 
 
