@@ -35,10 +35,14 @@ export class MessagemodalpopupComponent implements OnInit, IModalDialog {
       otp: ['', Validators.required]
     });
     this.otpValue = this.otpValue;
+    if(this.userFormValue!== null){
+    
     this.EgazeService.getOTP(this.userFormValue.email,this.userFormValue.mobileNumber).subscribe(otp => {
       this.isLoading = false;
       this.otpValue = otp;
     });
+      
+  }
   }
   // convenience getter for easy access to form fields
   get f() { return this.otpForm.controls; }
