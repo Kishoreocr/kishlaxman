@@ -489,12 +489,12 @@ body.modal-open {
   min-height:100vh;
 }
 /** active class **/
-.activeClss::after{
+/* .activeClss::after{
       content: '';
     display: block;
     height: 5px;
     background-color: #1672a5;
-}
+} */
 .mandatory{
   color:red;
 }

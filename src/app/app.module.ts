@@ -50,6 +50,7 @@ import {NonceQueryParamInterceptorService} from './services/nonce-query-param-in
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { Home1Component } from './home1/home1.component';
+import {RoleAuthenticationService as RoleGuard } from './services/role-authentication';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -79,15 +80,25 @@ const appRoutes: Routes = [
     redirectTo: '/home1',
     pathMatch: 'full'
   },
-  { path: 'userdashboard', component: UserdashboardComponent },
+  { path: 'userdashboard', component: UserdashboardComponent , canActivate: [RoleGuard], 
+  data: { 
+      expectedRole: 'customer'
+    } 
+},
   { path: 'success-register', component: SuccessregsiterComponent },
-  { path: 'package-choose', component: PackagesComponent },
+  { path: 'package-choose', component: PackagesComponent  , canActivate: [RoleGuard], 
+  data: { 
+      expectedRole: 'customer'
+    } },
   { path: 'forget-password', component: ForgetpasswordComponent },
 
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent  , canActivate: [RoleGuard], 
+  data: { 
+      expectedRole: 'customer'
+    } },
   { path: 'agent-registration', component: AgentregisterComponent },
   { path: 'home1', component: Home1Component },
-
+  { path: 'unauthorized', component: PagenotfoundComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 
@@ -154,7 +165,7 @@ const appRoutes: Routes = [
   //   provide: HTTP_INTERCEPTORS, 
   //   useClass: NonceQueryParamInterceptorService, multi: true 
   // }
-  providers: [EgazeService, SessionstorageService, ModalPropertyService],
+  providers: [EgazeService, SessionstorageService, ModalPropertyService,RoleGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

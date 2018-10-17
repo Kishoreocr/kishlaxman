@@ -48,11 +48,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Mobile Number
+                    <label>Mobile Number{{isie}}k
                         <span class="mandatory">*</span>
                     </label>
                     <br>
-                    <input type="text" ng2TelInput style="width:181%" [ng2TelInputOptions]="{initialCountry: 'in'}" (hasError)="hasError($event)"
+                    <input type="text" ng2TelInput [ngClass]="{ 'isie': isie, 'isienot': !isie }" [ng2TelInputOptions]="{initialCountry: 'in'}" (hasError)="hasError($event)"
                         (ng2TelOutput)="getNumber($event)" (intlTelInputObject)="telInputObject($event)" (countryChange)="onCountryChange($event)"
                         placeholder="Enter mobile number" (keypress)="isNumberKey($event)" pattern="[0-9]*" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && !mobileNumbererror }" />

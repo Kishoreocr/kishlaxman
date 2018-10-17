@@ -32,9 +32,9 @@ export class UserregisterComponent implements OnInit {
   showIconEye1: boolean = false;
   hideIconEye1: boolean = false;
 
+  isie: any=false;
 
-
-  constructor(private route: ActivatedRoute,private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private ModalPropertyService: ModalPropertyService) {
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private ModalPropertyService: ModalPropertyService) {
 
     this.modalService = modalService;
     this.viewRef = viewRef;
@@ -46,6 +46,7 @@ export class UserregisterComponent implements OnInit {
     this.showText1 = false;
     this.showIconEye1 = false;
     this.hideIconEye1 = true;
+    
   }
   isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : evt.keyCode
@@ -56,7 +57,11 @@ export class UserregisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    if(window.navigator.userAgent.indexOf("Chrome")===-1){
+      this.isie=true;
+    }else{
+      this.isie=false;
+    }
 
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -80,9 +85,9 @@ export class UserregisterComponent implements OnInit {
     this.registerForm.controls['country'].setValue("India");
     this.registerForm.controls['countryCode'].setValue("in");
     this.route.queryParamMap.subscribe(params => {
-      if(params.get('type')==='free'){
+      if (params.get('type') === 'free') {
         this.registerForm.controls['type'].setValue("Free");
-      }else{
+      } else {
         this.registerForm.controls['type'].setValue("Normal");
       }
     });
@@ -133,7 +138,7 @@ export class UserregisterComponent implements OnInit {
     //alert(this.mobileNumbererror)
   }
   onSubmit(formData) {
-   debugger;
+    debugger;
     //alert(this.registerForm.get('countryCode').value)
     this.submitted = true;
     //console.log(JSON.stringify(this.registerForm))
@@ -180,7 +185,7 @@ export class UserregisterComponent implements OnInit {
     else
       this.termsCheckederrors = "";
   }
- 
+
   // openNewDialog(formData) {
   //   this.modalService.openDialog(this.viewRef, {
   //     title: 'Validate OTP(One Time Passcode)',
@@ -188,14 +193,14 @@ export class UserregisterComponent implements OnInit {
   //   });
   // }
 
-/** register modal code */
-registerModal(id: string) {
+  /** register modal code */
+  registerModal(id: string) {
     this.ModalPropertyService.open(id);
   }
   closeModal(id: string) {
     this.ModalPropertyService.close(id);
   }
-/** register modal code close here*/
+  /** register modal code close here*/
 
 
   showTextPwd(registerForm) {
@@ -214,15 +219,15 @@ registerModal(id: string) {
     }
   }
 
-  mouseoverpwd(){
-    this.showText=false;
+  mouseoverpwd() {
+    this.showText = false;
     this.showIconEye = false;
-      this.hideIconEye = true;
+    this.hideIconEye = true;
   }
-  mouseoverpwd1(){
-    this.showText1=false;
+  mouseoverpwd1() {
+    this.showText1 = false;
     this.showIconEye1 = false;
-      this.hideIconEye1 = true;
+    this.hideIconEye1 = true;
   }
 
 

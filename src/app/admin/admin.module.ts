@@ -17,10 +17,14 @@ import { PortalFeedbackComponent } from './portal-feedback/portal-feedback.compo
 import { LoadingDivComponent1Component } from './loading-div-component1/loading-div-component1.component';
 import {DataTableModule} from "angular-6-datatable";
 import { AdminContactusComponent } from './admin-contactus/admin-contactus.component';
+import {RoleAuthenticationService as RoleGuard } from '../services/role-authentication';
 
 const appRoutes: Routes = [
   { path: 'adminlogin', component: LoginComponent },
-  { path: 'admindashboard', component: AdmindashboardComponent }
+  { path: 'admindashboard', component: AdmindashboardComponent  , canActivate: [RoleGuard], 
+  data: { 
+      expectedRole: 'admin'
+    } }
 ]
 @NgModule({
   imports: [
@@ -32,7 +36,7 @@ const appRoutes: Routes = [
 
   ],
   declarations: [LoginComponent, AdmindashboardComponent, ModalComponent, PropertyApprovalComponent, AgentApprovalComponent, PaymentApprovalComponent, CustomPackagesComponent, PropertyCommentsComponent, PortalFeedbackComponent, LoadingDivComponent1Component, AdminContactusComponent],
-  providers: [ModalService]
+  providers: [ModalService,RoleGuard]
 
 })
 export class AdminModule { }

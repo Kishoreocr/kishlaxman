@@ -32,6 +32,7 @@ export class AgentregisterComponent implements OnInit {
   showText1: boolean;
   showIconEye1: boolean = false;
   hideIconEye1: boolean = false;
+  isie: any=false;
 
 
 
@@ -58,7 +59,11 @@ export class AgentregisterComponent implements OnInit {
 
   ngOnInit() {
 
-
+    if(window.navigator.userAgent.indexOf("Chrome")===-1){
+      this.isie=true;
+    }else{
+      this.isie=false;
+    }
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     this.registerForm = this.formBuilder.group({
