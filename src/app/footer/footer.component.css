@@ -153,3 +153,11 @@
   #lab_social_icon_footer #social-em:hover {
     color: #f39c12;
   }
+
+  @media (max-width: 767px){
+    .footer-copyright > p {
+      padding: 0px;
+      margin: 0px;
+      font-size: 12px;
+  }
+  }
