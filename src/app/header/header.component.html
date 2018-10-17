@@ -284,8 +284,8 @@ position: relative;">
 </div>
 
 
-<div [@slideInOut]="animationState" class="launch-menu sidebar">
-  <div class="launch-menu-close" (click)="closeSidebar('divA')">
+<div [@slideInOut]="animationState" [@slideOutIn]="animationState1" class="launch-menu sidebar">
+  <div class="launch-menu-close"  (click)="toggleShowDiv1('divA')">
     <i class="fa fa-times close-icon" title="Close Menu"></i>
   </div>
 
@@ -384,4 +384,4 @@ position: relative;">
 </div>
 
 
-<div class="launch-menu-mask" *ngIf="bgColorchange"></div>
+<div class="launch-menu-mask" *ngIf="bgColorchange" (click)="toggleShowDiv1('divA')"></div>

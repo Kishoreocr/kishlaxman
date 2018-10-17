@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
   isScollDown: boolean = false;
   animationState = 'in';
+  animationState1 = 'out';
   flag: boolean = false;
   user1:any;
   user: Object = { loginId: Number, email: String, role: String, status: String };
@@ -35,13 +36,35 @@ export class HeaderComponent implements OnInit {
     if (divName === 'divA') {
       debugger;
       this.bgColorchange = true;
-      this.animationState = this.animationState === 'out' ? 'in' : 'out';
+      
+      //alert(this.animationState+"---"+this.animationState1)
+      this.animationState = this.animationState === 'in' ? 'out' : 'in';
+      this.animationState1= this.animationState === 'out' ? 'in' : 'out';
+
+     //alert(this.animationState+"---"+this.animationState1)
       console.log(this.animationState);
+     
+    }
+  }
+  toggleShowDiv1(divName: string) {
+    if (divName === 'divA') {
+      debugger;
+      //alert(this.animationState+"---"+this.animationState1)
+      //this.animationState1='out';
+     //alert(this.animationState1)
+      this.animationState1= this.animationState === 'out' ? 'out' : 'in';
+      //this.animationState= this.animationState === 'out' ? 'in' : 'out';
+      this.animationState='in';
+
+      //alert(this.animationState+"---"+this.animationState1)
+      this.bgColorchange = false;
+      console.log(this.animationState1);
      
     }
   }
   closeSidebar(divName: string){
     this.bgColorchange = false;
+    //this.animationState='in';
     this.animationState = this.animationState === 'out' ? 'in' : 'out';
 
   }

@@ -63,4 +63,7 @@ if (path) {
       this.showUparrow = false;
     }
   }
+  smooth(){
+    window.scrollTo({ top: 0, behavior:'smooth'});
+  }
 }

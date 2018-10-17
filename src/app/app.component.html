@@ -238,6 +238,6 @@
         </div>
     </footer> -->
     <div *ngIf="showUparrow">
-    <a href="javascript:void()" onclick="window.scrollTo(0,0)" title="Scroll to top" class="backtotopstyle"></a>
+    <a href="javascript:void()" (click)="smooth()" title="Scroll to top" class="backtotopstyle"></a>
 </div>
 </div>
