@@ -475,7 +475,9 @@
                                             <!-- <th>
                                                 <mfDefaultSorter by="index">S.No.</mfDefaultSorter>
                                             </th> -->
-
+                                            <th>
+                                                <mfDefaultSorter by="propertyCode">Property Code</mfDefaultSorter>
+                                            </th>
                                             <th>
                                                 <mfDefaultSorter by="propertyType">Property Type</mfDefaultSorter>
                                             </th>
@@ -488,10 +490,7 @@
                                             <!-- <th>
                                                     <mfDefaultSorter by="doorNo">Door Number</mfDefaultSorter>
                                                 </th> -->
-                                            <th>
-                                                <mfDefaultSorter by="documentNo">Document Number</mfDefaultSorter>
-                                            </th>
-                                            <th>
+                                             <th>
                                                 <mfDefaultSorter by="status">Status</mfDefaultSorter>
                                             </th>
                                             <th class='text-center'>
@@ -503,12 +502,12 @@
                                     <tbody>
                                         <tr *ngFor="let property of mf.data; let IndexId = index">
                                             <!-- <td>{{IndexId+1}}</td> -->
+                                            <td>{{property.propertyCode}} </td>
                                             <td>{{property.propertyType}}</td>
                                             <td>{{property.propertyHolderName}}</td>
                                             <td>{{property.relationship}}</td>
                                             <!-- <td>{{property.doorNo}}</td> -->
 
-                                            <td>{{property.documentNo}} </td>
                                             <td>
                                                 <span *ngIf="property.status==='P'">Pending Approval</span>
                                                 <span *ngIf="property.status==='A'"> Approved</span>

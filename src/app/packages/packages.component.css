@@ -188,11 +188,11 @@
 }
 
 .closeIcon-style{
-    font-size:21px !important;
+    font-size:22px!important;
     cursor: pointer !important;
-    color:#f3f2f2;
+    color:#fd8236;
     
-}
-.closeIcon-style:hover{
-    color:#eae8e8;
-}
+  }
+  .closeIcon-style:hover{
+    color:#fd8236;
+  }

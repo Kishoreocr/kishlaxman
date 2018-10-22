@@ -114,11 +114,11 @@ app-modal-property {
   .closeIcon-style{
     font-size:22px!important;
     cursor: pointer !important;
-    color:#f3f2f2;
+    color:#fd8236;
     
   }
   .closeIcon-style:hover{
-    color:#eae8e8;
+    color:#fd8236;
   }
   
   .modal-heading{

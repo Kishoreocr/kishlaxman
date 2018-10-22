@@ -116,6 +116,7 @@ export class UserloginComponent implements OnInit {
           if (this.user1.role === 'admin') {
             window.location.href = AppConstants.AdminloginURL;
           }
+          if (this.user1.role === 'customer') {
           this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
             result => {
               //alert(Object.keys(result).length);
@@ -129,8 +130,9 @@ export class UserloginComponent implements OnInit {
 
               }
             }
-
+          
           );
+          }
           // this.routerProperty.navigateByUrl('/package-choose');
 
           this.userloginForm.value.username = "";

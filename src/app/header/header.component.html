@@ -156,8 +156,9 @@ position: relative;">
 
         </ul>
       </div>
-      <div class="phone">
-        <a href="tel: +917045942225">7045942225</a>
+      <div class="phone" style="font-size: 20px;">
+        <a *ngIf="!mobile" href="tel: +917045942225" target="_blank">7045942225</a>
+        <a *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-7045942225" target="_blank">7045942225</a>
       </div>
       <div class="logins">
         <ul *ngIf="flag">
@@ -203,13 +204,10 @@ position: relative;">
             </li>
 
 
-            <li>
+            <li *ngIf="!flag">
               <a>Agents</a>
               <ul>
-                <li>
-                  <a routerLink="/loginform" routerLinkActive="activeClss">Agent Login</a>
-                </li>
-                <li>
+               <li>
                   <a routerLink="/agent-registration" routerLinkActive="activeClss">Agent Registration</a>
                 </li>
               </ul>
@@ -227,20 +225,20 @@ position: relative;">
               </ul>
             </li>
 
-            <li>
+            <li >
               <a routerLink="/articles" routerLinkActive="activeClss">Articles</a>
             </li>
             <li>
               <a routerLink="/testimonials" routerLinkActive="activeClss">Testimonials</a>
             </li>
-            <li *ngIf="!flag">
+            <li >
               <a routerLink="/contactus" routerLinkActive="activeClss">Contact</a>
             </li>
-            <li *ngIf="!flag">
+            <li >
               <a routerLink="/help" routerLinkActive="activeClss">Help</a>
             </li>
 
-            <li *ngIf="!flag">
+            <li >
               <a>Legals</a>
               <ul>
                 <li>
@@ -290,7 +288,8 @@ position: relative;">
   </div>
 
   <div class="phone">
-    <a href="tel: +917045942225">7045942225</a>
+    <a *ngIf="!mobile" href="tel: +917045942225" target="_blank">7045942225</a>
+    <a *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-7045942225" target="_blank">7045942225</a>
   </div>
   <div class="logins" *ngIf="flag" style="padding-left:20px;padding-bottom:10px;">
     <a style="color:#1275af;font-size:18px;font-weight:400;">{{user.email}}</a>
@@ -313,12 +312,9 @@ position: relative;">
     </li>
 
 
-    <li>
+    <li *ngIf="!flag">
       <a>Agents</a>
       <ul>
-        <!-- <li>
-          <a routerLink="/loginform" routerLinkActive="activeClss">Agent Login</a>
-        </li> -->
         <li>
           <a routerLink="/agent-registration" routerLinkActive="activeClss">Agent Registration</a>
         </li>
@@ -331,24 +327,26 @@ position: relative;">
           <a routerLink="/abouteGAZE" routerLinkActive="activeClss">About eGAZE</a>
         </li>
         <li>
-          <a routerLink="/why-egaze" routerLinkActive="activeClss">Why eGAZE</a>
+          <a routerLink="/whyeGAZE" routerLinkActive="activeClss">Why eGAZE</a>
         </li>
 
       </ul>
     </li>
 
-    <li>
+    <li >
       <a routerLink="/articles" routerLinkActive="activeClss">Articles</a>
     </li>
     <li>
       <a routerLink="/testimonials" routerLinkActive="activeClss">Testimonials</a>
     </li>
-    <li>
+    <li >
       <a routerLink="/contactus" routerLinkActive="activeClss">Contact</a>
     </li>
+    <li >
+      <a routerLink="/help" routerLinkActive="activeClss">Help</a>
+    </li>
 
-
-    <li>
+    <li >
       <a>Legals</a>
       <ul>
         <li>
@@ -363,9 +361,10 @@ position: relative;">
 
       </ul>
     </li>
-    <li *ngIf="!flag">
-      <a routerLink="/Help" routerLinkActive="activeClss">Help</a>
-    </li>
+
+
+
+
     <li *ngIf="!flag">
       <a routerLink="/blog" routerLinkActive="activeClss">Blog</a>
     </li>
@@ -376,7 +375,10 @@ position: relative;">
     </li>
     <li *ngIf="flag">
       <a *ngIf="this.user.role==='customer'" routerLink="/profile" routerLinkActive="activeClss">Profile</a>
+
+
     </li>
+
     <li *ngIf="flag">
       <a (click)="logout()" style="cursor:pointer">Logout</a>
     </li>

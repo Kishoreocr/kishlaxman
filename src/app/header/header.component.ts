@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   flag: boolean = false;
   user1:any;
   user: Object = { loginId: Number, email: String, role: String, status: String };
+  mobile:any;
   constructor(private _eref: ElementRef,private sessionstorageService: SessionstorageService,private EgazeService: EgazeService) { 
     this.user = this.sessionstorageService.getUserDetails();
     if (this.user != null) {
@@ -29,6 +30,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+  this.mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));  
+
+    
   }
 
  bgColorchange = false;

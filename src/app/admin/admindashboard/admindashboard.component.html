@@ -56,102 +56,103 @@
                 <div id="custom-modal-1" *ngIf="custdetailstabs" style="background-color: #fff;padding: 15px;border-radius: 6px;">
 
                     <button type="button" class="btn mb-2" (click)="custback()">
-                        Back</button> <div class='row userdashboardTab'>
-                            <ul>
-                                <li [ngClass]="{'active': customerdetailstabModal}" (click)="userdashTabs('CustomerDetailsTab')">Customer
-                                    Details</li>
-                                <li [ngClass]="{'active': customerpackagestabModal}" (click)="userdashTabs('CustomerPackagesTab')">Packages</li>
-                                <li [ngClass]="{'active': customerpropertiestabModal}" (click)="userdashTabs('CustomerPropertiesTab')">Properties</li>
-                            </ul>
-                </div>
+                        Back</button>
+                    <div class='row userdashboardTab'>
+                        <ul>
+                            <li [ngClass]="{'active': customerdetailstabModal}" (click)="userdashTabs('CustomerDetailsTab')">Customer
+                                Details</li>
+                            <li [ngClass]="{'active': customerpackagestabModal}" (click)="userdashTabs('CustomerPackagesTab')">Packages</li>
+                            <li [ngClass]="{'active': customerpropertiestabModal}" (click)="userdashTabs('CustomerPropertiesTab')">Properties</li>
+                        </ul>
+                    </div>
 
 
-                <div *ngIf="customerdetailstabModal && !customerpackagestabModal && !customerpropertiestabModal">
+                    <div *ngIf="customerdetailstabModal && !customerpackagestabModal && !customerpropertiestabModal">
 
-                    <div class="property-tab-style">
-                      
-                        <h5 class="tab-active-heading">Customer Details</h5>
+                        <div class="property-tab-style">
 
-                        <div class="row" *ngIf="customer!=''" style="padding:20px;">
-                            <div class="col-md-6 col-">
-                                <div class="form-group row">
-                                    <div class="col-sm-5 col-form-label font-bold-label">Name:</div>
-                                    <div class="col-sm-7 col-form-label">
-                                        {{customer.firstName}} {{customer.lastName}}
+                            <h5 class="tab-active-heading">Customer Details</h5>
+
+                            <div class="row" *ngIf="customer!=''" style="padding:20px;">
+                                <div class="col-md-6 col-">
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 col-form-label font-bold-label">Name:</div>
+                                        <div class="col-sm-7 col-form-label">
+                                            {{customer.firstName}} {{customer.lastName}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-5 col-form-label font-bold-label">Email:</div>
-                                    <div class="col-sm-7 col-form-label">
-                                        {{customer.email}}
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 col-form-label font-bold-label">Email:</div>
+                                        <div class="col-sm-7 col-form-label">
+                                            {{customer.email}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-5 col-form-label font-bold-label">Mobile Number:</div>
-                                    <div class="col-sm-7 col-form-label">
-                                        {{customer.mobileNo}}
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 col-form-label font-bold-label">Mobile Number:</div>
+                                        <div class="col-sm-7 col-form-label">
+                                            {{customer.mobileNo}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-5 col-form-label font-bold-label">Address Line1:</div>
-                                    <div class="col-sm-7 col-form-label">
-                                        {{customer.address1}}
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 col-form-label font-bold-label">Address Line1:</div>
+                                        <div class="col-sm-7 col-form-label">
+                                            {{customer.address1}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-5 col-form-label font-bold-label">Address Line2:</div>
-                                    <div class="col-sm-7 col-form-label">
-                                        {{customer.address2}}
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 col-form-label font-bold-label">Address Line2:</div>
+                                        <div class="col-sm-7 col-form-label">
+                                            {{customer.address2}}
+                                        </div>
                                     </div>
+
                                 </div>
 
-                            </div>
-
-                            <div class="col-md-6">
-                                <!-- <div class="form-group row">
+                                <div class="col-md-6">
+                                    <!-- <div class="form-group row">
                                             <div class="col-sm-5 col-form-label font-bold-label">Address Line3:</div>
                                             <div class="col-sm-7 col-form-label">
                                                 {{customer.address3}}
                                             </div>
                                         </div> -->
-                                <div class="form-group row">
-                                    <div class="col-sm-5 col-form-label font-bold-label">City:</div>
-                                    <div class="col-sm-7 col-form-label">
-                                        {{customer.city}}
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 col-form-label font-bold-label">City:</div>
+                                        <div class="col-sm-7 col-form-label">
+                                            {{customer.city}}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 col-form-label font-bold-label">State:</div>
+                                        <div class="col-sm-7 col-form-label">
+                                            {{customer.state}}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 col-form-label font-bold-label">Country:</div>
+                                        <div class="col-sm-7 col-form-label">
+                                            {{customer.country}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 col-form-label font-bold-label">Zip:</div>
+                                        <div class="col-sm-7 col-form-label">
+                                            {{customer.zip}}
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <div class="col-sm-5 col-form-label font-bold-label">State:</div>
-                                    <div class="col-sm-7 col-form-label">
-                                        {{customer.state}}
-                                    </div>
-                                </div>
 
-                                <div class="form-group row">
-                                    <div class="col-sm-5 col-form-label font-bold-label">Country:</div>
-                                    <div class="col-sm-7 col-form-label">
-                                        {{customer.country}}
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-5 col-form-label font-bold-label">Zip:</div>
-                                    <div class="col-sm-7 col-form-label">
-                                        {{customer.zip}}
-                                    </div>
-                                </div>
                             </div>
 
 
                         </div>
 
-
                     </div>
+                    <div *ngIf="!customerdetailstabModal && customerpackagestabModal && !customerpropertiestabModal">
 
-                </div>
-                <div *ngIf="!customerdetailstabModal && customerpackagestabModal && !customerpropertiestabModal">
-
-                    <div class="property-tab-style table-container-style">
+                        <div class="property-tab-style table-container-style">
                             <h5 class="tab-active-heading">Packages</h5>
                             <div class='mainAlertcontainer table-responsive'>
                                 <table class="table table-striped table-bordered table-hover">
@@ -175,7 +176,7 @@
                                             <td>{{transaction.propertiesUSed}}</td>
                                             <td>{{transaction.status}}</td>
                                         </tr>
-            
+
                                         <tr *ngIf='custtransactions.length == 0'>
                                             <td colspan="6">No Transactions Found</td>
                                         </tr>
@@ -183,150 +184,150 @@
                                 </table>
                             </div>
 
+                        </div>
                     </div>
-                </div>
 
-                <div *ngIf="!customerdetailstabModal && !customerpackagestabModal && customerpropertiestabModal">
+                    <div *ngIf="!customerdetailstabModal && !customerpackagestabModal && customerpropertiestabModal">
 
-                    <div class="property-tab-style table-container-style">
+                        <div class="property-tab-style table-container-style">
                             <h5 class="tab-active-heading">Customer Properties</h5>
                             <div class="mainAlertcontainer  table-responsive ">
-                                    <div *ngIf='userproperties.length == 0'>No Properties.</div>
-                                  
-                                    <table *ngIf='userproperties.length != 0' class="table table-striped table-bordered table-hover" [mfData]="userproperties"
-                                        #mf="mfDataTable" [mfRowsOnPage]="5">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    <mfDefaultSorter by="propertyType">Property Type</mfDefaultSorter>
-                                                </th>
-                                                <th>
-                                                    <mfDefaultSorter by="propertyHolderName">Property Holder Name</mfDefaultSorter>
-                                                </th>
-                                                <th>
-                                                    <mfDefaultSorter by="relationship">Relationship</mfDefaultSorter>
-                                                </th>
-                                                <th>
-                                                    <mfDefaultSorter by="documentNo">Document Number</mfDefaultSorter>
-                                                </th>
-                                                <th>
-                                                    <mfDefaultSorter by="status">Status</mfDefaultSorter>
-                                                </th>
-                                                <th class='text-center'>
-                                                    Action
-                                                </th>
-                                            </tr>
-                                        </thead>
-    
-                                        <tbody>
-                                            <tr *ngFor="let property of mf.data; let IndexId = index">
-                                                <td>{{property.propertyType}}</td>
-                                                <td>{{property.propertyHolderName}}</td>
-                                                <td>{{property.relationship}}</td>
-                                               
-                                                <td>{{property.documentNo}} </td>
-                                                <td>
-                                                    <span *ngIf="property.status==='P'">Pending Approval</span>
-                                                    <span *ngIf="property.status==='A'"> Approved</span>
-                                                </td>
-                                                <td class="viewbtn text-center">
-                                                    <i class="fa fa-eye" (click)="openModal('custom-modal-33', property)"></i>
-    
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="6" style="border:0px !important;">
-                                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
+                                <div *ngIf='userproperties.length == 0'>No Properties.</div>
 
+                                <table *ngIf='userproperties.length != 0' class="table table-striped table-bordered table-hover"
+                                    [mfData]="userproperties" #mf="mfDataTable" [mfRowsOnPage]="5">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <mfDefaultSorter by="propertyType">Property Type</mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="propertyHolderName">Property Holder Name</mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="relationship">Relationship</mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="documentNo">Document Number</mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                                            </th>
+                                            <th class='text-center'>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr *ngFor="let property of mf.data; let IndexId = index">
+                                            <td>{{property.propertyType}}</td>
+                                            <td>{{property.propertyHolderName}}</td>
+                                            <td>{{property.relationship}}</td>
+
+                                            <td>{{property.documentNo}} </td>
+                                            <td>
+                                                <span *ngIf="property.status==='P'">Pending Approval</span>
+                                                <span *ngIf="property.status==='A'"> Approved</span>
+                                            </td>
+                                            <td class="viewbtn text-center">
+                                                <i class="fa fa-eye" (click)="openModal('custom-modal-33', property)"></i>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="6" style="border:0px !important;">
+                                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="table-container-style table-th-styles" *ngIf="custlist">
+                <div class="table-container-style table-th-styles" *ngIf="custlist">
 
-                <h5 class="tab-active-heading">Customer Details</h5>
-                <div class="col-sm-12 seach-box">
+                    <h5 class="tab-active-heading">Customer Details</h5>
+                    <div class="col-sm-12 seach-box">
 
-                    <form class="form-inline" [formGroup]="searchGrpcust">
-                        <div class="form-group mb-2">
-                            <select class="form-control" formControlName="searchTypecust" name="searchTypecust"
-                                (ngModelChange)="getSearchTypecust($event)">
-                                <option value="firstName">Name</option>
-                                <option value="state">State</option>
-                                <option value="city">City</option>
-                                <option value="email">Email</option>
-                                <option value="mobileNo">MobileNo</option>
-                                <option value="daterange">Date Range</option>
-                            </select>
-                        </div>
-                        <div class="form-group mx-sm-3 mb-2" *ngIf="!daterangecust">
-                            <input type="text" class="form-control" formControlName="searchTextcust" id="searchTextcust"
-                                placeholder="Search..">
-                        </div>
-                        <div class="form-group mx-sm-3 mb-2" *ngIf="daterangecust">
-                            <input type="date" class="form-control" formControlName="searchTextcustdate1" id="searchTextcustdate1"
-                                placeholder="Search..">
-                            &nbsp;&nbsp;
-                            <input type="date" class="form-control" formControlName="searchTextcustdate2" id="searchTextcustdate2"
-                                placeholder="Search..">
-                        </div>
-                        <button type="submit" class="btn mb-2" (click)="filterItemcust()">Search</button>
-                        &nbsp; &nbsp;
-                        <button type="submit" class="btn mb-2" (click)="custClear()">Clear</button>
-                    </form>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered" [mfData]="customers" #mf="mfDataTable"
-                        [mfRowsOnPage]="5">
+                        <form class="form-inline" [formGroup]="searchGrpcust">
+                            <div class="form-group mb-2">
+                                <select class="form-control" formControlName="searchTypecust" name="searchTypecust"
+                                    (ngModelChange)="getSearchTypecust($event)">
+                                    <option value="firstName">Name</option>
+                                    <option value="state">State</option>
+                                    <option value="city">City</option>
+                                    <option value="email">Email</option>
+                                    <option value="mobileNo">MobileNo</option>
+                                    <option value="daterange">Date Range</option>
+                                </select>
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2" *ngIf="!daterangecust">
+                                <input type="text" class="form-control" formControlName="searchTextcust" id="searchTextcust"
+                                    placeholder="Search..">
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2" *ngIf="daterangecust">
+                                <input type="date" class="form-control" formControlName="searchTextcustdate1" id="searchTextcustdate1"
+                                    placeholder="Search..">
+                                &nbsp;&nbsp;
+                                <input type="date" class="form-control" formControlName="searchTextcustdate2" id="searchTextcustdate2"
+                                    placeholder="Search..">
+                            </div>
+                            <button type="submit" class="btn mb-2" (click)="filterItemcust()">Search</button>
+                            &nbsp; &nbsp;
+                            <button type="submit" class="btn mb-2" (click)="custClear()">Clear</button>
+                        </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" [mfData]="customers" #mf="mfDataTable"
+                            [mfRowsOnPage]="5">
 
-                        <thead>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <mfDefaultSorter by="firstName"> Name</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="mobileNo">Mobile Number</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="addedDate">Added Date</mfDefaultSorter>
+                                    </th>
+                                    <th class='text-center'>Action
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr *ngFor="let customer of mf.data; let index = index">
+                                    <td>{{customer.firstName}} {{customer.lastName}}</td>
+                                    <td>{{customer.email}}</td>
+                                    <td>{{customer.mobileNo}}</td>
+                                    <td>{{customer.addedDate| date:'dd/MM/yyyy'}}</td>
+                                    <td style='text-align:center'>
+                                        <i class="fa fa-eye" (click)="custdetails(customer)"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
                             <tr>
-                                <th>
-                                    <mfDefaultSorter by="firstName"> Name</mfDefaultSorter>
-                                </th>
-                                <th>
-                                    <mfDefaultSorter by="email">Email</mfDefaultSorter>
-                                </th>
-                                <th>
-                                    <mfDefaultSorter by="mobileNo">Mobile Number</mfDefaultSorter>
-                                </th>
-                                <th>
-                                    <mfDefaultSorter by="addedDate">Added Date</mfDefaultSorter>
-                                </th>
-                                <th class='text-center'>Action
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            <tr *ngFor="let customer of mf.data; let index = index">
-                                <td>{{customer.firstName}} {{customer.lastName}}</td>
-                                <td>{{customer.email}}</td>
-                                <td>{{customer.mobileNo}}</td>
-                                <td>{{customer.addedDate| date:'dd/MM/yyyy'}}</td>
-                                <td style='text-align:center'>
-                                    <i class="fa fa-eye" (click)="custdetails(customer)"></i>
+                                <td colspan="6" style="border:0px !important;">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
                                 </td>
                             </tr>
-                        </tbody>
-                        <tr>
-                            <td colspan="6" style="border:0px !important;">
-                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                            </td>
-                        </tr>
-                    </table>
+                        </table>
+                    </div>
                 </div>
+
+
             </div>
-
-
-        </div>
 
             <!-- <app-property-approval [propertyData]="propertyApproval"></app-property-approval> -->
 
@@ -658,7 +659,7 @@
 
                                                     </div>
                                                 </div>
-</div>
+                                            </div>
 
                                             <div class='col' align='center'>
                                                 <label>
@@ -874,151 +875,215 @@
             </modal>
 
             <div *ngIf="!propertyTab && alertsTab && !transactionsTab && !profileTab  && !feedbackTab">
-       
 
-            <!-- confirm modal for delete action-->
-            <modal id="confirm-delete-document">
-                <div class="modal confirmDocumentDelete">
-                    <div class="row justify-content-md-center justify-content-sm-center no-gutters">
-                        <div class="modal-body col-md-5 col-sm-8" style="padding:0px;">
 
-                            <div class='col modal-heading'>
-                                <p class="padding-heading-modal">Confirm?
-                                </p>
-                            </div>
-                            <!-- <app-loading-div *ngIf="isLoading"></app-loading-div> -->
+                <!-- confirm modal for delete action-->
+                <modal id="confirm-delete-document">
+                    <div class="modal confirmDocumentDelete">
+                        <div class="row justify-content-md-center justify-content-sm-center no-gutters">
+                            <div class="modal-body col-md-5 col-sm-8" style="padding:0px;">
 
-                            <div class="close-icon-style">
-                                <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('confirm-delete-document');"></i>
-                            </div>
-                            <div>
-                                <div class="col content-style">
-                                    <p>
-                                        Are you sure to delete this Document?
+                                <div class='col modal-heading'>
+                                    <p class="padding-heading-modal">Confirm?
                                     </p>
                                 </div>
-                                <div class='col btn-bottom-style'>
-                                    <button class="submit-btn-delete" (click)="deldocFun();">Delete</button>
-                                    <button class="submit-btn" (click)="closeModal('confirm-delete-document');">Cancel</button>
+                                <!-- <app-loading-div *ngIf="isLoading"></app-loading-div> -->
+
+                                <div class="close-icon-style">
+                                    <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('confirm-delete-document');"></i>
+                                </div>
+                                <div>
+                                    <div class="col content-style">
+                                        <p>
+                                            Are you sure to delete this Document?
+                                        </p>
+                                    </div>
+                                    <div class='col btn-bottom-style'>
+                                        <button class="submit-btn-delete" (click)="deldocFun();">Delete</button>
+                                        <button class="submit-btn" (click)="closeModal('confirm-delete-document');">Cancel</button>
+                                    </div>
+
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
+                    <div class="modal-background"></div>
+                    <app-loading-div-component1 *ngIf="isLoading"></app-loading-div-component1>
+                </modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="table-container-style table-th-styles">
+                    <h5 class="tab-active-heading">Propert Approval</h5>
+                    <div class="col-sm-12 seach-box">
+
+                        <form class="form-inline" [formGroup]="searchGrp">
+                            <div class="form-group mb-2">
+                                <select class="form-control" formControlName="searchType" name="searchType"
+                                    (ngModelChange)="getSearchType1($event)">
+                                    <option value="propertyHolderName">Name</option>
+                                    <option value="state">State</option>
+                                    <option value="city">City</option>
+                                    <option value="documentNo">Document No</option>
+                                    <option value="district">District</option>
+                                    <option value="daterange">Date Range</option>
+                                </select>
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2" *ngIf="!daterange">
+                                <input type="text" class="form-control" formControlName="searchText" id="searchText"
+                                    placeholder="Search..">
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2" *ngIf="daterange">
+                                <input type="date" class="form-control" formControlName="searchTextdate1" id="searchTextdate1"
+                                    placeholder="Search..">
+                                &nbsp;&nbsp;
+                                <input type="date" class="form-control" formControlName="searchTextdate2" id="searchTextdate2"
+                                    placeholder="Search..">
+                            </div>
+                            <button type="submit" class="btn mb-2" (click)="filterItem()">Search</button>
+                            &nbsp; &nbsp;
+                            <button type="submit" class="btn mb-2" (click)="propClear()">Clear</button>
+                        </form>
+                    </div>
+
+
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" [mfData]="propertyApproval" #mf="mfDataTable"
+                            [mfRowsOnPage]="5">
+                            <thead>
+                                <tr>
+                                    <!-- <th>
+                                                <mfDefaultSorter by="index">S.No.</mfDefaultSorter>
+                                            </th> -->
+                                    <th>
+                                        <mfDefaultSorter by="propertyCode">Property Code</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="propertyType">Property Type</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="propertyHolderName">Property Holder Name</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="relationship">Relationship</mfDefaultSorter>
+                                    </th>
+                                    <!-- <th>
+                                                    <mfDefaultSorter by="doorNo">Door Number</mfDefaultSorter>
+                                                </th> -->
+
+                                    <th>
+                                        <mfDefaultSorter by="addedDate">Added Date</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                                    </th>
+                                    <th class='text-center'>
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let property of mf.data; let IndexId = index">
+                                    <!-- <td>{{IndexId+1}}</td> -->
+                                    <td>{{property.propertyCode}} </td>
+                                    <td>{{property.propertyType}}</td>
+                                    <td>{{property.propertyHolderName}}</td>
+                                    <td>{{property.relationship}}</td>
+                                    <!-- <td>{{property.doorNo}}</td> -->
+
+
+                                    <td>{{property.addedDate | date :'dd/MM/yyyy'}} </td>
+                                    <td>
+                                        <span *ngIf="property.status==='P'">Pending Approval</span>
+                                        <span *ngIf="property.status==='A'"> Approved</span>
+                                    </td>
+                                    <td class="viewbtn text-center">
+                                        <!-- <i class="fa fa-eye" (click)="viewPropertyFun()"></i> -->
+                                        <i class="fa fa-eye" (click)="openModal('custom-modal-33', property)"></i>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6" style="border:0px !important;">
+                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
-                <div class="modal-background"></div>
-                <app-loading-div-component1 *ngIf="isLoading"></app-loading-div-component1>
-            </modal>
 
 
 
 
+            </div>
 
 
+        </div>
+
+        <div *ngIf="!propertyTab && !alertsTab && transactionsTab && !profileTab && !feedbackTab">
+            <app-agent-approval> </app-agent-approval>
+        </div>
+        <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && !profileTab && feedbackTab">
+            <app-admin-contactus> </app-admin-contactus>
+        </div>
 
 
+        <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab  && !feedbackTab">
+            <app-custom-packages></app-custom-packages>
+        </div>
+        <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && !profileTab && adminalertTab  && !feedbackTab">
 
-
-
-
-
-
-
-            <div class="table-container-style table-th-styles">
-                <h5 class="tab-active-heading">Propert Approval</h5>
-                <div class="col-sm-12 seach-box">
-
-                    <form class="form-inline" [formGroup]="searchGrp">
-                        <div class="form-group mb-2">
-                            <select class="form-control" formControlName="searchType" name="searchType" (ngModelChange)="getSearchType1($event)">
-                                <option value="propertyHolderName">Name</option>
-                                <option value="state">State</option>
-                                <option value="city">City</option>
-                                <option value="documentNo">Document No</option>
-                                <option value="district">District</option>
-                                <option value="daterange">Date Range</option>
-                            </select>
-                        </div>
-                        <div class="form-group mx-sm-3 mb-2" *ngIf="!daterange">
-                            <input type="text" class="form-control" formControlName="searchText" id="searchText"
-                                placeholder="Search..">
-                        </div>
-                        <div class="form-group mx-sm-3 mb-2" *ngIf="daterange">
-                            <input type="date" class="form-control" formControlName="searchTextdate1" id="searchTextdate1"
-                                placeholder="Search..">
-                            &nbsp;&nbsp;
-                            <input type="date" class="form-control" formControlName="searchTextdate2" id="searchTextdate2"
-                                placeholder="Search..">
-                        </div>
-                        <button type="submit" class="btn mb-2" (click)="filterItem()">Search</button>
-                        &nbsp; &nbsp;
-                        <button type="submit" class="btn mb-2" (click)="propClear()">Clear</button>
-                    </form>
-                </div>
-
-
-
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" [mfData]="propertyApproval" #mf="mfDataTable"
+            <div class="table-container-style table-th-styles table-responsive">
+                <div class="container-bg-style">
+                    <h5 class="tab-active-heading">Alerts</h5>
+                    <table class="table table-striped table-bordered table-hover" [mfData]="adminalerts" #mf="mfDataTable"
                         [mfRowsOnPage]="5">
                         <thead>
                             <tr>
-                                <!-- <th>
-                                                <mfDefaultSorter by="index">S.No.</mfDefaultSorter>
-                                            </th> -->
 
                                 <th>
-                                    <mfDefaultSorter by="propertyType">Property Type</mfDefaultSorter>
+                                    <mfDefaultSorter by="subject">Subject</mfDefaultSorter>
                                 </th>
                                 <th>
-                                    <mfDefaultSorter by="propertyHolderName">Property Holder Name</mfDefaultSorter>
+                                    <mfDefaultSorter by="description">Description</mfDefaultSorter>
                                 </th>
                                 <th>
-                                    <mfDefaultSorter by="relationship">Relationship</mfDefaultSorter>
+                                    <mfDefaultSorter by="addedDate">Date</mfDefaultSorter>
                                 </th>
-                                <!-- <th>
-                                                    <mfDefaultSorter by="doorNo">Door Number</mfDefaultSorter>
-                                                </th> -->
-                                <th>
-                                    <mfDefaultSorter by="documentNo">Document Number</mfDefaultSorter>
-                                </th>
-                                <th>
-                                    <mfDefaultSorter by="addedDate">Added Date</mfDefaultSorter>
-                                </th>
-                                <th>
-                                    <mfDefaultSorter by="status">Status</mfDefaultSorter>
-                                </th>
-                                <th class='text-center'>
-                                    Action
-                                </th>
+
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr *ngFor="let property of mf.data; let IndexId = index">
-                                <!-- <td>{{IndexId+1}}</td> -->
-                                <td>{{property.propertyType}}</td>
-                                <td>{{property.propertyHolderName}}</td>
-                                <td>{{property.relationship}}</td>
-                                <!-- <td>{{property.doorNo}}</td> -->
+                            <tr *ngFor="let user of mf.data; let index = index">
+                                <!-- <td>{{index + 1}}</td> -->
+                                <td>{{user.subject}}</td>
+                                <td>{{user.description}}</td>
+                                <td>{{user.addedDate| date :'dd/MM/yyyy'}}</td>
 
-                                <td>{{property.documentNo}} </td>
-                                <td>{{property.addedDate | date :'dd/MM/yyyy'}} </td>
-                                <td>
-                                    <span *ngIf="property.status==='P'">Pending Approval</span>
-                                    <span *ngIf="property.status==='A'"> Approved</span>
-                                </td>
-                                <td class="viewbtn text-center">
-                                    <!-- <i class="fa fa-eye" (click)="viewPropertyFun()"></i> -->
-                                    <i class="fa fa-eye" (click)="openModal('custom-modal-33', property)"></i>
-
-                                </td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="6" style="border:0px !important;">
+                                <td colspan="4" style="border:0px !important;">
                                     <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
                                 </td>
                             </tr>
@@ -1026,72 +1091,10 @@
                     </table>
                 </div>
             </div>
-
-
-
-
         </div>
 
-
-    </div>
-
-    <div *ngIf="!propertyTab && !alertsTab && transactionsTab && !profileTab && !feedbackTab">
-        <app-agent-approval> </app-agent-approval>
-    </div>
-    <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && !profileTab && feedbackTab">
-        <app-admin-contactus> </app-admin-contactus>
     </div>
 
 
-    <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab  && !feedbackTab">
-        <app-custom-packages></app-custom-packages>
-    </div>
-    <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && !profileTab && adminalertTab  && !feedbackTab">
 
-        <div class="table-container-style table-th-styles table-responsive">
-            <div class="container-bg-style">
-                <h5 class="tab-active-heading">Alerts</h5>
-                <table class="table table-striped table-bordered table-hover" [mfData]="adminalerts" #mf="mfDataTable"
-                    [mfRowsOnPage]="5">
-                    <thead>
-                        <tr>
-
-                            <th>
-                                <mfDefaultSorter by="subject">Subject</mfDefaultSorter>
-                            </th>
-                            <th>
-                                <mfDefaultSorter by="description">Description</mfDefaultSorter>
-                            </th>
-                            <th>
-                                <mfDefaultSorter by="addedDate">Date</mfDefaultSorter>
-                            </th>
-
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr *ngFor="let user of mf.data; let index = index">
-                            <!-- <td>{{index + 1}}</td> -->
-                            <td>{{user.subject}}</td>
-                            <td>{{user.description}}</td>
-                            <td>{{user.addedDate| date :'dd/MM/yyyy'}}</td>
-
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="4" style="border:0px !important;">
-                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-
-<app-loading-div-component1 *ngIf="isLoading"></app-loading-div-component1>
+    <app-loading-div-component1 *ngIf="isLoading"></app-loading-div-component1>
