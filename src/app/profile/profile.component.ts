@@ -203,7 +203,11 @@ this.updateuserProfilestatus="";
 
     //debugger;
     if (this.updateuserNewpwdForm.valid) {
-      this.isLoading = true;
+      if(this.updateuserNewpwdForm.value.oldpwd === this.updateuserNewpwdForm.value.newpwd){
+        this.resultMsg = "Old password and new password can not be same";
+      }else{
+        this.isLoading = true;
+
       this.EgazeService.profilechndpwd(updateuserNewpwdForm.value, this.user.email).subscribe(
         result => {
           this.isLoading = false;
@@ -237,7 +241,7 @@ this.updateuserProfilestatus="";
 
       );
 
-
+      }
 
     }
 

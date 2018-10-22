@@ -926,3 +926,6 @@ div .height-xl { height:35px; }
 .padding-bottom-lg { padding-bottom:25px; }
 .padding-bottom-xl { padding-bottom:30px; }
 /*** ***/
+.cursorpointer{
+	cursor: pointer;
+}

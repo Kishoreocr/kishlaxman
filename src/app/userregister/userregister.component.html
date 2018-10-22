@@ -153,11 +153,31 @@
                 </div>
 
                 <div class="modal-content-padding">
-                    <app-messagemodalpopup></app-messagemodalpopup>
-                    <!-- <app-forgetpassword></app-forgetpassword> -->
-                    <!-- <div class='col btn-bottom-style'>
-                              <button class="submit-btn" (click)="closeModal('registermodal');">Cancel</button>
-                          </div> -->
+                    <!-- <app-messagemodalpopup></app-messagemodalpopup> -->
+                    <div class="row justify-content-md-center row no-gutters">
+                        <div class="col">
+                          <form [formGroup]="otpForm" (ngSubmit)="OTPSave()">
+                            <div class="form-group">
+                              <label for="otpInput">Please enter OTP</label>
+                              <input type="text" class="form-control" id="otpInput" aria-describedby="otpHelp" 
+                              placeholder="Enter OTP" formControlName="otp" [ngClass]="{ 'is-invalid': submitted1 && f1.otp.errors }">
+                              <div *ngIf="submitted1 && f1.otp.errors" class="invalid-feedback">
+                                  <div *ngIf="f1.otp.errors.required">OTP is required</div>
+                              </div>
+                            </div>
+                            <div class="col" align="center">
+                              <button type="submit" class="submit-btn">Validate OTP</button>
+                            </div>
+                            <div class="col">
+                              <p>OTP has been sent to your mobile and Email.</p>
+                            </div>
+                          </form>
+                          <div class="col" align="center" *ngIf="errorMessage && errorMessage.length > 0">
+                            <p style="color:red">{{errorMessage}}</p>
+                          </div>
+                        </div>
+                      </div>
+                      
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ import { ModalDialogService } from 'ngx-modal-dialog';
 import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpopup.component'
 import { EgazeService } from '../services/egaze.service';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
+import { ModalPropertyService } from '../services/modal-property.service';
 
 @Component({
   selector: 'app-agentregister',
@@ -32,11 +33,16 @@ export class AgentregisterComponent implements OnInit {
   showText1: boolean;
   showIconEye1: boolean = false;
   hideIconEye1: boolean = false;
-  isie: any=false;
+  isie: any = false;
+
+  otpValue: any;
+  otpForm: FormGroup;
+  errorMessage: any;
+  errorValidation: string;
+  submitted1 = false;
 
 
-
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
+  constructor(private ModalPropertyService: ModalPropertyService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
 
     this.modalService = modalService;
     this.viewRef = viewRef;
@@ -59,10 +65,10 @@ export class AgentregisterComponent implements OnInit {
 
   ngOnInit() {
 
-    if(window.navigator.userAgent.indexOf("Chrome")===-1){
-      this.isie=true;
-    }else{
-      this.isie=false;
+    if (window.navigator.userAgent.indexOf("Chrome") === -1) {
+      this.isie = true;
+    } else {
+      this.isie = false;
     }
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -93,6 +99,9 @@ export class AgentregisterComponent implements OnInit {
         this.registerForm.controls['type'].setValue("Normal");
       }
     });
+    this.otpForm = this.formBuilder.group({
+      otp: ['', Validators.required]
+    });
   }
   //  firstname(){
   //    if(!this.registerForm.get('firstName').valid){
@@ -101,6 +110,8 @@ export class AgentregisterComponent implements OnInit {
   //  }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f1() { return this.otpForm.controls; }
+
   passwordConfirming(c: AbstractControl): any {
     if (!c.parent || !c) return;
     const pwd = c.parent.get('password');
@@ -165,8 +176,13 @@ export class AgentregisterComponent implements OnInit {
           }
           else {
             this.isLoading = false;
-            sessionStorage.setItem("formData", JSON.stringify(formData.value));
-            this.openNewDialog(formData);
+            //sessionStorage.setItem("formData", JSON.stringify(formData.value));
+            //this.openNewDialog(formData);
+            this.EgazeService.getOTP(formData.value.email, formData.value.mobileNumber).subscribe(otp => {
+              this.isLoading = false;
+              this.otpValue = otp;
+              this.registerModal('registermodal');
+            });
           }
         }
 
@@ -179,6 +195,15 @@ export class AgentregisterComponent implements OnInit {
       //this.router.navigateByUrl('/userdashboard');
     }
   }
+  /** register modal code */
+  registerModal(id: string) {
+    this.ModalPropertyService.open(id);
+  }
+  closeModal(id: string) {
+    this.ModalPropertyService.close(id);
+  }
+  /** register modal code close here*/
+
   terms() {
     if (this.registerForm.get('termsChecked').value)
       this.termsCheckederrors = "Please accept terms and conditions";
@@ -210,5 +235,46 @@ export class AgentregisterComponent implements OnInit {
     }
   }
 
+  OTPSave() {
+    this.submitted1 = true;
+    this.isLoading = true;
+    if (parseInt(this.otpForm.value.otp) === this.otpValue) {
+      debugger;
+      //this.otpForm.value.otp = "";
+      this.EgazeService.registerFun(this.registerForm.value).subscribe(result => {
+        this.isLoading = false;
+        if (result) {
+          // sessionStorage.removeItem("formData");
+          // sessionStorage.setItem("regsuc","success");
+          this.router.navigateByUrl('/loginform?data=success');
 
+        }
+      },
+        error => {
+          this.isLoading = false;
+          console.log(error);
+        }
+      );
+    }
+    else if (this.otpForm.value.otp) {
+      this.isLoading = false;
+      this.errorMessage = "Invalid OTP."
+    }
+    else {
+      this.isLoading = false;
+      this.errorValidation = "OTP is required"
+    }
+  }
+  mouseoverpwd() {
+    this.showText = false;
+    this.showIconEye = false;
+    this.hideIconEye = true;
+  }
+  mouseoverpwd1() {
+    this.showText1 = false;
+    this.showIconEye1 = false;
+    this.hideIconEye1 = true;
+  }
 }
+
+

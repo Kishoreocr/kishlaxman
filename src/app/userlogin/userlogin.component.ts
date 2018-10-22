@@ -42,7 +42,7 @@ export class UserloginComponent implements OnInit {
   showIconEye: boolean = false;
   hideIconEye: boolean = false;
 
-  constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private http: HttpClient, private ModalPropertyService: ModalPropertyService) {
+  constructor(private fb: FormBuilder, router: Router, private route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private http: HttpClient, private ModalPropertyService: ModalPropertyService) {
     this.disabledField = false;
     this.routerProperty = router;
     this.modalService = modalService;
@@ -52,6 +52,7 @@ export class UserloginComponent implements OnInit {
     this.showText = false;
     this.showIconEye = false;
     this.hideIconEye = true;
+
     // if (this.routerProperty.url === '/loginform')
     //       {
     //         this.activeColor = true;
@@ -65,6 +66,14 @@ export class UserloginComponent implements OnInit {
 
   ngOnInit() {
     this.disabledField = false;
+    this.route.queryParamMap.subscribe(params => {
+      if (params.get('data') === 'success') {
+        this.registrationsuccess = "success";
+      } else {
+        ;
+        this.registrationsuccess = ""
+      }
+    });
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     this.userloginForm = this.fb.group({
@@ -72,12 +81,6 @@ export class UserloginComponent implements OnInit {
       userpwd: ['', [Validators.required]] //, Validators.minLength(6)
     });
 
-    if (sessionStorage.getItem("regsuc") != null) {
-      this.registrationsuccess = sessionStorage.getItem("regsuc");
-    setTimeout(function () {
-      sessionStorage.removeItem("regsuc");
-            }, 20000);
-    }
 
   }
   // convenience getter for easy access to form fields
@@ -168,14 +171,14 @@ export class UserloginComponent implements OnInit {
   //   });
   // }
 
-/** forgot Modal code */
+  /** forgot Modal code */
   forgotpwdmodal(id: string) {
     this.ModalPropertyService.open(id);
   }
   closeModal(id: string) {
     this.ModalPropertyService.close(id);
   }
-/** forgot Modal code close here*/
+  /** forgot Modal code close here*/
 
   showTextPwd(userloginForm) {
     if (userloginForm.value.userpwd) {
@@ -184,9 +187,9 @@ export class UserloginComponent implements OnInit {
       this.hideIconEye = !this.hideIconEye;
     }
   }
-  mouseoverpwd(){
-    this.showText=false;
+  mouseoverpwd() {
+    this.showText = false;
     this.showIconEye = false;
-      this.hideIconEye = true;
+    this.hideIconEye = true;
   }
 }

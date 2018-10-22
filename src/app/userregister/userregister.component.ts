@@ -14,6 +14,7 @@ import { ModalPropertyService } from '../services/modal-property.service';
 export class UserregisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
+  submitted1 = false;
   modalService: any;
   viewRef: any;
   loading: string;
@@ -33,6 +34,10 @@ export class UserregisterComponent implements OnInit {
   hideIconEye1: boolean = false;
 
   isie: any=false;
+  otpForm: FormGroup;
+  otpValue: any;
+  errorMessage:any;
+  errorValidation: string;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private ModalPropertyService: ModalPropertyService) {
 
@@ -91,6 +96,9 @@ export class UserregisterComponent implements OnInit {
         this.registerForm.controls['type'].setValue("Normal");
       }
     });
+    this.otpForm = this.formBuilder.group({
+      otp: ['', Validators.required]
+    });
   }
   //  firstname(){
   //    if(!this.registerForm.get('firstName').valid){
@@ -99,6 +107,7 @@ export class UserregisterComponent implements OnInit {
   //  }
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get f1() { return this.otpForm.controls; }
   passwordConfirming(c: AbstractControl): any {
     if (!c.parent || !c) return;
     const pwd = c.parent.get('password');
@@ -157,15 +166,22 @@ export class UserregisterComponent implements OnInit {
       this.isLoading = true;
       this.EgazeService.existingUserFun(formData.value.email).subscribe(
         result => {
-          // alert(result)
+          //alert(result)
           if (result) {
             this.isLoading = false;
             this.existsUser = "This email address already exists.";
           }
           else {
-            this.isLoading = false;
-            sessionStorage.setItem("formData", JSON.stringify(this.registerForm.value));
-            this.registerModal('registermodal');
+            this.isLoading = true;
+           // sessionStorage.setItem("formData", JSON.stringify(this.registerForm.value));
+           //alert("ee")
+           //alert(formData.value.email+"=="+formData.value.mobileNumber)
+            this.EgazeService.getOTP(formData.value.email,formData.value.mobileNumber).subscribe(otp => {
+              this.isLoading = false;
+              this.otpValue = otp;
+              this.registerModal('registermodal');
+            });
+           
             //this.openNewDialog(formData);
           }
         }
@@ -231,5 +247,34 @@ export class UserregisterComponent implements OnInit {
   }
 
 
+  OTPSave() {
+    this.submitted1 = true;
+    this.isLoading = true;
+    if (parseInt(this.otpForm.value.otp) === this.otpValue) {
+      debugger;
+      //this.otpForm.value.otp = "";
+      this.EgazeService.registerFun(this.registerForm.value).subscribe(result => {
+        this.isLoading = false;
+        if (result) {
+         // sessionStorage.removeItem("formData");
+         // sessionStorage.setItem("regsuc","success");
+          this.router.navigateByUrl('/loginform?data=success');
 
+        }
+      },
+        error => {
+          this.isLoading = false;
+          console.log(error);
+        }
+      );
+    }
+    else if (this.otpForm.value.otp) {
+      this.isLoading = false;
+      this.errorMessage = "Invalid OTP."
+    }
+    else {
+      this.isLoading = false;
+      this.errorValidation = "OTP is required"
+    }
+  }
 }

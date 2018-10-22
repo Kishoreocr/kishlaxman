@@ -41,6 +41,7 @@ export class MessagemodalpopupComponent implements OnInit, IModalDialog {
       this.isLoading = false;
       this.otpValue = otp;
     });
+    //alert(this.otpValue)
       
   }
   }

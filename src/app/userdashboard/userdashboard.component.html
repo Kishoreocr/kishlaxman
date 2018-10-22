@@ -549,8 +549,7 @@
                     </div>
 
                     <div class="col" *ngIf="propertyDetails" style='background-color: #fbfbfb !important;
-                    padding: 20px;
-                    margin-bottom: 20px;'>
+                    padding: 20px;'>
                         <form [formGroup]="propertyForm" (ngSubmit)="addPropertyFun(propertyForm)">
                             <div class="row">
 
@@ -653,10 +652,9 @@
                                             </div>
                                         </div>
                                    
-                                    <div class="col offset-sm-2" style='
-                                        padding-top: 20px;'>
+                                    <div class="col " style='padding-top: 20px;padding-left: 220px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
-                                        <button type="submit" class="submit-btn">Continue</button>
+                                       &nbsp;&nbsp;&nbsp; <button type="submit" class="submit-btn">Continue</button>
                                     </div>
 
                                 </div>
@@ -729,8 +727,7 @@
                                    
                                     
 
-                                    <div class="col  offset-sm-2" style='
-                                        padding-top: 20px;'>
+                                    <div class="col  " style='padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
                                         <button type="btn" class="submit-btn-upgrade" (click)="PreviousForm('FirstForm')">Previous</button>
                                         <button type="submit" class="submit-btn">Continue</button>
@@ -846,7 +843,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col offset-sm-2" style='padding-top: 20px;'>
+                                    <div class="col " style='padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
                                         <button type="btn" class="submit-btn-upgrade" (click)="PreviousForm('SecondForm')">Previous</button>
                                         <button type="submit" class="submit-btn">Submit</button>
