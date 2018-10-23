@@ -1,5 +1,5 @@
 import { Component, OnInit, ComponentRef } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup,AbstractControl } from '@angular/forms';
 import { IModalDialog, IModalDialogOptions } from 'ngx-modal-dialog';
 import { ComponentFixture } from '../../../node_modules/@angular/core/testing';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
@@ -69,9 +69,9 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
       otp: ['', Validators.required]
     });
     this.newpwdForm = this.fb.group({
-      newpwd: ['', Validators.required],
-      confirmnewpwd: ['', Validators.required]
-    });
+      newpwd: ['', [Validators.required, Validators.minLength(6)]],
+      confirmnewpwd: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming]]
+    })
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     this.userForgtForm = this.fb.group({
@@ -90,11 +90,22 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
       otp: ['', Validators.required]
     });
     this.newpwdForm = this.fb.group({
-      newpwd: ['', Validators.required],
-      confirmnewpwd: ['', Validators.required]
+      newpwd: ['', [Validators.required, Validators.minLength(6)]],
+      confirmnewpwd: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming]]
     })
   }
+  passwordConfirming(c: AbstractControl): any {
+    if (!c.parent || !c) return;
+    const pwd = c.parent.get('newpwd');
+    const cpwd = c.parent.get('confirmpwd')
 
+    if (!pwd || !cpwd) return;
+    if (pwd.value !== cpwd.value) {
+      return { notSame: true };
+
+    }
+
+  }
   OTPSave() {
     this.submitted = !this.submitted;
     if (parseInt(this.otpForm.value.otp) === this.updateOTP) {
@@ -118,9 +129,9 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
     //   this.comparepwd = value;
     // });
     this.newpwdSubmitted = true;
-    this.isLoaderdiv = true;
+    
     if (this.newpwdForm.valid) {
-
+      this.isLoaderdiv = true;
       if (this.newpwdForm.value.newpwd === this.newpwdForm.value.confirmnewpwd) {
 
         this.EgazeService.pwdchange(this.newpwdForm.value, this.userForgtForm.value).subscribe(result => {
@@ -140,7 +151,7 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
       }
       else {
         this.isLoaderdiv = false;
-        this.notmatchpwd = "Confirm Password does not match."
+        this.notmatchpwd = "New password and confirm password must be match"
       }
     }
   }

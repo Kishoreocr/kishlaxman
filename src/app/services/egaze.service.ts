@@ -7,8 +7,8 @@ export class EgazeService {
   //DEV
   //private baseUrl: string = 'http://202.153.46.90:8080/egaze-api/';
   //PROD
-  private baseUrl: string = 'http://www.egaze.in/egaze-api/';
- //private baseUrl: string = 'http://localhost:8080/egaze-api/';
+  //private baseUrl: string = 'http://www.egaze.in/egaze-api/';
+ private baseUrl: string = 'http://localhost:8080/egaze-api/';
   constructor(private http: HttpClient) { }
 
   loginFun(loginForm) {

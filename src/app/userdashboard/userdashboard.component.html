@@ -471,11 +471,7 @@
                                 <table *ngIf='userAllpropertis.length != 0' class="table table-striped table-bordered table-hover" [mfData]="userAllpropertis"
                                     #mf="mfDataTable" [mfRowsOnPage]="5">
                                     <thead>
-                                        <tr>
-                                            <!-- <th>
-                                                <mfDefaultSorter by="index">S.No.</mfDefaultSorter>
-                                            </th> -->
-                                            <th>
+                                        <tr>     <th>
                                                 <mfDefaultSorter by="propertyCode">Property Code</mfDefaultSorter>
                                             </th>
                                             <th>
@@ -1401,10 +1397,10 @@
 
 
     <!-- confirm modal for delete action-->
-    <app-modal-property id="confirm-delete-document">
-        <div class="modal confirmDocumentDelete">
+    <app-modal-property id="confirm-delete-document" >
+        <div class="modal confirmDocumentDelete"  style="z-index: 5 !important;">
             <div class="row justify-content-md-center justify-content-sm-center no-gutters">
-                <div class="modal-body col-md-5 col-sm-8" style="padding:0px;">
+                <div class="modal-body col-md-5 col-sm-8 " style="padding:0px;">
 
                     <div class='col modal-heading'>
                         <p>Confirm?
@@ -1431,7 +1427,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal-background"></div>
+        <div class="modal-background"  style="z-index: 4 !important;"></div>
         <app-loading-div *ngIf="isLoading"></app-loading-div>
     </app-modal-property>
     <!-- close here -->
