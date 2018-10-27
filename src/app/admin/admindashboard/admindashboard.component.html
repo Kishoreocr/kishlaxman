@@ -238,7 +238,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="6" style="border:0px !important;">
+                                            <td colspan="6" style="border:0px !important;padding:0px;">
                                                 <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
                                             </td>
                                         </tr>
@@ -317,11 +317,13 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <tfoot>
                             <tr>
-                                <td colspan="6" style="border:0px !important;">
+                                <td colspan="6" style="border:0px !important;padding:0px;">
                                     <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
                                 </td>
                             </tr>
+                        </tfoot>
                         </table>
                     </div>
                 </div>
@@ -723,11 +725,13 @@
                                                         </td>
                                                     </tr>
                                                 </tbody>
+                                                <tfoot>
                                                 <tr>
-                                                    <td colspan="4" style="border:0px !important;">
+                                                    <td colspan="4" style="border:0px !important;padding:0px;">
                                                         <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
                                                     </td>
                                                 </tr>
+                                            </tfoot>
                                             </table>
                                         </div>
                                         <div class='col upload-container-style' *ngIf="propertydocs.length <= 15">
@@ -851,7 +855,7 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <td colspan="1" style="border:0px !important;">
+                                                    <td colspan="1" style="border:0px !important;padding:0px;">
                                                         <mfBootstrapPaginator></mfBootstrapPaginator>
                                                     </td>
                                                 </tr>
@@ -1021,7 +1025,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="6" style="border:0px !important;">
+                                    <td colspan="7" style="border:0px !important;padding:0px;">
                                         <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
                                     </td>
                                 </tr>
@@ -1054,7 +1058,7 @@
             <div class="table-container-style table-th-styles table-responsive">
                 <div class="container-bg-style">
                     <h5 class="tab-active-heading">Alerts</h5>
-                    <table class="table table-striped table-bordered table-hover" [mfData]="adminalerts" #mf="mfDataTable"
+                    <table class="table table-striped table-bordered table-hover" style="border:0px;" [mfData]="adminalerts" #mf="mfDataTable"
                         [mfRowsOnPage]="5">
                         <thead>
                             <tr>
@@ -1083,7 +1087,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="4" style="border:0px !important;">
+                                <td colspan="4" style="border:0px !important;padding:0px;">
                                     <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
                                 </td>
                             </tr>

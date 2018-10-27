@@ -17,7 +17,7 @@
                     <label>First Name
                         <span class="mandatory">*</span>
                     </label>
-                    <input type="text" formControlName="firstName" class="form-control" placeholder="Enter fisrt name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+                    <input type="text" formControlName="firstName" class="form-control" placeholder="Enter First Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
                         maxlength="30" />
                     <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                         <div *ngIf="f.firstName.errors.required">First Name is required</div>
