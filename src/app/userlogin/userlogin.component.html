@@ -15,7 +15,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Email</label>
         <input [attr.disabled]="disabledField ? true : null" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-          placeholder="Enter registered email" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+          placeholder="Please Enter Email" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
           <div *ngIf="f.username.errors.required">Email is required</div>
           <div *ngIf="f.username.errors.pattern">Please enter valid email</div>
@@ -28,7 +28,7 @@
         <label for="exampleInputPassword1">Password</label>
         <div class="passwordInput">
           <input [attr.disabled]="disabledField ? true : null" [type]="showText ? 'text' : 'password' " class="form-control" id="exampleInputPassword1"
-            placeholder="Enter Password" formControlName="userpwd" [ngClass]="{ 'is-invalid': submitted && f.userpwd.errors }">
+            placeholder="Please Enter Password" formControlName="userpwd" [ngClass]="{ 'is-invalid': submitted && f.userpwd.errors }">
           <div class="showHideText" (click)="showTextPwd(userloginForm)">
             <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
             <i class="fa fa-eye" *ngIf="showIconEye" (mouseleave)="mouseoverpwd()"></i>

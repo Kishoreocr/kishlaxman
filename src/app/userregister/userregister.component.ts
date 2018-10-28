@@ -33,10 +33,10 @@ export class UserregisterComponent implements OnInit {
   showIconEye1: boolean = false;
   hideIconEye1: boolean = false;
 
-  isie: any=false;
+  isie: any = false;
   otpForm: FormGroup;
   otpValue: any;
-  errorMessage:any;
+  errorMessage: any;
   errorValidation: string;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private ModalPropertyService: ModalPropertyService) {
@@ -51,7 +51,7 @@ export class UserregisterComponent implements OnInit {
     this.showText1 = false;
     this.showIconEye1 = false;
     this.hideIconEye1 = true;
-    
+
   }
   isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : evt.keyCode
@@ -61,24 +61,32 @@ export class UserregisterComponent implements OnInit {
     return true;
   }
 
+  isCharts(event) {
+    if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+      return true;
+    else {
+      return false;
+    }
+  }
+
   ngOnInit() {
-    if(window.navigator.userAgent.indexOf("Chrome")===-1){
-      this.isie=true;
-    }else{
-      this.isie=false;
+    if (window.navigator.userAgent.indexOf("Chrome") === -1) {
+      this.isie = true;
+    } else {
+      this.isie = false;
     }
 
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     this.registerForm = this.formBuilder.group({
       registerType: [],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.pattern(emailPattern)]],
       mobileNumber: ['', Validators.required],
-      zipCode: ['', Validators.compose([Validators.required, Validators.maxLength(6)])],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming]],
+      zipCode: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])],
+      password: ['', [Validators.required, Validators.minLength(4)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(4), this.passwordConfirming]],
       termsChecked: [false, Validators.required],
       country: [null],
       countryCode: [null],
@@ -173,15 +181,15 @@ export class UserregisterComponent implements OnInit {
           }
           else {
             this.isLoading = true;
-           // sessionStorage.setItem("formData", JSON.stringify(this.registerForm.value));
-           //alert("ee")
-           //alert(formData.value.email+"=="+formData.value.mobileNumber)
-            this.EgazeService.getOTP(formData.value.email,formData.value.mobileNumber).subscribe(otp => {
+            // sessionStorage.setItem("formData", JSON.stringify(this.registerForm.value));
+            //alert("ee")
+            //alert(formData.value.email+"=="+formData.value.mobileNumber)
+            this.EgazeService.getOTP(formData.value.email, formData.value.mobileNumber).subscribe(otp => {
               this.isLoading = false;
               this.otpValue = otp;
               this.registerModal('registermodal');
             });
-           
+
             //this.openNewDialog(formData);
           }
         }
@@ -256,8 +264,8 @@ export class UserregisterComponent implements OnInit {
       this.EgazeService.registerFun(this.registerForm.value).subscribe(result => {
         this.isLoading = false;
         if (result) {
-         // sessionStorage.removeItem("formData");
-         // sessionStorage.setItem("regsuc","success");
+          // sessionStorage.removeItem("formData");
+          // sessionStorage.setItem("regsuc","success");
           this.router.navigateByUrl('/loginform?data=success');
 
         }
