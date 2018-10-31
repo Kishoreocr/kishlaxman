@@ -16,7 +16,13 @@
         </div>
         <div class="col-md-5">
           <p>Call Us</p>
-          <div class='callus-style'>7045942225 / 9866885877</div>
+          <div class='callus-style'>
+            <a style="color: white" *ngIf="!mobile" href="tel: +917045942225" target="_blank">7045942225</a>
+            <a style="color: white" *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-7045942225" target="_blank">7045942225</a>
+         /
+         <a style="color: white" *ngIf="!mobile" href="tel: +919845733344" target="_blank">9845733344</a>
+            <a style="color: white" *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-9845733344" target="_blank">9845733344</a>
+ </div>
         </div>
       </div>
 

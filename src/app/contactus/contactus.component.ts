@@ -14,12 +14,16 @@ export class ContactusComponent implements OnInit {
   isLoading: boolean = false;
   user: any;
   status:boolean=false;
+  mobile:any;
+
   constructor(private fb: FormBuilder,private sessionstorageService: SessionstorageService,private EgazeService: EgazeService) { 
     
 
   }
 
   ngOnInit() {
+    this.mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));  
+
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     this.contactusForm = this.fb.group({
