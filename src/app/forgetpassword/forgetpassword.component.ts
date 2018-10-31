@@ -1,5 +1,5 @@
 import { Component, OnInit, ComponentRef } from '@angular/core';
-import { FormBuilder, Validators, FormGroup,AbstractControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { IModalDialog, IModalDialogOptions } from 'ngx-modal-dialog';
 import { ComponentFixture } from '../../../node_modules/@angular/core/testing';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
@@ -8,6 +8,7 @@ import { text } from '../../../node_modules/@angular/core/src/render3/instructio
 import { Pwdvalidation } from '../pwdvalidation';
 import { EgazeService } from '../services/egaze.service';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
+import { interval } from 'rxjs/observable/interval';
 
 @Component({
   selector: 'app-forgetpassword',
@@ -45,7 +46,8 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
   showText1: boolean;
   showIconEye1: boolean = false;
   hideIconEye1: boolean = false;
-
+  timerOn = true;
+  resend:any=false;
   constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, private Pwdvalidation: Pwdvalidation, private EgazeService: EgazeService) {
     this.routerProperty = router;
     this.modalService = modalService;
@@ -65,6 +67,7 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
   }
 
   ngOnInit() {
+    this.timer(300);
     this.otpForm = this.fb.group({
       otp: ['', Validators.required]
     });
@@ -108,6 +111,7 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
   }
   OTPSave() {
     this.submitted = !this.submitted;
+    
     if (parseInt(this.otpForm.value.otp) === this.updateOTP) {
       //this.routerProperty.navigateByUrl('/success-register');
       this.otpForm.value.otp = "";
@@ -129,7 +133,7 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
     //   this.comparepwd = value;
     // });
     this.newpwdSubmitted = true;
-    
+
     if (this.newpwdForm.valid) {
       this.isLoaderdiv = true;
       if (this.newpwdForm.value.newpwd === this.newpwdForm.value.confirmnewpwd) {
@@ -140,7 +144,7 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
             this.pwschanged = "Successfully password has been changed. Please LOGIN with new password.";
             this.errorMessage = '';
             let this_ = this;
-            
+
           }
         },
           error => {
@@ -155,10 +159,11 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
       }
     }
   }
-
+  emai:any;
   userIdforget(userId): void {
     this.submitted = true;
     this.emailnotExists = '';
+    this.emai=userId.value.emailidForget;
     if (this.userForgtForm.valid) {
       this.isLoaderdiv = true;
 
@@ -224,5 +229,69 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
     this.showText1 = false;
     this.showIconEye1 = false;
     this.hideIconEye1 = true;
+  }
+  m: any;
+  s: any;
+  timerd: any="05:00";
+  sub:any;
+  timer(remaining) {
+    var  source = interval(1000);
+    //output: 0,1,2,3,4,5....
+    //alert(remaining)
+    if(parseInt(remaining)  > 0 ){
+    this.sub=source.subscribe(val => {
+      
+      if(parseInt(remaining)  > 0 ){
+      this.m = Math.floor(remaining / 60);
+      this.s = remaining % 60;
+
+      this.m = this.m < 10 ? '0' + this.m : this.m;
+      this.s = this.s < 10 ? '0' + this.s : this.s;
+
+      this.timerd = this.m + ':' + this.s;
+      remaining -= 1;
+      this.timer1(remaining);
+      }else{
+      //  alert("ss")
+        this.resend=true;
+        this.sub.unsubscribe();
+        return ;
+      }
+    
+    },err => {
+     // alert("ss"+err)
+    }
+);
+  }else{
+    //alert("ss")
+    return;
+  }
+  }
+  timer1(remaining) {
+    this.m = Math.floor(remaining / 60);
+    this.s = remaining % 60;
+
+    this.m = this.m < 10 ? '0' + this.m : this.m;
+    this.s = this.s < 10 ? '0' + this.s : this.s;
+
+    this.timerd = this.m + ':' + this.s;
+    remaining -= 1;
+    
+    //alert(remaining)
+  }
+  resendotp(){
+    this.isLoaderdiv = true;
+   
+   // this.emai="madishetty.kishore@gmail.com";
+          this.EgazeService.forgotuserpwd(this.emai).subscribe(result => {
+            this.isLoaderdiv = false;
+            this.updateOTP = result;
+            this.resend=false;
+            this.timer(300);
+          },
+            error => {
+              this.isLoaderdiv = false;
+              this.serverError = 'Server error has occurred, Please try later.'
+            });
   }
 } 
