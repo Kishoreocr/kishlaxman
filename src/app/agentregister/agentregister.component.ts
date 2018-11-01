@@ -74,14 +74,14 @@ export class AgentregisterComponent implements OnInit {
 
     this.registerForm = this.formBuilder.group({
       registerType: [],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern(emailPattern)]],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required,  Validators.minLength(6), Validators.pattern(emailPattern)]],
       mobileNumber: ['', Validators.required],
-      zipCode: ['', Validators.compose([Validators.required, Validators.maxLength(6)])],
-      briefDescription: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming]],
+      zipCode: ['',[Validators.required, Validators.minLength(4)]],
+      briefDescription: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(4), this.passwordConfirming]],
       termsChecked: [false, Validators.required],
       country: [null],
       countryCode: [null],
@@ -275,6 +275,17 @@ export class AgentregisterComponent implements OnInit {
     this.showIconEye1 = false;
     this.hideIconEye1 = true;
   }
+
+  isCharts(event) {
+    if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+      return true;
+    else {
+      return false;
+    }
+  }
+
+
+
 }
 
 

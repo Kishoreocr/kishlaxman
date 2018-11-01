@@ -28,10 +28,10 @@ export class ContactusComponent implements OnInit {
 
     this.contactusForm = this.fb.group({
       type:['',[ Validators.required]],
-      description:['',[ Validators.required]],
-      name:['',[ Validators.required]],
-      email: ['', [Validators.required, Validators.pattern(emailPattern)]],
-      mobile: ['',[ Validators.required,Validators.minLength(10),Validators.maxLength(10)]] //, Validators.minLength(6)
+      description:['',[ Validators.required, Validators.minLength(5)]],
+      name:['',[ Validators.required, Validators.minLength(4)]],
+      email: ['', [ Validators.required, Validators.pattern(emailPattern)]],
+      mobile: ['',[ Validators.required, Validators.minLength(10), Validators.maxLength(10)]] //, Validators.minLength(6)
     });
     this.contactusForm.controls['type'].setValue("Issue");
     if(this.sessionstorageService.getUserDetails()!=null){
@@ -83,5 +83,12 @@ export class ContactusComponent implements OnInit {
       this.submitted = true;
     }
 
+}
+isCharts(event) {
+  if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+    return true;
+  else {
+    return false;
+  }
 }
 }

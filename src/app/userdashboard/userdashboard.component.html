@@ -368,16 +368,18 @@
                                                         </label>
                                                         <div class="col-sm-10">
                                                             <textarea class="form-control" style="resize:none;text-align:left;" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
-                                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }">
+                                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }" maxlength="500">
 
                                                             </textarea>
-
-                                                        </div>
-                                                        <div *ngIf="submitted && c.commentfield.errors" class="invalid-feedback">
-                                                            <div *ngIf="c.commentfield.errors.required">Comment is required
+                                                            <div *ngIf="submitted && c.commentfield.errors" class="invalid-feedback">
+                                                                <div *ngIf="c.commentfield.errors.required">Comment is required
+                                                                </div>
+                                                                <div *ngIf="c.commentfield.errors.minlength">Please enter comments with minimum 3 and maximum 500 characters
+                                                                </div>
+    
                                                             </div>
-
                                                         </div>
+            
                                                     </div>
 
 
@@ -577,10 +579,12 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="titleHolder" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.titleHolder.errors }"
-                                                id="titleHolderFormControlInput" placeholder="Enter Title Holder" maxlength="30"
+                                                id="titleHolderFormControlInput" placeholder="Please Enter Title Holder" minlength="2" maxlength="30" (keypress)="isCharts($event)"
                                             />
                                             <div *ngIf="submitted && f.titleHolder.errors" class="invalid-feedback">
                                                 <div *ngIf="f.titleHolder.errors.required">Title Holder is required</div>
+                                                <div *ngIf="f.titleHolder.errors.minlength">Title Holder should be minimum 2 characters</div>
+  
                                             </div>
                                         </div>
                                     </div>
@@ -612,9 +616,10 @@
 
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="surveyNoDrNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.surveyNoDrNo.errors }"
-                                                id="surveyNo/DrNoFormControlInput" placeholder="Enter Survey No/Dr No" maxlength="30">
+                                                id="surveyNo/DrNoFormControlInput" placeholder="Please Enter Survey No/Dr No" minlength="6" maxlength="150">
                                             <div *ngIf="submitted && f.surveyNoDrNo.errors" class="invalid-feedback">
                                                 <div *ngIf="f.surveyNoDrNo.errors.required">Survey No/Dr No is required</div>
+                                                <div *ngIf="f.surveyNoDrNo.errors.minlength">Please enter valid Survey No/Do NO with minimum 6 and maximum 150characters</div>
                                             </div>
                                         </div>
                                     </div>
@@ -625,7 +630,7 @@
                                             </label>
                                             <div class="col-sm-4">
                                                 <input type="text" formControlName="extentofProperty" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentofProperty.errors }"
-                                                    id="extentofPropertyFormControlInput" placeholder="Enter Extent of Property"
+                                                    id="extentofPropertyFormControlInput" placeholder="Please Enter Extent Of Property"
                                                     maxlength="30">
                                                 <div *ngIf="submitted && f.extentofProperty.errors" class="invalid-feedback">
                                                     <div *ngIf="f.extentofProperty.errors.required">Extent of Property is required
@@ -640,16 +645,16 @@
                                             </label>
                                             <div class="col-sm-4">
                                                 <input type="text" formControlName="documentNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
-                                                    id="documentNoFormControlInput" placeholder="Enter document no." maxlength="30">
+                                                    id="documentNoFormControlInput" placeholder="Please Enter Document No." maxlength="30">
                                                 <div *ngIf="submitted && f.documentNo.errors" class="invalid-feedback">
                                                     <div *ngIf="f.documentNo.errors.required">Document No. is required</div>
                                                 </div>
                                             </div>
                                         </div>
                                    
-                                    <div class="col " style='padding-top: 20px;padding-left: 220px;'>
+                                    <div class="col-md-4 offset-md-2" style='padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
-                                       &nbsp;&nbsp;&nbsp; <button type="submit" class="submit-btn">Continue</button>
+                                       <button type="submit" class="submit-btn">Continue</button>
                                     </div>
 
                                 </div>
@@ -663,10 +668,12 @@
                                                 </label>
                                                 <div class="col-sm-4">
                                                     <input type="text" formControlName="subRegisterOffice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
-                                                        id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office"
-                                                        maxlength="30">
+                                                        id="subRegisterOfficeFormControlInput" placeholder="Please Enter Sub Register Office"
+                                                        maxlength="150">
                                                     <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
-                                                        <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is required
+                                                        <!-- <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is required
+                                                        </div> -->
+                                                        <div *ngIf="f.subRegisterOffice.errors.minlength">Please enter valid Sub Register Office with minimum 6 and maximum 150 characters
                                                         </div>
                                                     </div>
                                                 </div>
@@ -676,9 +683,12 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="boundariesNorth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }"
-                                                id="boundariesFormControlInput" placeholder="Enter North" maxlength="30">
+                                                id="boundariesFormControlInput" placeholder="Please Enter North" maxlength="50">
                                             <div *ngIf="submitted && f.boundariesNorth.errors" class="invalid-feedback">
-                                                <div *ngIf="f.boundariesNorth.errors.required">Boundaries is required</div>
+                                                <!-- <div *ngIf="f.boundariesNorth.errors.required">Boundaries is required</div> -->
+                                                <div *ngIf="f.boundariesNorth.errors.minlength">Please enter valid Boundaries - North with minimum 3 and maximum 50 characters</div>
+                                           
+                                           
                                             </div>
                                         </div>
                                     </div>
@@ -689,9 +699,11 @@
 
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="boundariesSouth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }"
-                                                id="boundariesFormControlInput" placeholder="Enter South" maxlength="30">
+                                                id="boundariesFormControlInput" placeholder="Please Enter South" maxlength="50">
                                             <div *ngIf="submitted && f.boundariesSouth.errors" class="invalid-feedback">
-                                                <div *ngIf="f.boundariesSouth.errors.required">Boundaries is required</div>
+                                                <!-- <div *ngIf="f.boundariesSouth.errors.required">Boundaries is required</div> -->
+                                                <div *ngIf="f.boundariesSouth.errors.minlength">Please enter valid Boundaries - South with minimum 3 and maximum 50 characters</div>
+                                            
                                             </div>
                                         </div>
                                     </div>
@@ -701,9 +713,11 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="boundariesEast" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }"
-                                                id="boundariesFormControlInput" placeholder="Enter East" maxlength="30">
+                                                id="boundariesFormControlInput" placeholder="Please Enter East" maxlength="30">
                                             <div *ngIf="submitted && f.boundariesEast.errors" class="invalid-feedback">
-                                                <div *ngIf="f.boundariesEast.errors.required">Boundaries is required</div>
+                                                <!-- <div *ngIf="f.boundariesEast.errors.required">Boundaries is required</div> -->
+                                                <div *ngIf="f.boundariesEast.errors.minlength">Please enter valid Boundaries - South with minimum 3 and maximum 50 characters</div>
+                                           
                                             </div>
                                         </div>
                                     </div>
@@ -713,16 +727,18 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="boundariesWest" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }"
-                                                id="boundariesFormControlInput" placeholder="Enter West" maxlength="30">
+                                                id="boundariesFormControlInput" placeholder="Please Enter West" maxlength="50">
                                             <div *ngIf="submitted && f.boundariesWest.errors" class="invalid-feedback">
-                                                <div *ngIf="f.boundariesWest.errors.required">Boundaries is required</div>
+                                                <!-- <div *ngIf="f.boundariesWest.errors.required">Boundaries is required</div> -->
+                                                <div *ngIf="f.boundariesWest.errors.minlength">Please enter valid Boundaries - South with minimum 3 and maximum 50 characters</div>
+                                          
                                             </div>
                                         </div>
                                     </div>
                                    
                                     
 
-                                    <div class="col  " style='padding-top: 20px;'>
+                                    <div class="col-md-4 offset-md-2" style='padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
                                         <button type="btn" class="submit-btn-upgrade" (click)="PreviousForm('FirstForm')">Previous</button>
                                         <button type="submit" class="submit-btn">Continue</button>
@@ -742,9 +758,11 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="address1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address1.errors }"
-                                                id="address1FormControlInput" placeholder="Enter Address 1" maxlength="30">
+                                                id="address1FormControlInput" placeholder="Please Enter Address 1" maxlength="150">
                                             <div *ngIf="submitted && f.address1.errors" class="invalid-feedback">
                                                 <div *ngIf="f.address1.errors.required">Address 1 is required</div>
+                                                <div *ngIf="f.address1.errors.minlength">Please enter valid address1 with minimum of 6 and maximum 150 characters</div>
+                                            
                                             </div>
                                         </div>
                                     </div>
@@ -754,9 +772,11 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="address2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address2.errors }"
-                                                id="address1FormControlInput" placeholder="Enter Address 2" maxlength="30">
+                                                id="address1FormControlInput" placeholder="Please Enter Address 2" maxlength="150">
                                             <div *ngIf="submitted && f.address2.errors" class="invalid-feedback">
                                                 <div *ngIf="f.address2.errors.required">Address 2 is required</div>
+                                                <div *ngIf="f.address2.errors.minlength">Please enter valid address2 with minimum of 6 and maximum 150 characters</div>
+                                            
                                             </div>
                                         </div>
                                     </div>
@@ -768,7 +788,7 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="villageCity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.villageCity.errors }"
-                                                id="villageCityFormControlInput" placeholder="Enter Village/City" maxlength="30">
+                                                id="villageCityFormControlInput" placeholder="Please Enter Village/City" maxlength="30">
                                             <div *ngIf="submitted && f.villageCity.errors" class="invalid-feedback">
                                                 <div *ngIf="f.villageCity.errors.required">Village/City is required</div>
                                             </div>
@@ -782,7 +802,7 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
-                                                id="mandalFormControlInput" placeholder="Enter Mandal" maxlength="30">
+                                                id="mandalFormControlInput" placeholder="Please Enter Mandal" maxlength="30">
                                             <div *ngIf="submitted && f.mandal.errors" class="invalid-feedback">
                                                 <div *ngIf="f.mandal.errors.required">Mandal is required</div>
                                             </div>
@@ -796,7 +816,7 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
-                                                id="districtFormControlInput" placeholder="Enter District" maxlength="30">
+                                                id="districtFormControlInput" placeholder="Please Enter District" maxlength="30">
                                             <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
                                                 <div *ngIf="f.district.errors.required">District is required</div>
                                             </div>
@@ -804,15 +824,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="zip" class="col-sm-2 col-form-label">zip
+                                        <label for="zip" class="col-sm-2 col-form-label">Zip Code
                                             <span class="mandatory">*</span>
                                         </label>
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }" id="zipFormControlInput"
-                                                placeholder="Enter zipCode">
+                                                placeholder="Pleaes Enter zip Code" maxlength="10">
                                             <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
                                                 <div *ngIf="f.zip.errors.required">zipCode is required</div>
-                                                <div *ngIf="f.zip.errors.maxlength">ZipCode max value will be 6 digits only</div>
+                                                <div *ngIf="f.zip.errors.minlength">Please enter a valid zip code with a minimum of 4 and maximum 10 alphanumeric</div>
 
                                             </div>
                                         </div>
@@ -838,7 +858,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col " style='padding-top: 20px;'>
+                                    <div class="col-md-4 offset-md-2" style='padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
                                         <button type="btn" class="submit-btn-upgrade" (click)="PreviousForm('SecondForm')">Previous</button>
                                         <button type="submit" class="submit-btn">Submit</button>
@@ -1351,7 +1371,7 @@
                         <form [formGroup]="upgradePlanForm" (ngSubmit)="upgradePlanFun()">
                                 <div class="alert alert-success" id="propertyDestination" *ngIf="upgraderequestsucc!=''" style="width: 80%;text-align: center;margin-left: 61px;margin-top: 18px;">
                                         <!-- <a href="#" class="close" data-dismiss="alert">&times;</a> -->
-                                        <h4>{{upgraderequestsucc}}</h4>
+                                        <h6>{{upgraderequestsucc}}</h6>
                                       
                                       </div>
                             <div class="col content-style" *ngIf="upgraderequestsucc===''">

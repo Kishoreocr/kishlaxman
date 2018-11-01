@@ -64,12 +64,13 @@
             <span class="mandatory">*</span>
           </label>
         
-          <textarea class="form-control" formControlName="description" id="exampleFormControlTextarea1" rows="2" style='resize:none;' [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+          <textarea class="form-control" placeholder="Please Enter Description" formControlName="description" id="exampleFormControlTextarea1" rows="2" style='resize:none;' [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
     
         
         
           <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
             <div *ngIf="f.description.errors.required">Description is required</div>
+            <div *ngIf="f.description.errors.minlength">Please enter Minimum 5 characters and Maximum 100 Characters</div>
           </div>
         </div>
 
@@ -78,10 +79,11 @@
           <label>Name
             <span class="mandatory">*</span>
           </label>
-          <input type="text" formControlName="name" class="form-control" placeholder="Enter Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
-          />
+          <input type="text" formControlName="name" class="form-control" placeholder="Please Enter Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+          (keypress)="isCharts($event)"/>
           <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
             <div *ngIf="f.name.errors.required">Name is required</div>
+            <div *ngIf="f.name.errors.minlength">Please enter a valid Name with a minimum of 2 and maximum 50 characters</div>
           </div>
         </div>
 
@@ -90,7 +92,7 @@
           <label>Email
             <span class="mandatory">*</span>
           </label>
-          <input type="text" formControlName="email" class="form-control" placeholder="Enter Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+          <input type="text" formControlName="email" class="form-control" placeholder="Please Enter Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
           />
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Email is required</div>
@@ -101,11 +103,11 @@
           <label>Mobile
             <span class="mandatory">*</span>
           </label>
-          <input type="text" formControlName="mobile" (keypress)="isNumberKey($event)" class="form-control" placeholder="Enter Mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"
-          />
+          <input type="text" formControlName="mobile" (keypress)="isNumberKey($event)" class="form-control" placeholder="Please Enter Mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"
+          maxlength="10"/>
           <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
             <div *ngIf="f.mobile.errors.required">Mobile is required</div>
-            <div *ngIf="f.mobile.errors.minlength">Min size of Mobile is 10 digits</div>
+            <div *ngIf="f.mobile.errors.minlength">Please enter a valid mobile number</div>
             <div *ngIf="f.mobile.errors.maxlength">Max size of Mobile is 10 digits</div>
           </div>
         </div>

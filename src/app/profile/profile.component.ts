@@ -82,24 +82,24 @@ export class ProfileComponent implements OnInit {
     this.profilechndResultMsg = '';
 
     this.updateuserForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
       middleName: [''],
-      lastName: ['', Validators.required],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
      // email: [null],
      // mobileNumber: [null],
-      address1: [null],
-      address2: [null],
-      address3: [null],
-      city: [null],
-      state: [null],
-      zipCode: [null, Validators.maxLength(6)],
-      country: [null],
+      address1: ['', Validators.minLength(6)],
+      address2: ['', Validators.minLength(6)],
+      address3: [''],
+      city: [''],
+      state: [''],
+      zipCode: ['', Validators.minLength(4)],
+      country: [''],
     });
 
     this.updateuserNewpwdForm = this.formBuilder.group({
-      oldpwd: ['', [Validators.required, Validators.minLength(6)]],
-      newpwd: ['', [Validators.required, Validators.minLength(6)]],
-      confirmpwd: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming]],
+      oldpwd: ['', [Validators.required, Validators.minLength(4)]],
+      newpwd: ['', [Validators.required, Validators.minLength(4)]],
+      confirmpwd: ['', [Validators.required, Validators.minLength(4), this.passwordConfirming]],
 
     });
     debugger;
@@ -271,6 +271,12 @@ this.updateuserProfilestatus="";
       this.hideIconEye2 = !this.hideIconEye2;
     }
   }
-
+  isCharts(event) {
+    if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+      return true;
+    else {
+      return false;
+    }
+  }
 
 }

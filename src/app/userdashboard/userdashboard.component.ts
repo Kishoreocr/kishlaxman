@@ -109,23 +109,23 @@ export class UserdashboardComponent implements OnInit {
 
     this.propertyForm = this.formBuilder.group({
       typeofProperty: ['', Validators.required],
-      titleHolder: ['', Validators.required],
+      titleHolder: ['', [Validators.required, Validators.minLength(2)]],
       relationshipTocustomer: ['', Validators.required],
-      surveyNoDrNo: ['', Validators.required],
-      subRegisterOffice: [''],
+      surveyNoDrNo: ['', [Validators.required, Validators.minLength(6)]],
+      subRegisterOffice: ['', Validators.minLength(6)],
       extentofProperty: ['', Validators.required],
       boundaries: [''],
-      boundariesNorth: [''],
-      boundariesSouth: [''],
-      boundariesEast: [''],
-      boundariesWest: [''],
+      boundariesNorth: ['', Validators.minLength(3)],
+      boundariesSouth: ['', Validators.minLength(3)],
+      boundariesEast: ['', Validators.minLength(3)],
+      boundariesWest: ['', Validators.minLength(3)],
       documentNo: ['', Validators.required],
-      address1: ['', Validators.required],
-      address2: ['', Validators.required],
+      address1: ['', [Validators.required, Validators.minLength(6)]],
+      address2: ['', [Validators.required, Validators.minLength(6)]],
       villageCity: ['', Validators.required],
       mandal: ['', Validators.required],
       district: ['', Validators.required],
-      zip: ['', Validators.required],
+      zip: ['',[Validators.required, Validators.minLength(4)]],
       state: ['', Validators.required]
     });
 
@@ -158,7 +158,7 @@ export class UserdashboardComponent implements OnInit {
 
     this.propertiesShow();
     this.commentForm = this.formBuilder.group({
-      commentfield: ['', Validators.required],
+      commentfield: ['', [Validators.required, Validators.minLength(3)]],
       typeofProperty: ['', Validators.required],
       commentfile: [null]
     });
@@ -379,7 +379,12 @@ export class UserdashboardComponent implements OnInit {
     //   this.submitted = true;
     // }
 
-    else if (this.propertyForm.controls.documentNo.valid && this.secondFormStep) {
+    else if (this.propertyForm.controls.subRegisterOffice.valid
+       && this.propertyForm.controls.boundariesNorth.valid
+       && this.propertyForm.controls.boundariesSouth.valid
+       && this.propertyForm.controls.boundariesEast.valid
+       && this.propertyForm.controls.boundariesWest.valid 
+       && this.secondFormStep) {
      debugger;
       this.submitted = false;
 
@@ -733,7 +738,7 @@ export class UserdashboardComponent implements OnInit {
     });
   }
   commentFun(description) {
-    this.submitted = true;
+   
     //alert(JSON.stringify(description.value));
     if (this.commentForm.valid) {
       this.isLoading = true;
@@ -751,6 +756,9 @@ export class UserdashboardComponent implements OnInit {
         this.isLoading = false;
       });
 
+    }
+    else {
+      this.submitted = true;
     }
 
   }
@@ -811,7 +819,7 @@ upgraderequestsucc='';
 
       this.EgazeService.upgradePackageRequest(this.upgradePlanForm.value, this.user.email).subscribe(result => {
         this.isLoading = false;
-        this.upgraderequestsucc='Your Upgrade request sent to Admin.Admin will contact you soon.'
+        this.upgraderequestsucc='Your Upgrade request sent to Admin. Admin will contact you soon.'
         this.upgradePlanForm.controls['plandetailsField'].setValue("");
       }, error => {
         this.isLoaderdiv = false;
@@ -826,5 +834,11 @@ upgraderequestsucc='';
 
   }
 
-
+  isCharts(event) {
+    if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+      return true;
+    else {
+      return false;
+    }
+  }
 }

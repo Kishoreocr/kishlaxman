@@ -28,9 +28,10 @@
                             </label>
                             <div class="col-sm-7">
                                 <input type="text" [readonly]="!isEditDisabled" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.firstName.errors && isEditDisabled }"
-                                />
+                                maxlength="50" (keypress)="isCharts($event)"/>
                                 <div *ngIf="submitted && feditP.firstName.errors" class="invalid-feedback">
                                     <div *ngIf="feditP.firstName.errors.required">First Name is required</div>
+                                    <div *ngIf="feditP.firstName.errors.minlength">Please enter valid a Last name with a minimum of 2 and maximum 50 characters</div>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +41,7 @@
                             <label class="col-sm-4 col-form-label">Middle Name</label>
                             <div class="col-sm-7">
                                 <input type="text" [readonly]="!isEditDisabled" formControlName="middleName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.middleName.errors && isEditDisabled }"
-                                />
+                                maxlength="50" (keypress)="isCharts($event)"/>
                                 <div *ngIf="submitted && feditP.middleName.errors" class="invalid-feedback">
                                     <div *ngIf="feditP.middleName.errors.required">Middle Name is required</div>
                                 </div>
@@ -53,9 +54,10 @@
                             </label>
                             <div class="col-sm-7">
                                 <input type="text" [readonly]="!isEditDisabled" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.lastName.errors && isEditDisabled}"
-                                />
+                                maxlength="50" (keypress)="isCharts($event)"/>
                                 <div *ngIf="submitted && feditP.lastName.errors" class="invalid-feedback">
-                                    <div *ngIf="feditP.lastName.errors.required">Name is required</div>
+                                    <div *ngIf="feditP.lastName.errors.required">Last Name is required</div>
+                                    <div *ngIf="feditP.lastName.errors.minlength">Please enter valid a Last name with a minimum of 2 and maximum 50 characters</div>
                                 </div>
 
 
@@ -99,9 +101,10 @@
                             </label>
                             <div class="col-sm-7">
                                 <input type="text" [readonly]="!isEditDisabled" formControlName="address1" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address1.errors && isEditDisabled}"
-                                />
+                                maxlength="150"/>
                                 <div *ngIf="submitted && feditP.address1.errors" class="invalid-feedback">
                                     <div *ngIf="feditP.address1.errors.required">Address is required</div>
+                                    <div *ngIf="feditP.address1.errors.minlength">Please enter valid address1 with minimum of 6 and maximum 150 characters</div>
                                 </div>
                             </div>
                         </div>
@@ -113,9 +116,11 @@
                             <label class="col-sm-4 col-form-label">Address 2</label>
                             <div class="col-sm-7">
                                 <input type="text" [readonly]="!isEditDisabled" formControlName="address2" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address2.errors && isEditDisabled}"
-                                />
+                                maxlength="150"/>
                                 <div *ngIf="submitted && feditP.address2.errors" class="invalid-feedback">
                                     <div *ngIf="feditP.address2.errors.required">Address is required</div>
+                                    <div *ngIf="feditP.address2.errors.minlength">Please enter valid address2 with minimum of 6 and maximum 150 characters</div>
+                               
                                 </div>
                             </div>
                         </div>
@@ -171,12 +176,12 @@
                                 <!-- <span class="mandatory">*</span> -->
                             </label>
                             <div class="col-sm-7">
-                                <input type="text" [readonly]="!isEditDisabled" maxlength="6" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.zipCode.errors && isEditDisabled}"
+                                <input type="text" [readonly]="!isEditDisabled" maxlength="10" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.zipCode.errors && isEditDisabled}"
                                 />
 
                                 <div *ngIf="submitted && feditP.zipCode.errors" class="invalid-feedback">
                                     <div *ngIf="feditP.zipCode.errors.required">Zip Code is required</div>
-                                    <div *ngIf="feditP.zipCode.errors.maxlength">ZipCode max value will be 6 digits only</div>
+                                    <div *ngIf="feditP.zipCode.errors.minlength">Please enter a valid zip code with a minimum of 4 and maximum 10 alphanumeric</div>
                                 </div>
                             </div>
 
@@ -230,7 +235,7 @@
                     <label class="col-sm-2 col-form-label">Old Password</label>
                     <div class="col-sm-4 passwordInput">
                         <input [type]="showText ? 'text' : 'password' " formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
-                          maxlength="20"/>
+                          maxlength="20" placeholder="Please Enter Old Password"/>
 
                         <div class="showHideText" (click)="showTextPwd(updateuserNewpwdForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
@@ -240,7 +245,7 @@
 
                         <div *ngIf="submitted && fpwdP.oldpwd.errors" class="invalid-feedback">
                             <div *ngIf="fpwdP.oldpwd.errors.required">Old password is required</div>
-                            <div *ngIf="fpwdP.oldpwd.errors.minlength">Old password must be at least 6 characters
+                            <div *ngIf="fpwdP.oldpwd.errors.minlength">Please enter valid Old Password with minimum  4 and maximum 20 characters
                             </div>
                         </div>
                     </div>
@@ -250,7 +255,7 @@
                     <label class="col-sm-2 col-form-label">New Password</label>
                     <div class="col-sm-4 passwordInput">
                         <input [type]="showText1 ? 'text' : 'password' " formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
-                         maxlength="20"/>
+                         maxlength="20" placeholder="Please Enter New Password"/>
 
                         <div class="showHideText" (click)="showTextPwd1(updateuserNewpwdForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye1"></i>
@@ -259,7 +264,7 @@
 
                         <div *ngIf="submitted && fpwdP.newpwd.errors" class="invalid-feedback">
                             <div *ngIf="fpwdP.newpwd.errors.required">New password is required</div>
-                            <div *ngIf="fpwdP.newpwd.errors.minlength">New password must be at least 6 characters
+                            <div *ngIf="fpwdP.newpwd.errors.minlength">Please enter valid new Password with minimum  4 and maximum 20 characters
                             </div>
                         </div>
                     </div>
@@ -268,7 +273,7 @@
                     <label class="col-sm-2 col-form-label">Confirm Password</label>
                     <div class="col-sm-4 passwordInput">
                         <input [type]="showText2 ? 'text' : 'password' " formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
-                        maxlength="20" />
+                        maxlength="20" placeholder="Please Enter Confirm Password"/>
 
                         <div class="showHideText" (click)="showTextPwd2(updateuserNewpwdForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye2"></i>
@@ -277,7 +282,7 @@
 
                         <div *ngIf="submitted && fpwdP.confirmpwd.errors" class="invalid-feedback">
                             <div *ngIf="fpwdP.confirmpwd.errors.required">Confirm password is required</div>
-                            <div *ngIf="fpwdP.confirmpwd.errors.minlength">Confirm password must be at least 6 characters</div>
+                            <div *ngIf="fpwdP.confirmpwd.errors.minlength">Please enter valid Confirm Password with minimum 4 and maximum 20 characters</div>
                             <div *ngIf="fpwdP.confirmpwd.errors.notSame">New password and confirm password must be match</div>
 
                         </div>

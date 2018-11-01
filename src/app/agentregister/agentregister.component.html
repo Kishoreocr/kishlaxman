@@ -17,31 +17,36 @@
           <label>First Name
             <span class="mandatory">*</span>
           </label>
-          <input type="text" formControlName="firstName" class="form-control" placeholder="Enter First Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
-          />
+          <input type="text" formControlName="firstName" class="form-control" placeholder="Please Enter First Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+          maxlength="30" (keypress)="isCharts($event)"/>
           <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
             <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            <div *ngIf="f.firstName.errors.minlength">First Name should be minimum 2 characters</div>
+  
           </div>
         </div>
         <div class="form-group">
           <label>Last Name
             <span class="mandatory">*</span>
           </label>
-          <input type="text" formControlName="lastName" class="form-control" placeholder="Enter last name" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
-          />
+          <input type="text" formControlName="lastName" class="form-control" placeholder="Please Enter Last Name" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+          maxlength="30" (keypress)="isCharts($event)"/>
           <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
             <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+            <div *ngIf="f.lastName.errors.minlength">Last Name should be minimum 2 characters</div>
+  
           </div>
         </div>
         <div class="form-group">
           <label>Email
             <span class="mandatory">*</span>
           </label>
-          <input type="text" formControlName="email" class="form-control" placeholder="Enter email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-          />
+          <input type="text" formControlName="email" class="form-control" placeholder="Please Enter Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+          maxlength="50"/>
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Email is required</div>
-            <div *ngIf="f.email.errors.pattern">Please enter valid email</div>
+            <div *ngIf="f.email.errors.minlength">Please enter a valid email</div>
+            <div *ngIf="f.email.errors.pattern">Please enter a valid email</div>
           </div>
           <div *ngIf="existsUser && existsUser.length > 0">
             <div style="color:red">{{existsUser}}</div>
@@ -54,11 +59,11 @@
           <br>
           <input type="text" ng2TelInput [ngClass]="{ 'isie': isie, 'isienot': !isie }"  [ng2TelInputOptions]="{initialCountry: 'in'}" (hasError)="hasError($event)"
             (ng2TelOutput)="getNumber($event)" (intlTelInputObject)="telInputObject($event)" (countryChange)="onCountryChange($event)"
-            placeholder="Enter mobile number" (keypress)="isNumberKey($event)" pattern="[0-9]*" class="form-control1" maxlength="12" [ngClass]="{ 'is-invalid': submitted && !mobileNumbererror }"
-          />
+            placeholder="Please Enter Mobile Number" (keypress)="isNumberKey($event)" pattern="[0-9]*" class="form-control1" maxlength="12" [ngClass]="{ 'is-invalid': submitted && !mobileNumbererror }"
+          maxlength="12"/>
           <div *ngIf="submitted && !mobileNumbererror" style="color:#dc3545;font-size: 80%">
             <!-- <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required</div> -->
-            <div *ngIf="!mobileNumbererror">Enter valid mobile number </div>
+            <div *ngIf="!mobileNumbererror">Please enter a valid mobile number</div>
             <!-- <div *ngIf="f.mobileNumber.errors.pattern">Mobile numberr should be only numbers</div> -->
 
           </div>
@@ -67,11 +72,11 @@
           <label>Zip Code
             <span class="mandatory">*</span>
           </label>
-          <input type="text" maxlength="6" formControlName="zipCode" placeholder="Enter zip code" (keypress)="isNumberKey($event)"
-            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
+          <input type="text" formControlName="zipCode" placeholder="Please Enter Zip Code" 
+            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" maxlength="10"/>
           <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
             <div *ngIf="f.zipCode.errors.required">Zip code is required</div>
-            <div *ngIf="f.zipCode.errors.maxlength">Zip Code max value will be 6 digits only</div>
+            <div *ngIf="f.zipCode.errors.minlength">Please enter valid zip code with minimum of 4 and maximum 10 alpha numeric</div>
           </div>
         </div>
         <div class="form-group">
@@ -79,8 +84,8 @@
             <span class="mandatory">*</span>
           </label>
           <div class="passwordInput">
-            <input [type]="showText ? 'text' : 'password' " formControlName="password" class="form-control" placeholder="Enter password"
-              [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <input [type]="showText ? 'text' : 'password' " formControlName="password" class="form-control" placeholder="Please Enter Password"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }" maxlength="20"/>
 
             <div class="showHideText" (click)="showTextPwd(registerForm)">
               <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
@@ -91,7 +96,7 @@
 
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">Password is required</div>
-              <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+              <div *ngIf="f.password.errors.minlength">Please enter valid password with minimum 4 and maximum 20 charaters</div>
             </div>
           </div>
         </div>
@@ -100,8 +105,8 @@
             <span class="mandatory">*</span>
           </label>
           <div class="passwordInput">
-            <input [type]="showText1 ? 'text' : 'password' " formControlName="confirmPassword" placeholder="Enter confirm password" class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+            <input [type]="showText1 ? 'text' : 'password' " formControlName="confirmPassword" placeholder="Please Enter Confirm Password" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" maxlength="20"/>
 
             <div class="showHideText" (click)="showTextPwd1(registerForm)">
               <i class="fa fa-eye-slash" *ngIf="hideIconEye1"></i>
@@ -110,7 +115,7 @@
 
             <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
               <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
-              <div *ngIf="f.confirmPassword.errors.minlength">Confirm Password must be at least 6 characters</div>
+              <div *ngIf="f.confirmPassword.errors.minlength">Please enter valid Confirm Password with minimum 4 and maximum 20 characters.</div>
               <div *ngIf="f.confirmPassword.errors.notSame">Password and confirm password must be match</div>
             </div>
           </div>
@@ -122,10 +127,11 @@
           <label>Brief description of yourself
             <span class="mandatory">*</span>
           </label>
-          <textarea formControlName="briefDescription" placeholder="Enter brief description of yourself" id="exampleFormControlTextarea1" rows="3" class="form-control no-resize"
-            [ngClass]="{ 'is-invalid': submitted && f.briefDescription.errors }"></textarea>
+          <textarea formControlName="briefDescription" placeholder="Please Enter Brief Description Of Yourself" id="exampleFormControlTextarea1" rows="3" class="form-control no-resize"
+            [ngClass]="{ 'is-invalid': submitted && f.briefDescription.errors }" maxlength="500"></textarea>
           <div *ngIf="submitted && f.briefDescription.errors" class="invalid-feedback">
             <div *ngIf="f.briefDescription.errors.required">Brief description is required</div>
+            <div *ngIf="f.briefDescription.errors.minlength">Please enter description with minimum 6 and maximum 500 characters</div>
                       </div>
         </div>
 

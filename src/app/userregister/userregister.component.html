@@ -42,10 +42,10 @@
                         <span class="mandatory">*</span>
                     </label>
                     <input type="text" formControlName="email" class="form-control" placeholder="Please Enter Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-                        maxlength="45" />
+                        maxlength="50" />
                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                         <div *ngIf="f.email.errors.required">Email is required</div>
-                        <div *ngIf="f.email.errors.pattern">Please enter valid email</div>
+                        <div *ngIf="f.email.errors.pattern">Please enter a valid email</div>
                     </div>
                     <div *ngIf="existsUser && existsUser.length > 0">
                         <div style="color:red">{{existsUser}}</div>
@@ -62,7 +62,7 @@
                         [ngClass]="{ 'is-invalid': submitted && !mobileNumbererror }" maxlength="12"/>
                     <div *ngIf="submitted && !mobileNumbererror" style="color:#dc3545;font-size: 80%">
                         <!-- <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required</div> -->
-                        <div *ngIf="!mobileNumbererror">Enter valid mobile number </div>
+                        <div *ngIf="!mobileNumbererror">Please Enter a valid mobile number </div>
                         <!-- <div *ngIf="f.mobileNumber.errors.pattern">Mobile numberr should be only numbers</div> -->
 
                     </div>
