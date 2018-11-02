@@ -8,7 +8,7 @@ export class EgazeService {
   private baseUrl: string = 'http://202.153.46.90:8080/egaze-api/';
   //PROD
   //private baseUrl: string = 'http://www.egaze.in/egaze-api/';
- //private baseUrl: string = 'http://localhost:8080/egaze-api/';
+  //private baseUrl: string = 'http://localhost:8080/egaze-api/';
   constructor(private http: HttpClient) { }
 
   loginFun(loginForm) {
@@ -25,15 +25,15 @@ export class EgazeService {
     return this.http.get(requestURL);
   }
 
-  getOTP(emialId,mobi) {
-    let requestURL = this.baseUrl + 'otp/reg/' + emialId + '/'+mobi;
+  getOTP(emialId, mobi) {
+    let requestURL = this.baseUrl + 'otp/reg/' + emialId + '/' + mobi;
     return this.http.get(requestURL);
   }
 
   registerFun(userObject) {
-    let payloadRequestData ;
-    if(userObject.registerType==='agent'){
-      payloadRequestData= {
+    let payloadRequestData;
+    if (userObject.registerType === 'agent') {
+      payloadRequestData = {
         "firstName": userObject.firstName,
         "lastName": userObject.lastName,
         "email": userObject.email,
@@ -43,12 +43,12 @@ export class EgazeService {
         "password": userObject.password,
         "country": userObject.country,
         "countryCode": userObject.countryCode,
-        "type":userObject.type,
-        "description":userObject.briefDescription
+        "type": userObject.type,
+        "description": userObject.briefDescription
       };
-  
-    }else{
-      payloadRequestData= {
+
+    } else {
+      payloadRequestData = {
         "firstName": userObject.firstName,
         "lastName": userObject.lastName,
         "email": userObject.email,
@@ -58,16 +58,16 @@ export class EgazeService {
         "password": userObject.password,
         "country": userObject.country,
         "countryCode": userObject.countryCode,
-        "type":userObject.type
+        "type": userObject.type
       };
-  
+
     }
     //alert(JSON.stringify(payloadRequestData))
     return this.http.post(this.baseUrl + 'signup', payloadRequestData);
   }
 
   forgotuserpwd(userId) {
-    return this.http.get(this.baseUrl + 'otp/forgot/' + userId );
+    return this.http.get(this.baseUrl + 'otp/forgot/' + userId);
   }
 
   pwdchange(userpw, useremail) {
@@ -281,12 +281,12 @@ export class EgazeService {
     return this.http.post(this.baseUrl + 'update/property/status', formdata);
   }
 
-  upgradePackageRequest(requestData,email) {
+  upgradePackageRequest(requestData, email) {
     var data = {
       "email": email,
       "description": requestData.plandetailsField
     }
-   // alert(JSON.stringify(data))
+    // alert(JSON.stringify(data))
     return this.http.post(this.baseUrl + 'upgrade/package', data);
   }
   getCustomPlanUsers() {
@@ -312,24 +312,33 @@ export class EgazeService {
     return this.http.get(this.baseUrl + "customer/customplan/details");
 
   }
-getAllContactUsRequests(){
-  return this.http.get(this.baseUrl + "getall/contactus")
-}
-updatecontactus(requestData,freq) {
-  var data = {
-    "id": freq.id,
-    "status": requestData.status,
-    "description": requestData.description,
-    "type": freq.type
+  getAllContactUsRequests() {
+    return this.http.get(this.baseUrl + "getall/contactus")
   }
-  //alert(JSON.stringify(data));
-    
-  return this.http.post(this.baseUrl + 'update/contactus', data);
-}
-getAllContactUsRequestsByStatus(status){
-  return this.http.get(this.baseUrl + "getall/status/contactus/"+status)
-}
-getAllStates(){
-  return this.http.get(this.baseUrl + "state/details")
-}
+  updatecontactus(requestData, freq) {
+    var data = {
+      "id": freq.id,
+      "status": requestData.status,
+      "description": requestData.description,
+      "type": freq.type
+    }
+    //alert(JSON.stringify(data));
+
+    return this.http.post(this.baseUrl + 'update/contactus', data);
+  }
+  getAllContactUsRequestsByStatus(status) {
+    return this.http.get(this.baseUrl + "getall/status/contactus/" + status)
+  }
+  getAllStates() {
+    return this.http.get(this.baseUrl + "state/details")
+  }
+  getDistricts(stateCode) {
+    return this.http.get(this.baseUrl + "district/details/" + stateCode)
+  }
+  getMandals(stateCode, districtCode) {
+    return this.http.get(this.baseUrl + "mandal/details/" + stateCode + "/" + districtCode)
+  }
+  getVillages(stateCode, districtCode, mandalCode) {
+    return this.http.get(this.baseUrl + "village/details/" + stateCode + "/" + districtCode + "/" + mandalCode)
+  }
 }
