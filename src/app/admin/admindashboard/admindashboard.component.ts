@@ -104,29 +104,29 @@ export class AdmindashboardComponent implements OnInit {
 
     this.propertyForm1 = this.formBuilder.group({
       propertyType: ['', Validators.required],
-      propertyHolderName: ['', Validators.required],
+      propertyHolderName: ['', [Validators.required,Validators.minLength(2)]],
       relationship: ['', Validators.required],
-      doorNo: ['', Validators.required],
+      doorNo: ['', [Validators.required, Validators.minLength(6)]],
       documentNo: ['', Validators.required],
       boundaries: ['', Validators.required],
-      boundariesEast: [''],
-      boundariesWest: [''],
-      boundariesNorth: [''],
-      boundariesSouth: [''],
+      boundariesEast: ['', [Validators.required, Validators.minLength(3)]],
+      boundariesWest: ['', [Validators.required, Validators.minLength(3)]],
+      boundariesNorth: ['',[Validators.required, Validators.minLength(3)]],
+      boundariesSouth: ['',[Validators.required, Validators.minLength(3)]],
       mandal: ['', Validators.required],
       district: ['', Validators.required],
-      subRegisterOffice: ['', Validators.required],
+      subRegisterOffice: ['', [Validators.required, Validators.minLength(6)]],
       extentOfProperty: ['', Validators.required],
-      address1: ['', Validators.required],
-      address2: ['', Validators.required],
+      address1: ['', [Validators.required, Validators.minLength(6)]],
+      address2: ['', [Validators.required, Validators.minLength(6)]],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      zip: ['', Validators.required]
+      zip: ['', [Validators.required, Validators.minLength(4)]]
       // country: ['', Validators.required]
     });
 
     this.commentForm = this.formBuilder.group({
-      commentfield: ['', Validators.required],
+      commentfield: ['', [Validators.required, Validators.minLength(3)]],
       typeofProperty: ['', Validators.required],
       commentfile: [null]
     });
@@ -814,5 +814,11 @@ export class AdmindashboardComponent implements OnInit {
     this.searchGrpcust.controls['searchTextcustdate2'].setValue("");
     this.searchGrpcust.controls['searchTypecust'].setValue("firstName");
   }
-
+  isCharts(event) {
+    if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+      return true;
+    else {
+      return false;
+    }
+  }
 }

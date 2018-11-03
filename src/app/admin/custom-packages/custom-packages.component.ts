@@ -28,7 +28,7 @@ export class CustomPackagesComponent implements OnInit {
     var RegExpNumber = /^-?[0-9]+(\.[0-9]*){0,1}$/g;
 
     this.customPackagesForm = this.fb.group({
-      descriptionCustom: ['', [Validators.required]],
+      descriptionCustom: ['', [Validators.required, Validators.minLength(5)]],
       packageLimit: ['', [Validators.required]],
       packagePeriod: ['', [Validators.required]],
       customerCustom: ['', [Validators.required]],

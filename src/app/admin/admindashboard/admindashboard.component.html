@@ -59,8 +59,8 @@
                         Back</button>
                     <div class='row userdashboardTab'>
                         <ul>
-                            <li [ngClass]="{'active': customerdetailstabModal}" (click)="userdashTabs('CustomerDetailsTab')">Customer
-                                Details</li>
+                            <li [ngClass]="{'active': customerdetailstabModal}" (click)="userdashTabs('CustomerDetailsTab')">Customer Details
+                            </li>
                             <li [ngClass]="{'active': customerpackagestabModal}" (click)="userdashTabs('CustomerPackagesTab')">Packages</li>
                             <li [ngClass]="{'active': customerpropertiestabModal}" (click)="userdashTabs('CustomerPropertiesTab')">Properties</li>
                         </ul>
@@ -194,8 +194,8 @@
                             <div class="mainAlertcontainer  table-responsive ">
                                 <div *ngIf='userproperties.length == 0'>No Properties.</div>
 
-                                <table *ngIf='userproperties.length != 0' class="table table-striped table-bordered table-hover"
-                                    [mfData]="userproperties" #mf="mfDataTable" [mfRowsOnPage]="5">
+                                <table *ngIf='userproperties.length != 0' class="table table-striped table-bordered table-hover" [mfData]="userproperties"
+                                    #mf="mfDataTable" [mfRowsOnPage]="5">
                                     <thead>
                                         <tr>
                                             <th>
@@ -256,8 +256,7 @@
 
                         <form class="form-inline" [formGroup]="searchGrpcust">
                             <div class="form-group mb-2">
-                                <select class="form-control" formControlName="searchTypecust" name="searchTypecust"
-                                    (ngModelChange)="getSearchTypecust($event)">
+                                <select class="form-control" formControlName="searchTypecust" name="searchTypecust" (ngModelChange)="getSearchTypecust($event)">
                                     <option value="firstName">Name</option>
                                     <option value="state">State</option>
                                     <option value="city">City</option>
@@ -267,15 +266,11 @@
                                 </select>
                             </div>
                             <div class="form-group mx-sm-3 mb-2" *ngIf="!daterangecust">
-                                <input type="text" class="form-control" formControlName="searchTextcust" id="searchTextcust"
-                                    placeholder="Search..">
+                                <input type="text" class="form-control" formControlName="searchTextcust" id="searchTextcust" placeholder="Search..">
                             </div>
                             <div class="form-group mx-sm-3 mb-2" *ngIf="daterangecust">
-                                <input type="date" class="form-control" formControlName="searchTextcustdate1" id="searchTextcustdate1"
-                                    placeholder="Search..">
-                                &nbsp;&nbsp;
-                                <input type="date" class="form-control" formControlName="searchTextcustdate2" id="searchTextcustdate2"
-                                    placeholder="Search..">
+                                <input type="date" class="form-control" formControlName="searchTextcustdate1" id="searchTextcustdate1" placeholder="Search.."> &nbsp;&nbsp;
+                                <input type="date" class="form-control" formControlName="searchTextcustdate2" id="searchTextcustdate2" placeholder="Search..">
                             </div>
                             <button type="submit" class="btn mb-2" (click)="filterItemcust()">Search</button>
                             &nbsp; &nbsp;
@@ -283,8 +278,7 @@
                         </form>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered" [mfData]="customers" #mf="mfDataTable"
-                            [mfRowsOnPage]="5">
+                        <table class="table table-striped table-bordered" [mfData]="customers" #mf="mfDataTable" [mfRowsOnPage]="5">
 
                             <thead>
                                 <tr>
@@ -318,12 +312,12 @@
                                 </tr>
                             </tbody>
                             <tfoot>
-                            <tr>
-                                <td colspan="6" style="border:0px !important;padding:0px;">
-                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                                </td>
-                            </tr>
-                        </tfoot>
+                                <tr>
+                                    <td colspan="6" style="border:0px !important;padding:0px;">
+                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -353,8 +347,8 @@
                             <div style='padding: 10px 20px 20px 20px;'>
                                 <div class='row userdashboardTab'>
                                     <ul>
-                                        <li [ngClass]="{'active': propertytabModal}" (click)="userdashTabs('PropertyDetailsTab')">Property
-                                            Details</li>
+                                        <li [ngClass]="{'active': propertytabModal}" (click)="userdashTabs('PropertyDetailsTab')">Property Details
+                                        </li>
                                         <li [ngClass]="{'active': documentstabModal}" (click)="userdashTabs('DocumentsTab')">Documents</li>
                                         <li [ngClass]="{'active': commentstabModal}" (click)="userdashTabs('CommentsTab')">Comments</li>
                                     </ul>
@@ -390,30 +384,29 @@
                                                         <label for="exampleFormControlSelect1">Type of Property
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <select class="form-control" formControlName="propertyType"
-                                                            (ngModelChange)="getType($event)" [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }">
-                                                            <option value="" [selected]="selected">Select any
-                                                                Property</option>
+                                                        <select class="form-control" formControlName="propertyType" (ngModelChange)="getType($event)" [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }">
+                                                            <option value="" [selected]="selected">Select any Property
+                                                            </option>
                                                             <option value="Residential">Residential</option>
                                                             <option value="Commercial">Commercial</option>
                                                             <option value="Land">Land/Plots/Agricultural</option>
                                                             <option value="Industrial">Industrial</option>
                                                         </select>
                                                         <div *ngIf="submitted && f.propertyType.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.propertyType.errors.required">Type of
-                                                                Property is required</div>
+                                                            <div *ngIf="f.propertyType.errors.required">Type of Property is required</div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="titleHolder">Title Holder
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="propertyHolderName"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.propertyHolderName.errors }"
-                                                            id="titleHolderFormControlInput" placeholder="Enter Title Holder" />
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="propertyHolderName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.propertyHolderName.errors }"
+                                                            id="titleHolderFormControlInput" placeholder="Enter Title Holder"
+                                                            maxlength="50" (keypress)="isCharts($event)" />
                                                         <div *ngIf="submitted && f.propertyHolderName.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.propertyHolderName.errors.required">Title
-                                                                Holder is required</div>
+                                                            <div *ngIf="f.propertyHolderName.errors.required">Title Holder is required</div>
+                                                            <div *ngIf="f.propertyHolderName.errors.minlength">Please enter valid Title Holder with minimum of 2 and maximum
+                                                                50 characters</div>
                                                         </div>
                                                     </div>
 
@@ -421,12 +414,10 @@
                                                         <label for="relationship">Relationship to customer
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="relationship"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationship.errors }"
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="relationship" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationship.errors }"
                                                             id="relationship" placeholder="Enter Relationship to customer">
                                                         <div *ngIf="submitted && f.relationship.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.relationship.errors.required">Relationship
-                                                                to customer is required</div>
+                                                            <div *ngIf="f.relationship.errors.required">Relationship to customer is required</div>
                                                         </div>
                                                     </div>
 
@@ -434,25 +425,26 @@
                                                         <label for="doorNo">Survey No/Dr No
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="doorNo"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.doorNo.errors }"
-                                                            id="doorNo" placeholder="Enter Survey No/Dr No">
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="doorNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.doorNo.errors }"
+                                                            id="doorNo" placeholder="Enter Survey No/Dr No" maxlength="150">
                                                         <div *ngIf="submitted && f.doorNo.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.doorNo.errors.required">Survey No/Dr
-                                                                No
-                                                                is required</div>
+                                                            <div *ngIf="f.doorNo.errors.required">Survey No/Dr No is required</div>
+                                                            <div *ngIf="f.doorNo.errors.minlength">Please enter valid Survey No/Do NO with minimum 6 and maximum
+                                                                150characters
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="subRegisterOffice">Sub Register Office
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="subRegisterOffice"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="subRegisterOffice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
                                                             id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office">
                                                         <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.subRegisterOffice.errors.required">Sub
-                                                                Register Office is required
+                                                            <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is required
+                                                            </div>
+                                                            <div *ngIf="f.subRegisterOffice.errors.minlength">
+                                                                Please enter valid Sub Register Office with minimum 6 and maximum 150 characters
                                                             </div>
                                                         </div>
                                                     </div>
@@ -462,12 +454,10 @@
                                                         <label for="extentOfProperty">Extent of Property
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="extentOfProperty"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentOfProperty.errors }"
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="extentOfProperty" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentOfProperty.errors }"
                                                             id="extentOfProperty" placeholder="Enter Extent of Property">
                                                         <div *ngIf="submitted && f.extentOfProperty.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.extentOfProperty.errors.required">Extent
-                                                                of Property is required</div>
+                                                            <div *ngIf="f.extentOfProperty.errors.required">Extent of Property is required</div>
                                                         </div>
                                                     </div>
 
@@ -480,12 +470,13 @@
                                                     <div class="form-group">
                                                         <label for="boundaries">Boundaries - North
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesNorth"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }"
-                                                            id="boundariesFormControlInput" placeholder="Enter North">
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesNorth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }"
+                                                            id="boundariesFormControlInput" placeholder="Enter North" maxlength="50">
                                                         <div *ngIf="submitted && f.boundariesNorth.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.boundariesNorth.errors.required">Boundaries
-                                                                is required</div>
+                                                            <div *ngIf="f.boundariesNorth.errors.required">Boundaries is required</div>
+                                                            <div *ngIf="f.boundariesNorth.errors.minlength">
+                                                                Please enter valid Boundaries - North with minimum 3 and maximum 50 characters
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -502,47 +493,47 @@
                                                     <div class="form-group">
                                                         <label for="boundaries">Boundaries - South
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesSouth"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }"
-                                                            id="boundariesFormControlInput" placeholder="Enter South">
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesSouth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }"
+                                                            id="boundariesFormControlInput" placeholder="Enter South" maxlength="50">
                                                         <div *ngIf="submitted && f.boundariesSouth.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.boundariesSouth.errors.required">Boundaries
-                                                                is required</div>
+                                                            <div *ngIf="f.boundariesSouth.errors.required">Boundaries is required</div>
+                                                            <div *ngIf="f.boundariesNorth.errors.minlength">
+                                                                Please enter valid Boundaries - South with minimum 3 and maximum 50 characters
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="boundaries">Boundaries - East
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesEast"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }"
-                                                            id="boundariesFormControlInput" placeholder="Enter East">
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesEast" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }"
+                                                            id="boundariesFormControlInput" placeholder="Enter East" maxlength="50">
                                                         <div *ngIf="submitted && f.boundariesEast.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.boundariesEast.errors.required">Boundaries
-                                                                is required</div>
+                                                            <div *ngIf="f.boundariesEast.errors.required">Boundaries is required</div>
+                                                            <div *ngIf="f.boundariesNorth.errors.minlength">
+                                                                Please enter valid Boundaries - East with minimum 3 and maximum 50 characters
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="boundaries">Boundaries - West
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesWest"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }"
-                                                            id="boundariesFormControlInput" placeholder="Enter West">
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesWest" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }"
+                                                            id="boundariesFormControlInput" placeholder="Enter West" maxlength="50">
                                                         <div *ngIf="submitted && f.boundariesWest.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.boundariesWest.errors.required">Boundaries
-                                                                is required</div>
+                                                            <div *ngIf="f.boundariesWest.errors.required">Boundaries is required</div>
+                                                            <div *ngIf="f.boundariesNorth.errors.minlength">
+                                                                Please enter valid Boundaries - West with minimum 3 and maximum 50 characters
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="documentno">Document No.
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="documentNo"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="documentNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
                                                             id="documentNoFormControlInput" placeholder="Enter document no.">
                                                         <div *ngIf="submitted && f.documentNo.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.documentNo.errors.required">Document
-                                                                No.
-                                                                is required</div>
+                                                            <div *ngIf="f.documentNo.errors.required">Document No. is required</div>
                                                         </div>
                                                     </div>
 
@@ -550,13 +541,14 @@
                                                         <label for="address1">Address 1
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="address1"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address1.errors }"
-                                                            id="address1FormControlInput" placeholder="Enter Address 1">
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="address1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address1.errors }"
+                                                            id="address1FormControlInput" placeholder="Enter Address 1" maxlength="150">
                                                         <div *ngIf="submitted && f.address1.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.address1.errors.required">Address 1
-                                                                is
-                                                                required</div>
+                                                            <div *ngIf="f.address1.errors.required">Address 1 is required
+                                                            </div>
+                                                            <div *ngIf="f.address1.errors.minlength">Please enter valid address1 with minimum of 6 and maximum 150
+                                                                characters
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -564,13 +556,14 @@
                                                         <label for="address2">Address 2
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="address2"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address2.errors }"
-                                                            id="address1FormControlInput" placeholder="Enter Address 2">
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="address2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address2.errors }"
+                                                            id="address1FormControlInput" placeholder="Enter Address 2" maxlength="150">
                                                         <div *ngIf="submitted && f.address2.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.address2.errors.required">Address 2
-                                                                is
-                                                                required</div>
+                                                            <div *ngIf="f.address2.errors.required">Address 2 is required
+                                                            </div>
+                                                            <div *ngIf="f.address2.errors.minlength">Please enter valid address2 with minimum of 6 and maximum 150
+                                                                characters
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -586,12 +579,11 @@
                                                         <label for="city">Village/City
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="city"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
                                                             id="city" placeholder="Enter City">
                                                         <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.city.errors.required">Village/City is
-                                                                required</div>
+                                                            <div *ngIf="f.city.errors.required">Village/City is required
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -602,12 +594,11 @@
                                                             <span class="mandatory">*</span>
                                                         </label>
 
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="mandal"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
                                                             id="mandalFormControlInput" placeholder="Enter Mandal">
                                                         <div *ngIf="submitted && f.mandal.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.mandal.errors.required">Mandal is
-                                                                required</div>
+                                                            <div *ngIf="f.mandal.errors.required">Mandal is required
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -617,29 +608,26 @@
                                                             <span class="mandatory">*</span>
                                                         </label>
 
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="district"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
                                                             id="districtFormControlInput" placeholder="Enter District">
                                                         <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.district.errors.required">District is
-                                                                required</div>
+                                                            <div *ngIf="f.district.errors.required">District is required
+                                                            </div>
                                                         </div>
 
 
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="zip">zip
+                                                        <label for="zip">zip Code
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="zip"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }"
-                                                            id="zipFormControlInput" placeholder="Enter zipCode">
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }"
+                                                            id="zipFormControlInput" placeholder="Enter zipCode" maxlength="10">
                                                         <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.zip.errors.required">zipCode is
-                                                                required</div>
-                                                            <div *ngIf="f.zip.errors.maxlength">ZipCode max
-                                                                value
-                                                                will be 6 digits only</div>
+                                                            <div *ngIf="f.zip.errors.required">zipCode is required
+                                                            </div>
+                                                            <div *ngIf="f.zip.errors.minlength">Please enter a valid zip code with a minimum of 4 and maximum
+                                                                10 alphanumeric</div>
 
                                                         </div>
                                                     </div>
@@ -651,12 +639,11 @@
                                                             <span class="mandatory">*</span>
                                                         </label>
 
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="state"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
+                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
                                                             id="stateFormControlInput" placeholder="Enter State">
                                                         <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
-                                                            <div *ngIf="f.state.errors.required">State is
-                                                                required</div>
+                                                            <div *ngIf="f.state.errors.required">State is required
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -687,8 +674,8 @@
 
                                         <div>
 
-                                            <table *ngIf="propertydocs.length>0" class="table table-striped table-bordered"
-                                                [mfData]="propertydocs" #mf="mfDataTable" [mfRowsOnPage]="5">
+                                            <table *ngIf="propertydocs.length>0" class="table table-striped table-bordered" [mfData]="propertydocs" #mf="mfDataTable"
+                                                [mfRowsOnPage]="5">
 
                                                 <thead>
                                                     <tr>
@@ -713,39 +700,36 @@
 
                                                         <td style='text-align:center'>
 
-                                                            <i style="cursor: pointer" (click)="modalDeleteDocument('confirm-delete-document', doc.id)"
-                                                                class="fa fa-trash" aria-hidden="true"></i>
+                                                            <i style="cursor: pointer" (click)="modalDeleteDocument('confirm-delete-document', doc.id)" class="fa fa-trash" aria-hidden="true"></i>
                                                         </td>
 
                                                         <td style='text-align:center'>
 
-                                                            <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)"
-                                                                class="fa fa-download" aria-hidden="true"></i>
+                                                            <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)" class="fa fa-download" aria-hidden="true"></i>
 
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
-                                                <tr>
-                                                    <td colspan="4" style="border:0px !important;padding:0px;">
-                                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                                                    </td>
-                                                </tr>
-                                            </tfoot>
+                                                    <tr>
+                                                        <td colspan="4" style="border:0px !important;padding:0px;">
+                                                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                         <div class='col upload-container-style' *ngIf="propertydocs.length <= 15">
 
                                             <form [formGroup]="documentGrp">
                                                 <div class="row">
-                                                    <label for="Upload your documents">Upload Property
-                                                        Documents:</label>
+                                                    <label for="Upload your documents">Upload Property Documents:
+                                                    </label>
                                                 </div>
 
                                                 <div class="form-inline" style="margin-bottom:4px;">
                                                     <div class="form-group uploadfile-style">
-                                                        <input type="file" name="file" formControlName="file" title="Browse Document"
-                                                            class="form-control-file" (change)="importfile($event)">
+                                                        <input type="file" name="file" formControlName="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
                                                     </div>
                                                     <button type="button" class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
 
@@ -770,13 +754,11 @@
                                             <h6>Add Comment</h6>
                                             <div class="form-group row">
 
-                                                <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Current
-                                                    Status
+                                                <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Current Status
                                                     <span class="mandatory">*</span>
                                                 </label>
                                                 <div class="col-sm-4">
-                                                    <select class="form-control" formControlName="typeofProperty"
-                                                        (ngModelChange)="getType($event)" class="form-control">
+                                                    <select class="form-control" formControlName="typeofProperty" (ngModelChange)="getType($event)" class="form-control">
 
                                                         <option value="nochanges">No Changes</option>
                                                         <option value="roadexpansion">Road Expansion</option>
@@ -793,32 +775,36 @@
                                                     <span class="mandatory">*</span>
                                                 </label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" style="resize:none;text-align:left;"
-                                                        id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
-                                                        class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }">
-
-
-
+                                                    <textarea class="form-control" style="resize:none;text-align:left;" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
+                                                        class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }"
+                                                        maxlength="500">
                                                         </textarea>
 
-                                                </div>
-                                                <div *ngIf="submitted && c.commentfield.errors" class="invalid-feedback">
-                                                    <div *ngIf="c.commentfield.errors.required">Comment is
-                                                        required
+
+                                                    <div *ngIf="submitted && c.commentfield.errors" class="invalid-feedback">
+                                                        <div *ngIf="c.commentfield.errors.required">Comment is required
+                                                        </div>
+                                                        <div *ngIf="c.commentfield.errors.minlength">Please enter comments with minimum 3 and maximum 500 characters
+                                                        </div>
+
+                                                        <div style="position:absolute;right:15px;bottom:0px;font-size: 14px;color:#ccc">{{c.commentfield.value.length}}/500</div>
+
                                                     </div>
 
+                                                    <div *ngIf="c.commentfield.errors===null || !submitted" style="position:absolute;right:15px;bottom:-25px;font-size: 14px;color:#ccc">{{c.commentfield.value.length}}/500</div>
+
+
                                                 </div>
+
                                             </div>
                                             <div class="form-group row">
 
-                                                <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Upload
-                                                    Document
+                                                <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Upload Document
 
                                                 </label>
                                                 <div class="col-sm-4">
                                                     <div class="form-group uploadfile-style">
-                                                        <input type="file" name="commentfile" formControlName="commentfile"
-                                                            title="Browse Document" class="form-control-file" (change)="fileSelectionEventcomments($event)">
+                                                        <input type="file" name="commentfile" formControlName="commentfile" title="Browse Document" class="form-control-file" (change)="fileSelectionEventcomments($event)">
                                                     </div>
                                                 </div>
 
@@ -844,9 +830,8 @@
                                                             <p class="comment-role">By {{comment.role}},</p>
                                                             <p class="comment-description">{{comment.description}}</p>
                                                             <span class="comment-reply-btn">
-                                                                <i style="cursor: pointer" *ngIf="comment.documentName!==null"
-                                                                    (click)="getporpertyCommentdocDownloadUrl(comment.id)"
-                                                                    class="fa fa-download" aria-hidden="true"></i>
+                                                                <i style="cursor: pointer" *ngIf="comment.documentName!==null" (click)="getporpertyCommentdocDownloadUrl(comment.id)" class="fa fa-download"
+                                                                    aria-hidden="true"></i>
                                                             </span>
                                                             <span class="comment-hrs">On {{comment.addedDate}}</span>
                                                         </div>
@@ -936,8 +921,7 @@
 
                         <form class="form-inline" [formGroup]="searchGrp">
                             <div class="form-group mb-2">
-                                <select class="form-control" formControlName="searchType" name="searchType"
-                                    (ngModelChange)="getSearchType1($event)">
+                                <select class="form-control" formControlName="searchType" name="searchType" (ngModelChange)="getSearchType1($event)">
                                     <option value="propertyHolderName">Name</option>
                                     <option value="state">State</option>
                                     <option value="city">City</option>
@@ -947,15 +931,11 @@
                                 </select>
                             </div>
                             <div class="form-group mx-sm-3 mb-2" *ngIf="!daterange">
-                                <input type="text" class="form-control" formControlName="searchText" id="searchText"
-                                    placeholder="Search..">
+                                <input type="text" class="form-control" formControlName="searchText" id="searchText" placeholder="Search..">
                             </div>
                             <div class="form-group mx-sm-3 mb-2" *ngIf="daterange">
-                                <input type="date" class="form-control" formControlName="searchTextdate1" id="searchTextdate1"
-                                    placeholder="Search..">
-                                &nbsp;&nbsp;
-                                <input type="date" class="form-control" formControlName="searchTextdate2" id="searchTextdate2"
-                                    placeholder="Search..">
+                                <input type="date" class="form-control" formControlName="searchTextdate1" id="searchTextdate1" placeholder="Search.."> &nbsp;&nbsp;
+                                <input type="date" class="form-control" formControlName="searchTextdate2" id="searchTextdate2" placeholder="Search..">
                             </div>
                             <button type="submit" class="btn mb-2" (click)="filterItem()">Search</button>
                             &nbsp; &nbsp;
@@ -966,8 +946,7 @@
 
 
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" [mfData]="propertyApproval" #mf="mfDataTable"
-                            [mfRowsOnPage]="5">
+                        <table class="table table-striped table-bordered table-hover" [mfData]="propertyApproval" #mf="mfDataTable" [mfRowsOnPage]="5">
                             <thead>
                                 <tr>
                                     <!-- <th>

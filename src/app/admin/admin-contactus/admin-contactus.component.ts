@@ -23,7 +23,7 @@ export class AdminContactusComponent implements OnInit {
   ngOnInit() {
     this.feedbackForm = this.formBuilder.group({
       status: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', [Validators.required, Validators.minLength(6)]]
     });
 
   }
