@@ -64,7 +64,7 @@
             <span class="mandatory">*</span>
           </label>
         
-          <textarea class="form-control" placeholder="Please Enter Description" formControlName="description" id="exampleFormControlTextarea1" rows="2" style='resize:none;' [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+          <textarea class="form-control" placeholder="Please Enter Description" formControlName="description" id="exampleFormControlTextarea1" rows="2" style='resize:none;' [ngClass]="{ 'is-invalid': submitted && f.description.errors }" maxlength="100"></textarea>
     
         
         

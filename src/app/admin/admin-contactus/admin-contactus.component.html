@@ -88,7 +88,7 @@
                   <div class="col-sm-4">
                     <select class="form-control" formControlName="status" (ngModelChange)="getType($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && c.status.errors }">
 
-                      <option value="Approved" [selected]="selected">Approved</option>
+                      <option value="Approved">Approved</option>
                       <option value="Rejected">Rejected</option>
                       <option value="Show in Portal">Show in Portal</option>
 
@@ -115,8 +115,12 @@
                       </div>
                       <div *ngIf="c.description.errors.minlength">Please enter comments with minimum 6 and maximum 500 characters
                       </div>
+                      <div style="position:absolute;right:15px;bottom:0px;font-size: 14px;color:#ccc">{{c.description.value.length}}/500</div>
 
                     </div>
+
+                    <div *ngIf="c.description.errors===null || !submitted" style="position:absolute;right:15px;bottom:-25px;font-size: 14px;color:#ccc">{{c.description.value.length}}/500</div>
+
                   </div>
 
                 </div>

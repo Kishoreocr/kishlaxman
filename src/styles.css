@@ -485,13 +485,16 @@ body.modal-open {
   padding-bottom: 5px!important;
 }
 .container-top-padding{
-  padding-top:150px !important;
+  padding-top:138px !important;
   min-height:100vh;
 }
 @media (max-width: 767px){
   .container-top-padding{
-    padding-top:215px !important;
+    padding-top:198px !important;
   }
+  .leftside-menu{
+    min-height: 140px !important;
+}
 }
 /** active class **/
 /* .activeClss::after{
