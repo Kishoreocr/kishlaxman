@@ -787,11 +787,11 @@
                                                         <div *ngIf="c.commentfield.errors.minlength">Please enter comments with minimum 3 and maximum 500 characters
                                                         </div>
 
-                                                        <div style="position:absolute;right:15px;bottom:0px;font-size: 14px;color:#ccc">{{c.commentfield.value.length}}/500</div>
+                                                        <div style="position:absolute;right:15px;bottom:0px;font-size: 14px;color:#ccc">{{c.commentfield.value ? c.commentfield.value.length : 0}}/500</div>
 
                                                     </div>
 
-                                                    <div *ngIf="c.commentfield.errors===null || !submitted" style="position:absolute;right:15px;bottom:-25px;font-size: 14px;color:#ccc">{{c.commentfield.value.length}}/500</div>
+                                                    <div *ngIf="c.commentfield.errors===null || !submitted" style="position:absolute;right:15px;bottom:-25px;font-size: 14px;color:#ccc">{{c.commentfield.value ? c.commentfield.value.length : 0}}/500</div>
 
 
                                                 </div>

@@ -71,10 +71,10 @@
           <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
             <div *ngIf="f.description.errors.required">Description is required</div>
             <div *ngIf="f.description.errors.minlength">Please enter Minimum 5 characters and Maximum 100 Characters</div>
-            <div  style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value.length}}/100</div>
+            <div  style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value ? f.description.value.length : 0}}/100</div>
 
           </div>
-          <div *ngIf="f.description.errors===null || !submitted" style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value.length}}/100</div>
+          <div *ngIf="f.description.errors===null || !submitted" style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value ? f.description.value.length:0}}/100</div>
 
          
 

@@ -39,6 +39,7 @@ export class AdminContactusComponent implements OnInit {
   }
   
   openModal(id: string, cust) {
+    this.submitted=false;
     this.frequest=cust;
     this.feedbackForm.controls['status'].setValue(cust.status);
     this.feedbackForm.controls['description'].setValue(cust.shortDescription);
