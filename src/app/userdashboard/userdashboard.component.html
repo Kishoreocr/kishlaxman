@@ -442,7 +442,7 @@
                                                                     <span class="comment-reply-btn" *ngIf="comment.documentName!=null">
                                                                         <i style="cursor: pointer" (click)="getporpertyCommentdocDownloadUrl(comment.id)" class="fa fa-download" aria-hidden="true"></i>
                                                                     </span>
-                                                                    <span class="comment-hrs">On {{comment.addedDate}}</span>
+                                                                    <span class="comment-hrs">On {{comment.addedDate | date: 'dd/MM/yyyy HH:mm:ss a'}}</span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -785,82 +785,91 @@
                                         </div>
                                     </div>
 
-
                                     <div class="form-group row">
-                                        <label for="village/City" class="col-sm-2 col-form-label">Village/City
-                                            <span class="mandatory">*</span>
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <input type="text" formControlName="villageCity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.villageCity.errors }"
-                                                id="villageCityFormControlInput" placeholder="Please Enter Village/City" maxlength="30">
-                                            <div *ngIf="submitted && f.villageCity.errors" class="invalid-feedback">
-                                                <div *ngIf="f.villageCity.errors.required">Village/City is required</div>
+                                            <label for="state" class="col-sm-2 col-form-label">State
+                                                <span class="mandatory">*</span>
+                                            </label>
+                                            <div class="col-sm-4">
+                                                <select class="form-control" formControlName="state" (ngModelChange)="getstate($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                                                    <option value="" [selected]="selected">Select State</option>
+                                                    <option value="AndhraPradesh">Andhrapradesh</option>
+                                                    <option value="Karnataka">Banglore</option>
+                                                    <option value="Telangana">Telangana</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.state.errors.required">State is required</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
-
-                                    <div class="form-group row">
-                                        <label for="mandal" class="col-sm-2 col-form-label">Mandal
-                                            <span class="mandatory">*</span>
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <input type="text" formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
-                                                id="mandalFormControlInput" placeholder="Please Enter Mandal" maxlength="30">
-                                            <div *ngIf="submitted && f.mandal.errors" class="invalid-feedback">
-                                                <div *ngIf="f.mandal.errors.required">Mandal is required</div>
+                                        <div class="form-group row">
+                                            <label for="district" class="col-sm-2 col-form-label">District
+                                                <span class="mandatory">*</span>
+                                            </label>
+                                            <div class="col-sm-4">
+                                                <!-- <input type="text" formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
+                                                    id="districtFormControlInput" placeholder="Please Enter District" maxlength="30">
+                                                 -->
+                                                 <select class="form-control" formControlName="district" (ngModelChange)="getdistrict($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }">
+                                                    <option value="" [selected]="selected">Select District</option>
+                                                    <option value="{{dist.district}}" *ngFor="let dist of districts">{{dist.district}}</option>
+                                                </select>
+                                                    <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.district.errors.required">District is required</div>
+                                                </div>
+    
                                             </div>
                                         </div>
-                                    </div>
-
-
-                                    <div class="form-group row">
-                                        <label for="district" class="col-sm-2 col-form-label">District
-                                            <span class="mandatory">*</span>
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <input type="text" formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
-                                                id="districtFormControlInput" placeholder="Please Enter District" maxlength="30">
-                                            <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
-                                                <div *ngIf="f.district.errors.required">District is required</div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="zip" class="col-sm-2 col-form-label">Zip Code
-                                            <span class="mandatory">*</span>
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <input type="text" formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }" id="zipFormControlInput"
-                                                placeholder="Pleaes Enter zip Code" maxlength="10">
-                                            <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
-                                                <div *ngIf="f.zip.errors.required">zipCode is required</div>
-                                                <div *ngIf="f.zip.errors.minlength">Please enter a valid zip code with a minimum of 4 and maximum 10 alphanumeric</div>
-
+                                        <div class="form-group row">
+                                            <label for="mandal" class="col-sm-2 col-form-label">Mandal
+                                                <span class="mandatory">*</span>
+                                            </label>
+                                            <div class="col-sm-4">
+                                                <!-- <input type="text" formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
+                                                    id="mandalFormControlInput" placeholder="Please Enter Mandal" maxlength="30">
+                                                -->
+                                                     <select class="form-control" formControlName="mandal" (ngModelChange)="getmandal($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }">
+                                                    <option value="" [selected]="selected">Select Mandal</option>
+                                                    <option value="{{dist.mandal}}" *ngFor="let dist of mandals">{{dist.mandal}}</option>
+                                                </select>
+                                                    <div *ngIf="submitted && f.mandal.errors" class="invalid-feedback"> 
+                                                   
+                                                    <div *ngIf="f.mandal.errors.required">Mandal is required</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
-
-
-                                    <div class="form-group row">
-                                        <label for="state" class="col-sm-2 col-form-label">State
-                                            <span class="mandatory">*</span>
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <select class="form-control" formControlName="state" (ngModelChange)="getstate($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
-                                                <option value="" [selected]="selected">Select State</option>
-                                                <option value="Andhrapradesh">Andhrapradesh</option>
-                                                <option value="Telangana">Telangana</option>
-                                                <option value="Banglore">Banglore</option>
-
-                                            </select>
-                                            <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
-                                                <div *ngIf="f.state.errors.required">State is required</div>
+                                        <div class="form-group row">
+                                            <label for="village/City" class="col-sm-2 col-form-label">Village/City
+                                                <span class="mandatory">*</span>
+                                            </label>
+                                            <div class="col-sm-4">
+                                                <!-- <input type="text" formControlName="villageCity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.villageCity.errors }"
+                                                    id="villageCityFormControlInput" placeholder="Please Enter Village/City" maxlength="30">
+                                                 -->
+                                                 <select class="form-control" formControlName="villageCity" (ngModelChange)="getvillage($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.villageCity.errors }">
+                                                        <option value="" [selected]="selected">Select Village</option>
+                                                        <option value="{{dist.village}}" *ngFor="let dist of villages">{{dist.village}}</option>
+                                                    </select>
+                                                    <div *ngIf="submitted && f.villageCity.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.villageCity.errors.required">Village/City is required</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                                                           
+                                        <div class="form-group row">
+                                            <label for="zip" class="col-sm-2 col-form-label">Zip Code
+                                                <span class="mandatory">*</span>
+                                            </label>
+                                            <div class="col-sm-4">
+                                                <input type="text" formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }" id="zipFormControlInput"
+                                                    placeholder="Pleaes Enter zip Code" maxlength="10">
+                                                <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.zip.errors.required">zipCode is required</div>
+                                                    <div *ngIf="f.zip.errors.minlength">Please enter a valid zip code with a minimum of 4 and maximum 10 alphanumeric</div>
+    
+                                                </div>
+                                            </div>
+                                        </div>
+    
 
                                     <div class="col-md-4 offset-md-2" style='padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->

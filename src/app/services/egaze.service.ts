@@ -214,7 +214,7 @@ export class EgazeService {
 
   }
 
-  updatePropertybyAdmin(objProperty, userId, propertyId) {
+  updatePropertybyAdmin(objProperty, userId, propertyId,sts) {
     debugger;
     let requestData = {
       'propertyId': propertyId,
@@ -238,7 +238,8 @@ export class EgazeService {
       "city": objProperty.city,
       "state": objProperty.state,
       "zip": objProperty.zip,
-      "country": " "
+      "country": " ",
+      "status":sts
     };
     return this.http.post(this.baseUrl + 'update/property', requestData);
 

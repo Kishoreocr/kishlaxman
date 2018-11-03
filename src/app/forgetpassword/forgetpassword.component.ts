@@ -9,6 +9,7 @@ import { Pwdvalidation } from '../pwdvalidation';
 import { EgazeService } from '../services/egaze.service';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
 import { interval } from 'rxjs/observable/interval';
+import { ModalPropertyService } from '../services/modal-property.service';
 
 @Component({
   selector: 'app-forgetpassword',
@@ -48,7 +49,7 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
   hideIconEye1: boolean = false;
   timerOn = true;
   resend:any=false;
-  constructor(private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, private Pwdvalidation: Pwdvalidation, private EgazeService: EgazeService) {
+  constructor(private ModalPropertyService: ModalPropertyService,private fb: FormBuilder, router: Router, route: ActivatedRoute, modalService: ModalDialogService, private Pwdvalidation: Pwdvalidation, private EgazeService: EgazeService) {
     this.routerProperty = router;
     this.modalService = modalService;
     // this.actionButtons = [
@@ -67,7 +68,6 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
   }
 
   ngOnInit() {
-    this.timer(300);
     this.otpForm = this.fb.group({
       otp: ['', Validators.required]
     });
@@ -180,6 +180,7 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
             this.submitted = false;
 
             this.updateOTP = result;
+            this.timer(300);
 
           },
             error => {
@@ -293,5 +294,8 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
               this.isLoaderdiv = false;
               this.serverError = 'Server error has occurred, Please try later.'
             });
+  }
+  closeModal(id: string) {
+    this.ModalPropertyService.close(id);
   }
 } 

@@ -377,7 +377,6 @@
                                         </div>
                                         <form [formGroup]="propertyForm1" (ngSubmit)="updatepropertyFun(propertyForm1)">
                                             <div class="row">
-
                                                 <div class="col-md-4">
 
                                                     <div class="form-group">
@@ -414,8 +413,17 @@
                                                         <label for="relationship">Relationship to customer
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <input type="text" [readonly]="!isEditDisabled" formControlName="relationship" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationship.errors }"
-                                                            id="relationship" placeholder="Enter Relationship to customer">
+                                                        <input type="text" *ngIf="!isEditDisabled" [readonly]="!isEditDisabled" formControlName="relationship" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationship.errors }"
+                                                            id="relationship" placeholder="Enter Relationship to customer"> 
+
+                                                            <select *ngIf="isEditDisabled" class="form-control"  formControlName="relationship"  class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.relationship.errors }">
+                                                <option value="" [selected]="selected">Select Relationship</option>
+                                                <option value="Self">Self</option>
+                                                <option value="Spouse">Spouse</option>
+                                                <option value="Parents">Parents</option>
+                                                <option value="Children">Children</option>
+                                            </select>
                                                         <div *ngIf="submitted && f.relationship.errors" class="invalid-feedback">
                                                             <div *ngIf="f.relationship.errors.required">Relationship to customer is required</div>
                                                         </div>
@@ -471,7 +479,7 @@
                                                         <label for="boundaries">Boundaries - North
                                                         </label>
                                                         <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesNorth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }"
-                                                            id="boundariesFormControlInput" placeholder="Enter North" maxlength="50">
+                                                            id="boundariesNorth" placeholder="Enter North" maxlength="50">
                                                         <div *ngIf="submitted && f.boundariesNorth.errors" class="invalid-feedback">
                                                             <div *ngIf="f.boundariesNorth.errors.required">Boundaries is required</div>
                                                             <div *ngIf="f.boundariesNorth.errors.minlength">
@@ -494,7 +502,7 @@
                                                         <label for="boundaries">Boundaries - South
                                                         </label>
                                                         <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesSouth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }"
-                                                            id="boundariesFormControlInput" placeholder="Enter South" maxlength="50">
+                                                            id="boundariesSouth" placeholder="Enter South" maxlength="50">
                                                         <div *ngIf="submitted && f.boundariesSouth.errors" class="invalid-feedback">
                                                             <div *ngIf="f.boundariesSouth.errors.required">Boundaries is required</div>
                                                             <div *ngIf="f.boundariesNorth.errors.minlength">
@@ -506,7 +514,7 @@
                                                         <label for="boundaries">Boundaries - East
                                                         </label>
                                                         <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesEast" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }"
-                                                            id="boundariesFormControlInput" placeholder="Enter East" maxlength="50">
+                                                            id="boundariesEast" placeholder="Enter East" maxlength="50">
                                                         <div *ngIf="submitted && f.boundariesEast.errors" class="invalid-feedback">
                                                             <div *ngIf="f.boundariesEast.errors.required">Boundaries is required</div>
                                                             <div *ngIf="f.boundariesNorth.errors.minlength">
@@ -518,7 +526,7 @@
                                                         <label for="boundaries">Boundaries - West
                                                         </label>
                                                         <input type="text" [readonly]="!isEditDisabled" formControlName="boundariesWest" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }"
-                                                            id="boundariesFormControlInput" placeholder="Enter West" maxlength="50">
+                                                            id="boundariesWest" placeholder="Enter West" maxlength="50">
                                                         <div *ngIf="submitted && f.boundariesWest.errors" class="invalid-feedback">
                                                             <div *ngIf="f.boundariesWest.errors.required">Boundaries is required</div>
                                                             <div *ngIf="f.boundariesNorth.errors.minlength">
@@ -833,7 +841,7 @@
                                                                 <i style="cursor: pointer" *ngIf="comment.documentName!==null" (click)="getporpertyCommentdocDownloadUrl(comment.id)" class="fa fa-download"
                                                                     aria-hidden="true"></i>
                                                             </span>
-                                                            <span class="comment-hrs">On {{comment.addedDate}}</span>
+                                                            <span class="comment-hrs">On {{comment.addedDate | date: 'dd/MM/yyyy HH:mm:ss a'}}</span>
                                                         </div>
                                                     </td>
                                                 </tr>

@@ -220,9 +220,23 @@ export class UserdashboardComponent implements OnInit {
   }
   getstate(event) {
     this.propertyForm.value.state = "" + event;
+    this.propertyForm.value.district = "";
+    this.getDistricts("" + event);
     //alert(this.updateuserNewpwdForm.value.typeofProperty);
   }
-
+  getdistrict(event){
+    this.propertyForm.value.district = "" + event;
+    this.propertyForm.value.mandal="";
+    this.getMandals(this.propertyForm.value.state,"" + event);
+  }
+  getmandal(event){
+    this.propertyForm.value.mandal = "" + event;
+    this.propertyForm.value.villageCity = "";
+    this.getVillages(this.propertyForm.value.state,this.propertyForm.value.district,"" + event);
+  }
+  getvillage(event){
+    this.propertyForm.value.villageCity = "" + event;
+  }
   propertyFun() {
     this.upgraderequestsucc='';
     if (this.propertyCount != null) {
@@ -841,4 +855,36 @@ upgraderequestsucc='';
       return false;
     }
   }
+districts:any=[];
+  getDistricts(stateCode) {
+    this.EgazeService.getDistricts(stateCode).subscribe(result => {
+     // debugger;
+      this.districts = result;
+    }, error => {
+
+    });
+
+  }
+  mandals:any=[];
+  getMandals(stateCode, districtCode) {
+    this.EgazeService.getMandals(stateCode,districtCode).subscribe(result => {
+      //debugger;
+      this.mandals = result;
+    }, error => {
+
+    });
+
+  }
+  villages:any=[];
+  getVillages(stateCode, districtCode, mandalCode) {
+
+    this.EgazeService.  getVillages(stateCode, districtCode, mandalCode).subscribe(result => {
+      //debugger;
+      this.villages = result;
+    }, error => {
+
+    });
+
+  }
+
 }

@@ -108,14 +108,13 @@ export class AdmindashboardComponent implements OnInit {
       relationship: ['', Validators.required],
       doorNo: ['', [Validators.required, Validators.minLength(6)]],
       documentNo: ['', Validators.required],
-      boundaries: ['', Validators.required],
-      boundariesEast: ['', [Validators.required, Validators.minLength(3)]],
-      boundariesWest: ['', [Validators.required, Validators.minLength(3)]],
-      boundariesNorth: ['',[Validators.required, Validators.minLength(3)]],
-      boundariesSouth: ['',[Validators.required, Validators.minLength(3)]],
+      boundariesEast: ['', [ Validators.minLength(3)]],
+      boundariesWest: ['', [ Validators.minLength(3)]],
+      boundariesNorth: ['',[ Validators.minLength(3)]],
+      boundariesSouth: ['',[ Validators.minLength(3)]],
       mandal: ['', Validators.required],
       district: ['', Validators.required],
-      subRegisterOffice: ['', [Validators.required, Validators.minLength(6)]],
+      subRegisterOffice: ['', [ Validators.minLength(6)]],
       extentOfProperty: ['', Validators.required],
       address1: ['', [Validators.required, Validators.minLength(6)]],
       address2: ['', [Validators.required, Validators.minLength(6)]],
@@ -312,7 +311,7 @@ export class AdmindashboardComponent implements OnInit {
       relationship: this.property.relationship,
       doorNo: this.property.doorNo,
       documentNo: this.property.documentNo,
-      boundaries: "boundaries",
+     // boundaries: "boundaries",
       boundariesEast: this.property.boundariesEast,
       boundariesWest: this.property.boundariesWest,
       boundariesNorth: this.property.boundariesNorth,
@@ -393,7 +392,7 @@ export class AdmindashboardComponent implements OnInit {
     if (this.propertyForm1.valid) {
       this.isLoading = true;
       //alert("dsdd")
-      this.EgazeService.updatePropertybyAdmin(propertyForm1.value, this.loginId, this.propertyId).subscribe(result => {
+      this.EgazeService.updatePropertybyAdmin(propertyForm1.value, this.loginId, this.propertyId,this.property.status).subscribe(result => {
         this.isLoading = false;
         //alert("dsdd="+result)
         const element = document.querySelector("#propertyDestination")
