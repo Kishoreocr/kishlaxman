@@ -88,7 +88,8 @@
 
                                         <div class='row userdashboardTab'>
                                             <ul>
-                                                <li [ngClass]="{'active': propertytabModal}" (click)="userdashTabs('PropertyDetailsTab')">Property Details
+                                                <li [ngClass]="{'active': propertytabModal}" (click)="userdashTabs('PropertyDetailsTab')">Property
+                                                    Details
                                                 </li>
                                                 <li [ngClass]="{'active': documentstabModal}" (click)="userdashTabs('DocumentsTab')">Documents</li>
                                                 <li [ngClass]="{'active': commentstabModal}" (click)="userdashTabs('CommentsTab')">Comments</li>
@@ -106,34 +107,39 @@
                                                 <div class="row" *ngIf="property!=''">
                                                     <div class="col-md-4">
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Type of Property:</div>
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Type
+                                                                of Property:</div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.propertyType}}
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Title Holder:
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Title
+                                                                Holder:
                                                             </div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.propertyHolderName}}
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Relationship to customer:</div>
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Relationship
+                                                                to customer:</div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.relationship}}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Survey No/Dr No:</div>
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Survey
+                                                                No/Dr No:</div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.doorNo}}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Sub Register Office:</div>
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Sub
+                                                                Register Office:</div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.subRegisterOffice}}
                                                             </div>
@@ -141,7 +147,8 @@
 
 
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Extent of Property:</div>
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Extent
+                                                                of Property:</div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.extentOfProperty}}
                                                             </div>
@@ -154,21 +161,24 @@
                                                     <div class="col-md-4">
 
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries North:
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries
+                                                                North:
                                                             </div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.boundariesNorth}}
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries East:
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries
+                                                                East:
                                                             </div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.boundariesEast}}
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries West:
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries
+                                                                West:
                                                             </div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.boundariesWest}}
@@ -176,7 +186,8 @@
                                                         </div>
 
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries South:
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries
+                                                                South:
                                                             </div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.boundariesSouth}}
@@ -184,14 +195,16 @@
                                                         </div>
 
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Document No:
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Document
+                                                                No:
                                                             </div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.documentNo}}
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Address 1:
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Address
+                                                                1:
                                                             </div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.address1}}
@@ -205,7 +218,8 @@
                                                     <div class="col-md-4">
 
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Address 2:
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Address
+                                                                2:
                                                             </div>
                                                             <div class="col-sm-6 col-form-label">
                                                                 {{property.address2}}
@@ -266,12 +280,12 @@
 
                                         <div *ngIf="!propertytabModal && documentstabModal && !commentstabModal" class="col table-container-style container-bg-style">
 
-                                            <span  *ngIf="propertydocs.length === 0">No Documents available</span>
+                                            <span *ngIf="propertydocs.length === 0">No Documents available</span>
                                             <div class="table-responsive">
 
 
-                                                <table *ngIf="propertydocs.length>0" class="table table-striped table-bordered" [mfData]="propertydocs" #mf="mfDataTable"
-                                                    [mfRowsOnPage]="5">
+                                                <table *ngIf="propertydocs.length>0" class="table table-striped table-bordered"
+                                                    [mfData]="propertydocs" #mf="mfDataTable" [mfRowsOnPage]="5">
 
                                                     <thead>
                                                         <tr>
@@ -296,12 +310,14 @@
 
                                                             <td style='text-align:center'>
 
-                                                                <i style="cursor: pointer" (click)="modalDeleteDocument('confirm-delete-document', doc.id)" class="fa fa-trash" aria-hidden="true"></i>
+                                                                <i style="cursor: pointer" (click)="modalDeleteDocument('confirm-delete-document', doc.id)"
+                                                                    class="fa fa-trash" aria-hidden="true"></i>
                                                             </td>
 
                                                             <td style='text-align:center'>
 
-                                                                <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)" class="fa fa-download" aria-hidden="true"></i>
+                                                                <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)"
+                                                                    class="fa fa-download" aria-hidden="true"></i>
 
                                                             </td>
                                                         </tr>
@@ -324,7 +340,8 @@
 
                                                     <div class="form-inline" style="margin-bottom:4px;">
                                                         <div class="form-group uploadfile-style">
-                                                            <input type="file" name="file" formControlName="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
+                                                            <input type="file" name="file" formControlName="file" title="Browse Document"
+                                                                class="form-control-file" (change)="importfile($event)">
                                                         </div>
                                                         <button type="button" class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
 
@@ -347,11 +364,13 @@
                                                     <h6>Add Comment</h6>
                                                     <div class="form-group row">
 
-                                                        <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Current Status
+                                                        <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Current
+                                                            Status
                                                             <span class="mandatory">*</span>
                                                         </label>
                                                         <div class="col-sm-4">
-                                                            <select class="form-control" formControlName="typeofProperty" (ngModelChange)="getType($event)" class="form-control">
+                                                            <select class="form-control" formControlName="typeofProperty"
+                                                                (ngModelChange)="getType($event)" class="form-control">
 
                                                                 <option value="nochanges">No Changes</option>
                                                                 <option value="roadexpansion">Road Expansion</option>
@@ -367,23 +386,32 @@
                                                             <span class="mandatory">*</span>
                                                         </label>
                                                         <div class="col-sm-10">
-                                                            <textarea class="form-control" style="resize:none;text-align:left;" id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
-                                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }" maxlength="500">
+                                                            <textarea class="form-control" style="resize:none;text-align:left;"
+                                                                id="exampleFormControlTextarea1" rows="3"
+                                                                formControlName="commentfield" class="form-control"
+                                                                [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }"
+                                                                maxlength="500">
 
                                                             </textarea>
                                                             <div *ngIf="submitted && c.commentfield.errors" class="invalid-feedback">
-                                                                <div *ngIf="c.commentfield.errors.required">Comment is required
+                                                                <div *ngIf="c.commentfield.errors.required">Comment is
+                                                                    required
                                                                 </div>
-                                                                <div *ngIf="c.commentfield.errors.minlength">Please enter comments with minimum 3 and maximum 500 characters
+                                                                <div *ngIf="c.commentfield.errors.minlength">Please
+                                                                    enter comments with minimum 3 and maximum 500
+                                                                    characters
                                                                 </div>
-                                                                <div style="position:absolute;right:15px;bottom:0px;font-size: 14px;color:#ccc">{{c.commentfield.value ? c.commentfield.value.length : 0}}/500</div>
+                                                                <div style="position:absolute;right:15px;bottom:0px;font-size: 14px;color:#ccc">{{c.commentfield.value
+                                                                    ? c.commentfield.value.length : 0}}/500</div>
 
                                                             </div>
-                                                            <div *ngIf="c.commentfield.errors===null || !submitted" style="position:absolute;right:15px;bottom:-25px;font-size: 14px;color:#ccc">{{c.commentfield.value ? c.commentfield.value.length : 0}}/500</div>
+                                                            <div *ngIf="c.commentfield.errors===null || !submitted"
+                                                                style="position:absolute;right:15px;bottom:-25px;font-size: 14px;color:#ccc">{{c.commentfield.value
+                                                                ? c.commentfield.value.length : 0}}/500</div>
 
 
                                                         </div>
-            
+
                                                     </div>
 
 
@@ -391,12 +419,15 @@
 
                                                     <div class="form-group row">
 
-                                                        <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Upload Document
+                                                        <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Upload
+                                                            Document
 
                                                         </label>
                                                         <div class="col-sm-4">
                                                             <div class="form-group uploadfile-style">
-                                                                <input type="file" name="commentfile" formControlName="commentfile" title="Browse Document" class="form-control-file" (change)="fileSelectionEventcomments($event)">
+                                                                <input type="file" name="commentfile" formControlName="commentfile"
+                                                                    title="Browse Document" class="form-control-file"
+                                                                    (change)="fileSelectionEventcomments($event)">
                                                             </div>
                                                         </div>
 
@@ -432,7 +463,8 @@
                                                 <h6>Property Comments</h6>
                                             </div>
                                             <div class='col comments-style scrolling-comment'>
-                                                <table class="col-sm-12" [mfData]="comments" #mf="mfDataTable" [mfRowsOnPage]="5">
+                                                <table class="col-sm-12" [mfData]="comments" #mf="mfDataTable"
+                                                    [mfRowsOnPage]="5">
                                                     <tbody>
                                                         <tr *ngFor="let comment of mf.data;let IndexId = index">
                                                             <td>
@@ -440,9 +472,11 @@
                                                                     <p class="comment-role">By {{comment.role}},</p>
                                                                     <p class="comment-description">{{comment.description}}</p>
                                                                     <span class="comment-reply-btn" *ngIf="comment.documentName!=null">
-                                                                        <i style="cursor: pointer" (click)="getporpertyCommentdocDownloadUrl(comment.id)" class="fa fa-download" aria-hidden="true"></i>
+                                                                        <i style="cursor: pointer" (click)="getporpertyCommentdocDownloadUrl(comment.id)"
+                                                                            class="fa fa-download" aria-hidden="true"></i>
                                                                     </span>
-                                                                    <span class="comment-hrs">On {{comment.addedDate | date: 'dd/MM/yyyy HH:mm:ss a'}}</span>
+                                                                    <span class="comment-hrs">On {{comment.addedDate |
+                                                                        date: 'dd/MM/yyyy HH:mm:ss a'}}</span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -469,15 +503,16 @@
                         </app-modal-property>
 
                         <div *ngIf="!customdiv">
-                            <div class="mainAlertcontainer  table-responsive ">
 
-                                <h5 class="tab-active-heading">Properties</h5>
-                                <div *ngIf='userAllpropertis.length == 0'>No Properties.</div>
-                              
-                                <table *ngIf='userAllpropertis.length != 0' class="table table-striped table-bordered table-hover" [mfData]="userAllpropertis"
-                                    #mf="mfDataTable" [mfRowsOnPage]="5">
+                            <div class="mainAlertcontainer  table-responsive " *ngIf='propertyUpdates.length != 0'>
+
+                                <h5 class="tab-active-heading">Below Properties got update from Admin:</h5>
+
+                                <table *ngIf='propertyUpdates.length != 0' class="table table-striped table-bordered table-hover"
+                                    [mfData]="propertyUpdates" #mf="mfDataTable" [mfRowsOnPage]="5">
                                     <thead>
-                                        <tr>     <th>
+                                        <tr>
+                                            <th>
                                                 <mfDefaultSorter by="propertyCode">Property Code</mfDefaultSorter>
                                             </th>
                                             <th>
@@ -490,9 +525,9 @@
                                                 <mfDefaultSorter by="relationship">Relationship</mfDefaultSorter>
                                             </th>
                                             <!-- <th>
-                                                    <mfDefaultSorter by="doorNo">Door Number</mfDefaultSorter>
-                                                </th> -->
-                                             <th>
+                                                            <mfDefaultSorter by="doorNo">Door Number</mfDefaultSorter>
+                                                        </th> -->
+                                            <th>
                                                 <mfDefaultSorter by="status">Status</mfDefaultSorter>
                                             </th>
                                             <th class='text-center'>
@@ -517,6 +552,74 @@
                                             <td class="viewbtn text-center">
                                                 <!-- <i class="fa fa-eye" (click)="viewPropertyFun()"></i> -->
                                                 <i class="fa fa-eye" (click)="openModal('custom-modal-11',property)"></i>
+                                                <!-- <span *ngIf="propertyUpdatesids.indexOf(property.id) > -1"> **</span> -->
+
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="6" style="border:0px !important;padding:0px;">
+                                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+
+                            <div class="mainAlertcontainer  table-responsive ">
+
+                                <h5 class="tab-active-heading">Properties</h5>
+                                <div *ngIf='userAllpropertis.length == 0'>No Properties.</div>
+
+                                <table *ngIf='userAllpropertis.length != 0' class="table table-striped table-bordered table-hover"
+                                    [mfData]="userAllpropertis" #mf="mfDataTable" [mfRowsOnPage]="5">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <mfDefaultSorter by="propertyCode">Property Code</mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="propertyType">Property Type</mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="propertyHolderName">Property Holder Name</mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="relationship">Relationship</mfDefaultSorter>
+                                            </th>
+                                            <!-- <th>
+                                                    <mfDefaultSorter by="doorNo">Door Number</mfDefaultSorter>
+                                                </th> -->
+                                            <th>
+                                                <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                                            </th>
+                                            <th class='text-center'>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr *ngFor="let property of mf.data; let IndexId = index">
+                                            <!-- <td>{{IndexId+1}}</td> -->
+                                            <td>{{property.propertyCode}} </td>
+                                            <td>{{property.propertyType}}</td>
+                                            <td>{{property.propertyHolderName}}</td>
+                                            <td>{{property.relationship}}</td>
+                                            <!-- <td>{{property.doorNo}}</td> -->
+
+                                            <td>
+                                                <span *ngIf="property.status==='P'">Pending Approval</span>
+                                                <span *ngIf="property.status==='A'"> Approved</span>
+                                            </td>
+                                            <td class="viewbtn text-center">
+                                                <!-- <i class="fa fa-eye" (click)="viewPropertyFun()"></i> -->
+                                                <i class="fa fa-eye" (click)="openModal('custom-modal-11',property)"></i>
+                                                <!-- <span *ngIf="propertyUpdatesids.indexOf(property.id) > -1"> **</span> -->
+
 
                                             </td>
                                         </tr>
@@ -541,7 +644,7 @@
                     </div>
 
                     <div class="col verticalTab" style='margin:0px' *ngIf="propertyDetails">
-                            <h5 class="tab-active-heading">Add Property Details</h5>
+                        <h5 class="tab-active-heading">Add Property Details</h5>
                         <!-- <ul>
                             <li [ngClass]="{'deactive': !propertyDetails}" (click)="userdashTabs('propertyDetailsTab')">Add Property Details
                             </li>
@@ -559,12 +662,14 @@
                                 <div *ngIf="firstFormStep" class="col-md-12">
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label" for="exampleFormControlSelect1">Type of Property
+                                        <label class="col-sm-2 col-form-label" for="exampleFormControlSelect1">Type of
+                                            Property
                                             <span class="mandatory">*</span>
                                         </label>
 
                                         <div class="col-sm-4">
-                                            <select class="form-control" formControlName="typeofProperty" (ngModelChange)="getType($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.typeofProperty.errors }">
+                                            <select class="form-control" formControlName="typeofProperty"
+                                                (ngModelChange)="getType($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.typeofProperty.errors }">
                                                 <option value="" [selected]="selected">Select any Property</option>
                                                 <option value="Residential">Residential</option>
                                                 <option value="Commercial">Commercial</option>
@@ -572,7 +677,8 @@
                                                 <option value="Industrial">Industrial</option>
                                             </select>
                                             <div *ngIf="submitted && f.typeofProperty.errors" class="invalid-feedback">
-                                                <div *ngIf="f.typeofProperty.errors.required">Type of Property is required</div>
+                                                <div *ngIf="f.typeofProperty.errors.required">Type of Property is
+                                                    required</div>
                                             </div>
                                         </div>
                                     </div>
@@ -582,24 +688,27 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <div class="col-sm-4">
-                                            <input type="text" formControlName="titleHolder" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.titleHolder.errors }"
-                                                id="titleHolderFormControlInput" placeholder="Please Enter Title Holder" minlength="2" maxlength="30" (keypress)="isCharts($event)"
-                                            />
+                                            <input type="text" formControlName="titleHolder" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.titleHolder.errors }" id="titleHolderFormControlInput"
+                                                placeholder="Please Enter Title Holder" minlength="2" maxlength="30"
+                                                (keypress)="isCharts($event)" />
                                             <div *ngIf="submitted && f.titleHolder.errors" class="invalid-feedback">
                                                 <div *ngIf="f.titleHolder.errors.required">Title Holder is required</div>
-                                                <div *ngIf="f.titleHolder.errors.minlength">Title Holder should be minimum 2 characters</div>
-  
+                                                <div *ngIf="f.titleHolder.errors.minlength">Title Holder should be
+                                                    minimum 2 characters</div>
+
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="RelationshipTocustomer" class="col-sm-2 col-form-label">Relationship to customer
+                                        <label for="RelationshipTocustomer" class="col-sm-2 col-form-label">Relationship
+                                            to customer
                                             <span class="mandatory">*</span>
                                         </label>
                                         <div class="col-sm-4">
-                                            <select class="form-control" formControlName="relationshipTocustomer" (ngModelChange)="getreltionType($event)" class="form-control"
-                                                [ngClass]="{ 'is-invalid': submitted && f.relationshipTocustomer.errors }">
+                                            <select class="form-control" formControlName="relationshipTocustomer"
+                                                (ngModelChange)="getreltionType($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationshipTocustomer.errors }">
                                                 <option value="" [selected]="selected">Select Relationship</option>
                                                 <option value="Self">Self</option>
                                                 <option value="Spouse">Spouse</option>
@@ -608,7 +717,8 @@
                                             </select>
 
                                             <div *ngIf="submitted && f.relationshipTocustomer.errors" class="invalid-feedback">
-                                                <div *ngIf="f.relationshipTocustomer.errors.required">Relationship to customer is required</div>
+                                                <div *ngIf="f.relationshipTocustomer.errors.required">Relationship to
+                                                    customer is required</div>
                                             </div>
                                         </div>
                                     </div>
@@ -619,46 +729,51 @@
                                         </label>
 
                                         <div class="col-sm-4">
-                                            <input type="text" formControlName="surveyNoDrNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.surveyNoDrNo.errors }"
-                                                id="surveyNo/DrNoFormControlInput" placeholder="Please Enter Survey No/Dr No" minlength="6" maxlength="150">
+                                            <input type="text" formControlName="surveyNoDrNo" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.surveyNoDrNo.errors }" id="surveyNo/DrNoFormControlInput"
+                                                placeholder="Please Enter Survey No/Dr No" minlength="6" maxlength="150">
                                             <div *ngIf="submitted && f.surveyNoDrNo.errors" class="invalid-feedback">
                                                 <div *ngIf="f.surveyNoDrNo.errors.required">Survey No/Dr No is required</div>
-                                                <div *ngIf="f.surveyNoDrNo.errors.minlength">Please enter valid Survey No/Do NO with minimum 6 and maximum 150characters</div>
+                                                <div *ngIf="f.surveyNoDrNo.errors.minlength">Please enter valid Survey
+                                                    No/Do NO with minimum 6 and maximum 150characters</div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                            <label for="extentofProperty" class="col-sm-2 col-form-label">Extent of Property
-                                                <span class="mandatory">*</span>
-                                            </label>
-                                            <div class="col-sm-4">
-                                                <input type="text" formControlName="extentofProperty" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentofProperty.errors }"
-                                                    id="extentofPropertyFormControlInput" placeholder="Please Enter Extent Of Property"
-                                                    maxlength="30">
-                                                <div *ngIf="submitted && f.extentofProperty.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.extentofProperty.errors.required">Extent of Property is required
-                                                    </div>
+                                        <label for="extentofProperty" class="col-sm-2 col-form-label">Extent of
+                                            Property
+                                            <span class="mandatory">*</span>
+                                        </label>
+                                        <div class="col-sm-4">
+                                            <input type="text" formControlName="extentofProperty" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.extentofProperty.errors }" id="extentofPropertyFormControlInput"
+                                                placeholder="Please Enter Extent Of Property" maxlength="30">
+                                            <div *ngIf="submitted && f.extentofProperty.errors" class="invalid-feedback">
+                                                <div *ngIf="f.extentofProperty.errors.required">Extent of Property is
+                                                    required
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
                                     <div class="form-group row">
-                                            <label for="documentno" class="col-sm-2 col-form-label">Document No.
-                                                <span class="mandatory">*</span>
-                                            </label>
-                                            <div class="col-sm-4">
-                                                <input type="text" formControlName="documentNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
-                                                    id="documentNoFormControlInput" placeholder="Please Enter Document No." maxlength="30">
-                                                <div *ngIf="submitted && f.documentNo.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.documentNo.errors.required">Document No. is required</div>
-                                                </div>
+                                        <label for="documentno" class="col-sm-2 col-form-label">Document No.
+                                            <span class="mandatory">*</span>
+                                        </label>
+                                        <div class="col-sm-4">
+                                            <input type="text" formControlName="documentNo" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }" id="documentNoFormControlInput"
+                                                placeholder="Please Enter Document No." maxlength="30">
+                                            <div *ngIf="submitted && f.documentNo.errors" class="invalid-feedback">
+                                                <div *ngIf="f.documentNo.errors.required">Document No. is required</div>
                                             </div>
                                         </div>
-                                   
+                                    </div>
+
                                     <div class="col-md-4 offset-md-2" style='padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
-                                       <button type="submit" class="submit-btn">Continue</button>
+                                        <button type="submit" class="submit-btn">Continue</button>
                                     </div>
 
                                 </div>
@@ -667,32 +782,37 @@
 
 
                                 <div *ngIf="secondFormStep" class="col-md-12">
-                                        <div class="form-group row">
-                                                <label for="subRegisterOffice" class="col-sm-2 col-form-label">Sub Register Office
-                                                </label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" formControlName="subRegisterOffice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
-                                                        id="subRegisterOfficeFormControlInput" placeholder="Please Enter Sub Register Office"
-                                                        maxlength="150">
-                                                    <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
-                                                        <!-- <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is required
+                                    <div class="form-group row">
+                                        <label for="subRegisterOffice" class="col-sm-2 col-form-label">Sub Register
+                                            Office
+                                        </label>
+                                        <div class="col-sm-4">
+                                            <input type="text" formControlName="subRegisterOffice" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
+                                                id="subRegisterOfficeFormControlInput" placeholder="Please Enter Sub Register Office"
+                                                maxlength="150">
+                                            <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
+                                                <!-- <div *ngIf="f.subRegisterOffice.errors.required">Sub Register Office is required
                                                         </div> -->
-                                                        <div *ngIf="f.subRegisterOffice.errors.minlength">Please enter valid Sub Register Office with minimum 6 and maximum 150 characters
-                                                        </div>
-                                                    </div>
+                                                <div *ngIf="f.subRegisterOffice.errors.minlength">Please enter valid
+                                                    Sub Register Office with minimum 6 and maximum 150 characters
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <label for="boundaries" class="col-sm-2 col-form-label">Boundaries - North
                                         </label>
                                         <div class="col-sm-4">
-                                            <input type="text" formControlName="boundariesNorth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }"
-                                                id="boundariesFormControlInput" placeholder="Please Enter North" maxlength="50">
+                                            <input type="text" formControlName="boundariesNorth" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }" id="boundariesFormControlInput"
+                                                placeholder="Please Enter North" maxlength="50">
                                             <div *ngIf="submitted && f.boundariesNorth.errors" class="invalid-feedback">
                                                 <!-- <div *ngIf="f.boundariesNorth.errors.required">Boundaries is required</div> -->
-                                                <div *ngIf="f.boundariesNorth.errors.minlength">Please enter valid Boundaries - North with minimum 3 and maximum 50 characters</div>
-                                           
-                                           
+                                                <div *ngIf="f.boundariesNorth.errors.minlength">Please enter valid
+                                                    Boundaries - North with minimum 3 and maximum 50 characters</div>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -702,12 +822,14 @@
                                         </label>
 
                                         <div class="col-sm-4">
-                                            <input type="text" formControlName="boundariesSouth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }"
-                                                id="boundariesFormControlInput" placeholder="Please Enter South" maxlength="50">
+                                            <input type="text" formControlName="boundariesSouth" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }" id="boundariesFormControlInput"
+                                                placeholder="Please Enter South" maxlength="50">
                                             <div *ngIf="submitted && f.boundariesSouth.errors" class="invalid-feedback">
                                                 <!-- <div *ngIf="f.boundariesSouth.errors.required">Boundaries is required</div> -->
-                                                <div *ngIf="f.boundariesSouth.errors.minlength">Please enter valid Boundaries - South with minimum 3 and maximum 50 characters</div>
-                                            
+                                                <div *ngIf="f.boundariesSouth.errors.minlength">Please enter valid
+                                                    Boundaries - South with minimum 3 and maximum 50 characters</div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -716,12 +838,14 @@
                                         <label for="boundaries" class="col-sm-2 col-form-label">Boundaries - East
                                         </label>
                                         <div class="col-sm-4">
-                                            <input type="text" formControlName="boundariesEast" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }"
-                                                id="boundariesFormControlInput" placeholder="Please Enter East" maxlength="30">
+                                            <input type="text" formControlName="boundariesEast" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }" id="boundariesFormControlInput"
+                                                placeholder="Please Enter East" maxlength="30">
                                             <div *ngIf="submitted && f.boundariesEast.errors" class="invalid-feedback">
                                                 <!-- <div *ngIf="f.boundariesEast.errors.required">Boundaries is required</div> -->
-                                                <div *ngIf="f.boundariesEast.errors.minlength">Please enter valid Boundaries - South with minimum 3 and maximum 50 characters</div>
-                                           
+                                                <div *ngIf="f.boundariesEast.errors.minlength">Please enter valid
+                                                    Boundaries - South with minimum 3 and maximum 50 characters</div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -730,17 +854,19 @@
                                         <label for="boundaries" class="col-sm-2 col-form-label">Boundaries - West
                                         </label>
                                         <div class="col-sm-4">
-                                            <input type="text" formControlName="boundariesWest" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }"
-                                                id="boundariesFormControlInput" placeholder="Please Enter West" maxlength="50">
+                                            <input type="text" formControlName="boundariesWest" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }" id="boundariesFormControlInput"
+                                                placeholder="Please Enter West" maxlength="50">
                                             <div *ngIf="submitted && f.boundariesWest.errors" class="invalid-feedback">
                                                 <!-- <div *ngIf="f.boundariesWest.errors.required">Boundaries is required</div> -->
-                                                <div *ngIf="f.boundariesWest.errors.minlength">Please enter valid Boundaries - South with minimum 3 and maximum 50 characters</div>
-                                          
+                                                <div *ngIf="f.boundariesWest.errors.minlength">Please enter valid
+                                                    Boundaries - South with minimum 3 and maximum 50 characters</div>
+
                                             </div>
                                         </div>
                                     </div>
-                                   
-                                    
+
+
 
                                     <div class="col-md-4 offset-md-2" style='padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
@@ -761,12 +887,14 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <div class="col-sm-4">
-                                            <input type="text" formControlName="address1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address1.errors }"
-                                                id="address1FormControlInput" placeholder="Please Enter Address 1" maxlength="150">
+                                            <input type="text" formControlName="address1" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.address1.errors }" id="address1FormControlInput"
+                                                placeholder="Please Enter Address 1" maxlength="150">
                                             <div *ngIf="submitted && f.address1.errors" class="invalid-feedback">
                                                 <div *ngIf="f.address1.errors.required">Address 1 is required</div>
-                                                <div *ngIf="f.address1.errors.minlength">Please enter valid address1 with minimum of 6 and maximum 150 characters</div>
-                                            
+                                                <div *ngIf="f.address1.errors.minlength">Please enter valid address1
+                                                    with minimum of 6 and maximum 150 characters</div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -775,101 +903,108 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <div class="col-sm-4">
-                                            <input type="text" formControlName="address2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address2.errors }"
-                                                id="address1FormControlInput" placeholder="Please Enter Address 2" maxlength="150">
+                                            <input type="text" formControlName="address2" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.address2.errors }" id="address1FormControlInput"
+                                                placeholder="Please Enter Address 2" maxlength="150">
                                             <div *ngIf="submitted && f.address2.errors" class="invalid-feedback">
                                                 <div *ngIf="f.address2.errors.required">Address 2 is required</div>
-                                                <div *ngIf="f.address2.errors.minlength">Please enter valid address2 with minimum of 6 and maximum 150 characters</div>
-                                            
+                                                <div *ngIf="f.address2.errors.minlength">Please enter valid address2
+                                                    with minimum of 6 and maximum 150 characters</div>
+
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                            <label for="state" class="col-sm-2 col-form-label">State
-                                                <span class="mandatory">*</span>
-                                            </label>
-                                            <div class="col-sm-4">
-                                                <select class="form-control" formControlName="state" (ngModelChange)="getstate($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
-                                                    <option value="" [selected]="selected">Select State</option>
-                                                    <option value="AndhraPradesh">Andhrapradesh</option>
-                                                    <option value="Karnataka">Banglore</option>
-                                                    <option value="Telangana">Telangana</option>
-                                                </select>
-                                                <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.state.errors.required">State is required</div>
-                                                </div>
+                                        <label for="state" class="col-sm-2 col-form-label">State
+                                            <span class="mandatory">*</span>
+                                        </label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" formControlName="state" (ngModelChange)="getstate($event)"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                                                <option value="" [selected]="selected">Select State</option>
+                                                <option value="AndhraPradesh">Andhrapradesh</option>
+                                                <option value="Karnataka">Banglore</option>
+                                                <option value="Telangana">Telangana</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                                <div *ngIf="f.state.errors.required">State is required</div>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="district" class="col-sm-2 col-form-label">District
-                                                <span class="mandatory">*</span>
-                                            </label>
-                                            <div class="col-sm-4">
-                                                <!-- <input type="text" formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="district" class="col-sm-2 col-form-label">District
+                                            <span class="mandatory">*</span>
+                                        </label>
+                                        <div class="col-sm-4">
+                                            <!-- <input type="text" formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
                                                     id="districtFormControlInput" placeholder="Please Enter District" maxlength="30">
                                                  -->
-                                                 <select class="form-control" formControlName="district" (ngModelChange)="getdistrict($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }">
-                                                    <option value="" [selected]="selected">Select District</option>
-                                                    <option value="{{dist.district}}" *ngFor="let dist of districts">{{dist.district}}</option>
-                                                </select>
-                                                    <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.district.errors.required">District is required</div>
-                                                </div>
-    
+                                            <select class="form-control" formControlName="district" (ngModelChange)="getdistrict($event)"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }">
+                                                <option value="" [selected]="selected">Select District</option>
+                                                <option value="{{dist.district}}" *ngFor="let dist of districts">{{dist.district}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                                                <div *ngIf="f.district.errors.required">District is required</div>
                                             </div>
+
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="mandal" class="col-sm-2 col-form-label">Mandal
-                                                <span class="mandatory">*</span>
-                                            </label>
-                                            <div class="col-sm-4">
-                                                <!-- <input type="text" formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="mandal" class="col-sm-2 col-form-label">Mandal
+                                            <span class="mandatory">*</span>
+                                        </label>
+                                        <div class="col-sm-4">
+                                            <!-- <input type="text" formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
                                                     id="mandalFormControlInput" placeholder="Please Enter Mandal" maxlength="30">
                                                 -->
-                                                     <select class="form-control" formControlName="mandal" (ngModelChange)="getmandal($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }">
-                                                    <option value="" [selected]="selected">Select Mandal</option>
-                                                    <option value="{{dist.mandal}}" *ngFor="let dist of mandals">{{dist.mandal}}</option>
-                                                </select>
-                                                    <div *ngIf="submitted && f.mandal.errors" class="invalid-feedback"> 
-                                                   
-                                                    <div *ngIf="f.mandal.errors.required">Mandal is required</div>
-                                                </div>
+                                            <select class="form-control" formControlName="mandal" (ngModelChange)="getmandal($event)"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }">
+                                                <option value="" [selected]="selected">Select Mandal</option>
+                                                <option value="{{dist.mandal}}" *ngFor="let dist of mandals">{{dist.mandal}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.mandal.errors" class="invalid-feedback">
+
+                                                <div *ngIf="f.mandal.errors.required">Mandal is required</div>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="village/City" class="col-sm-2 col-form-label">Village/City
-                                                <span class="mandatory">*</span>
-                                            </label>
-                                            <div class="col-sm-4">
-                                                <!-- <input type="text" formControlName="villageCity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.villageCity.errors }"
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="village/City" class="col-sm-2 col-form-label">Village/City
+                                            <span class="mandatory">*</span>
+                                        </label>
+                                        <div class="col-sm-4">
+                                            <!-- <input type="text" formControlName="villageCity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.villageCity.errors }"
                                                     id="villageCityFormControlInput" placeholder="Please Enter Village/City" maxlength="30">
                                                  -->
-                                                 <select class="form-control" formControlName="villageCity" (ngModelChange)="getvillage($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.villageCity.errors }">
-                                                        <option value="" [selected]="selected">Select Village</option>
-                                                        <option value="{{dist.village}}" *ngFor="let dist of villages">{{dist.village}}</option>
-                                                    </select>
-                                                    <div *ngIf="submitted && f.villageCity.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.villageCity.errors.required">Village/City is required</div>
-                                                </div>
+                                            <select class="form-control" formControlName="villageCity" (ngModelChange)="getvillage($event)"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.villageCity.errors }">
+                                                <option value="" [selected]="selected">Select Village</option>
+                                                <option value="{{dist.village}}" *ngFor="let dist of villages">{{dist.village}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.villageCity.errors" class="invalid-feedback">
+                                                <div *ngIf="f.villageCity.errors.required">Village/City is required</div>
                                             </div>
                                         </div>
-                                                                           
-                                        <div class="form-group row">
-                                            <label for="zip" class="col-sm-2 col-form-label">Zip Code
-                                                <span class="mandatory">*</span>
-                                            </label>
-                                            <div class="col-sm-4">
-                                                <input type="text" formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }" id="zipFormControlInput"
-                                                    placeholder="Pleaes Enter zip Code" maxlength="10">
-                                                <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.zip.errors.required">zipCode is required</div>
-                                                    <div *ngIf="f.zip.errors.minlength">Please enter a valid zip code with a minimum of 4 and maximum 10 alphanumeric</div>
-    
-                                                </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="zip" class="col-sm-2 col-form-label">Zip Code
+                                            <span class="mandatory">*</span>
+                                        </label>
+                                        <div class="col-sm-4">
+                                            <input type="text" formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }"
+                                                id="zipFormControlInput" placeholder="Pleaes Enter zip Code" maxlength="10">
+                                            <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
+                                                <div *ngIf="f.zip.errors.required">zipCode is required</div>
+                                                <div *ngIf="f.zip.errors.minlength">Please enter a valid zip code with
+                                                    a minimum of 4 and maximum 10 alphanumeric</div>
+
                                             </div>
                                         </div>
-    
+                                    </div>
+
 
                                     <div class="col-md-4 offset-md-2" style='padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
@@ -889,8 +1024,8 @@
 
                         <div class="table-responsive">
 
-                            <table *ngIf="propertydocs.length>0" class="table table-striped table-bordered" [mfData]="propertydocs" #mf="mfDataTable"
-                                [mfRowsOnPage]="5">
+                            <table *ngIf="propertydocs.length>0" class="table table-striped table-bordered" [mfData]="propertydocs"
+                                #mf="mfDataTable" [mfRowsOnPage]="5">
 
                                 <thead>
                                     <tr>
@@ -915,12 +1050,14 @@
 
                                         <td style='text-align:center'>
 
-                                            <i style="cursor: pointer" (click)="modalDeleteDocument('confirm-delete-document',doc.id)" class="fa fa-trash" aria-hidden="true"></i>
+                                            <i style="cursor: pointer" (click)="modalDeleteDocument('confirm-delete-document',doc.id)"
+                                                class="fa fa-trash" aria-hidden="true"></i>
                                         </td>
 
                                         <td style='text-align:center'>
 
-                                            <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)" class="fa fa-download" aria-hidden="true"></i>
+                                            <i style="cursor: pointer" (click)="getDownloadUrl(doc.id)" class="fa fa-download"
+                                                aria-hidden="true"></i>
 
                                         </td>
                                     </tr>
@@ -942,7 +1079,8 @@
 
                                 <div class="form-inline" style="margin-bottom:4px;">
                                     <div class="form-group uploadfile-style">
-                                        <input type="file" name="file" title="Browse Document" class="form-control-file" (change)="importfile($event)">
+                                        <input type="file" name="file" title="Browse Document" class="form-control-file"
+                                            (change)="importfile($event)">
                                     </div>
                                     <button type="button" class="upload-btn" (click)="fileSelectionEvent()">Upload</button>
 
@@ -970,9 +1108,10 @@
 
             <!-- Alerts tab -->
             <div *ngIf="!propertyTab && alertsTab && !transactionsTab && !profileTab" class="table-container-style">
-                    <h5 class="tab-active-heading">Alerts</h5>
+                <h5 class="tab-active-heading">Alerts</h5>
                 <div class='mainAlertcontainer table-responsive'>
-                    <table class="table table-striped table-bordered table-hover" [mfData]="alerts" #mf="mfDataTable" [mfRowsOnPage]="5">
+                    <table class="table table-striped table-bordered table-hover" [mfData]="alerts" #mf="mfDataTable"
+                        [mfRowsOnPage]="5">
                         <thead>
                             <tr>
                                 <!-- <th>
@@ -1018,7 +1157,7 @@
 
             <!-- transactions  tab -->
             <div *ngIf="!propertyTab && !alertsTab && transactionsTab && !profileTab" class="table-container-style">
-                    <h5 class="tab-active-heading">Transactions</h5>
+                <h5 class="tab-active-heading">Transactions</h5>
                 <div class='mainAlertcontainer table-responsive'>
                     <table class="table table-striped table-bordered table-hover">
                         <!-- <caption>List of Transactions</caption> -->
@@ -1072,8 +1211,8 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="!isEditDisabled" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.firstName.errors && isEditDisabled }"
-                                            />
+                                            <input type="text" [readonly]="!isEditDisabled" formControlName="firstName"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.firstName.errors && isEditDisabled }" />
                                             <div *ngIf="submitted && feditP.firstName.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.firstName.errors.required">First Name is required</div>
                                             </div>
@@ -1084,8 +1223,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Middle Name</label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="!isEditDisabled" formControlName="middleName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.middleName.errors && isEditDisabled }"
-                                            />
+                                            <input type="text" [readonly]="!isEditDisabled" formControlName="middleName"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.middleName.errors && isEditDisabled }" />
                                             <div *ngIf="submitted && feditP.middleName.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.middleName.errors.required">Middle Name is required</div>
                                             </div>
@@ -1097,8 +1236,8 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="!isEditDisabled" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.lastName.errors && isEditDisabled}"
-                                            />
+                                            <input type="text" [readonly]="!isEditDisabled" formControlName="lastName"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.lastName.errors && isEditDisabled}" />
                                             <div *ngIf="submitted && feditP.lastName.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.lastName.errors.required">Name is required</div>
                                             </div>
@@ -1112,8 +1251,8 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="true" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.email.errors && isEditDisabled}"
-                                            />
+                                            <input type="text" [readonly]="true" formControlName="email" class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && feditP.email.errors && isEditDisabled}" />
 
                                             <div *ngIf="submitted && feditP.email.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.email.errors.required">Email Name is required</div>
@@ -1127,10 +1266,12 @@
                                             <span class="mandatory">*</span>
                                         </label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="true" maxlength="10" formControlName="mobileNumber" class="form-control" />
+                                            <input type="text" [readonly]="true" maxlength="10" formControlName="mobileNumber"
+                                                class="form-control" />
 
                                             <div *ngIf="submitted && feditP.mobileNumber.errors" class="invalid-feedback">
-                                                <div *ngIf="feditP.mobileNumber.errors.required">Mobile Number Name is required
+                                                <div *ngIf="feditP.mobileNumber.errors.required">Mobile Number Name is
+                                                    required
                                                 </div>
                                             </div>
 
@@ -1144,8 +1285,8 @@
                                             <!-- <span class="mandatory">*</span> -->
                                         </label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="!isEditDisabled" formControlName="address1" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address1.errors && isEditDisabled}"
-                                            />
+                                            <input type="text" [readonly]="!isEditDisabled" formControlName="address1"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address1.errors && isEditDisabled}" />
                                             <div *ngIf="submitted && feditP.address1.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.address1.errors.required">Address is required</div>
                                             </div>
@@ -1158,8 +1299,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Address 2</label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="!isEditDisabled" formControlName="address2" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address2.errors && isEditDisabled}"
-                                            />
+                                            <input type="text" [readonly]="!isEditDisabled" formControlName="address2"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address2.errors && isEditDisabled}" />
                                             <div *ngIf="submitted && feditP.address2.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.address2.errors.required">Address is required</div>
                                             </div>
@@ -1169,8 +1310,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Address 3</label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="!isEditDisabled" formControlName="address3" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address3.errors && isEditDisabled}"
-                                            />
+                                            <input type="text" [readonly]="!isEditDisabled" formControlName="address3"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.address3.errors && isEditDisabled}" />
                                             <div *ngIf="submitted && feditP.address3.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.address3.errors.required">Address is required</div>
                                             </div>
@@ -1184,8 +1325,8 @@
                                             <!-- <span class="mandatory">*</span> -->
                                         </label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="!isEditDisabled" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.city.errors && isEditDisabled}"
-                                            />
+                                            <input type="text" [readonly]="!isEditDisabled" formControlName="city"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.city.errors && isEditDisabled}" />
                                             <div *ngIf="submitted && feditP.city.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.city.errors.required">City is required</div>
                                             </div>
@@ -1201,8 +1342,8 @@
                                             <!-- <span class="mandatory">*</span> -->
                                         </label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="!isEditDisabled" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.state.errors && isEditDisabled}"
-                                            />
+                                            <input type="text" [readonly]="!isEditDisabled" formControlName="state"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.state.errors && isEditDisabled}" />
                                             <div *ngIf="submitted && feditP.state.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.state.errors.required">State is required</div>
                                             </div>
@@ -1216,12 +1357,13 @@
                                             <!-- <span class="mandatory">*</span> -->
                                         </label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="!isEditDisabled" maxlength="6" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.zipCode.errors && isEditDisabled}"
-                                            />
+                                            <input type="text" [readonly]="!isEditDisabled" maxlength="6"
+                                                formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.zipCode.errors && isEditDisabled}" />
 
                                             <div *ngIf="submitted && feditP.zipCode.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.zipCode.errors.required">Zip Code is required</div>
-                                                <div *ngIf="feditP.zipCode.errors.maxlength">ZipCode max value will be 6 digits only</div>
+                                                <div *ngIf="feditP.zipCode.errors.maxlength">ZipCode max value will be
+                                                    6 digits only</div>
                                             </div>
                                         </div>
 
@@ -1234,8 +1376,8 @@
                                             <!-- <span class="mandatory">*</span> -->
                                         </label>
                                         <div class="col-sm-7">
-                                            <input type="text" [readonly]="!isEditDisabled" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.country.errors && isEditDisabled}"
-                                            />
+                                            <input type="text" [readonly]="!isEditDisabled" formControlName="country"
+                                                class="form-control" [ngClass]="{ 'is-invalid': submitted && feditP.country.errors && isEditDisabled}" />
                                             <div *ngIf="submitted && feditP.country.errors" class="invalid-feedback">
                                                 <div *ngIf="feditP.country.errors.required">country is required</div>
                                             </div>
@@ -1274,11 +1416,11 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Old Password</label>
                                 <div class="col-sm-4">
-                                    <input type="password" formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
-                                    />
+                                    <input type="password" formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }" />
                                     <div *ngIf="submitted && fpwdP.oldpwd.errors" class="invalid-feedback">
                                         <div *ngIf="fpwdP.oldpwd.errors.required">Old password is required</div>
-                                        <div *ngIf="fpwdP.oldpwd.errors.minlength">Old password must be at least 6 characters
+                                        <div *ngIf="fpwdP.oldpwd.errors.minlength">Old password must be at least 6
+                                            characters
                                         </div>
                                     </div>
                                 </div>
@@ -1287,11 +1429,11 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">New Password</label>
                                 <div class="col-sm-4">
-                                    <input type="password" formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
-                                    />
+                                    <input type="password" formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }" />
                                     <div *ngIf="submitted && fpwdP.newpwd.errors" class="invalid-feedback">
                                         <div *ngIf="fpwdP.newpwd.errors.required">New password is required</div>
-                                        <div *ngIf="fpwdP.newpwd.errors.minlength">New password must be at least 6 characters
+                                        <div *ngIf="fpwdP.newpwd.errors.minlength">New password must be at least 6
+                                            characters
                                         </div>
                                     </div>
 
@@ -1301,12 +1443,13 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Confirm Password</label>
                                 <div class="col-sm-4">
-                                    <input type="password" formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
-                                    />
+                                    <input type="password" formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }" />
                                     <div *ngIf="submitted && fpwdP.confirmpwd.errors" class="invalid-feedback">
                                         <div *ngIf="fpwdP.confirmpwd.errors.required">Confirm password is required</div>
-                                        <div *ngIf="fpwdP.confirmpwd.errors.minlength">Confirm password must be at least 6 characters</div>
-                                        <div *ngIf="fpwdP.confirmpwd.errors.notSame">New password and confirm password must be match</div>
+                                        <div *ngIf="fpwdP.confirmpwd.errors.minlength">Confirm password must be at
+                                            least 6 characters</div>
+                                        <div *ngIf="fpwdP.confirmpwd.errors.notSame">New password and confirm password
+                                            must be match</div>
 
                                     </div>
                                 </div>
@@ -1382,21 +1525,25 @@
 
                     <div *ngIf="upgradePlanprocess && !upgradePlanmessage">
                         <form [formGroup]="upgradePlanForm" (ngSubmit)="upgradePlanFun()">
-                                <div class="alert alert-success" id="propertyDestination" *ngIf="upgraderequestsucc!=''" style="width: 80%;text-align: center;margin-left: 61px;margin-top: 18px;">
-                                        <!-- <a href="#" class="close" data-dismiss="alert">&times;</a> -->
-                                        <h6>{{upgraderequestsucc}}</h6>
-                                      
-                                      </div>
-                            <div class="col content-style" *ngIf="upgraderequestsucc===''">
-                                
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1"> Provide Upgrade Plan Details(like Property limit)</label>
+                            <div class="alert alert-success" id="propertyDestination" *ngIf="upgraderequestsucc!=''"
+                                style="width: 80%;text-align: center;margin-left: 61px;margin-top: 18px;">
+                                <!-- <a href="#" class="close" data-dismiss="alert">&times;</a> -->
+                                <h6>{{upgraderequestsucc}}</h6>
 
-                                    <textarea class="form-control no-resize" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Upgrade plan details"
-                                    formControlName="plandetailsField" [ngClass]="{ 'is-invalid': submitted && ugplan.plandetailsField.errors }"></textarea>
+                            </div>
+                            <div class="col content-style" *ngIf="upgraderequestsucc===''">
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1"> Provide Upgrade Plan Details(like
+                                        Property limit)</label>
+
+                                    <textarea class="form-control no-resize" id="exampleFormControlTextarea1" rows="3"
+                                        placeholder="Enter Upgrade plan details" formControlName="plandetailsField"
+                                        [ngClass]="{ 'is-invalid': submitted && ugplan.plandetailsField.errors }"></textarea>
 
                                     <div *ngIf="submitted && ugplan.plandetailsField.errors" class="invalid-feedback">
-                                        <div *ngIf="ugplan.plandetailsField.errors.required"> Upgrade Plan Details is required
+                                        <div *ngIf="ugplan.plandetailsField.errors.required"> Upgrade Plan Details is
+                                            required
                                         </div>
 
                                     </div>
@@ -1430,8 +1577,8 @@
 
 
     <!-- confirm modal for delete action-->
-    <app-modal-property id="confirm-delete-document" >
-        <div class="modal confirmDocumentDelete"  style="z-index: 5 !important;">
+    <app-modal-property id="confirm-delete-document">
+        <div class="modal confirmDocumentDelete" style="z-index: 5 !important;">
             <div class="row justify-content-md-center justify-content-sm-center no-gutters">
                 <div class="modal-body col-md-5 col-sm-8 " style="padding:0px;">
 
@@ -1460,7 +1607,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal-background"  style="z-index: 4 !important;"></div>
+        <div class="modal-background" style="z-index: 4 !important;"></div>
         <app-loading-div *ngIf="isLoading"></app-loading-div>
     </app-modal-property>
     <!-- close here -->

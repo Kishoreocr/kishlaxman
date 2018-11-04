@@ -347,4 +347,7 @@ export class EgazeService {
     return this.http.get(this.baseUrl + 'agent/details');
 
   }
+  getPropertyUpdates(userId) {
+    return this.http.get(this.baseUrl + "updatedproperties/" + userId)
+  }
 }

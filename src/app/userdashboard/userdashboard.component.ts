@@ -94,6 +94,7 @@ export class UserdashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     //this.propertyForm.controls['typeofProperty'] = 'Residential';
@@ -125,7 +126,7 @@ export class UserdashboardComponent implements OnInit {
       villageCity: ['', Validators.required],
       mandal: ['', Validators.required],
       district: ['', Validators.required],
-      zip: ['',[Validators.required, Validators.minLength(4)]],
+      zip: ['', [Validators.required, Validators.minLength(4)]],
       state: ['', Validators.required]
     });
 
@@ -209,7 +210,7 @@ export class UserdashboardComponent implements OnInit {
 
   get fpwdP() { return this.updateuserNewpwdForm.controls }
 
-  get ugplan() {return this.upgradePlanForm.controls }
+  get ugplan() { return this.upgradePlanForm.controls }
   getType(event) {
     this.propertyForm.value.typeofProperty = "" + event;
     //alert(this.updateuserNewpwdForm.value.typeofProperty);
@@ -224,21 +225,21 @@ export class UserdashboardComponent implements OnInit {
     this.getDistricts("" + event);
     //alert(this.updateuserNewpwdForm.value.typeofProperty);
   }
-  getdistrict(event){
+  getdistrict(event) {
     this.propertyForm.value.district = "" + event;
-    this.propertyForm.value.mandal="";
-    this.getMandals(this.propertyForm.value.state,"" + event);
+    this.propertyForm.value.mandal = "";
+    this.getMandals(this.propertyForm.value.state, "" + event);
   }
-  getmandal(event){
+  getmandal(event) {
     this.propertyForm.value.mandal = "" + event;
     this.propertyForm.value.villageCity = "";
-    this.getVillages(this.propertyForm.value.state,this.propertyForm.value.district,"" + event);
+    this.getVillages(this.propertyForm.value.state, this.propertyForm.value.district, "" + event);
   }
-  getvillage(event){
+  getvillage(event) {
     this.propertyForm.value.villageCity = "" + event;
   }
   propertyFun() {
-    this.upgraderequestsucc='';
+    this.upgraderequestsucc = '';
     if (this.propertyCount != null) {
       var data = JSON.stringify(this.propertyCount);
       // alert(data)
@@ -257,19 +258,19 @@ export class UserdashboardComponent implements OnInit {
       this.viewProperties = !this.viewProperties;
     }
   }
-  selected=true;
+  selected = true;
   propertyFunView() {
-      this.updateuserProfilestatus = "";
+    this.updateuserProfilestatus = "";
     this.propertyStatus = "";
     this.profilechndResultMsg = "";
     this.resultMsg = '';
-    this.propertyDetails=true;
+    this.propertyDetails = true;
     this.addProperty = !this.addProperty;
     this.viewProperties = !this.viewProperties;
-    this.firstFormStep=true;
-    this.thirdFormStep=false;
-    this.secondFormStep=false;
-    this.selected=true;
+    this.firstFormStep = true;
+    this.thirdFormStep = false;
+    this.secondFormStep = false;
+    this.selected = true;
 
   }
   userdashTabs(activeTab) {
@@ -380,7 +381,7 @@ export class UserdashboardComponent implements OnInit {
       && this.propertyForm.controls.titleHolder.valid
       && this.propertyForm.controls.relationshipTocustomer.valid
       && this.propertyForm.controls.surveyNoDrNo.valid
-      && this.propertyForm.controls.documentNo.valid 
+      && this.propertyForm.controls.documentNo.valid
       && this.propertyForm.controls.extentofProperty.valid && this.firstFormStep) {
 
       this.submitted = false;
@@ -394,19 +395,19 @@ export class UserdashboardComponent implements OnInit {
     // }
 
     else if (this.propertyForm.controls.subRegisterOffice.valid
-       && this.propertyForm.controls.boundariesNorth.valid
-       && this.propertyForm.controls.boundariesSouth.valid
-       && this.propertyForm.controls.boundariesEast.valid
-       && this.propertyForm.controls.boundariesWest.valid 
-       && this.secondFormStep) {
-     debugger;
+      && this.propertyForm.controls.boundariesNorth.valid
+      && this.propertyForm.controls.boundariesSouth.valid
+      && this.propertyForm.controls.boundariesEast.valid
+      && this.propertyForm.controls.boundariesWest.valid
+      && this.secondFormStep) {
+      debugger;
       this.submitted = false;
 
       this.firstFormStep = false;
       this.secondFormStep = false;
       this.thirdFormStep = true;
     }
-   
+
 
     else if (this.propertyForm.controls.address1.valid
       && this.propertyForm.controls.address2.valid
@@ -439,7 +440,7 @@ export class UserdashboardComponent implements OnInit {
             this.getPropertiesCount();
             this.getTransactions();
 
-           // this.propertyDocuments = true;
+            // this.propertyDocuments = true;
             this.propertyDetails = false;
 
           }
@@ -594,9 +595,11 @@ export class UserdashboardComponent implements OnInit {
       result => {
         debugger;
         this.userAllpropertis = result;
+        this.getPropertyUpdates();
       },
       error => { }
     );
+
 
   }
 
@@ -619,7 +622,7 @@ export class UserdashboardComponent implements OnInit {
 
   closeModal(id: string) {
     this.ModalPropertyService.close(id);
-    this.upgraderequestsucc='';
+    this.upgraderequestsucc = '';
   }
 
   public totalfiles: Array<File> = [];
@@ -752,7 +755,7 @@ export class UserdashboardComponent implements OnInit {
     });
   }
   commentFun(description) {
-   
+
     //alert(JSON.stringify(description.value));
     if (this.commentForm.valid) {
       this.isLoading = true;
@@ -823,7 +826,7 @@ export class UserdashboardComponent implements OnInit {
     this.upgradePlanprocess = true;
     //window.location.href = AppConstants.packageURL;
   }
-upgraderequestsucc='';
+  upgraderequestsucc = '';
   upgradePlanFun() {
     debugger;
     this.errorMsg = '';
@@ -833,7 +836,7 @@ upgraderequestsucc='';
 
       this.EgazeService.upgradePackageRequest(this.upgradePlanForm.value, this.user.email).subscribe(result => {
         this.isLoading = false;
-        this.upgraderequestsucc='Your Upgrade request sent to Admin. Admin will contact you soon.'
+        this.upgraderequestsucc = 'Your Upgrade request sent to Admin. Admin will contact you soon.'
         this.upgradePlanForm.controls['plandetailsField'].setValue("");
       }, error => {
         this.isLoaderdiv = false;
@@ -855,19 +858,19 @@ upgraderequestsucc='';
       return false;
     }
   }
-districts:any=[];
+  districts: any = [];
   getDistricts(stateCode) {
     this.EgazeService.getDistricts(stateCode).subscribe(result => {
-     // debugger;
+      // debugger;
       this.districts = result;
     }, error => {
 
     });
 
   }
-  mandals:any=[];
+  mandals: any = [];
   getMandals(stateCode, districtCode) {
-    this.EgazeService.getMandals(stateCode,districtCode).subscribe(result => {
+    this.EgazeService.getMandals(stateCode, districtCode).subscribe(result => {
       //debugger;
       this.mandals = result;
     }, error => {
@@ -875,10 +878,10 @@ districts:any=[];
     });
 
   }
-  villages:any=[];
+  villages: any = [];
   getVillages(stateCode, districtCode, mandalCode) {
 
-    this.EgazeService.  getVillages(stateCode, districtCode, mandalCode).subscribe(result => {
+    this.EgazeService.getVillages(stateCode, districtCode, mandalCode).subscribe(result => {
       //debugger;
       this.villages = result;
     }, error => {
@@ -886,5 +889,27 @@ districts:any=[];
     });
 
   }
+  propertyUpdates: any = [];
+
+  // propertyUpdatesids:any=[];
+  getPropertyUpdates() {
+
+    this.EgazeService.getPropertyUpdates(this.user1.loginId).subscribe(result => {
+      //debugger;
+      this.propertyUpdates = result;
+      // this.propertyUpdates.forEach(childObj => {
+      //   console.log("this.childObj="+childObj)
+
+      //   this.propertyUpdatesids.push(childObj.id);
+      // });
+    }, error => {
+
+    });
+    //debugger;
+
+    //console.log("this.propertyUpdatesids="+this.propertyUpdatesids)
+
+  }
+
 
 }
