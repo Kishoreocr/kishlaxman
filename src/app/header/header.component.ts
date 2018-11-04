@@ -1,8 +1,9 @@
 import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { SlideInOutAnimation } from '../animations';
 import { SessionstorageService } from '../services/sessionstorage.service';
-import { AppConstants } from '../services/constants'
+import { AppConstants } from '../services/constants';
 import { EgazeService } from '../services/egaze.service';
+import {Router, NavigationEnd} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { EgazeService } from '../services/egaze.service';
   animations: [SlideInOutAnimation]
 })
 export class HeaderComponent implements OnInit {
-
+  currentURL : string;
   isScollDown: boolean = false;
   animationState = 'in';
   animationState1 = 'out';
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit {
   user1:any;
   user: Object = { loginId: Number, email: String, role: String, status: String };
   mobile:any;
-  constructor(private _eref: ElementRef,private sessionstorageService: SessionstorageService,private EgazeService: EgazeService) { 
+  constructor(private _eref: ElementRef,private sessionstorageService: SessionstorageService,private EgazeService: EgazeService, private router:Router) { 
+    router.events.subscribe( (_:NavigationEnd) => this.currentURL = _.url);
     this.user = this.sessionstorageService.getUserDetails();
     if (this.user != null) {
       this.user = JSON.parse(this.user + "");

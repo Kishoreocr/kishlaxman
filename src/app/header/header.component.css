@@ -65,6 +65,8 @@
 #nav > ul > li > ul > li, #nav > ul > li > ul > li a { height:30px; line-height:30px; display:block; padding:0 15px; text-decoration: none; }
 #nav > ul > li > ul > li > a { font-size:14px; color:#fff; padding:0; }
 #nav > ul > li > ul > li:hover { background-color:#1672a5; }
+
+.activeClassLink:after{ content: ''; display: block; height: 5px; background-color: #1672a5; margin-top:5px; }
 @media (max-width: 1199px){
 	#nav > ul > li { margin: 0 15px; }
 	#nav > ul > li:first-child { margin: 0 15px 0 0; }
@@ -94,6 +96,14 @@
 	color:#fff;
 }
 .launch-menu .phone { font-size: 1.4em; text-align: center; }
+
+li.activelink-mobile-menu-bg { background:#f8f8f8!important; }
+.activelink-mobile-menu{
+	background:#1275af;color:#fff;
+}
+li.activelink-mobile-menu a{
+	color:#fff!important;
+}
 
 /* Footer
 ================================================== */

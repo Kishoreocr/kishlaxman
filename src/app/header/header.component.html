@@ -188,11 +188,11 @@ position: relative;">
         <div id="nav">
           <ul>
             <li>
-              <a routerLink="/home1" routerLinkActive="activeClss">Home</a>
+              <a routerLink="/home1" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/home1'">Home</a>
             </li>
 
             <li>
-              <a>Services</a>
+              <a [class.activeClassLink] = "currentURL=='/property-monitoring' || currentURL=='/package-description'">Services</a>
               <ul>
                 <li>
                   <a routerLink="/property-monitoring" routerLinkActive="activeClss">Property Monitoring</a>
@@ -205,7 +205,7 @@ position: relative;">
 
 
             <li *ngIf="!flag">
-              <a>Agents</a>
+              <a [class.activeClassLink] = "currentURL=='/agent-registration'">Agents</a>
               <ul>
                <li>
                   <a routerLink="/agent-registration" routerLinkActive="activeClss">Agent Registration</a>
@@ -213,7 +213,7 @@ position: relative;">
               </ul>
             </li>
             <li>
-              <a>About</a>
+              <a [class.activeClassLink] = "currentURL=='/abouteGAZE' || currentURL=='/whyeGAZE'">About</a>
               <ul>
                 <li>
                   <a routerLink="/abouteGAZE" routerLinkActive="activeClss">About eGAZE</a>
@@ -226,29 +226,29 @@ position: relative;">
             </li>
 
             <li >
-              <a routerLink="/articles" routerLinkActive="activeClss">Articles</a>
+              <a routerLink="/articles" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/articles'">Articles</a>
             </li>
             <li>
-              <a routerLink="/testimonials" routerLinkActive="activeClss">Testimonials</a>
+              <a routerLink="/testimonials" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/testimonials'">Testimonials</a>
             </li>
             <li >
-              <a routerLink="/contactus" routerLinkActive="activeClss">Contact</a>
+              <a routerLink="/contactus" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/contactus'">Contact</a>
             </li>
             <li >
-              <a routerLink="/help" routerLinkActive="activeClss">Help</a>
+              <a routerLink="/help" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/help'">Help</a>
             </li>
 
             <li >
-              <a>Legals</a>
+              <a [class.activeClassLink] = "currentURL=='/terms-conditions' || currentURL=='/privacy-policy' || currentURL=='/disclaimer'">Legals</a>
               <ul>
                 <li>
-                  <a routerLink="/terms-conditions" routerLinkActive="activeClss">Terms &amp; Conditions</a>
+                  <a routerLink="/terms-conditions" routerLinkActive="activeClss" >Terms &amp; Conditions</a>
                 </li>
                 <li>
-                  <a routerLink="/privacy-policy" routerLinkActive="activeClss">Privacy Policy</a>
+                  <a routerLink="/privacy-policy" routerLinkActive="activeClss" >Privacy Policy</a>
                 </li>
                 <li>
-                  <a routerLink="/disclaimer" routerLinkActive="activeClss">Disclaimer</a>
+                  <a routerLink="/disclaimer" routerLinkActive="activeClss" >Disclaimer</a>
                 </li>
 
               </ul>
@@ -258,15 +258,15 @@ position: relative;">
 
 
             <li *ngIf="!flag">
-              <a routerLink="/blog" routerLinkActive="activeClss">Blog</a>
+              <a routerLink="/blog" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/blog'">Blog</a>
             </li>
             <li *ngIf="flag">
-              <a *ngIf="this.user.role==='admin'" routerLink="/admindashboard" routerLinkActive="activeClss">Dashboard</a>
-              <a *ngIf="this.user.role==='customer'" (click)="userdashboard()">Dashboard</a>
+              <a *ngIf="this.user.role==='admin'" routerLink="/admindashboard" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/admindashboard'">Dashboard</a>
+              <a *ngIf="this.user.role==='customer'" routerLink="/userdashboard" (click)="userdashboard()" [class.activeClassLink] = "currentURL=='/userdashboard'">Dashboard</a>
 
             </li>
             <li *ngIf="flag">
-              <a *ngIf="this.user.role==='customer'" routerLink="/profile" routerLinkActive="activeClss">Profile</a>
+              <a *ngIf="this.user.role==='customer'" routerLink="/profile" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/profile'">Profile</a>
 
 
             </li>
@@ -295,67 +295,67 @@ position: relative;">
     <a style="color:#1275af;font-size:18px;font-weight:400;">{{user.email}}</a>
   </div>
   <ul>
-    <li>
+    <li [class.activelink-mobile-menu-bg]="currentURL=='/home1'">
       <a routerLink="/home1" routerLinkActive="activeClss">Home</a>
     </li>
 
-    <li>
+    <li [class.activelink-mobile-menu-bg]="currentURL=='/property-monitoring' || currentURL=='/package-description'">
       <a>Services</a>
       <ul>
-        <li>
-          <a routerLink="/property-monitoring" routerLinkActive="activeClss">Property Monitoring</a>
+        <li [class.activelink-mobile-menu]="currentURL=='/property-monitoring'">
+          <a routerLink="/property-monitoring" routerLinkActive="activeClss" >Property Monitoring</a>
         </li>
-        <li>
+        <li [class.activelink-mobile-menu]="currentURL=='/package-description'">
           <a routerLink="/package-description" routerLinkActive="activeClss">Packages</a>
         </li>
       </ul>
     </li>
 
 
-    <li *ngIf="!flag">
+    <li *ngIf="!flag" [class.activelink-mobile-menu-bg]="currentURL=='/agent-registration'">
       <a>Agents</a>
       <ul>
-        <li>
+        <li [class.activelink-mobile-menu]="currentURL=='/agent-registration'">
           <a routerLink="/agent-registration" routerLinkActive="activeClss">Agent Registration</a>
         </li>
       </ul>
     </li>
-    <li>
+    <li [class.activelink-mobile-menu-bg]="currentURL=='/abouteGAZE' || currentURL=='/whyeGAZE'">
       <a>About</a>
       <ul>
-        <li>
+        <li [class.activelink-mobile-menu]="currentURL=='/abouteGAZE'">
           <a routerLink="/abouteGAZE" routerLinkActive="activeClss">About eGAZE</a>
         </li>
-        <li>
+        <li [class.activelink-mobile-menu]="currentURL=='/whyeGAZE'">
           <a routerLink="/whyeGAZE" routerLinkActive="activeClss">Why eGAZE</a>
         </li>
 
       </ul>
     </li>
 
-    <li >
+    <li [class.activelink-mobile-menu-bg]="currentURL=='/articles'">
       <a routerLink="/articles" routerLinkActive="activeClss">Articles</a>
     </li>
-    <li>
+    <li [class.activelink-mobile-menu-bg]="currentURL=='/testimonials'">
       <a routerLink="/testimonials" routerLinkActive="activeClss">Testimonials</a>
     </li>
-    <li >
+    <li [class.activelink-mobile-menu-bg]="currentURL=='/contactus'">
       <a routerLink="/contactus" routerLinkActive="activeClss">Contact</a>
     </li>
-    <li >
+    <li [class.activelink-mobile-menu-bg]="currentURL=='/help'">
       <a routerLink="/help" routerLinkActive="activeClss">Help</a>
     </li>
 
-    <li >
+    <li [class.activelink-mobile-menu-bg]="currentURL=='/terms-conditions' || currentURL=='/privacy-policy' || currentURL=='/disclaimer'">
       <a>Legals</a>
       <ul>
-        <li>
+        <li [class.activelink-mobile-menu]="currentURL=='/terms-conditions'">
           <a routerLink="/terms-conditions" routerLinkActive="activeClss">Terms &amp; Conditions</a>
         </li>
-        <li>
+        <li [class.activelink-mobile-menu]="currentURL=='/privacy-policy'">
           <a routerLink="/privacy-policy" routerLinkActive="activeClss">Privacy Policy</a>
         </li>
-        <li>
+        <li [class.activelink-mobile-menu]="currentURL=='/disclaimer'">
           <a routerLink="/disclaimer" routerLinkActive="activeClss">Disclaimer</a>
         </li>
 
@@ -365,21 +365,21 @@ position: relative;">
 
 
 
-    <li *ngIf="!flag">
+    <li *ngIf="!flag" [class.activelink-mobile-menu-bg]="currentURL=='/blog'">
       <a routerLink="/blog" routerLinkActive="activeClss">Blog</a>
     </li>
-    <li *ngIf="flag">
+    <li *ngIf="flag" [class.activelink-mobile-menu-bg]="currentURL=='/admindashboard' || currentURL=='/userdashboard'">
       <a *ngIf="this.user.role==='admin'" routerLink="/admindashboard" routerLinkActive="activeClss">Dashboard</a>
-      <a *ngIf="this.user.role==='customer'" (click)="userdashboard()">Dashboard</a>
+      <a *ngIf="this.user.role==='customer'" (click)="userdashboard()" >Dashboard</a>
 
     </li>
-    <li *ngIf="flag">
+    <li *ngIf="flag" [class.activelink-mobile-menu-bg]="currentURL=='/profile'">
       <a *ngIf="this.user.role==='customer'" routerLink="/profile" routerLinkActive="activeClss">Profile</a>
 
 
     </li>
 
-    <li *ngIf="flag">
+    <li *ngIf="flag" >
       <a (click)="logout()" style="cursor:pointer">Logout</a>
     </li>
   </ul>
