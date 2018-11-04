@@ -32,7 +32,7 @@
                     <td>{{customer.mobileNo}}</td>
                     <td>{{customer.addedDate| date:'dd/MM/yyyy'}}</td>
                     <td style='text-align:center'>
-                        <i class="fa fa-eye" (click)="openModal('custom-modal-feedback', customer)"></i>
+                        <i class="fa fa-eye" style="cursor: pointer;" (click)="openModal('custom-modal-agent', customer)"></i>
                     </td>
                 </tr>
             </tbody>
@@ -48,7 +48,7 @@
 </div>
 
 <!-- confirm modal for delete action-->
-<modal id="custom-modal-feedback">
+<modal id="custom-modal-agent">
     <div class="modal ">
         <div class="row justify-content-md-center no-gutters">
             <div class="modal-body col-md-7" style="padding:0px;">
@@ -61,23 +61,107 @@
 
                 <div style='position:absolute;right:20px;top:10px;'>
 
-                    <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('custom-modal-feedback')"></i>
+                    <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('custom-modal-agent')"></i>
                 </div>
 
                 <div>
 
-                    <div class="col content-style">
+                    <div class="col">
+                        <div class="d-flex justify-content-center" style="margin-top:20px;">
+                            <div class="approvalReject">
+                                <div *ngIf="agentDetails.status && agentDetails.status == 'P'" (click)="agentApprovalReject(agentDetails)">
+                                    Approval
+                                </div>
+                                <div *ngIf="agentDetails.status && agentDetails.status != 'P'" (click)="agentApprovalReject(agentDetails)">
+                                    Reject
+                                </div>
+                            </div>
+                        </div>
 
-                        <div class="col property-style">
+                        <div class="row" style="padding:20px;">
+                            <div class="col-md-6 col-">
+                                <div class="form-group row">
+                                    <div class="col-sm-5 col-form-label font-bold-label">Name:</div>
+                                    <div class="col-sm-7 col-form-label">
+                                        {{agentDetails.firstName}} {{agentDetails.lastName}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-5 col-form-label font-bold-label">Email:</div>
+                                    <div class="col-sm-7 col-form-label">
+                                        {{agentDetails.email}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-5 col-form-label font-bold-label">Mobile Number:</div>
+                                    <div class="col-sm-7 col-form-label">
+                                        {{agentDetails.mobileNo}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-5 col-form-label font-bold-label">Address Line1:</div>
+                                    <div class="col-sm-7 col-form-label">
+                                        {{agentDetails.address1}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-5 col-form-label font-bold-label">Address Line2:</div>
+                                    <div class="col-sm-7 col-form-label">
+                                        {{agentDetails.address2}}
+                                    </div>
+                                </div>
 
-
-
-
-                            <div class="col" align="center" style="margin-top:20px;">
-                                <button type="button" class="submit-btn" (click)="closeModal('custom-modal-feedback')">Cancel</button>
                             </div>
 
+                            <div class="col-md-6">
+
+                                <div class="form-group row">
+                                    <div class="col-sm-5 col-form-label font-bold-label">City:</div>
+                                    <div class="col-sm-7 col-form-label">
+                                        {{agentDetails.city}}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-5 col-form-label font-bold-label">State:</div>
+                                    <div class="col-sm-7 col-form-label">
+                                        {{agentDetails.state}}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-5 col-form-label font-bold-label">Country:</div>
+                                    <div class="col-sm-7 col-form-label">
+                                        {{agentDetails.country}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-5 col-form-label font-bold-label">Zip:</div>
+                                    <div class="col-sm-7 col-form-label">
+                                        {{agentDetails.zip}}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-5 col-form-label font-bold-label">Description:</div>
+                                    <div class="col-sm-7 col-form-label">
+                                        {{agentDetails.description}}
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
+
+
+
+
+
+                        <div class="col" align="center" style="padding:20px;">
+                            <button type="button" class="submit-btn" (click)="closeModal('custom-modal-agent')">Cancel</button>
+                        </div>
+
+
                     </div>
 
 

@@ -357,4 +357,11 @@ export class EgazeService {
     }
     return this.http.post(this.baseUrl + 'update/propertydocs/agent', data);
   }
+  updateAgenapprovalReject(obj){
+    var data = {
+        "loginId":obj.loginId,
+        "status":obj.status
+      }
+    return this.http.post(this.baseUrl + 'update/user/status ', data);
+  }
 }

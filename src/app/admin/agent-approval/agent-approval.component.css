@@ -1,0 +1,11 @@
+.approvalReject {
+    background-color: #fff;
+    text-align: center;
+    padding: 5px 15px;
+    color: #1275af;
+    font-size: 16px;
+    border-radius: 3px;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #a1d6f6;
+}

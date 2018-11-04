@@ -9,17 +9,20 @@ import { ModalService } from '../../admin/service/modal.service';
 })
 export class AgentApprovalComponent implements OnInit {
   customers: any = [];
-  dataArray : any = {
-    'Name':'laxman'
+  agentDetails: any;
+  dataArray: any = {
+    'Name': 'laxman'
   }
-  alerts:any;
+  agentresult: any;
+  alerts: any;
   constructor(private EgazeService: EgazeService, private modalService: ModalService) {
     this.getCustomerDetails();
     this.getAlerts();
-   // this.dataArray;
-   }
+    // this.dataArray;
+  }
 
   ngOnInit() {
+    this.getCustomerDetails();
   }
   getAlerts() {
     this.EgazeService.getAlerts(3).subscribe(result => {
@@ -38,10 +41,16 @@ export class AgentApprovalComponent implements OnInit {
 
   openModal(id: string, cust) {
     this.modalService.open(id);
+    this.agentDetails = cust;
   }
   closeModal(id: string) {
     this.modalService.close(id);
   }
 
+  agentApprovalReject(obj) {
+    this.EgazeService.updateAgenapprovalReject(obj).subscribe(result => {
+      this.agentresult = result;
+    });
+  }
 
 }
