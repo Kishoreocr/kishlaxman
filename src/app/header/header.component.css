@@ -98,6 +98,7 @@
 .launch-menu .phone { font-size: 1.4em; text-align: center; }
 
 li.activelink-mobile-menu-bg { background:#f8f8f8!important; }
+li.activelink-mobile-menu-bg a {color:#1275af!important}
 .activelink-mobile-menu{
 	background:#1275af;color:#fff;
 }
