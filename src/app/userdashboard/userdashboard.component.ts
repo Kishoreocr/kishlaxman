@@ -326,7 +326,7 @@ export class UserdashboardComponent implements OnInit {
           this.isLoaderdiv = false;
           //this.sfile = null;
         }, error => {
-          alert(JSON.stringify(error));
+          //alert(JSON.stringify(error));
         });
         this.propertytabModal = false;
         this.documentstabModal = true;
@@ -336,6 +336,8 @@ export class UserdashboardComponent implements OnInit {
         this.propertytabModal = false;
         this.documentstabModal = false;
         this.commentstabModal = true;
+        // alert(this.updtprop)()
+        this.updatePropertyCommentReadStatus(this.propertyId);
         this.getPrpopertyComments(this.propertyId);
 
         break;
@@ -607,8 +609,13 @@ export class UserdashboardComponent implements OnInit {
   openpropertylimitModal(id: string) {
     this.ModalPropertyService.open(id);
   }
-
-  openModal(id: string, property) {
+  updtprop: any = false;
+  openModal(id: string, property, sts) {
+    if (sts === true) {
+      this.updtprop = true;
+    } else {
+      this.updtprop = false;
+    }
     this.property = property;
     this.propertytabModal = true;
     this.documentstabModal = false;
@@ -911,5 +918,9 @@ export class UserdashboardComponent implements OnInit {
 
   }
 
-
+  updatePropertyCommentReadStatus(id) {
+    this.EgazeService.updatePropertyCommentReadStatus(id).subscribe(result => {
+    }, error => {
+    });
+  }
 }

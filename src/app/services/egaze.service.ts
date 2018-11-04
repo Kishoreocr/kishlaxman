@@ -350,4 +350,11 @@ export class EgazeService {
   getPropertyUpdates(userId) {
     return this.http.get(this.baseUrl + "updatedproperties/" + userId)
   }
+  updatePropertyCommentReadStatus(id){
+    var data = {
+      "id": id,
+      "status": 'R'
+    }
+    return this.http.post(this.baseUrl + 'update/propertydocs/agent', data);
+  }
 }
