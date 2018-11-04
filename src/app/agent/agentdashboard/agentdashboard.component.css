@@ -1,0 +1,19 @@
+.leftside-menu{
+    width:100%;
+    padding:0px;
+    min-height: 400px;
+}
+.leftside-menu ul {
+    margin:0px;
+    padding:0px;
+}
+
+.leftside-menu ul li{
+  list-style: none;
+  padding:10px 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+ font-size:18px;
+ color:#1275af;
+ font-weight: 400;
+ cursor: pointer;
+}

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 import {RoleAuthenticationService as RoleGuard } from '../services/role-authentication';
 import { AgentdashboardComponent } from './agentdashboard/agentdashboard.component';
+import { AgentprofileComponent } from './agentprofile/agentprofile.component';
 
 
 const appRoutes: Routes = [
@@ -23,7 +24,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
-  declarations: [AgentdashboardComponent],
+  declarations: [AgentdashboardComponent, AgentprofileComponent],
   providers: [RoleGuard]
 
 })

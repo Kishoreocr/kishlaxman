@@ -48,7 +48,7 @@
 </div>
 
 <!-- confirm modal for delete action-->
-<modal id="custom-modal-agent">
+<modal id="custom-modal-agent" *ngIf="agentDetails != ''">
     <div class="modal ">
         <div class="row justify-content-md-center no-gutters">
             <div class="modal-body col-md-7" style="padding:0px;">
@@ -83,31 +83,31 @@
                                 <div class="form-group row">
                                     <div class="col-sm-5 col-form-label font-bold-label">Name:</div>
                                     <div class="col-sm-7 col-form-label">
-                                        {{agentDetails.firstName}} {{agentDetails.lastName}}
+                                        {{agentDetails?.firstName}} {{agentDetails?.lastName}}
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-5 col-form-label font-bold-label">Email:</div>
                                     <div class="col-sm-7 col-form-label">
-                                        {{agentDetails.email}}
+                                        {{agentDetails?.email}}
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-5 col-form-label font-bold-label">Mobile Number:</div>
                                     <div class="col-sm-7 col-form-label">
-                                        {{agentDetails.mobileNo}}
+                                        {{agentDetails?.mobileNo}}
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-5 col-form-label font-bold-label">Address Line1:</div>
                                     <div class="col-sm-7 col-form-label">
-                                        {{agentDetails.address1}}
+                                        {{agentDetails?.address1}}
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-5 col-form-label font-bold-label">Address Line2:</div>
                                     <div class="col-sm-7 col-form-label">
-                                        {{agentDetails.address2}}
+                                        {{agentDetails?.address2}}
                                     </div>
                                 </div>
 
@@ -118,34 +118,34 @@
                                 <div class="form-group row">
                                     <div class="col-sm-5 col-form-label font-bold-label">City:</div>
                                     <div class="col-sm-7 col-form-label">
-                                        {{agentDetails.city}}
+                                        {{agentDetails?.city}}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-sm-5 col-form-label font-bold-label">State:</div>
                                     <div class="col-sm-7 col-form-label">
-                                        {{agentDetails.state}}
+                                        {{agentDetails?.state}}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-sm-5 col-form-label font-bold-label">Country:</div>
                                     <div class="col-sm-7 col-form-label">
-                                        {{agentDetails.country}}
+                                        {{agentDetails?.country}}
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-5 col-form-label font-bold-label">Zip:</div>
                                     <div class="col-sm-7 col-form-label">
-                                        {{agentDetails.zip}}
+                                        {{agentDetails?.zip}}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-sm-5 col-form-label font-bold-label">Description:</div>
                                     <div class="col-sm-7 col-form-label">
-                                        {{agentDetails.description}}
+                                        {{agentDetails?.description}}
                                     </div>
                                 </div>
                             </div>
