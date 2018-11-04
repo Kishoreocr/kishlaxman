@@ -9,11 +9,14 @@ import { AgentprofileComponent } from './agentprofile/agentprofile.component';
 
 
 const appRoutes: Routes = [
-
-  { path: 'agentdashboard', component: AgentdashboardComponent  , canActivate: [RoleGuard], 
+  { path: 'agentdashboard', component: AgentdashboardComponent, canActivate: [RoleGuard], 
   data: { 
       expectedRole: 'agent'
-    } }
+    } },
+  { path: 'profile', component: AgentprofileComponent, canActivate: [RoleGuard], 
+    data: { 
+        expectedRole: 'agent'
+      } }  
 ]
 
 @NgModule({
