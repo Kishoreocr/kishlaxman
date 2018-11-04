@@ -1,0 +1,29 @@
+<!-- row justify-content-md-center no-gutters -->
+<div class="row no-gutters container-top-padding">
+
+  <div class="col-md-2" style="background-color:#cce8fc;padding:0px;">
+
+    <div class="leftside-menu">
+      <ul>
+        <li title="Add or View Properties" [ngClass]="{'activeTabdash': propertyTab}" (click)="userdashTabs('Properties')">
+
+          <i class="fa fa-home"></i> Properties
+        </li>
+        <li title="System Generation Alerts" [ngClass]="{'activeTabdash': alertsTab}" (click)="userdashTabs('Alerts')">
+
+          <i class="fa fa-bell"></i> Alerts
+        </li>
+        <li title="Your Transactions" [ngClass]="{'activeTabdash': transactionsTab}" (click)="userdashTabs('Transactions')">
+
+          <i class="fa fa-credit-card"></i> Transactions
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="col-md-10 right-content-bg" style="padding:15px;">
+
+  </div>
+</div>

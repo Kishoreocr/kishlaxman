@@ -133,6 +133,10 @@ export class UserloginComponent implements OnInit {
           
           );
           }
+
+          if (this.user1.role === 'agent') {
+            window.location.href = AppConstants.AgentloginURL;
+          }
           // this.routerProperty.navigateByUrl('/package-choose');
 
           this.userloginForm.value.username = "";

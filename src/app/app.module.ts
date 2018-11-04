@@ -51,7 +51,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { Home1Component } from './home1/home1.component';
 import {RoleAuthenticationService as RoleGuard } from './services/role-authentication';
+import { AgentdashboardComponent } from './agentdashboard/agentdashboard.component';
 
+import { AgentModule } from './agent/agent.module';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'aboutus', component: AboutusComponent },
@@ -139,7 +141,8 @@ const appRoutes: Routes = [
     AgentregisterComponent,
     HeaderComponent,
     FooterComponent,
-    Home1Component
+    Home1Component,
+    AgentdashboardComponent
 
   ],
   entryComponents: [
@@ -154,7 +157,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
-    ModalDialogModule.forRoot(), AdminModule, DataTableModule, Ng2TelInputModule,
+    ModalDialogModule.forRoot(), AdminModule, AgentModule, DataTableModule, Ng2TelInputModule,
     BrowserAnimationsModule
   ],
   exports: [

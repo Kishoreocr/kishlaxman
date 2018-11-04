@@ -342,4 +342,9 @@ export class EgazeService {
   getVillages(stateCode, districtCode, mandalCode) {
     return this.http.get(this.baseUrl + "village/details/" + stateCode + "/" + districtCode + "/" + mandalCode)
   }
+
+  getAgentApprovalDetails() {
+    return this.http.get(this.baseUrl + 'agent/details');
+
+  }
 }
