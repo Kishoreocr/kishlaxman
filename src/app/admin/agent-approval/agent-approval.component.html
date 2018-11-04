@@ -69,10 +69,10 @@
                     <div class="col">
                         <div class="d-flex justify-content-center" style="margin-top:20px;">
                             <div class="approvalReject">
-                                <div *ngIf="agentDetails.status && agentDetails.status == 'P'" (click)="agentApprovalReject(agentDetails)">
+                                <div *ngIf=" agentDetails && agentDetails.status && agentDetails.status == 'P'" (click)="agentApprovalReject(agentDetails)">
                                     Approval
                                 </div>
-                                <div *ngIf="agentDetails.status && agentDetails.status != 'P'" (click)="agentApprovalReject(agentDetails)">
+                                <div *ngIf="agentDetails && agentDetails.status && agentDetails.status != 'P'" (click)="agentApprovalReject(agentDetails)">
                                     Reject
                                 </div>
                             </div>

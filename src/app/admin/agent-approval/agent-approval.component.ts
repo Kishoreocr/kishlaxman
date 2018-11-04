@@ -17,6 +17,7 @@ export class AgentApprovalComponent implements OnInit {
   alerts: any;
   constructor(private EgazeService: EgazeService, private modalService: ModalService) {
     this.getCustomerDetails();
+    
     this.getAlerts();
     // this.dataArray;
   }
