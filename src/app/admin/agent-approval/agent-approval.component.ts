@@ -10,9 +10,7 @@ import { ModalService } from '../../admin/service/modal.service';
 export class AgentApprovalComponent implements OnInit {
   customers: any = [];
   agentDetails: any;
-  dataArray: any = {
-    'Name': 'laxman'
-  }
+  
   agentresult: any;
   alerts: any;
   constructor(private EgazeService: EgazeService, private modalService: ModalService) {
@@ -27,7 +25,7 @@ export class AgentApprovalComponent implements OnInit {
   }
   getAlerts() {
     this.EgazeService.getAlerts(3).subscribe(result => {
-      debugger;
+     // debugger;
       this.alerts = result;
     }, error => {
     });
@@ -41,16 +39,34 @@ export class AgentApprovalComponent implements OnInit {
   }
 
   openModal(id: string, cust) {
+    this.updateuserstatus='';
     this.modalService.open(id);
     this.agentDetails = cust;
+    this.userstatus=cust.status;
   }
   closeModal(id: string) {
     this.modalService.close(id);
   }
-
-  agentApprovalReject(obj) {
-    this.EgazeService.updateAgenapprovalReject(obj).subscribe(result => {
+status:any;
+userstatus:any;
+updateuserstatus:any='';
+agentApprovalReject(obj) {
+    
+    if(obj.status=='P'){
+      status='A';
+    }else{
+      status='P';
+    }
+    this.EgazeService.updateAgenapprovalReject(obj.loginId,status).subscribe(result => {
       this.agentresult = result;
+     this.getCustomerDetails();
+     if (status === 'A') {
+      this.updateuserstatus = 'Agent is Approved';
+      this.userstatus = 'A';
+    } else {
+      this.updateuserstatus = 'Agent is Reverted';
+      this.userstatus = 'P';
+    }
     });
   }
 

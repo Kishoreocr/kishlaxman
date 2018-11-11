@@ -6,6 +6,8 @@ import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpop
 import { EgazeService } from '../services/egaze.service';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
 import { ModalPropertyService } from '../services/modal-property.service';
+import { interval } from 'rxjs/observable/interval';
+
 
 @Component({
   selector: 'app-agentregister',
@@ -40,6 +42,8 @@ export class AgentregisterComponent implements OnInit {
   errorMessage: any;
   errorValidation: string;
   submitted1 = false;
+  timerOn = true;
+  resend:any=false;
 
 
   constructor(private ModalPropertyService: ModalPropertyService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService) {
@@ -178,10 +182,12 @@ export class AgentregisterComponent implements OnInit {
             this.isLoading = false;
             //sessionStorage.setItem("formData", JSON.stringify(formData.value));
             //this.openNewDialog(formData);
+            this.registerModal('registermodal');
             this.EgazeService.getOTP(formData.value.email, formData.value.mobileNumber).subscribe(otp => {
               this.isLoading = false;
               this.otpValue = otp;
-              this.registerModal('registermodal');
+             
+              this.timer(300);
             });
           }
         }
@@ -210,12 +216,12 @@ export class AgentregisterComponent implements OnInit {
     else
       this.termsCheckederrors = "";
   }
-  openNewDialog(formData) {
-    this.modalService.openDialog(this.viewRef, {
-      title: 'Validate OTP(One Time Passcode)',
-      childComponent: MessagemodalpopupComponent
-    });
-  }
+  // openNewDialog(formData) {
+  //   this.modalService.openDialog(this.viewRef, {
+  //     title: 'Validate OTP(One Time Passcode)',
+  //     childComponent: MessagemodalpopupComponent
+  //   });
+  // }
 
 
 
@@ -238,9 +244,9 @@ export class AgentregisterComponent implements OnInit {
   OTPSave() {
     this.submitted1 = true;
     this.isLoading = true;
-    if (parseInt(this.otpForm.value.otp) === this.otpValue) {
-      debugger;
+    if (parseInt(this.otpForm.value.otp) === parseInt(this.otpValue)) {
       //this.otpForm.value.otp = "";
+      this.isLoading = true;
       this.EgazeService.registerFun(this.registerForm.value).subscribe(result => {
         this.isLoading = false;
         if (result) {
@@ -282,6 +288,69 @@ export class AgentregisterComponent implements OnInit {
     else {
       return false;
     }
+  }
+
+  m: any;
+  s: any;
+  timerd: any="05:00";
+  sub:any;
+  timer(remaining) {
+    var  source = interval(1000);
+    //output: 0,1,2,3,4,5....
+    //alert(remaining)
+    if(parseInt(remaining)  > 0 ){
+    this.sub=source.subscribe(val => {
+      
+      if(parseInt(remaining)  > 0 ){
+      this.m = Math.floor(remaining / 60);
+      this.s = remaining % 60;
+
+      this.m = this.m < 10 ? '0' + this.m : this.m;
+      this.s = this.s < 10 ? '0' + this.s : this.s;
+
+      this.timerd = this.m + ':' + this.s;
+      remaining -= 1;
+      this.timer1(remaining);
+      }else{
+      //  alert("ss")
+        this.resend=true;
+        this.sub.unsubscribe();
+        return ;
+      }
+    
+    },err => {
+     // alert("ss"+err)
+    }
+);
+  }else{
+    //alert("ss")
+    return;
+  }
+  }
+  timer1(remaining) {
+    this.m = Math.floor(remaining / 60);
+    this.s = remaining % 60;
+
+    this.m = this.m < 10 ? '0' + this.m : this.m;
+    this.s = this.s < 10 ? '0' + this.s : this.s;
+
+    this.timerd = this.m + ':' + this.s;
+    remaining -= 1;
+    
+    //alert(remaining)
+  }
+  resendotp(){
+    this.isLoading = true;
+          this.EgazeService.getOTP(this.registerForm.value.email, this.registerForm.value.mobileNumber).subscribe(result => {
+            this.isLoading = false;
+            this.otpValue = result;
+            this.resend=false;
+            this.timer(300);
+          },
+            error => {
+              this.isLoading = false;
+             // this.serverError = 'Server error has occurred, Please try later.'
+            });
   }
 
 

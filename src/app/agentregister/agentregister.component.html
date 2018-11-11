@@ -45,7 +45,7 @@
           maxlength="50"/>
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Email is required</div>
-            <div *ngIf="f.email.errors.minlength">Please enter a valid email</div>
+            <div *ngIf="f.email.errors.minlength">Email should be minimum 6 characters</div>
             <div *ngIf="f.email.errors.pattern">Please enter a valid email</div>
           </div>
           <div *ngIf="existsUser && existsUser.length > 0">
@@ -127,7 +127,7 @@
           <label>Brief description of yourself
             <span class="mandatory">*</span>
           </label>
-          <textarea formControlName="briefDescription" placeholder="Please Enter Brief Description Of Yourself" id="exampleFormControlTextarea1" rows="3" class="form-control no-resize"
+          <textarea formControlName="briefDescription" placeholder="Please Enter description of yourself" id="exampleFormControlTextarea1" rows="3" class="form-control no-resize"
             [ngClass]="{ 'is-invalid': submitted && f.briefDescription.errors }" maxlength="500"></textarea>
           <div *ngIf="submitted && f.briefDescription.errors" class="invalid-feedback">
             <div *ngIf="f.briefDescription.errors.required">Brief description is required</div>
@@ -180,11 +180,15 @@
                         <form [formGroup]="otpForm" (ngSubmit)="OTPSave()">
                           <div class="form-group">
                             <label for="otpInput">Please enter OTP</label>
-                            <input type="text" class="form-control" id="otpInput" aria-describedby="otpHelp" 
+                            <input type="text" class="form-control" id="otpInput" aria-describedby="otpHelp"  maxlength="4" 
                             placeholder="Enter OTP" formControlName="otp" [ngClass]="{ 'is-invalid': submitted1 && f1.otp.errors }">
                             <div *ngIf="submitted1 && f1.otp.errors" class="invalid-feedback">
                                 <div *ngIf="f1.otp.errors.required">OTP is required</div>
                             </div>
+                          </div>
+                          <div class="col" align="right">
+                            <p *ngIf="resend"><a style="color: #007bff;cursor:pointer" (click)="resendotp()">Resend OTP </a></p>
+                            <p *ngIf="!resend">{{timerd}}</p>
                           </div>
                           <div class="col" align="center">
                             <button type="submit" class="submit-btn">Validate OTP</button>

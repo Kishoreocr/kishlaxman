@@ -170,9 +170,14 @@
                                   <div *ngIf="f1.otp.errors.required">OTP is required</div>
                               </div>
                             </div>
+                            <div class="col" align="right">
+                                <p *ngIf="resend"><a style="color: #007bff;cursor:pointer" (click)="resendotp()">Resend OTP </a></p>
+                                <p *ngIf="!resend">{{timerd}}</p>
+                              </div>
                             <div class="col" align="center">
                               <button type="submit" class="submit-btn">Validate OTP</button>
                             </div>
+                            
                             <div class="col">
                               <p>OTP has been sent to your mobile and Email.</p>
                             </div>

@@ -12,6 +12,8 @@ import { LoadingDivComponent } from '../loading-div/loading-div.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ModalPropertyService } from '../services/modal-property.service';
+import { interval } from 'rxjs/observable/interval';
+
 @Component({
   selector: 'app-userlogin',
   templateUrl: './userlogin.component.html',
@@ -41,6 +43,11 @@ export class UserloginComponent implements OnInit {
   showText: boolean;
   showIconEye: boolean = false;
   hideIconEye: boolean = false;
+  otpForm: FormGroup;
+  updateOTP: any = '';
+  errorMessage: any;
+  timerOn = true;
+  resend:any=false;
 
   constructor(private fb: FormBuilder, router: Router, private route: ActivatedRoute, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, private http: HttpClient, private ModalPropertyService: ModalPropertyService) {
     this.disabledField = false;
@@ -65,6 +72,9 @@ export class UserloginComponent implements OnInit {
   // });
 
   ngOnInit() {
+    this.otpForm = this.fb.group({
+      otp: ['', Validators.required]
+    });
     this.disabledField = false;
     this.route.queryParamMap.subscribe(params => {
       if (params.get('data') === 'success') {
@@ -85,6 +95,44 @@ export class UserloginComponent implements OnInit {
   }
   // convenience getter for easy access to form fields
   get f() { return this.userloginForm.controls; }
+  get f1() { return this.otpForm.controls; }
+  OTPSave() {
+    this.submitted = !this.submitted;
+
+    if (parseInt(this.otpForm.value.otp) === this.updateOTP) {
+      //this.routerProperty.navigateByUrl('/success-register');
+      this.otpForm.value.otp = "";
+      this.errorMessage = '';
+      this.isLoading = true;
+      this.user1 = '';
+      this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
+
+      if (this.user1.role === 'customer') {
+        this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
+          result => {
+            if (Object.keys(result).length === 0) {
+              this.isLoading = false;
+              window.location.href = AppConstants.packageURL;
+
+            } else {
+              window.location.href = AppConstants.userdashboardURL;
+            }
+          }
+
+        );
+      }
+
+      if (this.user1.role === 'agent') {
+        window.location.href = AppConstants.AgentloginURL;
+      }
+      this.userloginForm.value.username = "";
+      this.userloginForm.value.userpwd = "";
+    }
+    else if (this.otpForm.value.otp) {
+      this.errorMessage = "Invalid OTP."
+    }
+
+  }
 
   saveUser(userloginForm) {
     if (this.userloginForm.valid) {
@@ -107,41 +155,29 @@ export class UserloginComponent implements OnInit {
         }
         else {
           this.user = JSON.stringify(message);
+          this.user1 = JSON.parse(this.user + "");
 
-          this.sessionstorageService.setUserDetails(this.user);
-          // alert(this.sessionstorageService.getUserDetails());
-          this.isLoading = true;
-          this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
-          // alert(this.user1.loginId)
           if (this.user1.role === 'admin') {
+            this.sessionstorageService.setUserDetails(this.user);
             window.location.href = AppConstants.AdminloginURL;
+          } else if(this.user1.role === 'agent' && this.user1.status === 'P'){
+            this.invalidCredential = "Your account is not approved.Please contact Admin."
           }
-          if (this.user1.role === 'customer') {
-          this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
-            result => {
-              //alert(Object.keys(result).length);
-              if (Object.keys(result).length === 0) {
-                this.isLoading = false;
-                window.location.href = AppConstants.packageURL;
+          else {
 
-              } else {
-                window.location.href = AppConstants.userdashboardURL;
-                // this.router.navigateByUrl('/userdashboard');
+            this.sessionstorageService.setUserDetails(this.user);
+            this.EgazeService.getSigninOTP(this.user1.email, this.user1.mobile).subscribe(result => {
+              this.forgotpwdmodal('signinotpmodal');
+              this.updateOTP = result;
+              this.timer(300);
+            }, error => {
+            });
 
-              }
-            }
-          
-          );
+
           }
+          // alert(this.sessionstorageService.getUserDetails());
 
-          if (this.user1.role === 'agent') {
-            window.location.href = AppConstants.AgentloginURL;
-          }
-          // this.routerProperty.navigateByUrl('/package-choose');
-
-          this.userloginForm.value.username = "";
-          this.userloginForm.value.userpwd = "";
-        }
+        }//end of else
 
       }, error => {
         this.isLoading = false;
@@ -197,5 +233,67 @@ export class UserloginComponent implements OnInit {
     this.showText = false;
     this.showIconEye = false;
     this.hideIconEye = true;
+  }
+  m: any;
+  s: any;
+  timerd: any="05:00";
+  sub:any;
+  timer(remaining) {
+    var  source = interval(1000);
+    //output: 0,1,2,3,4,5....
+    //alert(remaining)
+    if(parseInt(remaining)  > 0 ){
+    this.sub=source.subscribe(val => {
+      
+      if(parseInt(remaining)  > 0 ){
+      this.m = Math.floor(remaining / 60);
+      this.s = remaining % 60;
+
+      this.m = this.m < 10 ? '0' + this.m : this.m;
+      this.s = this.s < 10 ? '0' + this.s : this.s;
+
+      this.timerd = this.m + ':' + this.s;
+      remaining -= 1;
+      this.timer1(remaining);
+      }else{
+      //  alert("ss")
+        this.resend=true;
+        this.sub.unsubscribe();
+        return ;
+      }
+    
+    },err => {
+     // alert("ss"+err)
+    }
+);
+  }else{
+    //alert("ss")
+    return;
+  }
+  }
+  timer1(remaining) {
+    this.m = Math.floor(remaining / 60);
+    this.s = remaining % 60;
+
+    this.m = this.m < 10 ? '0' + this.m : this.m;
+    this.s = this.s < 10 ? '0' + this.s : this.s;
+
+    this.timerd = this.m + ':' + this.s;
+    remaining -= 1;
+    
+    //alert(remaining)
+  }
+  resendotp(){
+    this.isLoading = true;
+          this.EgazeService.getSigninOTP(this.user1.email, this.user1.mobile).subscribe(result => {
+            this.isLoading = false;
+            this.updateOTP = result;
+            this.resend=false;
+            this.timer(300);
+          },
+            error => {
+              this.isLoading = false;
+             // this.serverError = 'Server error has occurred, Please try later.'
+            });
   }
 }

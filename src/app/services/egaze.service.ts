@@ -27,7 +27,7 @@ export class EgazeService {
 
   getOTP(emialId, mobi) {
     let requestURL = this.baseUrl + 'otp/reg/' + emialId + '/' + mobi;
-    return this.http.get(requestURL);
+    return this.http.get(requestURL,{ responseType: 'text' });
   }
 
   registerFun(userObject) {
@@ -357,11 +357,15 @@ export class EgazeService {
     }
     return this.http.post(this.baseUrl + 'update/propertydocs/agent', data);
   }
-  updateAgenapprovalReject(obj){
+  updateAgenapprovalReject(loginId,status){
     var data = {
-        "loginId":obj.loginId,
-        "status":obj.status
+        "loginId":loginId,
+        "status":status
       }
-    return this.http.post(this.baseUrl + 'update/user/status ', data);
+    return this.http.post(this.baseUrl + 'update/user/status ', data,{ responseType: 'text' });
+  }
+  getSigninOTP(emialId, mobi) {
+    let requestURL = this.baseUrl + 'otp/signin/' + emialId + '/' + mobi;
+    return this.http.get(requestURL);
   }
 }

@@ -239,7 +239,7 @@
 
                         <div class="showHideText" (click)="showTextPwd(updateuserNewpwdForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
-                            <i class="fa fa-eye" *ngIf="showIconEye"></i>
+                            <i class="fa fa-eye" *ngIf="showIconEye" (mouseleave)="mouseoverpwd()"></i>
                         </div>
 
 
@@ -259,7 +259,7 @@
 
                         <div class="showHideText" (click)="showTextPwd1(updateuserNewpwdForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye1"></i>
-                            <i class="fa fa-eye" *ngIf="showIconEye1"></i>
+                            <i class="fa fa-eye" *ngIf="showIconEye1" (mouseleave)="mouseoverpwd1()"></i>
                         </div>
 
                         <div *ngIf="submitted && fpwdP.newpwd.errors" class="invalid-feedback">
@@ -277,7 +277,7 @@
 
                         <div class="showHideText" (click)="showTextPwd2(updateuserNewpwdForm)">
                             <i class="fa fa-eye-slash" *ngIf="hideIconEye2"></i>
-                            <i class="fa fa-eye" *ngIf="showIconEye2"></i>
+                            <i class="fa fa-eye" *ngIf="showIconEye2" (mouseleave)="mouseoverpwd2()"></i>
                         </div>
 
                         <div *ngIf="submitted && fpwdP.confirmpwd.errors" class="invalid-feedback">

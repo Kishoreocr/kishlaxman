@@ -252,7 +252,7 @@ this.updateuserProfilestatus="";
 
 
   showTextPwd(updateuserNewpwdForm) {
-    if (updateuserNewpwdForm.value.oldpwd) {
+    if (this.updateuserNewpwdForm.value.oldpwd) {
       this.showText = !this.showText;
       this.showIconEye = !this.showIconEye;
       this.hideIconEye = !this.hideIconEye;
@@ -260,7 +260,7 @@ this.updateuserProfilestatus="";
   }
 
   showTextPwd1(updateuserNewpwdForm) {
-    if (updateuserNewpwdForm.value.newpwd) {
+    if (this.updateuserNewpwdForm.value.newpwd) {
       this.showText1 = !this.showText1;
       this.showIconEye1 = !this.showIconEye1;
       this.hideIconEye1 = !this.hideIconEye1;
@@ -268,11 +268,26 @@ this.updateuserProfilestatus="";
   }
 
   showTextPwd2(updateuserNewpwdForm) {
-    if (updateuserNewpwdForm.value.confirmpwd) {
+    if (this.updateuserNewpwdForm.value.confirmpwd) {
       this.showText2 = !this.showText2;
       this.showIconEye2 = !this.showIconEye2;
       this.hideIconEye2 = !this.hideIconEye2;
     }
+  }
+  mouseoverpwd() {
+    this.showText = false;
+    this.showIconEye = false;
+    this.hideIconEye = true;
+  }
+  mouseoverpwd1() {
+    this.showText1 = false;
+    this.showIconEye1 = false;
+    this.hideIconEye1 = true;
+  }
+  mouseoverpwd2() {
+    this.showText2 = false;
+    this.showIconEye2 = false;
+    this.hideIconEye2 = true;
   }
   isCharts(event) {
     if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)

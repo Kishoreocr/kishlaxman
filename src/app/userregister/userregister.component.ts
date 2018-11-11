@@ -6,6 +6,8 @@ import { MessagemodalpopupComponent } from '../messagemodalpopup/messagemodalpop
 import { EgazeService } from '../services/egaze.service';
 import { LoadingDivComponent } from '../loading-div/loading-div.component';
 import { ModalPropertyService } from '../services/modal-property.service';
+import { interval } from 'rxjs/observable/interval';
+
 @Component({
   selector: 'app-userregister',
   templateUrl: './userregister.component.html',
@@ -38,6 +40,8 @@ export class UserregisterComponent implements OnInit {
   otpValue: any;
   errorMessage: any;
   errorValidation: string;
+  timerOn = true;
+  resend:any=false;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private ModalPropertyService: ModalPropertyService) {
 
@@ -188,6 +192,7 @@ export class UserregisterComponent implements OnInit {
               this.isLoading = false;
               this.otpValue = otp;
               this.registerModal('registermodal');
+              this.timer(300);
             });
 
             //this.openNewDialog(formData);
@@ -258,9 +263,12 @@ export class UserregisterComponent implements OnInit {
   OTPSave() {
     this.submitted1 = true;
     this.isLoading = true;
+    this.errorMessage='';
+    alert("ssout")
     if (parseInt(this.otpForm.value.otp) === this.otpValue) {
-      debugger;
+     // debugger;
       //this.otpForm.value.otp = "";
+      alert("ss")
       this.EgazeService.registerFun(this.registerForm.value).subscribe(result => {
         this.isLoading = false;
         if (result) {
@@ -284,5 +292,68 @@ export class UserregisterComponent implements OnInit {
       this.isLoading = false;
       this.errorValidation = "OTP is required"
     }
+  }
+
+  m: any;
+  s: any;
+  timerd: any="05:00";
+  sub:any;
+  timer(remaining) {
+    var  source = interval(1000);
+    //output: 0,1,2,3,4,5....
+    //alert(remaining)
+    if(parseInt(remaining)  > 0 ){
+    this.sub=source.subscribe(val => {
+      
+      if(parseInt(remaining)  > 0 ){
+      this.m = Math.floor(remaining / 60);
+      this.s = remaining % 60;
+
+      this.m = this.m < 10 ? '0' + this.m : this.m;
+      this.s = this.s < 10 ? '0' + this.s : this.s;
+
+      this.timerd = this.m + ':' + this.s;
+      remaining -= 1;
+      this.timer1(remaining);
+      }else{
+      //  alert("ss")
+        this.resend=true;
+        this.sub.unsubscribe();
+        return ;
+      }
+    
+    },err => {
+     // alert("ss"+err)
+    }
+);
+  }else{
+    //alert("ss")
+    return;
+  }
+  }
+  timer1(remaining) {
+    this.m = Math.floor(remaining / 60);
+    this.s = remaining % 60;
+
+    this.m = this.m < 10 ? '0' + this.m : this.m;
+    this.s = this.s < 10 ? '0' + this.s : this.s;
+
+    this.timerd = this.m + ':' + this.s;
+    remaining -= 1;
+    
+    //alert(remaining)
+  }
+  resendotp(){
+    this.isLoading = true;
+          this.EgazeService.getOTP(this.registerForm.value.email, this.registerForm.value.mobileNumber).subscribe(result => {
+            this.isLoading = false;
+            this.otpValue = result;
+            this.resend=false;
+            this.timer(300);
+          },
+            error => {
+              this.isLoading = false;
+             // this.serverError = 'Server error has occurred, Please try later.'
+            });
   }
 }

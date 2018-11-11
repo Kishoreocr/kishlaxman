@@ -271,6 +271,22 @@ this.updateuserProfilestatus="";
       this.hideIconEye2 = !this.hideIconEye2;
     }
   }
+  mouseoverpwd() {
+    this.showText = false;
+    this.showIconEye = false;
+    this.hideIconEye = true;
+  }
+  mouseoverpwd1() {
+    this.showText1 = false;
+    this.showIconEye1 = false;
+    this.hideIconEye1 = true;
+  }
+  mouseoverpwd2() {
+    this.showText2 = false;
+    this.showIconEye2 = false;
+    this.hideIconEye2 = true;
+  }
+ 
   isCharts(event) {
     if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
       return true;

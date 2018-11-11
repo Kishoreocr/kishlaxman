@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   data: { 
       expectedRole: 'agent'
     } },
-  { path: 'profile', component: AgentprofileComponent, canActivate: [RoleGuard], 
+  { path: 'agentprofile', component: AgentprofileComponent, canActivate: [RoleGuard], 
     data: { 
         expectedRole: 'agent'
       } }  

@@ -1,105 +1,164 @@
-
 <div class="container container-top-padding">
 
-<div class="row justify-content-md-center row no-gutters" >
+  <div class="row justify-content-md-center row no-gutters">
 
     <div class="alert alert-success" id="propertyDestination" *ngIf="registrationsuccess!=''" style="width: 80%;text-align: center;margin-left: 118px;margin-top: 18px;">
-        <a href="#" class="close" data-dismiss="alert">&times;</a>
-        <h4>Congratulations!.. You Have successfully Registered</h4>
-      
-      </div>
-  <div class="col-md-6 col-lg-5 col-sm-12 userloginForm">
-    <h4>Login</h4>
-    <p>Please enter registered email and password with Us!</p>
-    <form [formGroup]="userloginForm" (ngSubmit)="saveUser(userloginForm)">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email</label>
-        <input [attr.disabled]="disabledField ? true : null" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-          placeholder="Please Enter Email" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-          <div *ngIf="f.username.errors.required">Email is required</div>
-          <div *ngIf="f.username.errors.pattern">Please enter valid email</div>
-        </div>
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      <h4>Congratulations!.. You Have successfully Registered</h4>
 
-      </div>
-
-
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <div class="passwordInput">
-          <input [attr.disabled]="disabledField ? true : null" [type]="showText ? 'text' : 'password' " class="form-control" id="exampleInputPassword1"
-            placeholder="Please Enter Password" formControlName="userpwd" [ngClass]="{ 'is-invalid': submitted && f.userpwd.errors }">
-          <div class="showHideText" (click)="showTextPwd(userloginForm)">
-            <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
-            <i class="fa fa-eye" *ngIf="showIconEye" (mouseleave)="mouseoverpwd()"></i>
+    </div>
+    <div class="col-md-6 col-lg-5 col-sm-12 userloginForm">
+      <h4>Login</h4>
+      <p>Please enter registered email and password with Us!</p>
+      <form [formGroup]="userloginForm" (ngSubmit)="saveUser(userloginForm)">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email</label>
+          <input [attr.disabled]="disabledField ? true : null" type="text" class="form-control" id="exampleInputEmail1"
+            aria-describedby="emailHelp" placeholder="Please Enter Email" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Email is required</div>
+            <div *ngIf="f.username.errors.pattern">Please enter valid email</div>
           </div>
 
-          <div *ngIf="submitted && f.userpwd.errors" class="invalid-feedback">
-            <div *ngIf="f.userpwd.errors.required">Password is required</div>
-            <div *ngIf="f.userpwd.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <div class="passwordInput">
+            <input [attr.disabled]="disabledField ? true : null" [type]="showText ? 'text' : 'password' " class="form-control"
+              id="exampleInputPassword1" placeholder="Please Enter Password" formControlName="userpwd" [ngClass]="{ 'is-invalid': submitted && f.userpwd.errors }">
+            <div class="showHideText" (click)="showTextPwd(userloginForm)">
+              <i class="fa fa-eye-slash" *ngIf="hideIconEye"></i>
+              <i class="fa fa-eye" *ngIf="showIconEye" (mouseleave)="mouseoverpwd()"></i>
+            </div>
+
+            <div *ngIf="submitted && f.userpwd.errors" class="invalid-feedback">
+              <div *ngIf="f.userpwd.errors.required">Password is required</div>
+              <div *ngIf="f.userpwd.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 align-self-start col-sm-6" style="text-align: left;padding-right:0px;padding-bottom:10px;">
+            <a routerLink="/registerform" routerLinkActive="activeClss">New User?</a>
+          </div>
+
+          <div class="col-md-6  col-sm-6 align-self-end" style="text-align: right;padding-bottom:10px;">
+            <a href="javascript:void()" (click)="forgotpwdmodal('forgotpwdmodal')">Forgot your password?</a>
           </div>
         </div>
 
-      </div>
-
-      <div class="row">
-        <div class="col-md-6 align-self-start col-sm-6" style="text-align: left;padding-right:0px;padding-bottom:10px;">
-          <a routerLink="/registerform" routerLinkActive="activeClss">New User?</a>
+        <div class="col" align="center">
+          <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
+          <button type="submit" class="submit-btn">Login</button>
         </div>
 
-        <div class="col-md-6  col-sm-6 align-self-end" style="text-align: right;padding-bottom:10px;">
-          <a href="javascript:void()" (click)="forgotpwdmodal('forgotpwdmodal')">Forgot your password?</a>
+      </form>
+      <div class="row justify-content-md-center" *ngIf="invalidCredential !='' ">
+        <p style="padding:10px;font-size:13px;color:red;">{{invalidCredential}}</p>
+      </div>
+      <div class="row justify-content-md-center">
+        <p style="padding:10px;font-size:13px;color:red;">{{attemptloginMessage}}</p>
+      </div>
+
+
+    </div>
+
+
+    <!-- forgot password modal-->
+    <app-modal-property id="forgotpwdmodal">
+      <div class="modal forgotpwdmodal">
+        <div class="row justify-content-md-center justify-content-sm-center no-gutters">
+          <div class="modal-body col-md-4 col-sm-8" style="padding:0px;">
+
+            <div class='col modal-heading'>
+              <p>Forgot your Password?
+              </p>
+            </div>
+
+            <div class="close-icon-style">
+              <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('forgotpwdmodal');"></i>
+            </div>
+
+            <div class="modal-content-padding">
+              <app-forgetpassword></app-forgetpassword>
+              <!-- <div class='col btn-bottom-style'>
+                          <button class="submit-btn" (click)="closeModal('forgotpwdmodal');">Cancel</button>
+                      </div> -->
+            </div>
+          </div>
         </div>
       </div>
+      <div class="modal-background"></div>
+      <app-loading-div *ngIf="isLoading"></app-loading-div>
+    </app-modal-property>
+    <!-- forgot password modal -->
 
-      <div class="col" align="center">
-        <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
-        <button type="submit" class="submit-btn">Login</button>
+
+    <!-- forgot password modal-->
+    <app-modal-property id="signinotpmodal">
+      <div class="modal signinotpmodal">
+        <div class="row justify-content-md-center justify-content-sm-center no-gutters">
+          <div class="modal-body col-md-4 col-sm-8" style="padding:0px;">
+
+            <div class='col modal-heading'>
+              <p>OTP?
+              </p>
+            </div>
+
+            <div class="close-icon-style">
+              <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('signinotpmodal');"></i>
+            </div>
+
+            <div class="modal-content-padding">
+              <div class="row justify-content-md-center row no-gutters">
+                <div class="col">
+                  <form [formGroup]="otpForm" (ngSubmit)="OTPSave()">
+
+                    <div class="form-group">
+                      <label for="otpInput">Please enter OTP</label>
+                      <input type="text" class="form-control" id="otpInput" aria-describedby="otpHelp" placeholder="Please Enter OTP"
+                        formControlName="otp" [ngClass]="{ 'is-invalid': submitted && f1.otp.errors }" maxlength="4">
+
+
+
+                      <div *ngIf="submitted && f1.otp.errors" class="invalid-feedback">
+                        <div *ngIf="f1.otp.errors.required">OTP is required</div>
+                      </div>
+
+                    </div>
+                    <div class="col" align="right">
+                      <p *ngIf="resend"><a style="color: #007bff;cursor:pointer" (click)="resendotp()">Resend OTP </a></p>
+                      <p *ngIf="!resend">{{timerd}}</p>
+                    </div>
+                    <div class="col" align="center">
+                      <button type="submit" class="submit-btn">Validate OTP</button>
+                    </div>
+                    <div class="col" align="center" *ngIf="errorMessage && errorMessage.length > 0">
+                      <p style="color:red">{{errorMessage}}</p>
+                    </div>
+                    <div class="col">
+                      <p>OTP has been sent to your mobile.</p>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="modal-background"></div>
+      <app-loading-div *ngIf="isLoading"></app-loading-div>
+    </app-modal-property>
+    <!-- forgot password modal -->
 
-    </form>
-    <div class="row justify-content-md-center" *ngIf="invalidCredential !='' ">
-      <p style="padding:10px;font-size:13px;color:red;">{{invalidCredential}}</p>
-    </div>
-    <div class="row justify-content-md-center">
-      <p style="padding:10px;font-size:13px;color:red;">{{attemptloginMessage}}</p>
-    </div>
+
 
 
   </div>
-
-
-  <!-- forgot password modal-->
-  <app-modal-property id="forgotpwdmodal">
-    <div class="modal forgotpwdmodal">
-      <div class="row justify-content-md-center justify-content-sm-center no-gutters">
-        <div class="modal-body col-md-4 col-sm-8" style="padding:0px;">
-
-          <div class='col modal-heading'>
-            <p>Forgot your Password?
-            </p>
-          </div>
-
-          <div class="close-icon-style">
-            <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('forgotpwdmodal');"></i>
-          </div>
-
-          <div class="modal-content-padding">
-            <app-forgetpassword></app-forgetpassword>
-            <!-- <div class='col btn-bottom-style'>
-                          <button class="submit-btn" (click)="closeModal('forgotpwdmodal');">Cancel</button>
-                      </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal-background"></div>
-    <app-loading-div *ngIf="isLoading"></app-loading-div>
-  </app-modal-property>
-  <!-- forgot password modal -->
-
-
-
-
-</div></div>
+</div>
 <app-loading-div *ngIf="isLoading"></app-loading-div>
