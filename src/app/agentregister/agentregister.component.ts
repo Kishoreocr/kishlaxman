@@ -67,6 +67,20 @@ export class AgentregisterComponent implements OnInit {
     return true;
   }
 
+  pswdstrong(control: AbstractControl): any {
+    // alert(control.value)
+     let hasNumber = /\d/.test(control.value);
+     let hasUpper = /[A-Z]/.test(control.value);
+     let hasLower = /[a-z]/.test(control.value);
+      //console.log('Num, Upp, Low', hasNumber, hasUpper, hasLower);
+     const valid = hasNumber && hasUpper && hasLower;
+     if (!valid) {
+         // return what´s not valid
+         return { pwdstrong: true };
+     }
+     return ;
+ }
+ 
   ngOnInit() {
 
     if (window.navigator.userAgent.indexOf("Chrome") === -1) {
@@ -84,8 +98,8 @@ export class AgentregisterComponent implements OnInit {
       mobileNumber: ['', Validators.required],
       zipCode: ['',[Validators.required, Validators.minLength(4)]],
       briefDescription: ['', [Validators.required, Validators.minLength(6)]],
-      password: ['', [Validators.required, Validators.minLength(4)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(4), this.passwordConfirming]],
+      password: ['', [Validators.required, Validators.minLength(4),this.pswdstrong]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(4), this.passwordConfirming,this.pswdstrong]],
       termsChecked: [false, Validators.required],
       country: [null],
       countryCode: [null],

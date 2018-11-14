@@ -97,6 +97,7 @@
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">Password is required</div>
               <div *ngIf="f.password.errors.minlength">Please enter valid password with minimum 4 and maximum 20 charaters</div>
+              <div *ngIf="f.password.errors.pwdstrong">Password should have At least one letter, one capital letter and one number</div>
             </div>
           </div>
         </div>
@@ -117,6 +118,7 @@
               <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
               <div *ngIf="f.confirmPassword.errors.minlength">Please enter valid Confirm Password with minimum 4 and maximum 20 characters.</div>
               <div *ngIf="f.confirmPassword.errors.notSame">Password and confirm password must be match</div>
+              <div *ngIf="f.confirmPassword.errors.pwdstrong">Confirm Password should have At least one letter, one capital letter and one number</div>
             </div>
           </div>
         </div>
@@ -124,13 +126,13 @@
 
 
         <div class="form-group">
-          <label>Brief description of yourself
+          <label>Brief Description of Yourself
             <span class="mandatory">*</span>
           </label>
-          <textarea formControlName="briefDescription" placeholder="Please Enter description of yourself" id="exampleFormControlTextarea1" rows="3" class="form-control no-resize"
+          <textarea formControlName="briefDescription" placeholder="Please Enter Brief Description of Yourself" id="exampleFormControlTextarea1" rows="3" class="form-control no-resize"
             [ngClass]="{ 'is-invalid': submitted && f.briefDescription.errors }" maxlength="500"></textarea>
           <div *ngIf="submitted && f.briefDescription.errors" class="invalid-feedback">
-            <div *ngIf="f.briefDescription.errors.required">Brief description is required</div>
+            <div *ngIf="f.briefDescription.errors.required">Brief Description is required</div>
             <div *ngIf="f.briefDescription.errors.minlength">Please enter description with minimum 6 and maximum 500 characters</div>
                       </div>
         </div>

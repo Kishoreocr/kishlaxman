@@ -97,6 +97,7 @@
                         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                             <div *ngIf="f.password.errors.required">Password is required</div>
                             <div *ngIf="f.password.errors.minlength">Password must be at least 4 characters</div>
+                            <div *ngIf="f.password.errors.pwdstrong">Password should have At least one letter, one capital letter and one number</div>
                         </div>
                     </div>
                 </div>
@@ -117,6 +118,7 @@
                             <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
                             <div *ngIf="f.confirmPassword.errors.minlength">Confirm Password must be at least 4 characters</div>
                             <div *ngIf="f.confirmPassword.errors.notSame">Password and confirm password must be match</div>
+                            <div *ngIf="f.confirmPassword.errors.pwdstrong">Confirm Password should have At least one letter, one capital letter and one number</div>
                         </div>
                     </div>
                 </div>
@@ -164,7 +166,7 @@
                           <form [formGroup]="otpForm" (ngSubmit)="OTPSave()">
                             <div class="form-group">
                               <label for="otpInput">Please enter OTP</label>
-                              <input type="text" class="form-control" id="otpInput" aria-describedby="otpHelp" 
+                              <input type="text" class="form-control" id="otpInput" aria-describedby="otpHelp" maxlength="4" 
                               placeholder="Enter OTP" formControlName="otp" [ngClass]="{ 'is-invalid': submitted1 && f1.otp.errors }">
                               <div *ngIf="submitted1 && f1.otp.errors" class="invalid-feedback">
                                   <div *ngIf="f1.otp.errors.required">OTP is required</div>

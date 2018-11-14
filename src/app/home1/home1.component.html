@@ -131,7 +131,23 @@
     </div>
   </div>
 </div>
+  <form ngNoForm action="https://test.payu.in/_payment" name="payuform" method="POST"  
+  >
 
+  <input type="hidden" name="key" value="8IJWsyEj" />
+  <input type="hidden" name="salt " value="7e9GXyMM0H"/>
+  <input type="hidden" name="txnid" value="1234" />
+  <input type="hidden" name="amount" value="1" />
+  <input type="hidden" name="productinfo" value="package" />
+  <input type="hidden" name="firstname" value="kishore" />
+  <input type="hidden" name="email" value="madishetty.kishore@gmail.com" />
+  <input type="hidden" name="phone" value="9703047975" />
+  <input type="hidden" name="surl" value="http://localhost:4200/payment/success" />
+  <input type="hidden" name="furl" value="http://localhost:4200/payment/notsuccess" />
+  <input type="hidden" name="hash" value="8IJWsyEj" />
+  <input type="hidden" name="hash_string" value="" />
+  <input type="submit" value="Submit"  />
+  </form>
 
 
 

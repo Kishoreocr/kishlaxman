@@ -265,6 +265,8 @@
                             <div *ngIf="fpwdP.oldpwd.errors.required">Old password is required</div>
                             <div *ngIf="fpwdP.oldpwd.errors.minlength">Please enter valid Old Password with minimum  4 and maximum 20 characters
                             </div>
+                            
+  <div *ngIf="fpwdP.oldpwd.errors.pwdstrong">Old Password should have At least one letter, one capital letter and one number</div>
                         </div>
                     </div>
                 </div>
@@ -284,6 +286,8 @@
                             <div *ngIf="fpwdP.newpwd.errors.required">New password is required</div>
                             <div *ngIf="fpwdP.newpwd.errors.minlength">Please enter valid new Password with minimum  4 and maximum 20 characters
                             </div>
+                            
+  <div *ngIf="fpwdP.newpwd.errors.pwdstrong">New Password should have At least one letter, one capital letter and one number</div>
                         </div>
                     </div>
                 </div>
@@ -302,6 +306,8 @@
                             <div *ngIf="fpwdP.confirmpwd.errors.required">Confirm password is required</div>
                             <div *ngIf="fpwdP.confirmpwd.errors.minlength">Please enter valid Confirm Password with minimum 4 and maximum 20 characters</div>
                             <div *ngIf="fpwdP.confirmpwd.errors.notSame">New password and confirm password must be match</div>
+                            
+  <div *ngIf="fpwdP.confirmpwd.errors.pwdstrong">Confirm Password should have At least one letter, one capital letter and one number</div>
 
                         </div>
                     </div>

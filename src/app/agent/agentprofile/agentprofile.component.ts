@@ -72,6 +72,19 @@ export class AgentprofileComponent implements OnInit {
     }
 
   }
+  pswdstrong(control: AbstractControl): any {
+    // alert(control.value)
+     let hasNumber = /\d/.test(control.value);
+     let hasUpper = /[A-Z]/.test(control.value);
+     let hasLower = /[a-z]/.test(control.value);
+      //console.log('Num, Upp, Low', hasNumber, hasUpper, hasLower);
+     const valid = hasNumber && hasUpper && hasLower;
+     if (!valid) {
+         // return what´s not valid
+         return { pwdstrong: true };
+     }
+     return ;
+ }
   ngOnInit() {
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -99,9 +112,9 @@ export class AgentprofileComponent implements OnInit {
     });
 
     this.updateuserNewpwdForm = this.formBuilder.group({
-      oldpwd: ['', [Validators.required, Validators.minLength(4)]],
-      newpwd: ['', [Validators.required, Validators.minLength(4)]],
-      confirmpwd: ['', [Validators.required, Validators.minLength(4), this.passwordConfirming]],
+      oldpwd: ['', [Validators.required, Validators.minLength(4),this.pswdstrong]],
+      newpwd: ['', [Validators.required, Validators.minLength(4),this.pswdstrong]],
+      confirmpwd: ['', [Validators.required, Validators.minLength(4), this.passwordConfirming,this.pswdstrong]],
 
     });
     debugger;

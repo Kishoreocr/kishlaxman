@@ -67,13 +67,27 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
     this.hideIconEye1 = true;
   }
 
+  pswdstrong(control: AbstractControl): any {
+    // alert(control.value)
+     let hasNumber = /\d/.test(control.value);
+     let hasUpper = /[A-Z]/.test(control.value);
+     let hasLower = /[a-z]/.test(control.value);
+      //console.log('Num, Upp, Low', hasNumber, hasUpper, hasLower);
+     const valid = hasNumber && hasUpper && hasLower;
+     if (!valid) {
+         // return what´s not valid
+         return { pwdstrong: true };
+     }
+     return ;
+ }
+
   ngOnInit() {
     this.otpForm = this.fb.group({
       otp: ['', Validators.required]
     });
     this.newpwdForm = this.fb.group({
-      newpwd: ['', [Validators.required, Validators.minLength(6)]],
-      confirmnewpwd: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming]]
+      newpwd: ['', [Validators.required, Validators.minLength(6),this.pswdstrong]],
+      confirmnewpwd: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming,this.pswdstrong]]
     })
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 

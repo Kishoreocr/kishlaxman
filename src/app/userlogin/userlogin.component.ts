@@ -104,7 +104,18 @@ export class UserloginComponent implements OnInit {
       this.otpForm.value.otp = "";
       this.errorMessage = '';
       this.isLoading = true;
-      this.user1 = '';
+       this.redirect();
+      this.userloginForm.value.username = "";
+      this.userloginForm.value.userpwd = "";
+    }
+    else if (this.otpForm.value.otp) {
+      this.errorMessage = "Invalid OTP."
+    }
+
+  }
+
+  redirect(){
+    this.user1 = '';
       this.user1 = JSON.parse(this.sessionstorageService.getUserDetails() + "");
 
       if (this.user1.role === 'customer') {
@@ -125,15 +136,7 @@ export class UserloginComponent implements OnInit {
       if (this.user1.role === 'agent') {
         window.location.href = AppConstants.AgentloginURL;
       }
-      this.userloginForm.value.username = "";
-      this.userloginForm.value.userpwd = "";
-    }
-    else if (this.otpForm.value.otp) {
-      this.errorMessage = "Invalid OTP."
-    }
-
   }
-
   saveUser(userloginForm) {
     if (this.userloginForm.valid) {
       this.isLoading = true;
@@ -165,18 +168,17 @@ export class UserloginComponent implements OnInit {
           }
           else {
 
-            this.sessionstorageService.setUserDetails(this.user);
+             this.sessionstorageService.setUserDetails(this.user);
             this.EgazeService.getSigninOTP(this.user1.email, this.user1.mobile).subscribe(result => {
               this.forgotpwdmodal('signinotpmodal');
               this.updateOTP = result;
               this.timer(300);
             }, error => {
             });
-
+            //this.redirect();
 
           }
-          // alert(this.sessionstorageService.getUserDetails());
-
+      
         }//end of else
 
       }, error => {

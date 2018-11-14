@@ -73,6 +73,20 @@ export class UserregisterComponent implements OnInit {
     }
   }
 
+  pswdstrong(control: AbstractControl): any {
+    // alert(control.value)
+     let hasNumber = /\d/.test(control.value);
+     let hasUpper = /[A-Z]/.test(control.value);
+     let hasLower = /[a-z]/.test(control.value);
+      //console.log('Num, Upp, Low', hasNumber, hasUpper, hasLower);
+     const valid = hasNumber && hasUpper && hasLower;
+     if (!valid) {
+         // return what´s not valid
+         return { pwdstrong: true };
+     }
+     return ;
+ }
+
   ngOnInit() {
     if (window.navigator.userAgent.indexOf("Chrome") === -1) {
       this.isie = true;
@@ -89,8 +103,8 @@ export class UserregisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern(emailPattern)]],
       mobileNumber: ['', Validators.required],
       zipCode: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])],
-      password: ['', [Validators.required, Validators.minLength(4)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(4), this.passwordConfirming]],
+      password: ['', [Validators.required, Validators.minLength(4),this.pswdstrong]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(4), this.passwordConfirming,this.pswdstrong,]],
       termsChecked: [false, Validators.required],
       country: [null],
       countryCode: [null],
@@ -264,11 +278,9 @@ export class UserregisterComponent implements OnInit {
     this.submitted1 = true;
     this.isLoading = true;
     this.errorMessage='';
-    alert("ssout")
-    if (parseInt(this.otpForm.value.otp) === this.otpValue) {
+    if (parseInt(this.otpForm.value.otp) === parseInt(this.otpValue)) {
      // debugger;
       //this.otpForm.value.otp = "";
-      alert("ss")
       this.EgazeService.registerFun(this.registerForm.value).subscribe(result => {
         this.isLoading = false;
         if (result) {
