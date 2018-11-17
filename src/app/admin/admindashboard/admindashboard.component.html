@@ -476,7 +476,7 @@
                                                         </label>
                                                         <input type="text" [readonly]="!isEditDisabled" formControlName="extentOfProperty"
                                                             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentOfProperty.errors }"
-                                                            id="extentOfProperty" placeholder="Enter Extent of Property">
+                                                            id="extentOfProperty" placeholder="Enter Extent of Property" maxlength="150">
                                                         <div *ngIf="submitted && f.extentOfProperty.errors" class="invalid-feedback">
                                                             <div *ngIf="f.extentOfProperty.errors.required">Extent of
                                                                 Property is required</div>
@@ -494,7 +494,7 @@
                                                         </label>
                                                         <input type="text" [readonly]="!isEditDisabled" formControlName="documentNo"
                                                             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
-                                                            id="documentNoFormControlInput" placeholder="Enter document no.">
+                                                            id="documentNoFormControlInput" placeholder="Enter document no." maxlength="30">
                                                         <div *ngIf="submitted && f.documentNo.errors" class="invalid-feedback">
                                                             <div *ngIf="f.documentNo.errors.required">Document No. is
                                                                 required</div>
@@ -513,7 +513,7 @@
                                                         </label>
                                                         <input type="text" [readonly]="!isEditDisabled" formControlName="subRegisterOffice"
                                                             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
-                                                            id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office">
+                                                            id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office" minlength="6" maxlength="150">
                                                         <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
                                                             <div *ngIf="f.subRegisterOffice.errors.required">Sub
                                                                 Register Office is required

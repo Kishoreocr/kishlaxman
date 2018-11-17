@@ -202,20 +202,20 @@
                                                                 {{property.documentNo}}
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Address
-                                                                1:
-                                                            </div>
-                                                            <div class="col-sm-6 col-form-label">
-                                                                {{property.address1}}
-                                                            </div>
-                                                        </div>
+                                                        
 
 
                                                     </div>
 
 
                                                     <div class="col-md-4">
+
+                                                            <div class="form-group row">
+                                                                    <div class="col-sm-5 col-form-label font-bold-label">Address1 :                                                          </div>
+                                                                    <div class="col-sm-6 col-form-label" style="width:20px;">
+                                                                        {{property.address1}}
+                                                                    </div>
+                                                                </div>
 
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Address
@@ -748,7 +748,7 @@
                                         <div class="col-sm-4">
                                             <input type="text" formControlName="extentofProperty" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.extentofProperty.errors }" id="extentofPropertyFormControlInput"
-                                                placeholder="Please Enter Extent Of Property" maxlength="30">
+                                                placeholder="Please Enter Extent Of Property" maxlength="150">
                                             <div *ngIf="submitted && f.extentofProperty.errors" class="invalid-feedback">
                                                 <div *ngIf="f.extentofProperty.errors.required">Extent of Property is
                                                     required

@@ -359,7 +359,7 @@ export class AdmindashboardComponent implements OnInit {
   }
 
   getPropertyDetails() {
-    this.updateuserProfilestatus = "";
+   // this.updateuserProfilestatus = "";
     this.EgazeService.getPropertyApi().subscribe(result => {
       this.propertyApproval = result;
       this.propertyApproval1 = result;
@@ -401,14 +401,12 @@ export class AdmindashboardComponent implements OnInit {
       this.EgazeService.updatePropertybyAdmin(propertyForm1.value, this.loginId, this.propertyId,this.property.status).subscribe(result => {
         this.isLoading = false;
         //alert("dsdd="+result)
-        const element = document.querySelector("#propertyDestination")
-        if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        window.scroll(0, 0);
+       
         this.updateuserProfilestatus = "Property updated Successfully";
         this.isEditDisabled = false;
         this.isLoaderdiv = false;
         this.getPropertyDetails();
-        //alert("suss")
+       // alert("suss"+this.updateuserProfilestatus)
       }, error => {
         this.isLoaderdiv = false;
         // alert("suss="+JSON.stringify(error));

@@ -80,6 +80,16 @@ div.textboxStyle {
   .showHideText i.fa{
    font-size:18px;
   }
+  .showHideText2{
+    position: absolute;
+    right: 10px;
+    top: 1;
+    top: 6px;
+    cursor: pointer;
+  }
+  .showHideText2 i.fa{
+   font-size:18px;
+  }
   /* MODAL STYLES
 -------------------------------*/
 app-modal-property {

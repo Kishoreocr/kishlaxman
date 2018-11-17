@@ -374,7 +374,7 @@ position: relative;">
     </li>
     <li *ngIf="flag" [class.activelink-mobile-menu-bg]="currentURL=='/admindashboard' || currentURL=='/userdashboard' || currentURL=='/agentdashboard'">
       <a *ngIf="this.user.role==='admin'" routerLink="/admindashboard" routerLinkActive="activeClss">Dashboard</a>
-      <a *ngIf="this.user.role==='customer'" (click)="userdashboard()" >Dashboard</a>
+      <a *ngIf="this.user.role==='customer'" (click)="userdashboard()" style="cursor: pointer;" >Dashboard</a>
       <a *ngIf="this.user.role==='agent'" routerLink="/agentdashboard" routerLinkActive="activeClss" >Dashboard</a>
 
     </li>

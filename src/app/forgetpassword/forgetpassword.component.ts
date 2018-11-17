@@ -86,14 +86,15 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
       otp: ['', Validators.required]
     });
     this.newpwdForm = this.fb.group({
-      newpwd: ['', [Validators.required, Validators.minLength(6),this.pswdstrong]],
-      confirmnewpwd: ['', [Validators.required, Validators.minLength(6), this.passwordConfirming,this.pswdstrong]]
+      newpwd: ['', [Validators.required, Validators.minLength(4),this.pswdstrong]],
+      confirmnewpwd: ['', [Validators.required, Validators.minLength(4), this.passwordConfirming,this.pswdstrong]]
     })
     var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     this.userForgtForm = this.fb.group({
       emailidForget: ['', [Validators.required, Validators.pattern(emailPattern)]]
     });
+    
   }
   // convenience getter for easy access to form fields
   get f() { return this.otpForm.controls; }
@@ -114,7 +115,7 @@ export class ForgetpasswordComponent implements OnInit, IModalDialog {
   passwordConfirming(c: AbstractControl): any {
     if (!c.parent || !c) return;
     const pwd = c.parent.get('newpwd');
-    const cpwd = c.parent.get('confirmpwd')
+    const cpwd = c.parent.get('confirmnewpwd')
 
     if (!pwd || !cpwd) return;
     if (pwd.value !== cpwd.value) {

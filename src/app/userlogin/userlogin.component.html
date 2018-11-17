@@ -84,10 +84,136 @@
             </div>
 
             <div class="modal-content-padding">
-              <app-forgetpassword></app-forgetpassword>
-              <!-- <div class='col btn-bottom-style'>
-                          <button class="submit-btn" (click)="closeModal('forgotpwdmodal');">Cancel</button>
-                      </div> -->
+              <!-- <app-forgetpassword></app-forgetpassword> -->
+             <!-- forgot password start -->
+             <div class="row justify-content-md-center row no-gutters">
+              <div class="col">
+            
+                <div *ngIf="!otphide && !passwordAccess && useridForget">
+                  <form [formGroup]="userForgtForm" (ngSubmit)="userIdforget(userForgtForm)">
+            
+                    <div class="form-group">
+                      <label for="userIdInput">Please enter registered email.</label>
+                      <input type="text" class="form-control" id="userIdInput" aria-describedby="userIdInput" placeholder="Please Enter Email" formControlName="emailidForget"
+                        [ngClass]="{ 'is-invalid': submitted1 && frgf.emailidForget.errors }">
+                      <div *ngIf="submitted1 && frgf.emailidForget.errors" class="invalid-feedback">
+                        <div *ngIf="frgf.emailidForget.errors.required">Email is required</div>
+                        <div *ngIf="frgf.emailidForget.errors.pattern">Please enter valid email</div>
+                      </div>
+                    </div>
+                    <div class="col" align="center">
+                      <button type="submit" class="submit-btn">Submit</button>
+                    </div>
+                    <div class="col" align="center" *ngIf="emailnotExists && emailnotExists.length > 0">
+                      <p style="color:red">{{emailnotExists}}</p>
+                    </div>
+                    <div class="col" align="center" *ngIf="serverError && serverError.length > 0">
+                      <p style="color:red">{{serverError}}</p>
+                    </div>
+            
+                  </form>
+                </div>
+            
+                <div *ngIf="otphide && !passwordAccess">
+                  <form [formGroup]="otpForm1" (ngSubmit)="OTPSave1()">
+            
+                    <div class="form-group">
+                      <label for="otpInput">Please enter OTP</label>
+                      <input type="text" class="form-control" id="otpInput" aria-describedby="otpHelp" placeholder="Please Enter OTP" formControlName="otp"
+                        [ngClass]="{ 'is-invalid': submitted2 && f2.otp.errors }" maxlength="4">
+            
+                       
+                      
+                        <div *ngIf="submitted2 && f2.otp.errors" class="invalid-feedback">
+                        <div *ngIf="f2.otp.errors.required">OTP is required</div>
+                      </div>
+                      
+                         <div class="col" align="right">
+                          <p *ngIf="resend1"><a style="color: #007bff;cursor:pointer" (click)="resendotp1()">Resend OTP </a></p>
+                          <p *ngIf="!resend1">{{timerd1}}</p>
+                        </div>
+
+                    </div>
+                    <div class="col" align="center">
+                      <button type="submit" class="submit-btn">Validate OTP</button>
+                    </div>
+                    <div class="col">
+                      <p>OTP has been sent to your mobile and Email.</p>
+                    </div>
+            
+                  </form>
+                </div>
+            
+            
+                <div *ngIf="passwordAccess && !otphide && pwschanged == ''">
+                  <form [formGroup]="newpwdForm" (ngSubmit)="newpwdSave(newpwdForm)">
+                    <div class="form-group">
+                      <label for="newpwdInput">New Password</label>
+                      <div class="passwordInput">
+                        <input [type]="showText2 ? 'text' : 'password' " class="form-control" id="newpwdInput" aria-describedby="newpwdHelp" minlength="4" maxlength="20" placeholder="Please Enter New Password"
+                          formControlName="newpwd" [ngClass]="{ 'is-invalid': newpwdSubmitted && pwdf.newpwd.errors }">
+            
+            
+                        <div class="showHideText" (click)="showTextPwd2(newpwdForm)">
+                          <i class="fa fa-eye-slash" *ngIf="hideIconEye2"></i>
+                          <i class="fa fa-eye" *ngIf="showIconEye2" (mouseleave)="mouseoverpwd2()"></i>
+                        </div>
+            
+                        <div *ngIf="newpwdSubmitted && pwdf.newpwd.errors" class="invalid-feedback">
+                          <div *ngIf="pwdf.newpwd.errors.required">New password is required</div>
+                          <div *ngIf="pwdf.newpwd.errors.minlength">New password must be at least 4 characters</div>
+                          <div *ngIf="pwdf.newpwd.errors.pwdstrong">New Password should have At least one letter, one capital letter and one number</div>
+                        </div>
+                      </div>
+                    </div>
+            
+                    <div class="form-group">
+                      <label for="confirmnewInput">Confirm Password</label>
+                      <div class="passwordInput">
+                        <input [type]="showText1 ? 'text' : 'password' " class="form-control" id="otpInput" aria-describedby="confirmnewpwdHelp" minlength="4" maxlength="20"
+                          placeholder="Please Enter Confirm Password" formControlName="confirmnewpwd" [ngClass]="{ 'is-invalid': newpwdSubmitted && pwdf.confirmnewpwd.errors }">
+            
+                        <div class="showHideText" (click)="showTextPwd1(newpwdForm)">
+                          <i class="fa fa-eye-slash" *ngIf="hideIconEye1"></i>
+                          <i class="fa fa-eye" *ngIf="showIconEye1"  (mouseleave)="mouseoverpwd1()"></i>
+                        </div>
+            
+                        <div *ngIf="newpwdSubmitted && pwdf.confirmnewpwd.errors" class="invalid-feedback">
+                          <div *ngIf="pwdf.confirmnewpwd.errors.required">Confirm password is required</div>
+                          <div *ngIf="pwdf.confirmnewpwd.errors.minlength">Confirm password must be at least 4 characters</div>
+                            <div *ngIf="pwdf.confirmnewpwd.errors.notSame">New password and confirm password must be match</div>
+                            <div *ngIf="pwdf.confirmnewpwd.errors.pwdstrong">Confirm Password should have At least one letter, one capital letter and one number</div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col" align="center" *ngIf="notmatchpwd && notmatchpwd.length > 0">
+                      <p style="color:red">{{notmatchpwd}}</p>
+                    </div>
+                    <div class="col" align="center">
+                      <button type="submit" class="submit-btn">Submit</button>
+                    </div>
+            
+                  </form>
+                </div>
+            
+                <div class="col" align="center" *ngIf="errorMessage && errorMessage.length > 0">
+                  <p style="color:red">{{errorMessage}}</p>
+                </div>
+                <div class="col" align="center" *ngIf="pwschanged && pwschanged.length > 0">
+                  <p style="color:green">{{pwschanged}}</p>
+            
+                  <div class="col" align="center">
+                    <button type="button" class="submit-btn" (click)="closeModal('forgotpwdmodal');">Ok</button>
+                  </div>
+                </div>
+            
+              </div>
+            </div>
+            <!-- forgotpassword end-->
+             
+             
+             
+
             </div>
           </div>
         </div>
