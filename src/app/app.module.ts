@@ -54,6 +54,8 @@ import {RoleAuthenticationService as RoleGuard } from './services/role-authentic
 import { AgentdashboardComponent } from './agentdashboard/agentdashboard.component';
 
 import { AgentModule } from './agent/agent.module';
+import { PaymentComponent } from './payment/payment.component';
+import { PaymentResponseComponent } from './payment-response/payment-response.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'aboutus', component: AboutusComponent },
@@ -100,6 +102,9 @@ const appRoutes: Routes = [
     } },
   { path: 'agent-registration', component: AgentregisterComponent },
   { path: 'home1', component: Home1Component },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'payment-response', component:   PaymentResponseComponent},
+
   { path: 'unauthorized', component: PagenotfoundComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
@@ -142,7 +147,9 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     Home1Component,
-    AgentdashboardComponent
+    AgentdashboardComponent,
+    PaymentComponent,
+    PaymentResponseComponent
 
   ],
   entryComponents: [

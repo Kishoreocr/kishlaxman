@@ -52,11 +52,12 @@ export class PackagesComponent implements OnInit {
   }
   packageFun(selected, id,mid) {
 
-    // if (selected === 'custom') {
-    //   this.router.navigateByUrl('/userdashboard');
-    // }
+    if (selected === 'YEARLY' || selected === 'MONTHLY') {
+      //this.router.navigateByUrl('/payment?package='+id);
+      window.location.href ='/payment?package='+id;
+    }
 
-    if (selected === 'CUSTOM' || selected === 'YEARLY' || selected === 'MONTHLY') {
+    if (selected === 'CUSTOM' ) {
       this.openModal(mid, selected+"$$"+id);
     }
   }

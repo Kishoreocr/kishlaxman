@@ -1,0 +1,94 @@
+<div class="container container-style container-top-padding">
+  <div class="row">
+
+    <div class="col" style='background-color: #fbfbfb !important;
+                    padding: 20px;'>
+      <div>
+        <h5 class="tab-active-heading"> Payment Details </h5>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group row">
+          <div class="col-sm-5 col-form-label font-bold-label">Name :</div>
+          <div class="col-sm-6 col-form-label">
+           {{payuform.firstname}}
+
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-5 col-form-label font-bold-label">Email :</div>
+          <div class="col-sm-6 col-form-label">
+            {{payuform.email}}
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-5 col-form-label font-bold-label">Phone :</div>
+          <div class="col-sm-6 col-form-label">
+            {{payuform.phone}}
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-5 col-form-label font-bold-label">Package :</div>
+          <div class="col-sm-6 col-form-label">
+            {{payuform.productinfo}}
+          </div>
+        </div>
+  <div class="form-group row">
+          <div class="col-sm-5 col-form-label font-bold-label">Amount :</div>
+          <div class="col-sm-6 col-form-label">
+           {{payuform.amount}}
+          </div>
+        </div>
+      </div>
+
+
+      <form ngNoForm action="{{payuform.paymentaction}}" name="payuform" method="POST">
+
+        <textarea name="key" id="key" ng-model="key" rows="2" cols="2" hidden [(ngModel)]="payuform.key"></textarea>
+        <textarea name="firstname" id="firstname" ng-model="firstname" rows="2" cols="2" hidden [(ngModel)]="payuform.firstname"></textarea>
+        <textarea name="email" id="email" ng-model="email" rows="2" cols="2" hidden [(ngModel)]="payuform.email"></textarea>
+        <textarea name="phone" id="phone" ng-model="phone" rows="2" cols="2" hidden [(ngModel)]="payuform.phone"></textarea>
+        <textarea name="productinfo" id="productinfo" ng-model="productinfo" rows="2" cols="2" hidden [(ngModel)]="payuform.productinfo"></textarea>
+
+        <textarea name="udf1" id="udf1" ng-model="udf1" rows="2" cols="2" hidden [(ngModel)]="payuform.custId"></textarea>
+        <textarea name="udf2" id="udf2" ng-model="udf2" rows="2" cols="2" hidden [(ngModel)]="payuform.packageId"></textarea>
+        <!-- <input type="hidden" name="udf1" value="">
+        <input type="hidden" name="udf2" value=""> -->
+        <input type="hidden" name="udf3" value="">
+        <input type="hidden" name="udf4" value=""><input type="hidden" name="udf5" value="">
+        <textarea name="surl" id="surl" ng-model="surl" rows="2" cols="2" hidden [(ngModel)]="payuform.surl"></textarea>
+        <textarea name="furl" id="furl" ng-model="furl" rows="2" cols="2" hidden [(ngModel)]="payuform.furl"></textarea>
+        <textarea name="txnid" id="txnid" ng-model="txnid" rows="2" cols="2" hidden [(ngModel)]="payuform.txnid"></textarea>
+        <textarea name="hash" id="hash" ng-model="hash" rows="2" cols="20" hidden [(ngModel)]="payuform.hash"></textarea>
+        <textarea name="service_provider" id="service_provider" rows="2" cols="2" hidden [(ngModel)]="payuform.serviceprovider"></textarea>
+        <textarea name="salt" id="salt" rows="2" cols="2" hidden [(ngModel)]="payuform.salt"></textarea>
+        <textarea name="amount" id="amount" rows="2" cols="2" hidden [(ngModel)]="payuform.amount"></textarea>
+        <div class="form-group row">
+          <div class="col-sm-5 col-form-label font-bold-label"></div>
+          <div class="col-sm-6 col-form-label">
+            <button *ngIf="disablePaymentButton" type="button" class="btn btn-default" (click)="confirmPayment()">Confirm</button>
+            <button *ngIf="!disablePaymentButton" type="submit" class="btn btn-danger">Pay</button>
+
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div>
+<app-loading-div *ngIf="isLoading"></app-loading-div>
+
+
+<!--    
+   <input type="hidden" name="key" value="8IJWsyEj">
+<input type="hidden" name="firstname" value="Kinna Yadav">
+<input type="hidden" name="email" value="kinna@allvy.com">
+<input type="hidden" name="phone" value="9553936111">
+<input type="hidden" name="productinfo" value="Sandbox text">
+<input type="hidden" name="surl" value="https://www.payumoney.com/merchant-dashboard/#/transactions">
+<input type="hidden" name="furl" value="https://www.payumoney.com/merchant-dashboard/#/transactions">
+<input type="hidden" name="txnid" value="tid1542567767742">
+<input type="hidden" name="hash" value="915e5201fab0943c797737563d1f3dbf430657c8b4a94c01355079c911bfd60567dcaba2463427dc4a051ef16ec578c7c84353be16a054642ab4c9f9de4f02b0">
+<input type="hidden" name="service_provider" value="payu_paisa">
+<input type="hidden" name="salt" value="7e9GXyMM0H">
+<input type="hidden" name="amount" value="11"> -->

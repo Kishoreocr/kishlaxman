@@ -27,7 +27,7 @@ export class EgazeService {
 
   getOTP(emialId, mobi) {
     let requestURL = this.baseUrl + 'otp/reg/' + emialId + '/' + mobi;
-    return this.http.get(requestURL,{ responseType: 'text' });
+    return this.http.get(requestURL, { responseType: 'text' });
   }
 
   registerFun(userObject) {
@@ -214,7 +214,7 @@ export class EgazeService {
 
   }
 
-  updatePropertybyAdmin(objProperty, userId, propertyId,sts) {
+  updatePropertybyAdmin(objProperty, userId, propertyId, sts) {
     debugger;
     let requestData = {
       'propertyId': propertyId,
@@ -239,7 +239,7 @@ export class EgazeService {
       "state": objProperty.state,
       "zip": objProperty.zip,
       "country": " ",
-      "status":sts
+      "status": sts
     };
     return this.http.post(this.baseUrl + 'update/property', requestData);
 
@@ -350,22 +350,39 @@ export class EgazeService {
   getPropertyUpdates(userId) {
     return this.http.get(this.baseUrl + "updatedproperties/" + userId)
   }
-  updatePropertyCommentReadStatus(id){
+  updatePropertyCommentReadStatus(id) {
     var data = {
       "id": id,
       "status": 'R'
     }
     return this.http.post(this.baseUrl + 'update/propertydocs/agent', data);
   }
-  updateAgenapprovalReject(loginId,status){
+  updateAgenapprovalReject(loginId, status) {
     var data = {
-        "loginId":loginId,
-        "status":status
-      }
-    return this.http.post(this.baseUrl + 'update/user/status ', data,{ responseType: 'text' });
+      "loginId": loginId,
+      "status": status
+    }
+    return this.http.post(this.baseUrl + 'update/user/status ', data, { responseType: 'text' });
   }
   getSigninOTP(emialId, mobi) {
     let requestURL = this.baseUrl + 'otp/signin/' + emialId + '/' + mobi;
+    return this.http.get(requestURL);
+  }
+
+  sendpaymnet(data) {
+    // const paymentPayload = {
+    //   email: data.email,
+    //   name: data.name,
+    //   phone: data.phone,
+    //   productInfo: data.productInfo,
+    //   amount: data.amount
+    // }
+//alert(data)
+    let requestURL = this.baseUrl + 'payment/payment-details';
+    return this.http.post(requestURL, data);
+  }
+  getPackage(id) {
+    let requestURL = this.baseUrl + 'packages/' + id;
     return this.http.get(requestURL);
   }
 }
