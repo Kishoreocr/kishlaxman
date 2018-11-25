@@ -291,15 +291,15 @@ ul.areas li { width:20%; list-style:none; float:left; padding:.3em 1em .3em 0; f
 
 @media (max-width: 767px){
 	#home-cta > .cta > .title {
-		font-size: 24px !important;
-		line-height: 28px;
+		font-size: 20px;
+		line-height: 26px;
 	}
 	#home-cta .cta {
 		min-height: 145px;
 	}
 	#home-cta .cta .title {
-		font-size: 24px;
-		line-height: 28px;
+		font-size: 20px;
+		line-height: 26px;
 	}
 	#home-cta .cta .sub {
 		font-size: 14px;

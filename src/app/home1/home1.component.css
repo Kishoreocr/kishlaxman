@@ -196,8 +196,11 @@ ul.areas li { width:20%; list-style:none; float:left; padding:.3em 1em .3em 0; f
 @media (max-width: 1199px){
 	#home-cta { margin-top: -216px; }
 	#home-cta .cta  { min-height: 216px; }
-	#home-cta .cta .title  { font-size: 30px; }
-
+	#home-cta .cta .title  { font-size: 24px; }
+	#home-cta .cta .sub {
+		font-size: 15px;
+		line-height: 20px;
+	}
 }
 @media (max-width: 991px){
 	#home-cta  { background: #000000; margin-top: 0; }
@@ -220,15 +223,15 @@ ul.areas li { width:20%; list-style:none; float:left; padding:.3em 1em .3em 0; f
 
 @media (max-width: 767px){
 	#home-cta > .cta > .title {
-		font-size: 24px !important;
-		line-height: 28px;
+		font-size: 20px !important;
+		line-height: 26px;
 	}
 	#home-cta .cta {
 		min-height: 145px;
 	}
 	#home-cta .cta .title {
-		font-size: 24px;
-		line-height: 28px;
+		font-size: 20px;
+		line-height: 26px;
 	}
 	#home-cta .cta .sub {
 		font-size: 14px;
@@ -928,4 +931,95 @@ div .height-xl { height:35px; }
 /*** ***/
 .cursorpointer{
 	cursor: pointer;
+}
+
+/*** slider heading style ***/
+
+.slider-text-style{
+	display: inline-block;
+	width: 55%;
+	text-align: left;
+	line-height: 30px;
+	font-size: 22px;margin-top: -9px;
+}
+.slider-text-style-btn{
+	display:inline-block;
+	width:45%;
+}
+
+
+@media (max-width: 1200px){
+	.slider-text-style{
+		width: 52%;
+		line-height: 30px;
+		font-size: 17px;
+		margin-top: -9px;
+	}
+	.slider-text-style-btn{
+		display:inline-block;
+		width:48%;
+	}
+	.slider-text-style-btn a{
+		font-size:16px;
+	}
+}
+@media (max-width: 1000px){
+	.slider-text-style{
+	    width: 50%;
+    line-height: 22px;
+    font-size: 16px;
+    margin-top: -9px;
+	}
+	.slider-text-style-btn{
+    width: 50%;
+	}
+	.slider-text-style-btn a{
+		font-size:13px!important;
+	}
+}
+
+@media (max-width: 540px){
+	.slider-text-style{
+		width: 100%;
+		line-height: 26px;
+		font-size: 18px;
+		margin-top: -9px;
+		padding-bottom:10px;
+	}
+	.slider-text-style-btn{
+		display:inline-block;
+		width:100%;
+	}
+	.slider-text-style-btn a{
+		font-size:16px;
+	}
+}
+
+@media (max-width: 679px){
+	.slider-text-style{
+		width: 100%;
+		line-height: 26px;
+		font-size: 18px;
+		margin-top: -9px;
+		padding-bottom:10px;
+	}
+	.slider-text-style-btn{
+		display:inline-block;
+		width:100%;
+	}
+	.slider-text-style-btn a{
+		font-size:16px;
+	}
+}
+#home-welcome p{
+line-height:30px!important;
+}
+@media (max-width: 850px){
+#home-cta {
+	font-size: 20px!important;
+}
+	.lead{
+		line-height: 26px!important;
+		font-size: 22px !important;
+	}
 }
