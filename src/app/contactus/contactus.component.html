@@ -1,18 +1,42 @@
 <div class='container contact-container-bg container-top-padding'>
   <div class="row">
-    <div class="col-md-7 content-container" style="padding:100px 0px;font-size:18px;">
+    <div class="col-md-6 content-container" style="padding:100px 0px;font-size:16px;">
 
-      <h4>eGAZE Property Monitoring</h4>
+      <h4>Contact Information</h4>
 
-      <p>
+      <!-- <p>
         We'd love to hear about your property and help you get started.
-      </p>
-
+      </p> -->
+<br>
       <div class="row">
-
-        <div class="col-md-4">
+        <div class="col-md-5">
+        <p style="color: #fd8236"><i _ngcontent-c1="" class="fa fa-phone" aria-hidden="true"></i>
+          <a style="color: #fd8236" *ngIf="!mobile" href="tel: +917045942225" target="_blank">7045942225</a>
+          <a style="color: #fd8236" *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-7045942225" target="_blank">7045942225</a>
+       /
+       <a style="color: #fd8236" *ngIf="!mobile" href="tel: +919845733344" target="_blank">9845733344</a>
+          <a style="color: #fd8236" *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-9845733344" target="_blank">9845733344</a>
+</p></div></div><div class="row">
+<div class="col-md-5">
+  <p style="color: #fd8236"><i _ngcontent-c1="" class="fa fa-envelope" aria-hidden="true"></i>
+    egaze72@gmail.com
+    </p>
+</div>
+</div>
+<div class="row">
+  <div class="col-md-5">
+    <p style="color: #fd8236"><i _ngcontent-c1="" class="fa fa-globe" aria-hidden="true"></i>
+      <a style="color: #fd8236" href="https://www.egaze.in" target="_blank">
+        https://www.egaze.in</a>
+      </p>
+  </div>
+  
+        <!-- <div class="col-md-4">
           <p>Email Us</p>
-          <div class='email-style'>egaze72@gmail.com</div>
+          <div class='email-style'>
+            
+
+          </div>
         </div>
         <div class="col-md-5">
           <p>Call Us</p>
@@ -23,7 +47,7 @@
          <a style="color: white" *ngIf="!mobile" href="tel: +919845733344" target="_blank">9845733344</a>
             <a style="color: white" *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-9845733344" target="_blank">9845733344</a>
  </div>
-        </div>
+        </div> -->
       </div>
 
 
@@ -39,7 +63,7 @@
     </div>
     
     
-      <h3>Contact</h3>
+      <h3>Get In Touch</h3>
       <form [formGroup]="contactusForm" novalidate (ngSubmit)="savedata(contactusForm)">
         <div class="form-group">
           <label>Type

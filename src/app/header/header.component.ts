@@ -111,6 +111,12 @@ export class HeaderComponent implements OnInit {
     }
     else {
       this.isScollDown = false;
+      
+    }
+    if(!this.isScollDown){
+      this.bgColorchange = false;
+      this.animationState = 'in';
+
     }
   }
 

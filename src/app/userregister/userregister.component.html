@@ -1,4 +1,4 @@
-<div class="container container-top-padding" style="padding:30px;">
+<div class="container container-top-padding" >
     <div class="row">
         <div class="col-md-5 offset-md-4 userregisterForm">
             <h4>Sign Up</h4>
@@ -125,7 +125,7 @@
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" formControlName="termsChecked" id="termsChecked" (click)="terms()">
                     <label class="form-check-label" for="exampleCheck1">I Accepted the
-                        <a routerLink="/terms-conditions" routerLinkActive="active" target="_new">Terms &amp; Conditions.</a>
+                        <a style="color: #fd8236" routerLink="/terms-conditions" routerLinkActive="active" target="_new">Terms &amp; Conditions.</a>
                     </label>
                 </div>
                 <div *ngIf="termsCheckederrors!=''" style="color:#dc3545;font-size: 80%">
