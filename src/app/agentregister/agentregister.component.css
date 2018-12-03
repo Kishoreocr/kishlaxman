@@ -5,10 +5,11 @@
   .isienot{
     width:193% !important;
   } */
-.userregisterForm{
-    background-color:#f1f8fd;
+  .userregisterForm{
+    background-color:#0076a3;
     padding:15px;
     border-radius:10px;
+    margin: auto;
 }
 .intl-tel-input {
     position: relative important;
@@ -79,3 +80,24 @@
     z-index:8;
   }
   /*** modal style close here ***/
+  .invalid-feedback{
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #ff7b7b !important;
+    font-weight: bold;
+  }
+  label{
+    color: #fff !important;
+  }
+  .userregisterForm h4{
+    color: #fff !important;
+ }
+ .userregisterForm p{
+  color: #fff !important;
+}
+.container-top-padding {
+  padding-top: 165px !important;
+  min-height: 100vh;
+}

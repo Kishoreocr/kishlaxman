@@ -18,13 +18,13 @@
     margin-bottom: 30px;
 }
 p.content-style{
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 15px;
+    line-height: 22px;
     word-wrap: nowrap;
 }
 
 p.content-style b{
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
 
 }

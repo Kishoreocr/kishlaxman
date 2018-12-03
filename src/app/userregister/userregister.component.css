@@ -226,7 +226,8 @@ app-modal-property {
     width: 100%;
     margin-top: 0.25rem;
     font-size: 80%;
-    color: #c30202 !important;
+    color: #ff7b7b !important;
+    font-weight: bold;
   }
   label{
     color: #fff !important;
@@ -236,4 +237,8 @@ app-modal-property {
  }
  .userregisterForm p{
   color: #fff !important;
+}
+.container-top-padding {
+  padding-top: 165px !important;
+  min-height: 100vh;
 }

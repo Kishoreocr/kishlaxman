@@ -1,6 +1,6 @@
 <div class='container contact-container-bg container-top-padding'>
-  <div class="row">
-    <div class="col-md-6 content-container" style="padding:100px 0px;font-size:16px;">
+  <div class="row" >
+    <div class="col-md-6 content-container" style="padding:70px 0px;font-size:16px;">
 
       <h4>Contact Information</h4>
 
@@ -9,7 +9,7 @@
       </p> -->
 <br>
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-12">
         <p style="color: #fd8236"><i _ngcontent-c1="" class="fa fa-phone" aria-hidden="true"></i>
           <a style="color: #fd8236" *ngIf="!mobile" href="tel: +917045942225" target="_blank">7045942225</a>
           <a style="color: #fd8236" *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-7045942225" target="_blank">7045942225</a>
@@ -17,37 +17,21 @@
        <a style="color: #fd8236" *ngIf="!mobile" href="tel: +919845733344" target="_blank">9845733344</a>
           <a style="color: #fd8236" *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-9845733344" target="_blank">9845733344</a>
 </p></div></div><div class="row">
-<div class="col-md-5">
+<div class="col-md-12">
   <p style="color: #fd8236"><i _ngcontent-c1="" class="fa fa-envelope" aria-hidden="true"></i>
-    egaze72@gmail.com
+    <a style="color: #fd8236" href="mailto:egaze72@gmail.com"  target="_blank">egaze72@gmail.com</a>
     </p>
 </div>
 </div>
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-12">
     <p style="color: #fd8236"><i _ngcontent-c1="" class="fa fa-globe" aria-hidden="true"></i>
       <a style="color: #fd8236" href="https://www.egaze.in" target="_blank">
         https://www.egaze.in</a>
       </p>
   </div>
   
-        <!-- <div class="col-md-4">
-          <p>Email Us</p>
-          <div class='email-style'>
-            
-
-          </div>
-        </div>
-        <div class="col-md-5">
-          <p>Call Us</p>
-          <div class='callus-style'>
-            <a style="color: white" *ngIf="!mobile" href="tel: +917045942225" target="_blank">7045942225</a>
-            <a style="color: white" *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-7045942225" target="_blank">7045942225</a>
-         /
-         <a style="color: white" *ngIf="!mobile" href="tel: +919845733344" target="_blank">9845733344</a>
-            <a style="color: white" *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-9845733344" target="_blank">9845733344</a>
- </div>
-        </div> -->
+  
       </div>
 
 
@@ -55,7 +39,7 @@
     </div>
 
 
-    <div class="col-md-4">
+    <div class="col-md-6" style="padding:70px 0px;font-size:16px;">
     
       <div class="alert alert-success" id="destination" *ngIf="status" >
         <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -83,26 +67,7 @@
             <div *ngIf="f.type.errors.required">Type is required</div>
           </div>
         </div>
-        <div class="form-group" style="position: relative">
-          <label>Description
-            <span class="mandatory">*</span>
-          </label>
         
-          <textarea class="form-control" placeholder="Please Enter Description" formControlName="description" id="exampleFormControlTextarea1" rows="2" style='resize:none;' [ngClass]="{ 'is-invalid': submitted && f.description.errors }" maxlength="100"></textarea>
-    
-        
-        
-          <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-            <div *ngIf="f.description.errors.required">Description is required</div>
-            <div *ngIf="f.description.errors.minlength">Please enter Minimum 5 characters and Maximum 100 Characters</div>
-            <div  style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value ? f.description.value.length : 0}}/100</div>
-
-          </div>
-          <div *ngIf="f.description.errors===null || !submitted" style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value ? f.description.value.length:0}}/100</div>
-
-         
-
-        </div>
 
 
         <div class="form-group">
@@ -141,11 +106,30 @@
             <div *ngIf="f.mobile.errors.maxlength">Max size of Mobile is 10 digits</div>
           </div>
         </div>
+        <div class="form-group" style="position: relative">
+          <label>Description
+            <span class="mandatory">*</span>
+          </label>
+        
+          <textarea class="form-control" placeholder="Please Enter Description" rows="10" formControlName="description" id="exampleFormControlTextarea1" style='resize:none;' [ngClass]="{ 'is-invalid': submitted && f.description.errors }" maxlength="100"></textarea>
+    
+        
+        
+          <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+            <div *ngIf="f.description.errors.required">Description is required</div>
+            <div *ngIf="f.description.errors.minlength">Please enter Minimum 5 characters and Maximum 100 Characters</div>
+            <div  style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value ? f.description.value.length : 0}}/100</div>
 
+          </div>
+          <div *ngIf="f.description.errors===null || !submitted" style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value ? f.description.value.length:0}}/100</div>
+
+         
+
+        </div>
 
 
         <div class="col" align="center" style="margin-top:20px;">
-          <button type="submit" class="submit-btn">Submit</button>
+          <button type="submit" class="submit-btn">Send Message</button>
         </div>
 
 

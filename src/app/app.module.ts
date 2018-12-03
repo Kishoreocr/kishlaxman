@@ -46,18 +46,20 @@ import { DataTableModule } from "angular-6-datatable";
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { ProfileComponent } from './profile/profile.component';
 import { AgentregisterComponent } from './agentregister/agentregister.component';
-import {NonceQueryParamInterceptorService} from './services/nonce-query-param-interceptor.service';
+import { NonceQueryParamInterceptorService } from './services/nonce-query-param-interceptor.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { Home1Component } from './home1/home1.component';
-import {RoleAuthenticationService as RoleGuard } from './services/role-authentication';
+import { RoleAuthenticationService as RoleGuard } from './services/role-authentication';
 import { AgentdashboardComponent } from './agentdashboard/agentdashboard.component';
 
 import { AgentModule } from './agent/agent.module';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentResponseComponent } from './payment-response/payment-response.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
+  // { path: 'home', component: HomeComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'terms-conditions', component: TermsConditionsComponent },
@@ -81,29 +83,44 @@ const appRoutes: Routes = [
   { path: 'registerform', component: UserregisterComponent },
   {
     path: '',
-    redirectTo: '/home1',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
-  { path: 'userdashboard', component: UserdashboardComponent , canActivate: [RoleGuard], 
-  data: { 
+  {
+    path: 'userdashboard', component: UserdashboardComponent, canActivate: [RoleGuard],
+    data: {
       expectedRole: 'customer'
-    } 
-},
+    }
+  },
   { path: 'success-register', component: SuccessregsiterComponent },
-  { path: 'package-choose', component: PackagesComponent  , canActivate: [RoleGuard], 
-  data: { 
+  {
+    path: 'package-choose', component: PackagesComponent, canActivate: [RoleGuard],
+    data: {
       expectedRole: 'customer'
-    } },
+    }
+  },
   { path: 'forget-password', component: ForgetpasswordComponent },
 
-  { path: 'profile', component: ProfileComponent  , canActivate: [RoleGuard], 
-  data: { 
+  {
+    path: 'profile', component: ProfileComponent, canActivate: [RoleGuard],
+    data: {
       expectedRole: 'customer'
-    } },
+    }
+  },
   { path: 'agent-registration', component: AgentregisterComponent },
-  { path: 'home1', component: Home1Component },
-  { path: 'payment', component: PaymentComponent },
-  { path: 'payment-response', component:   PaymentResponseComponent},
+  { path: 'home', component: Home1Component },
+  {
+    path: 'payment', component: PaymentComponent, canActivate: [RoleGuard],
+    data: {
+      expectedRole: 'customer'
+    }
+  },
+  {
+    path: 'payment-response', component: PaymentResponseComponent, canActivate: [RoleGuard],
+    data: {
+      expectedRole: 'customer'
+    }
+  },
 
   { path: 'unauthorized', component: PagenotfoundComponent },
   { path: '**', component: PagenotfoundComponent }
@@ -165,7 +182,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
     ModalDialogModule.forRoot(), AdminModule, AgentModule, DataTableModule, Ng2TelInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,NgxPayPalModule
   ],
   exports: [
     LoadingDivComponent
@@ -175,7 +192,7 @@ const appRoutes: Routes = [
   //   provide: HTTP_INTERCEPTORS, 
   //   useClass: NonceQueryParamInterceptorService, multi: true 
   // }
-  providers: [EgazeService, SessionstorageService, ModalPropertyService,RoleGuard],
+  providers: [EgazeService, SessionstorageService, ModalPropertyService, RoleGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

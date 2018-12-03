@@ -1,8 +1,10 @@
 .userloginForm{
-    background-color:#f1f8fd;
-    padding:15px;
-    border-radius:10px;
+  background-color:#0076a3;
+  padding:25px;
+  border-radius:10px;
+  margin: auto;
 }
+
 .submit-btn{
     background-color: #fd8236;
     color: #fff;
@@ -283,3 +285,25 @@ app-modal-property#forgotpwdmodal > .modal-background{
   z-index:8;
 }
 /*** modal style close here ***/
+
+.invalid-feedback{
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #ff7b7b !important;
+  font-weight: bold;
+}
+label{
+  color: #fff !important;
+}
+.userloginForm h4{
+  color: #fff !important;
+}
+.userloginForm p{
+color: #fff !important;
+}
+.container-top-padding {
+  padding-top: 200px !important;
+  min-height: 100vh;
+}

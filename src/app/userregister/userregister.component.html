@@ -1,4 +1,4 @@
-<div class="container container-top-padding" >
+<div class="container container-top-padding" style="padding:30px;">
     <div class="row">
         <div class="col-md-5 offset-md-4 userregisterForm">
             <h4>Sign Up</h4>
@@ -60,7 +60,7 @@
                         (ng2TelOutput)="getNumber($event)" (intlTelInputObject)="telInputObject($event)" (countryChange)="onCountryChange($event)"
                         placeholder="Please Enter Mobile Number" (keypress)="isNumberKey($event)" pattern="[0-9]*" class="form-control1"
                         [ngClass]="{ 'is-invalid': submitted && !mobileNumbererror }" maxlength="12"/>
-                    <div *ngIf="submitted && !mobileNumbererror" style="color:#dc3545;font-size: 80%">
+                    <div *ngIf="submitted && !mobileNumbererror" style="color:#ff7b7b;font-size: 80%;font-weight: bold">
                         <!-- <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required</div> -->
                         <div *ngIf="!mobileNumbererror">Please Enter a valid mobile number </div>
                         <!-- <div *ngIf="f.mobileNumber.errors.pattern">Mobile numberr should be only numbers</div> -->

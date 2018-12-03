@@ -66,13 +66,15 @@
           <div class="col-sm-5 col-form-label font-bold-label"></div>
           <div class="col-sm-6 col-form-label">
             <button *ngIf="disablePaymentButton" type="button" class="btn btn-default" (click)="confirmPayment()">Confirm</button>
-            <button *ngIf="!disablePaymentButton" type="submit" class="btn btn-danger">Pay</button>
+            <button *ngIf="!disablePaymentButton" type="submit" class="btn btn-danger">Proceed to Pay</button>
 
           </div>
         </div>
 
 
       </form>
+
+      <!-- <ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
     </div>
   </div>
 </div>
