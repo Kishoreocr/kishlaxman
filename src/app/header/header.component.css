@@ -88,13 +88,13 @@
 /* Launch Menu
 ================================================== */
 .launch-menu > ul > li { border-bottom:solid 1px #bbb; }
-.launch-menu > ul > li:hover { background:#f8f8f8; }
+/* .launch-menu > ul > li:hover { background:#f8f8f8; } */
 .launch-menu > ul > li:first-child { border-top:solid 1px #bbb; }
-.launch-menu a { color:#000; text-decoration: none;}
+.launch-menu a { color:#fff; text-decoration: none;}
 .launch-menu > ul > li > ul > li:hover { background:#1275af;color:#fff; }
-.launch-menu > ul > li > ul > li:hover a {
+/* .launch-menu > ul > li > ul > li:hover a {
 	color:#fff;
-}
+} */
 .launch-menu .phone { font-size: 1.4em; text-align: center; }
 
 li.activelink-mobile-menu-bg { background:#f8f8f8!important; }
@@ -105,7 +105,7 @@ li.activelink-mobile-menu-bg > a {color:#1275af}
 li.activelink-mobile-menu a{
 	color:#fff!important;
 }
-
+li.activelink-mobile-menu-bg > ul > li a {color:#1275af}
 /* Footer
 ================================================== */
 #footer {  }
@@ -1015,9 +1015,9 @@ div .height-xl { height:35px; }
 /*** close side menu style - close icon - ***/
 .close-icon{
 	font-size:18px;font-size: 12px;
-    border: 1px solid #000;
+    border: 1px solid #fff;
     border-radius: 50px;
-    padding: 5px 6px;color:#000;
+    padding: 5px 6px;color:#fff;
 }
 a.logo-style{
 	background-color: #fff;

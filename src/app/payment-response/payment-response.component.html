@@ -1,13 +1,23 @@
 
-<br><br>
 <div class='container container-top-padding'>
 
-  <div class="row">
-    <div class="col-md-12 content-container" style="min-height:420px;font-size:18px;">
-<p *ngIf="status === 'SUCCESS'">
-  Payment has done Successfully .Please <a href="/userdashboard">click here</a> to go Dashbord to add properties.
-</p>
-<p *ngIf="status !== 'SUCCESS'">
-  Payment failed 
-</p>
+  <div class="row" style="margin-top:30px">
+    <div class="col-md-6 offset-md-3 content-container" style="min-height:420px;font-size:18px;text-align: center">
+<div *ngIf="status === 'SUCCESS'" class="alert alert-success" >
+      
+    <strong style="text-transform:uppercase ">
+      <h1>Thank You!</h1>
+        Your Payment has been submitted Successfully <br>
+        Please <a href="/userdashboard">click here</a> to go Dashbord.  
+    </strong>
+</div>
+  <div *ngIf="status !== 'SUCCESS'" class="alert alert-danger" >
+      
+      <strong style="text-transform:uppercase ">
+        
+        We were unable to process your Payment.Due to Transaction has failed.</strong>
+  </div>
+  <a routerLink="/package-choose" routerLinkActive="activeClss">
+  <button *ngIf="status !== 'SUCCESS'" type="button" class="submit-btn" >Try Again</button>
+</a>
 </div></div></div>

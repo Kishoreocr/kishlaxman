@@ -1,0 +1,19 @@
+.paypal-button.paypal-button-color-gold {
+    background: #fd8236 !important;
+}
+.paypal-button:not(.paypal-button-card) {
+    background-color: #fd8236 !important;
+    color: #fff;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 0px;
+    cursor: pointer;
+    outline: 0;
+    outline-style: none;
+}
+.paypal-button-tagline {
+    display: none !important;
+}

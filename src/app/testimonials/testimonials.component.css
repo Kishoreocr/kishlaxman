@@ -1,0 +1,26 @@
+.container-style{
+    padding: 20px;
+    background-color: #fffbfb;
+    border-radius: 6px;
+    width: 100%;
+    margin: 20px auto;
+    border-radius: 10px;
+    min-height:400px;
+}
+.heading-style-1{
+    background: #1275af;
+    padding: 10px;
+    color: #fff;
+    text-shadow: 1px 2px #000;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+p.content-style{
+    font-size: 15px;
+    line-height: 22px;
+    word-wrap: nowrap;
+    text-align: justify;
+}
+

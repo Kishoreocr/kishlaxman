@@ -2,7 +2,7 @@
 .registeruserName{
     padding:5px 10px;
     width:100%;
-    background-color:#1275af;
+    /* background-color:#1275af; */
     color:#fff;
     padding:10px 10px;
 }
@@ -16,6 +16,8 @@
     width:100%;
     padding:0px;
     min-height: 400px;
+    background-color:#1275af;
+
 }
 .leftside-menu ul {
     margin:0px;
@@ -25,13 +27,14 @@
 .leftside-menu ul li{
   list-style: none;
   padding:10px 15px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid #fff;
  font-size:18px;
- color:#1275af;
+ color:#fff;
  font-weight: 400;
  cursor: pointer;
 }
-.propertyheading{background-color:#fff;text-align:center;padding:5px 15px;color:#1275af;font-size:16px;
+.propertyheading{
+    background-color:#1275af;text-align:center;padding:5px 15px;color:#fff;font-size:16px;
 border-radius: 3px;display:inline-block;cursor: pointer;
 /* box-shadow: 0px 0px 1px #1275af;
 -moz-box-shadow: 0px 0px 1px #1275af;
@@ -98,14 +101,16 @@ span.mandatory{
     color:red;
 }
 .activeTabdash{
-    background-color:#f7fcff;
+    background-color:#fff;
+    color:#1275af !important;
 }
 .right-content-bg{background-color:#f7fcff}
 .tabActions{
-    min-height:48px;padding:0px;text-align:center;
+    /* min-height:48px; */
+    padding:0px;text-align:center;
     /** background-color:#9ad5ff; **/
     background-color:#cce8fc;
-    padding: 7px;
+    /* padding: 7px; */
 }
 /** alert table design **/
 

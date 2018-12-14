@@ -1,12 +1,14 @@
 <!-- row justify-content-md-center no-gutters -->
 <div class="row no-gutters container-top-padding">
 
-    <div class="col-md-2" style="background-color:#cce8fc;padding:0px;">
-        <!-- <div class="registeruserName">
-            <i class="fa fa-user-circle"></i>
-            <span>Kiran</span>
-        </div> -->
+    <div class="col-md-2" style="background-color:#1275af;padding:0px;margin-top: -6PX;">
+       
         <div class="leftside-menu">
+                <div class="registeruserName" style="border-bottom:1px solid #fff;margin-bottom: 10px;">
+                        <img src="../../assets/images/profile_pic.png" width="150px" height="150px" style="border-radius: 50%;border: 1px solid #fff;padding: 10px;">         
+                        <span>{{user.firstName}} {{user.lastName}}</span>   <br>
+                        <span>Last Login : </span>
+                                </div>
             <ul>
                 <li title="Add or View Properties" [ngClass]="{'activeTabdash': propertyTab}" (click)="userdashTabs('Properties')">
 
@@ -33,14 +35,7 @@
         <div *ngIf="propertyTab" class="col tabActions" style="background-color:#f7fcff;">
 
             <div *ngIf="propertyTab && !alertsTab && !transactionsTab && !profileTab">
-                <div *ngIf="!customdiv">
-                    <div *ngIf="addProperty && !viewProperties" class="propertyheading" (click)="propertyFun()">
-                        <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
-                    </div>
-                    <div *ngIf="!addProperty && viewProperties" class="propertyheading" (click)="propertyFunView()">
-                        <i class="fa fa-eye" style="font-size:13px;font-weight: 200"></i> View Properties
-                    </div>
-                </div>
+                
                 <div class="alert alert-success" style="margin-top: 100px;" id="propertyDestination1" *ngIf="customdiv">
                     <a href="#" class="close" data-dismiss="alert">&times;</a>
                     <strong>You have choosen CUSTOM PLAN. Admin will contact you soon..</strong>
@@ -503,11 +498,18 @@
                         </app-modal-property>
 
                         <div *ngIf="!customdiv">
-
+                            
                             <div class="mainAlertcontainer  table-responsive " *ngIf='propertyUpdates.length != 0'>
-
-                                <h5 class="tab-active-heading">Below Properties got update from Admin:</h5>
-
+                                    <div class="row verticalTab ng-star-inserted">
+                                            <div class="col-md-8">
+                                                    <h5 class="tab-active-heading">Below Properties got update from Admin:</h5>
+                                                        </div>
+                                                    <div *ngIf="!customdiv" align="right" class="col-md-4">
+                                                            <div *ngIf="addProperty && !viewProperties" class="propertyheading" (click)="propertyFun()">
+                                                                <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
+                                                            </div>
+                                                         
+                                                        </div></div>
                                 <table *ngIf='propertyUpdates.length != 0' class="table table-striped table-bordered table-hover"
                                     [mfData]="propertyUpdates" #mf="mfDataTable" [mfRowsOnPage]="5">
                                     <thead>
@@ -571,7 +573,17 @@
 
                             <div class="mainAlertcontainer  table-responsive ">
 
-                                <h5 class="tab-active-heading">Properties</h5>
+                                <div class="row verticalTab ng-star-inserted">
+                                        <div class="col-md-8">
+                                                <h5 class="tab-active-heading">Properties:</h5>
+                                                    </div>
+                                                <div  align="right" class="col-md-4">
+                                                        <div class="propertyheading" (click)="propertyFun()">
+                                                            <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
+                                                        </div>
+                                                     
+                                                    </div></div>
+
                                 <div *ngIf='userAllpropertis.length == 0'>No Properties.</div>
 
                                 <table *ngIf='userAllpropertis.length != 0' class="table table-striped table-bordered table-hover"
@@ -643,31 +655,41 @@
                         <strong>{{propertyStatus}}</strong>
                     </div>
 
-                    <div class="col verticalTab" style='margin:0px' *ngIf="propertyDetails">
-                        <h5 class="tab-active-heading">Add Property Details</h5>
+                    <div class="row verticalTab" style='margin:0px' *ngIf="propertyDetails">
+                       <div class="col-md-6"><h5 class="tab-active-heading">Add Property Details</h5></div> 
                         <!-- <ul>
                             <li [ngClass]="{'deactive': !propertyDetails}" (click)="userdashTabs('propertyDetailsTab')">Add Property Details
                             </li>
                             <li [ngClass]="{'deactive': !propertyDocuments}" (click)="userdashTabs('propertyDocumentsTab')">Documents</li> 
                         </ul> -->
+                   
+                   
+                        <div *ngIf="!addProperty && viewProperties" ailgn="right" class="col-md-6" >
+                            <div class="propertyheading" style="float:right;margin-bottom: 10px;" (click)="propertyFunView()">
+                                <i class="fa fa-eye" style="font-size:13px;font-weight: 200;" ></i> View Properties
+                            </div>
+                            </div>
+                   
                     </div>
 
                     <div class="col" *ngIf="propertyDetails" style='background-color: #fbfbfb !important;
                     padding: 20px;'>
                         <form [formGroup]="propertyForm" (ngSubmit)="addPropertyFun(propertyForm)">
+                           
                             <div class="row">
 
 
 
-                                <div *ngIf="firstFormStep" class="col-md-12">
+                                <div *ngIf="firstFormStep" class="col-md-6">
+
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label" for="exampleFormControlSelect1">Type of
+                                        <label class="col-sm-4 col-form-label" for="exampleFormControlSelect1">Type of
                                             Property
                                             <span class="mandatory">*</span>
                                         </label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <select class="form-control" formControlName="typeofProperty"
                                                 (ngModelChange)="getType($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.typeofProperty.errors }">
                                                 <option value="" [selected]="selected">Select any Property</option>
@@ -684,10 +706,10 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="titleHolder" class="col-sm-2 col-form-label">Title Holder
+                                        <label for="titleHolder" class="col-sm-4 col-form-label">Title Holder
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="titleHolder" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.titleHolder.errors }" id="titleHolderFormControlInput"
                                                 placeholder="Please Enter Title Holder" minlength="2" maxlength="30"
@@ -702,11 +724,11 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="RelationshipTocustomer" class="col-sm-2 col-form-label">Relationship
+                                        <label for="RelationshipTocustomer" class="col-sm-4 col-form-label">Relationship
                                             to customer
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <select class="form-control" formControlName="relationshipTocustomer"
                                                 (ngModelChange)="getreltionType($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.relationshipTocustomer.errors }">
                                                 <option value="" [selected]="selected">Select Relationship</option>
@@ -724,11 +746,11 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="surveyNo/DrNo" class="col-sm-2 col-form-label">Survey No/Dr No
+                                        <label for="surveyNo/DrNo" class="col-sm-4 col-form-label">Survey No/Dr No
                                             <span class="mandatory">*</span>
                                         </label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="surveyNoDrNo" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.surveyNoDrNo.errors }" id="surveyNo/DrNoFormControlInput"
                                                 placeholder="Please Enter Survey No/Dr No" minlength="6" maxlength="150">
@@ -741,11 +763,11 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="extentofProperty" class="col-sm-2 col-form-label">Extent of
+                                        <label for="extentofProperty" class="col-sm-4 col-form-label">Extent of
                                             Property
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="extentofProperty" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.extentofProperty.errors }" id="extentofPropertyFormControlInput"
                                                 placeholder="Please Enter Extent Of Property" maxlength="150">
@@ -758,10 +780,10 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="documentno" class="col-sm-2 col-form-label">Document No.
+                                        <label for="documentno" class="col-sm-4 col-form-label">Document No.
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="documentNo" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }" id="documentNoFormControlInput"
                                                 placeholder="Please Enter Document No." maxlength="30">
@@ -771,9 +793,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4 offset-md-2" style='padding-top: 20px;'>
+                                    <div class="col-md-4 offset-md-2" style='padding-top: 20px;' align="right">
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
-                                        <button type="submit" class="submit-btn">Continue</button>
+                                        &nbsp;&nbsp;&nbsp;<button type="submit" class="submit-btn">Continue</button>
                                     </div>
 
                                 </div>
@@ -781,12 +803,12 @@
 
 
 
-                                <div *ngIf="secondFormStep" class="col-md-12">
+                                <div *ngIf="secondFormStep" class="col-md-6">
                                     <div class="form-group row">
-                                        <label for="subRegisterOffice" class="col-sm-2 col-form-label">Sub Register
+                                        <label for="subRegisterOffice" class="col-sm-4 col-form-label">Sub Register
                                             Office
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="subRegisterOffice" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
                                                 id="subRegisterOfficeFormControlInput" placeholder="Please Enter Sub Register Office"
@@ -801,9 +823,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="boundaries" class="col-sm-2 col-form-label">Boundaries - North
+                                        <label for="boundaries" class="col-sm-4 col-form-label">Boundaries - North
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="boundariesNorth" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.boundariesNorth.errors }" id="boundariesFormControlInput"
                                                 placeholder="Please Enter North" maxlength="50">
@@ -818,10 +840,10 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="boundaries" class="col-sm-2 col-form-label">Boundaries - South
+                                        <label for="boundaries" class="col-sm-4 col-form-label">Boundaries - South
                                         </label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="boundariesSouth" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.boundariesSouth.errors }" id="boundariesFormControlInput"
                                                 placeholder="Please Enter South" maxlength="50">
@@ -835,9 +857,9 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="boundaries" class="col-sm-2 col-form-label">Boundaries - East
+                                        <label for="boundaries" class="col-sm-4 col-form-label">Boundaries - East
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="boundariesEast" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.boundariesEast.errors }" id="boundariesFormControlInput"
                                                 placeholder="Please Enter East" maxlength="30">
@@ -851,9 +873,9 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="boundaries" class="col-sm-2 col-form-label">Boundaries - West
+                                        <label for="boundaries" class="col-sm-4 col-form-label">Boundaries - West
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="boundariesWest" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.boundariesWest.errors }" id="boundariesFormControlInput"
                                                 placeholder="Please Enter West" maxlength="50">
@@ -868,7 +890,7 @@
 
 
 
-                                    <div class="col-md-4 offset-md-2" style='padding-top: 20px;'>
+                                    <div class="col-md-6 offset-md-2" style='padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
                                         <button type="btn" class="submit-btn-upgrade" (click)="PreviousForm('FirstForm')">Previous</button>
                                         <button type="submit" class="submit-btn">Continue</button>
@@ -880,13 +902,13 @@
 
 
 
-                                <div *ngIf="thirdFormStep" class='col-md-12'>
+                                <div *ngIf="thirdFormStep" class='col-md-6'>
 
                                     <div class="form-group row">
-                                        <label for="address1" class="col-sm-2 col-form-label">Address 1
+                                        <label for="address1" class="col-sm-4 col-form-label">Address 1
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="address1" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.address1.errors }" id="address1FormControlInput"
                                                 placeholder="Please Enter Address 1" maxlength="150">
@@ -899,10 +921,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="address2" class="col-sm-2 col-form-label">Address 2
+                                        <label for="address2" class="col-sm-4 col-form-label">Address 2
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="address2" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && f.address2.errors }" id="address1FormControlInput"
                                                 placeholder="Please Enter Address 2" maxlength="150">
@@ -916,10 +938,10 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="state" class="col-sm-2 col-form-label">State
+                                        <label for="state" class="col-sm-4 col-form-label">State
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <select class="form-control" formControlName="state" (ngModelChange)="getstate($event)"
                                                 class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
                                                 <option value="" [selected]="selected">Select State</option>
@@ -933,10 +955,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="district" class="col-sm-2 col-form-label">District
+                                        <label for="district" class="col-sm-4 col-form-label">District
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <!-- <input type="text" formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
                                                     id="districtFormControlInput" placeholder="Please Enter District" maxlength="30">
                                                  -->
@@ -952,10 +974,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="mandal" class="col-sm-2 col-form-label">Mandal
+                                        <label for="mandal" class="col-sm-4 col-form-label">Mandal
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <!-- <input type="text" formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
                                                     id="mandalFormControlInput" placeholder="Please Enter Mandal" maxlength="30">
                                                 -->
@@ -971,10 +993,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="village/City" class="col-sm-2 col-form-label">Village/City
+                                        <label for="village/City" class="col-sm-4 col-form-label">Village/City
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <!-- <input type="text" formControlName="villageCity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.villageCity.errors }"
                                                     id="villageCityFormControlInput" placeholder="Please Enter Village/City" maxlength="30">
                                                  -->
@@ -990,10 +1012,10 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="zip" class="col-sm-2 col-form-label">Zip Code
+                                        <label for="zip" class="col-sm-4 col-form-label">Zip Code
                                             <span class="mandatory">*</span>
                                         </label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <input type="text" formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }"
                                                 id="zipFormControlInput" placeholder="Pleaes Enter zip Code" maxlength="10">
                                             <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
@@ -1006,13 +1028,18 @@
                                     </div>
 
 
-                                    <div class="col-md-4 offset-md-2" style='padding-top: 20px;'>
+                                    <div class="col-md-6 offset-md-2" style='padding-top: 20px;'>
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
                                         <button type="btn" class="submit-btn-upgrade" (click)="PreviousForm('SecondForm')">Previous</button>
                                         <button type="submit" class="submit-btn">Submit</button>
                                     </div>
                                 </div>
 
+
+<div class="col-md-3">
+<img src="../../assets/images/add_property.jpg" width="500px" height="320px" />
+
+</div>
                             </div>
                         </form>
                     </div>
@@ -1118,13 +1145,13 @@
                                     <mfDefaultSorter by="index">S.No.</mfDefaultSorter>
                                 </th> -->
 
-                                <th>
+                                <th style="width:25px;">
                                     <mfDefaultSorter by="subject">Subject</mfDefaultSorter>
                                 </th>
-                                <th>
-                                    <mfDefaultSorter by="description">Description</mfDefaultSorter>
+                                <th style="width:25px;">
+                                    <mfDefaultSorter by="description" >Description</mfDefaultSorter>
                                 </th>
-                                <th>
+                                <th style="width:25px;">
                                     <mfDefaultSorter by="addedDate">Date</mfDefaultSorter>
                                 </th>
 

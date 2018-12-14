@@ -156,7 +156,7 @@ position: relative;">
 
         </ul>
       </div>
-      <div class="phone" style="font-size: 16px;">
+      <div class="phone" style="font-size: 16px;"> WhatsApp us :
         <a *ngIf="!mobile" href="tel: +917045942225" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i> (+91) 70459 42225</a>
         <a *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-7045942225" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i> (+91) 70459 42225</a>
       </div>
@@ -239,7 +239,8 @@ position: relative;">
             </li>
 
             <li >
-              <a [class.activeClassLink] = "currentURL=='/terms-conditions' || currentURL=='/privacy-policy' || currentURL=='/disclaimer'">Legals</a>
+              <a [class.activeClassLink] = "currentURL=='/terms-conditions' || currentURL=='/privacy-policy'">  <!--|| currentURL==='/disclaimer' -->
+                Legals</a>
               <ul>
                 <li>
                   <a routerLink="/terms-conditions" routerLinkActive="activeClss" >Terms &amp; Conditions</a>
@@ -247,9 +248,9 @@ position: relative;">
                 <li>
                   <a routerLink="/privacy-policy" routerLinkActive="activeClss" >Privacy Policy</a>
                 </li>
-                <li>
+                <!-- <li>
                   <a routerLink="/disclaimer" routerLinkActive="activeClss" >Disclaimer</a>
-                </li>
+                </li> -->
 
               </ul>
             </li>
@@ -292,6 +293,7 @@ position: relative;">
   </div>
 
   <div class="phone">
+      <a>WhatsApp us : </a><br>
     <a *ngIf="!mobile" href="tel: +917045942225" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i> (+91) 70459 42225</a>
     <a *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-7045942225" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i> (+91) 70459 42225</a>
   </div>
@@ -350,7 +352,7 @@ position: relative;">
       <a routerLink="/help" routerLinkActive="activeClss">Help</a>
     </li>
 
-    <li [class.activelink-mobile-menu-bg]="currentURL=='/terms-conditions' || currentURL=='/privacy-policy' || currentURL=='/disclaimer'">
+     <li [class.activelink-mobile-menu-bg]="currentURL==='/terms-conditions' || currentURL==='/privacy-policy' "> <!--|| currentURL==='/disclaimer' -->
       <a>Legals</a>
       <ul>
         <li [class.activelink-mobile-menu]="currentURL=='/terms-conditions'">
@@ -359,9 +361,9 @@ position: relative;">
         <li [class.activelink-mobile-menu]="currentURL=='/privacy-policy'">
           <a routerLink="/privacy-policy" routerLinkActive="activeClss">Privacy Policy</a>
         </li>
-        <li [class.activelink-mobile-menu]="currentURL=='/disclaimer'">
+        <!-- <li [class.activelink-mobile-menu]="currentURL=='/disclaimer'">
           <a routerLink="/disclaimer" routerLinkActive="activeClss">Disclaimer</a>
-        </li>
+        </li> -->
 
       </ul>
     </li>

@@ -21,6 +21,7 @@ p.content-style{
     font-size: 15px;
     line-height: 22px;
     word-wrap: nowrap;
+    text-align: justify;
 }
 
 p.content-style b{
