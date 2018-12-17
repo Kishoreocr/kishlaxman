@@ -385,4 +385,8 @@ export class EgazeService {
     let requestURL = this.baseUrl + 'packages/' + id;
     return this.http.get(requestURL);
   }
+  getAgentDetails() {
+    return this.http.get(this.baseUrl + 'agent/details');
+
+  }
 }

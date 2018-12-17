@@ -74,6 +74,7 @@ export class AdmindashboardComponent implements OnInit {
   propertydocs: any;
   documentId: any;
   feedbackTab = false;
+  propertyAssignmentTab = false;
   searchGrp: FormGroup;
   searchGrpcust: FormGroup;
   custlist = true;
@@ -104,17 +105,17 @@ export class AdmindashboardComponent implements OnInit {
 
     this.propertyForm1 = this.formBuilder.group({
       propertyType: ['', Validators.required],
-      propertyHolderName: ['', [Validators.required,Validators.minLength(2)]],
+      propertyHolderName: ['', [Validators.required, Validators.minLength(2)]],
       relationship: ['', Validators.required],
       doorNo: ['', [Validators.required, Validators.minLength(6)]],
       documentNo: ['', Validators.required],
-      boundariesEast: ['', [ Validators.minLength(3)]],
-      boundariesWest: ['', [ Validators.minLength(3)]],
-      boundariesNorth: ['',[ Validators.minLength(3)]],
-      boundariesSouth: ['',[ Validators.minLength(3)]],
+      boundariesEast: ['', [Validators.minLength(3)]],
+      boundariesWest: ['', [Validators.minLength(3)]],
+      boundariesNorth: ['', [Validators.minLength(3)]],
+      boundariesSouth: ['', [Validators.minLength(3)]],
       mandal: ['', Validators.required],
       district: ['', Validators.required],
-      subRegisterOffice: ['', [ Validators.minLength(6)]],
+      subRegisterOffice: ['', [Validators.minLength(6)]],
       extentOfProperty: ['', Validators.required],
       address1: ['', [Validators.required, Validators.minLength(6)]],
       address2: ['', [Validators.required, Validators.minLength(6)]],
@@ -174,6 +175,7 @@ export class AdmindashboardComponent implements OnInit {
         this.profileTab = false;
         this.adminalertTab = false;
         this.feedbackTab = false;
+        this.propertyAssignmentTab = false;
         this.searchGrp.controls['searchType'].setValue("propertyHolderName");
         this.searchGrp.controls['searchText'].setValue("");
         this.custlist = true;
@@ -187,6 +189,7 @@ export class AdmindashboardComponent implements OnInit {
         this.profileTab = false;
         this.getPropertyDetails();
         this.feedbackTab = false;
+        this.propertyAssignmentTab = false;
         this.searchGrpcust.controls['searchTypecust'].setValue("firstName");
         this.searchGrpcust.controls['searchTextcust'].setValue("");
         this.getCustomerDetails();
@@ -200,6 +203,7 @@ export class AdmindashboardComponent implements OnInit {
         this.adminalertTab = false;
         this.profileTab = false;
         this.feedbackTab = false;
+        this.propertyAssignmentTab = false;
         this.custlist = true;
         this.custdetailstabs = false;
         break;
@@ -212,6 +216,7 @@ export class AdmindashboardComponent implements OnInit {
         this.updateuserProfilestatus = "";
         this.isEditDisabled = false;
         this.feedbackTab = false;
+        this.propertyAssignmentTab = false;
         this.custlist = true;
         this.custdetailstabs = false;
         break;
@@ -222,6 +227,7 @@ export class AdmindashboardComponent implements OnInit {
         this.adminalertTab = true;
         this.profileTab = false;
         this.feedbackTab = false;
+        this.propertyAssignmentTab = false;
         this.getAlerts();
         this.custlist = true;
         this.custdetailstabs = false;
@@ -233,7 +239,20 @@ export class AdmindashboardComponent implements OnInit {
         this.adminalertTab = false;
         this.profileTab = false;
         this.feedbackTab = true;
+        this.propertyAssignmentTab = false;
         this.custlist = true;
+        this.custdetailstabs = false;
+        //this.getAlerts();
+        break;
+      case 'propertyAssignment':
+        this.propertyTab = false;
+        this.alertsTab = false;
+        this.transactionsTab = false;
+        this.adminalertTab = false;
+        this.profileTab = false;
+        this.feedbackTab = false;
+        this.propertyAssignmentTab = true;
+        this.custlist = false;
         this.custdetailstabs = false;
         //this.getAlerts();
         break;
@@ -293,7 +312,7 @@ export class AdmindashboardComponent implements OnInit {
     this.customer = cust;
   }
   openModal(id: string, cust) {
-    this.submitted=false;
+    this.submitted = false;
     this.propertytabModal = true;
     this.documentstabModal = false;
     this.commentstabModal = false;
@@ -307,15 +326,15 @@ export class AdmindashboardComponent implements OnInit {
     this.propertyId = this.property.id;
     this.propertystatus = this.property.status;
     this.getDistricts(this.property.state);
-    this.getMandals(this.property.state,this.property.district);
-    this.getVillages(this.property.state,this.property.district,this.property.mandal);
+    this.getMandals(this.property.state, this.property.district);
+    this.getVillages(this.property.state, this.property.district, this.property.mandal);
     this.propertyForm1.setValue({
       propertyType: this.property.propertyType,
       propertyHolderName: this.property.propertyHolderName,
       relationship: this.property.relationship,
       doorNo: this.property.doorNo,
       documentNo: this.property.documentNo,
-     // boundaries: "boundaries",
+      // boundaries: "boundaries",
       boundariesEast: this.property.boundariesEast,
       boundariesWest: this.property.boundariesWest,
       boundariesNorth: this.property.boundariesNorth,
@@ -333,7 +352,7 @@ export class AdmindashboardComponent implements OnInit {
       // status: this.property.status
 
     });
-    
+
 
   }
 
@@ -359,7 +378,7 @@ export class AdmindashboardComponent implements OnInit {
   }
 
   getPropertyDetails() {
-   // this.updateuserProfilestatus = "";
+    // this.updateuserProfilestatus = "";
     this.EgazeService.getPropertyApi().subscribe(result => {
       this.propertyApproval = result;
       this.propertyApproval1 = result;
@@ -398,15 +417,15 @@ export class AdmindashboardComponent implements OnInit {
     if (this.propertyForm1.valid) {
       this.isLoading = true;
       //alert("dsdd")
-      this.EgazeService.updatePropertybyAdmin(propertyForm1.value, this.loginId, this.propertyId,this.property.status).subscribe(result => {
+      this.EgazeService.updatePropertybyAdmin(propertyForm1.value, this.loginId, this.propertyId, this.property.status).subscribe(result => {
         this.isLoading = false;
         //alert("dsdd="+result)
-       
+
         this.updateuserProfilestatus = "Property updated Successfully";
         this.isEditDisabled = false;
         this.isLoaderdiv = false;
         this.getPropertyDetails();
-       // alert("suss"+this.updateuserProfilestatus)
+        // alert("suss"+this.updateuserProfilestatus)
       }, error => {
         this.isLoaderdiv = false;
         // alert("suss="+JSON.stringify(error));
@@ -524,6 +543,7 @@ export class AdmindashboardComponent implements OnInit {
     this.profileTab = false;
     this.adminalertTab = false;
     this.feedbackTab = false;
+    this.propertyAssignmentTab = false;
     this.customerdetailstabModal = true;
     this.customerpackagestabModal = false;
     this.customerpropertiestabModal = false;
@@ -832,33 +852,33 @@ export class AdmindashboardComponent implements OnInit {
     this.getDistricts("" + event);
     //alert(this.updateuserNewpwdForm.value.typeofProperty);
   }
-  getdistrict(event){
+  getdistrict(event) {
     this.propertyForm1.value.district = "" + event;
-    this.propertyForm1.value.mandal="";
-    this.getMandals(this.propertyForm1.value.state,"" + event);
+    this.propertyForm1.value.mandal = "";
+    this.getMandals(this.propertyForm1.value.state, "" + event);
   }
-  getmandal(event){
+  getmandal(event) {
     this.propertyForm1.value.mandal = "" + event;
     this.propertyForm1.value.villageCity = "";
-    this.getVillages(this.propertyForm1.value.state,this.propertyForm1.value.district,"" + event);
+    this.getVillages(this.propertyForm1.value.state, this.propertyForm1.value.district, "" + event);
   }
-  getvillage(event){
+  getvillage(event) {
     this.propertyForm1.value.villageCity = "" + event;
   }
 
-  districts:any=[];
+  districts: any = [];
   getDistricts(stateCode) {
     this.EgazeService.getDistricts(stateCode).subscribe(result => {
-     // debugger;
+      // debugger;
       this.districts = result;
     }, error => {
 
     });
 
   }
-  mandals:any=[];
+  mandals: any = [];
   getMandals(stateCode, districtCode) {
-    this.EgazeService.getMandals(stateCode,districtCode).subscribe(result => {
+    this.EgazeService.getMandals(stateCode, districtCode).subscribe(result => {
       //debugger;
       this.mandals = result;
     }, error => {
@@ -866,10 +886,10 @@ export class AdmindashboardComponent implements OnInit {
     });
 
   }
-  villages:any=[];
+  villages: any = [];
   getVillages(stateCode, districtCode, mandalCode) {
 
-    this.EgazeService.  getVillages(stateCode, districtCode, mandalCode).subscribe(result => {
+    this.EgazeService.getVillages(stateCode, districtCode, mandalCode).subscribe(result => {
       //debugger;
       this.villages = result;
     }, error => {
@@ -877,5 +897,5 @@ export class AdmindashboardComponent implements OnInit {
     });
 
   }
- 
+
 }

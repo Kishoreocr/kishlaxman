@@ -30,6 +30,10 @@
                     <!-- <li [ngClass]="{'activeTabdash': profileTab}"> -->
                     <i class="fa fa-user"></i> Alerts
                 </li>
+                <li title='Property Assignment to Agent' [ngClass]="{'activeTabdash': propertyAssignmentTab}" (click)="userdashTabs('propertyAssignment')">
+
+                    <i class="fa fa-user"></i> Property Assignment 
+                </li>
                 <!-- <li (click)="userdashTabs('Profile')">
                   
                     <i class="fa fa-user"></i> Property comments
@@ -1139,6 +1143,11 @@
         <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && profileTab  && !feedbackTab">
             <app-custom-packages></app-custom-packages>
         </div>
+        <!--start Property Assignment  -->
+        <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && !profileTab  && !feedbackTab && propertyAssignmentTab">
+            <app-property-assignment></app-property-assignment>
+        </div>
+        <!--  End Property Assignment  -->
         <div *ngIf="!propertyTab && !alertsTab && !transactionsTab && !profileTab && adminalertTab  && !feedbackTab">
 
             <div class="table-container-style table-th-styles table-responsive">

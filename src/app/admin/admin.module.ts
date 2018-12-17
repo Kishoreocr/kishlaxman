@@ -18,6 +18,7 @@ import { LoadingDivComponent1Component } from './loading-div-component1/loading-
 import {DataTableModule} from "angular-6-datatable";
 import { AdminContactusComponent } from './admin-contactus/admin-contactus.component';
 import {RoleAuthenticationService as RoleGuard } from '../services/role-authentication';
+import { PropertyAssignmentComponent } from './property-assignment/property-assignment.component';
 
 const appRoutes: Routes = [
   { path: 'adminlogin', component: LoginComponent },
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: true }),DataTableModule
 
   ],
-  declarations: [LoginComponent, AdmindashboardComponent, ModalComponent, PropertyApprovalComponent, AgentApprovalComponent, PaymentApprovalComponent, CustomPackagesComponent, PropertyCommentsComponent, PortalFeedbackComponent, LoadingDivComponent1Component, AdminContactusComponent],
+  declarations: [LoginComponent, AdmindashboardComponent, ModalComponent, PropertyApprovalComponent, AgentApprovalComponent, PaymentApprovalComponent, CustomPackagesComponent, PropertyCommentsComponent, PortalFeedbackComponent, LoadingDivComponent1Component, AdminContactusComponent, PropertyAssignmentComponent],
   providers: [ModalService,RoleGuard]
 
 })
