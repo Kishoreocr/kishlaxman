@@ -1,10 +1,15 @@
 <!-- row justify-content-md-center no-gutters -->
 <div class="row no-gutters container-top-padding">
 
-  <div class="col-md-2" style="background-color:#cce8fc;padding:0px;">
+  <div class="col-md-2" style="background-color:#1275af;padding:0px;margin-top: -6PX;">
 
     <div class="leftside-menu">
-      <ul>
+            <div class="registeruserName" style="margin-bottom: 10px;">
+                    <img src="../../assets/images/profile_pic.png" width="150px" height="150px" style="border-radius: 50%;border: 1px solid #fff;padding: 10px;">         
+                    <br><span>{{user.firstName}} {{user.lastName}}</span>   <br>
+                    <!-- <span>Last Login : </span> -->
+                            </div>
+      <ul style="border-top:1px solid #fff;">
         <li title="Add or View Properties" >
 
           <i class="fa fa-home"></i> Properties
@@ -19,6 +24,7 @@
   <div class="col-md-10 right-content-bg" style="padding:15px;">
 
     <div class="property-tab-style table-container-style table-responsive">
+            <h5 class="tab-active-heading"> Assigned Properties</h5>
 
     <div *ngIf='properties.length == 0'>No Properties.</div>
 
@@ -65,7 +71,7 @@
                 </td>
                 <td class="viewbtn text-center">
                     <!-- <i class="fa fa-eye" (click)="viewPropertyFun()"></i> -->
-                    <i class="fa fa-eye" (click)="openModal('custom-modal-11',property,false)"></i>
+                    <i class="fa fa-eye" style="cursor: pointer;" (click)="openModal('modal-agent-property',property,false)"></i>
                     <!-- <span *ngIf="propertyUpdatesids.indexOf(property.id) > -1"> **</span> -->
 
 
@@ -81,5 +87,348 @@
         </tfoot>
     </table>
 </div>
-  </div>
 </div>
+
+<!--Property Tab start here -->
+
+            
+                    <modal id="modal-agent-property">
+                            <div class="modal">
+            
+                                <div class="row justify-content-md-center no-gutters">
+                                    <div class="modal-body col-md-8" style="padding:0px;">
+            
+            
+                                        <div class='col modal-heading'>
+                                            <p style="padding:10px 20px;margin:0px;">Property View:
+                                            </p>
+                                        </div>
+            
+                                        <div style='position:absolute;right:20px;top:10px;'>
+                                            <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('modal-agent-property');"></i>
+                                        </div>
+            
+            
+                                        <div style='padding: 10px 20px 20px 20px;'>
+                                            <div class='row userdashboardTab'>
+                                                <ul>
+                                                    <li [ngClass]="{'active': propertytabModal}" (click)="userdashTabs('PropertyDetailsTab')">Property
+                                                        Details
+                                                    </li>
+                                                   
+                                                    <li [ngClass]="{'active': commentstabModal}" (click)="userdashTabs('CommentsTab')">Comments</li>
+                                                </ul>
+                                            </div>
+            
+            
+                                            <div *ngIf="propertytabModal && !commentstabModal">
+
+                                            <div class="property-tab-style">
+
+                                                <div class="row" *ngIf="property!=''">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Type
+                                                                of Property:</div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.propertyType}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Title
+                                                                Holder:
+                                                            </div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.propertyHolderName}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Relationship
+                                                                to customer:</div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.relationship}}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Survey
+                                                                No/Dr No:</div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.doorNo}}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Sub
+                                                                Register Office:</div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.subRegisterOffice}}
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Extent
+                                                                of Property:</div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.extentOfProperty}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-md-4">
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries
+                                                                North:
+                                                            </div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.boundariesNorth}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries
+                                                                East:
+                                                            </div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.boundariesEast}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries
+                                                                West:
+                                                            </div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.boundariesWest}}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Boundaries
+                                                                South:
+                                                            </div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.boundariesSouth}}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Document
+                                                                No:
+                                                            </div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.documentNo}}
+                                                            </div>
+                                                        </div>
+                                                        
+
+
+                                                    </div>
+
+
+                                                    <div class="col-md-4">
+
+                                                            <div class="form-group row">
+                                                                    <div class="col-sm-5 col-form-label font-bold-label">Address1 :                                                          </div>
+                                                                    <div class="col-sm-6 col-form-label" style="width:20px;">
+                                                                        {{property.address1}}
+                                                                    </div>
+                                                                </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Address
+                                                                2:
+                                                            </div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.address2}}
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="form-group row">
+                                                        <div class="col-sm-5 col-form-label">Address 3:</div>
+                                                        <div class="col-sm-7 col-form-label">
+                                                            {{property.address3}}
+                                                        </div>
+                                                    </div> -->
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Village/City:</div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.city}}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Mandal:</div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.mandal}}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">District:</div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.district}}
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">State:</div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.state}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Zip:</div>
+                                                            <div class="col-sm-6 col-form-label">
+                                                                {{property.zip}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+            
+            
+            
+            
+                                            <div *ngIf="!propertytabModal  && commentstabModal">
+            
+                                                <div class="col property-tab-style">
+                                                    <form [formGroup]="commentForm" (ngSubmit)="commentFun(commentForm)">
+            
+            
+                                                        <h6>Add Comment</h6>
+                                                        <div class="form-group row">
+            
+                                                            <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Current
+                                                                Status
+                                                                <span class="mandatory">*</span>
+                                                            </label>
+                                                            <div class="col-sm-4">
+                                                                <select class="form-control" formControlName="typeofProperty"
+                                                                    (ngModelChange)="getType($event)" class="form-control">
+            
+                                                                    <option value="nochanges">No Changes</option>
+                                                                    <option value="roadexpansion">Road Expansion</option>
+            
+                                                                </select>
+                                                            </div>
+            
+                                                        </div>
+            
+            
+            
+                                                        <div class="form-group row">
+                                                            <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Comments
+                                                                <span class="mandatory">*</span>
+                                                            </label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" style="resize:none;text-align:left;"
+                                                                    id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
+                                                                    class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }"
+                                                                    maxlength="500">
+                                                                    </textarea>
+            
+            
+                                                                <div *ngIf="submitted && c.commentfield.errors" class="invalid-feedback">
+                                                                    <div *ngIf="c.commentfield.errors.required">Comment is required
+                                                                    </div>
+                                                                    <div *ngIf="c.commentfield.errors.minlength">Please enter
+                                                                        comments with minimum 3 and maximum 500 characters
+                                                                    </div>
+            
+                                                                    <div style="position:absolute;right:15px;bottom:0px;font-size: 14px;color:#ccc">{{c.commentfield.value
+                                                                        ? c.commentfield.value.length : 0}}/500</div>
+            
+                                                                </div>
+            
+                                                                <div *ngIf="c.commentfield.errors===null || !submitted" style="position:absolute;right:15px;bottom:-25px;font-size: 14px;color:#ccc">{{c.commentfield.value
+                                                                    ? c.commentfield.value.length : 0}}/500</div>
+            
+            
+                                                            </div>
+            
+                                                        </div>
+                                                        <div class="form-group row">
+            
+                                                            <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Upload
+                                                                Document
+            
+                                                            </label>
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group uploadfile-style">
+                                                                    <input type="file" name="commentfile" formControlName="commentfile"
+                                                                        title="Browse Document" class="form-control-file" (change)="fileSelectionEventcomments($event)">
+                                                                </div>
+                                                            </div>
+            
+                                                        </div>
+            
+            
+            
+                                                        <div class="col" align="center" style="margin-top:20px;">
+                                                            <button type="submit" class="submit-btn">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+            
+                                                <div class="col comment-heading">
+                                                    <h6>Property Comments</h6>
+                                                </div>
+                                                <div class='col comments-style scrolling-comment'>
+                                                    <table class="col-sm-12" [mfData]="comments" #mf="mfDataTable" [mfRowsOnPage]="5">
+                                                        <tbody>
+                                                            <tr *ngFor="let comment of mf.data;let IndexId = index">
+                                                                <td>
+                                                                    <div class="commentbox-style-1">
+                                                                        <p class="comment-role">By {{comment.role}},</p>
+                                                                        <p class="comment-description">{{comment.description}}</p>
+                                                                        <span class="comment-reply-btn">
+                                                                            <i style="cursor: pointer" *ngIf="comment.documentName!==null"
+                                                                                (click)="getporpertyCommentdocDownloadUrl(comment.id)"
+                                                                                class="fa fa-download" aria-hidden="true"></i>
+                                                                        </span>
+                                                                        <span class="comment-hrs">On {{comment.addedDate | date:
+                                                                            'dd/MM/yyyy HH:mm:ss a'}}</span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="1" style="border:0px !important;padding:0px;">
+                                                                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                                                                </td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+            
+            
+            
+            
+            
+            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="modal-background"></div>
+                            <app-loading-div *ngIf="isLoading"></app-loading-div>
+                        </modal>
+            
+              
+
+        </div>

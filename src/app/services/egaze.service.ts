@@ -386,7 +386,7 @@ export class EgazeService {
     return this.http.get(requestURL);
   }
   getAgentDetails() {
-    return this.http.get(this.baseUrl + 'agent/details');
+    return this.http.get(this.baseUrl + 'active/agent/details');
   }
   getAssignableProperties() {
     return this.http.get(this.baseUrl + 'assignable/properties');
