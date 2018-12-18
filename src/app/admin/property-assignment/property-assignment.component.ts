@@ -12,12 +12,14 @@ export class PropertyAssignmentComponent implements OnInit {
   submitted = false;
   isLoading = false;
   agents: any;
-  status = false;
+  status:any='';
+  properties: any;
+  assignedproperties: any = [];
   constructor(private fb: FormBuilder, private EgazeService: EgazeService) {
 
     this.getAgents();
-
-   
+    this.getAssignableProperties();
+    this.getAssignedProperties();
   }
 
   ngOnInit() {
@@ -25,7 +27,8 @@ export class PropertyAssignmentComponent implements OnInit {
 
     this.propertyAssignmentForm = this.fb.group({
 
-      agent: ['', [Validators.required]]
+      agent: ['', [Validators.required]],
+      property: ['', [Validators.required]]
     });
     this.propertyAssignmentForm.controls['agent'].setValue("");
 
@@ -34,31 +37,30 @@ export class PropertyAssignmentComponent implements OnInit {
   get f() { return this.propertyAssignmentForm.controls; }
 
   agenttype(event) {
-    this.propertyAssignmentForm.value.customerCustom = "" + event;
-    //alert(event+"")
-
+    this.propertyAssignmentForm.value.agnet = "" + event;
+  }
+  propertytype(event) {
+    this.propertyAssignmentForm.value.property = "" + event;
   }
 
-  // saveCustomPackage(customPackageForm) {
-  //   this.status = false;
-  //   if (this.customPackagesForm.valid) {
-  //     this.isLoading = true;
-  //     this.EgazeService.createCustomPackage(this.customPackagesForm.value).subscribe(message => {
-  //       this.isLoading = false;
-  //       this.status = true;
-  //       this.customPackagesForm.controls['customerCustom'].setValue("");
-  //       this.customPackagesForm.controls['price'].setValue("");
-  //       this.customPackagesForm.controls['packageLimit'].setValue("");
-  //       this.customPackagesForm.controls['packagePeriod'].setValue("");
-  //       this.customPackagesForm.controls['descriptionCustom'].setValue("");
-  //       this.getCustomPlanUserRecords();
-  //     });
-  //   }
-  //   else {
-  //     this.submitted = true;
+  propertyAssignment(propertyAssignmentForm) {
+    this.status = false;
+    if (this.propertyAssignmentForm.valid) {
+      this.isLoading = true;
+      this.EgazeService.assignProperty(this.propertyAssignmentForm.value).subscribe(message => {
+        this.isLoading = false;
+        this.status = "Successfully assigned the property to Agent.";
+        this.propertyAssignmentForm.controls['agent'].setValue("");
+        this.propertyAssignmentForm.controls['property'].setValue("");
+        this.submitted = false;
+        this.getAssignedProperties();
+      });
+    }
+    else {
+      this.submitted = true;
 
-  //   }
-  // }
+    }
+  }
 
 
   getAgents() {
@@ -69,6 +71,27 @@ export class PropertyAssignmentComponent implements OnInit {
     });
 
   }
+  getAssignableProperties() {
+    this.EgazeService.getAssignableProperties().subscribe(result => {
+      this.properties = result;
+    }, error => {
 
+    });
+  }
+  getAssignedProperties() {
+    this.EgazeService.getAssignedProperties().subscribe(result => {
+      this.assignedproperties = result;
+    }, error => {
+
+    });
+  }
+  remove(status, id) {
+    this.EgazeService.removeAssignedProperty(status, id).subscribe(result => {
+      this.status = "Successfully removed the property from Agent.";
+      this.getAssignedProperties();
+    }, error => {
+
+    });
+  }
 
 }

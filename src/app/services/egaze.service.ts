@@ -377,7 +377,7 @@ export class EgazeService {
     //   productInfo: data.productInfo,
     //   amount: data.amount
     // }
-//alert(data)
+    //alert(data)
     let requestURL = this.baseUrl + 'payment/payment-details';
     return this.http.post(requestURL, data);
   }
@@ -387,6 +387,33 @@ export class EgazeService {
   }
   getAgentDetails() {
     return this.http.get(this.baseUrl + 'agent/details');
-
   }
+  getAssignableProperties() {
+    return this.http.get(this.baseUrl + 'assignable/properties');
+  }
+  assignProperty(requestData) {
+    let c = requestData.property;
+    let cc = c.split('##');
+    var data = {
+      "propertyId": cc[0],
+      "userId": cc[1],
+      "agentId": requestData.agent
+    }
+    //alert(JSON.stringify(data));
+    return this.http.post(this.baseUrl + '/assign/property', data);
+  }
+  getAssignedProperties() {
+    return this.http.get(this.baseUrl + 'all/assigned/properties');
+  }
+  removeAssignedProperty(status, id) {
+    var data = {
+      "status": status,
+      "id": id
+    }
+    return this.http.post(this.baseUrl + 'update/assigned/property/status', data);
+  }
+  getAgentProperentties(agentId) {
+    return this.http.get(this.baseUrl + 'assigned/properties/'+agentId);
+  }
+  
 }

@@ -17,6 +17,69 @@
   </div>
 
   <div class="col-md-10 right-content-bg" style="padding:15px;">
-<p>No Properties</p>
+
+    <div class="property-tab-style table-container-style table-responsive">
+
+    <div *ngIf='properties.length == 0'>No Properties.</div>
+
+    <table *ngIf='properties.length != 0' class="table table-striped table-bordered table-hover"
+        [mfData]="properties" #mf="mfDataTable" [mfRowsOnPage]="5">
+        <thead>
+            <tr>
+                <th>
+                    <mfDefaultSorter by="propertyCode">Property Code</mfDefaultSorter>
+                </th>
+                <th>
+                    <mfDefaultSorter by="propertyType">Property Type</mfDefaultSorter>
+                </th>
+                <th>
+                    <mfDefaultSorter by="propertyHolderName">Property Holder Name</mfDefaultSorter>
+                </th>
+                <th>
+                    <mfDefaultSorter by="relationship">Relationship</mfDefaultSorter>
+                </th>
+                <!-- <th>
+                        <mfDefaultSorter by="doorNo">Door Number</mfDefaultSorter>
+                    </th> -->
+                <th>
+                    <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                </th>
+                <th class='text-center'>
+                    Action
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let property of mf.data; let IndexId = index">
+                <!-- <td>{{IndexId+1}}</td> -->
+                <td>{{property.propertyCode}} </td>
+                <td>{{property.propertyType}}</td>
+                <td>{{property.propertyHolderName}}</td>
+                <td>{{property.relationship}}</td>
+                <!-- <td>{{property.doorNo}}</td> -->
+
+                <td>
+                    <span *ngIf="property.status==='P'">Pending Approval</span>
+                    <span *ngIf="property.status==='A'"> Approved</span>
+                </td>
+                <td class="viewbtn text-center">
+                    <!-- <i class="fa fa-eye" (click)="viewPropertyFun()"></i> -->
+                    <i class="fa fa-eye" (click)="openModal('custom-modal-11',property,false)"></i>
+                    <!-- <span *ngIf="propertyUpdatesids.indexOf(property.id) > -1"> **</span> -->
+
+
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6" style="border:0px !important;padding:0px;">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
   </div>
 </div>

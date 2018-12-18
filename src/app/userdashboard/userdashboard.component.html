@@ -4,12 +4,12 @@
     <div class="col-md-2" style="background-color:#1275af;padding:0px;margin-top: -6PX;">
        
         <div class="leftside-menu">
-                <div class="registeruserName" style="border-bottom:1px solid #fff;margin-bottom: 10px;">
+                <div class="registeruserName" style="margin-bottom: 10px;">
                         <img src="../../assets/images/profile_pic.png" width="150px" height="150px" style="border-radius: 50%;border: 1px solid #fff;padding: 10px;">         
-                        <span>{{user.firstName}} {{user.lastName}}</span>   <br>
-                        <span>Last Login : </span>
+                        <br><span>{{user.firstName}} {{user.lastName}}</span>   <br>
+                        <!-- <span>Last Login : </span> -->
                                 </div>
-            <ul>
+            <ul style="border-top:1px solid #fff;">
                 <li title="Add or View Properties" [ngClass]="{'activeTabdash': propertyTab}" (click)="userdashTabs('Properties')">
 
                     <i class="fa fa-home"></i> Properties
@@ -504,8 +504,8 @@
                                             <div class="col-md-8">
                                                     <h5 class="tab-active-heading">Below Properties got update from Admin:</h5>
                                                         </div>
-                                                    <div *ngIf="!customdiv" align="right" class="col-md-4">
-                                                            <div *ngIf="addProperty && !viewProperties" class="propertyheading" (click)="propertyFun()">
+                                                    <div *ngIf="!customdiv" align="right" class="col-md-4" style="padding-right: 0px !important;">
+                                                            <div *ngIf="addProperty && !viewProperties" class="propertyheading" (click)="propertyFun()" >
                                                                 <i class="fa fa-plus" style="font-size:13px;font-weight: 200"></i> Add Property
                                                             </div>
                                                          
@@ -664,7 +664,7 @@
                         </ul> -->
                    
                    
-                        <div *ngIf="!addProperty && viewProperties" ailgn="right" class="col-md-6" >
+                        <div *ngIf="!addProperty && viewProperties" ailgn="right" class="col-md-6" style="padding-right: 0px !important;" >
                             <div class="propertyheading" style="float:right;margin-bottom: 10px;" (click)="propertyFunView()">
                                 <i class="fa fa-eye" style="font-size:13px;font-weight: 200;" ></i> View Properties
                             </div>
@@ -793,9 +793,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4 offset-md-2" style='padding-top: 20px;' align="right">
+                                    <div class="col-md-10 offset-md-2" style='padding-top: 20px;padding-right: 0px !important;' align="right">
                                         <!-- <button type="submit" class="btn btn-primary" [disabled]="!userloginForm.valid" >Submit</button> -->
-                                        &nbsp;&nbsp;&nbsp;<button type="submit" class="submit-btn">Continue</button>
+                                        <button type="submit" class="submit-btn">Continue</button>
                                     </div>
 
                                 </div>
@@ -1036,8 +1036,8 @@
                                 </div>
 
 
-<div class="col-md-3">
-<img src="../../assets/images/add_property.jpg" width="500px" height="320px" />
+<div class="col-md-6" style="padding-right: 0px !important;">
+<img src="../../assets/images/add_property.jpg" width="100%" height="100%" />
 
 </div>
                             </div>

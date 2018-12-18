@@ -7,6 +7,7 @@ import {RoleAuthenticationService as RoleGuard } from '../services/role-authenti
 import { AgentdashboardComponent } from './agentdashboard/agentdashboard.component';
 import { AgentprofileComponent } from './agentprofile/agentprofile.component';
 import { LoadingDivComponent } from './loading-div/loading-div.component';
+import {DataTableModule} from "angular-6-datatable";
 
 
 const appRoutes: Routes = [
@@ -26,7 +27,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    RouterModule.forRoot(appRoutes, { enableTracing: true }),DataTableModule
   ],
   declarations: [AgentdashboardComponent, AgentprofileComponent, LoadingDivComponent],
   providers: [RoleGuard]
