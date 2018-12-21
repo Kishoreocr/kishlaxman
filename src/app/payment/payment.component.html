@@ -3,7 +3,7 @@
 
     <div class="col">
 
-      <div class="col-md-5 offset-md-4" style="background-color: #fbfbfb !important;
+      <div class="col-md-6 offset-md-3" style="background-color: #fbfbfb !important;
       padding: 20px;">
           <div>
               <h5 class="tab-active-heading"> Payment Details </h5>
@@ -63,7 +63,8 @@
         <textarea name="service_provider" id="service_provider" rows="2" cols="2" hidden [(ngModel)]="payuform.serviceprovider"></textarea>
         <textarea name="salt" id="salt" rows="2" cols="2" hidden [(ngModel)]="payuform.salt"></textarea>
         <textarea name="amount" id="amount" rows="2" cols="2" hidden [(ngModel)]="payuform.amount"></textarea>
-        <div class="form-group row">
+        
+        <div class="row">
           
           <div *ngIf="disablePaymentButton" class="col-sm-12 col-form-label" align="center">
              <button *ngIf="disablePaymentButton" type="button" class="submit-btn" (click)="confirmPayment()">Confirm</button>
@@ -73,17 +74,27 @@
           </div> 
                      
          
-          <div *ngIf="!disablePaymentButton" class="col-sm-12 col-form-label" align="center">
-              For Domestic :<br><button *ngIf="!disablePaymentButton" type="submit" class="submit-btn">PayUMoney</button>
-             <div style="margin-top: 20px;margin-bottom: 20px;">
+          <div *ngIf="!disablePaymentButton" class="row" style="margin-left: 0px;">
+            
+            <div class="col-md-3 offset-md-1">
+            For Domestic :<button *ngIf="!disablePaymentButton" type="submit" class="submit-btn">PayUMoney</button>
+          </div>
+
+            <div class="col-md-4">
              For International : <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-             
-           </div> 
+           </div>
+
+            <div class="col-md-3" style="margin-top: 20px;">
            <a routerLink="/package-choose" routerLinkActive="activeClss">
             <button  type="button" class="submit-btn" >Cancel</button>     
           </a>
-           </div>
         </div>
+         
+        </div>
+        
+          </div>
+
+        
 
 
       </form>

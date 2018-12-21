@@ -4,10 +4,10 @@
     <div class="col-md-2" style="background-color:#1275af;padding:0px;margin-top: -6PX;">
        
         <div class="leftside-menu">
-                <div class="registeruserName" style="margin-bottom: 10px;">
-                        <img src="../../assets/images/profile_pic.png" width="150px" height="150px" style="border-radius: 50%;border: 1px solid #fff;padding: 10px;">         
+                <div class="registeruserName" style="margin-bottom: 10px;text-align: center">
+                        <img src="../../assets/images/profile_pic.png" width="120px" height="120px" style="border-radius: 50%;border: 1px solid #fff;">         
                         <br><span>{{user.firstName}} {{user.lastName}}</span>   <br>
-                        <!-- <span>Last Login : </span> -->
+                        <span>Last Login : 2 Hours Ago</span>
                                 </div>
             <ul style="border-top:1px solid #fff;">
                 <li title="Add or View Properties" [ngClass]="{'activeTabdash': propertyTab}" (click)="userdashTabs('Properties')">
@@ -71,7 +71,7 @@
                             <div class="modal">
 
                                 <div class="row justify-content-md-center no-gutters">
-                                    <div class="modal-body col-md-9">
+                                    <div class="modal-body col-md-10" style="font-size: 12px !important">
                                         <!-- <h6>Property Details</h6> -->
 
                                         <div class='col modal-heading'>
@@ -98,44 +98,44 @@
                                         <div *ngIf="propertytabModal && !documentstabModal && !commentstabModal">
 
                                             <div class="property-tab-style">
-
                                                 <div class="row" *ngIf="property!=''">
                                                     <div class="col-md-4">
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Type
-                                                                of Property:</div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                of Property</div>
+                                                                <div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.propertyType}}
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Title
-                                                                Holder:
-                                                            </div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                Holder
+                                                            </div><div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.propertyHolderName}}
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Relationship
-                                                                to customer:</div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                to customer</div><div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.relationship}}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Survey
-                                                                No/Dr No:</div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                No/Dr No</div><div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.doorNo}}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Sub
-                                                                Register Office:</div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                Register Office</div><div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.subRegisterOffice}}
                                                             </div>
                                                         </div>
@@ -143,8 +143,8 @@
 
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Extent
-                                                                of Property:</div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                of Property</div><div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.extentOfProperty}}
                                                             </div>
                                                         </div>
@@ -157,43 +157,43 @@
 
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Boundaries
-                                                                North:
-                                                            </div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                North
+                                                            </div><div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.boundariesNorth}}
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Boundaries
-                                                                East:
-                                                            </div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                East
+                                                            </div><div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.boundariesEast}}
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Boundaries
-                                                                West:
-                                                            </div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                West
+                                                            </div><div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.boundariesWest}}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Boundaries
-                                                                South:
-                                                            </div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                South
+                                                            </div><div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.boundariesSouth}}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Document
-                                                                No:
-                                                            </div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                No
+                                                            </div><div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.documentNo}}
                                                             </div>
                                                         </div>
@@ -206,17 +206,18 @@
                                                     <div class="col-md-4">
 
                                                             <div class="form-group row">
-                                                                    <div class="col-sm-5 col-form-label font-bold-label">Address1 :                                                          </div>
-                                                                    <div class="col-sm-6 col-form-label" style="width:20px;">
+                                                                    <div class="col-sm-5 col-form-label font-bold-label">Address1 </div>
+                                                                    <div class="col-sm-1 col-form-label">:</div>
+                                                                    <div class="col-sm-5 col-form-label" style="width:20px;">
                                                                         {{property.address1}}
                                                                     </div>
                                                                 </div>
 
                                                         <div class="form-group row">
                                                             <div class="col-sm-5 col-form-label font-bold-label">Address
-                                                                2:
-                                                            </div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                                2
+                                                            </div><div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.address2}}
                                                             </div>
                                                         </div>
@@ -227,36 +228,41 @@
                                                         </div>
                                                     </div> -->
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Village/City:</div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Village/City</div>
+                                                            <div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.city}}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Mandal:</div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Mandal</div>
+                                                            <div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.mandal}}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">District:</div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">District</div>
+                                                            <div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.district}}
                                                             </div>
                                                         </div>
 
 
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">State:</div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">State</div>
+                                                            <div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.state}}
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <div class="col-sm-5 col-form-label font-bold-label">Zip:</div>
-                                                            <div class="col-sm-6 col-form-label">
+                                                            <div class="col-sm-5 col-form-label font-bold-label">Zip</div>
+                                                            <div class="col-sm-1 col-form-label">:</div>
+                                                            <div class="col-sm-5 col-form-label">
                                                                 {{property.zip}}
                                                             </div>
                                                         </div>
@@ -363,7 +369,7 @@
                                                             Status
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-5">
                                                             <select class="form-control" formControlName="typeofProperty"
                                                                 (ngModelChange)="getType($event)" class="form-control">
 
@@ -380,7 +386,7 @@
                                                         <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Comments
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <div class="col-sm-10">
+                                                        <div class="col-sm-5">
                                                             <textarea class="form-control" style="resize:none;text-align:left;"
                                                                 id="exampleFormControlTextarea1" rows="3"
                                                                 formControlName="commentfield" class="form-control"
@@ -396,12 +402,12 @@
                                                                     enter comments with minimum 3 and maximum 500
                                                                     characters
                                                                 </div>
-                                                                <div style="position:absolute;right:15px;bottom:0px;font-size: 14px;color:#ccc">{{c.commentfield.value
+                                                                <div style="text-align: right;right:15px;bottom:0px;font-size: 14px;color:#ccc">{{c.commentfield.value
                                                                     ? c.commentfield.value.length : 0}}/500</div>
 
                                                             </div>
                                                             <div *ngIf="c.commentfield.errors===null || !submitted"
-                                                                style="position:absolute;right:15px;bottom:-25px;font-size: 14px;color:#ccc">{{c.commentfield.value
+                                                                style="text-align: right;right:15px;bottom:-25px;font-size: 14px;color:#ccc">{{c.commentfield.value
                                                                 ? c.commentfield.value.length : 0}}/500</div>
 
 
@@ -418,7 +424,7 @@
                                                             Document
 
                                                         </label>
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-5">
                                                             <div class="form-group uploadfile-style">
                                                                 <input type="file" name="commentfile" formControlName="commentfile"
                                                                     title="Browse Document" class="form-control-file"
@@ -680,7 +686,7 @@
 
 
 
-                                <div *ngIf="firstFormStep" class="col-md-6">
+                                <div *ngIf="firstFormStep" class="col-md-7" style="font-size: 13px;">
 
 
                                     <div class="form-group row">
@@ -1036,7 +1042,7 @@
                                 </div>
 
 
-<div class="col-md-6" style="padding-right: 0px !important;">
+<div class="col-md-5" style="padding-right: 0px !important;">
 <img src="../../assets/images/add_property.jpg" width="100%" height="100%" />
 
 </div>
@@ -1190,7 +1196,7 @@
                         <!-- <caption>List of Transactions</caption> -->
                         <thead>
                             <tr>
-                                <th>Package Name</th>
+                                <th style="width:150px !important">Package Name</th>
                                 <th>Start Date</th>
                                 <th>Expiry Date</th>
                                 <th>Properties Limit</th>

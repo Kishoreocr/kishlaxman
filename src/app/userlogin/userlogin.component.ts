@@ -244,10 +244,10 @@ export class UserloginComponent implements OnInit {
 
             this.sessionstorageService.setUserDetails(this.user);
             // this.EgazeService.getSigninOTP(this.user1.email, this.user1.mobile).subscribe(result => {
+            //   this.timer(300);
             //   this.forgotpwdmodal('signinotpmodal');
             //   this.updateOTP = result;
-            //   this.timer(300);
-            // }, error => {
+            //   }, error => {
             // });
             this.redirect();
 

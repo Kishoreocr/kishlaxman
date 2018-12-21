@@ -7,7 +7,7 @@
     padding:10px 10px;
 }
 .registeruserName > span{
-    font-size:18px;
+    font-size:15px;
 }
 .registeruserName > i.fa{
     font-size:25px;padding-right:5px;
@@ -438,7 +438,7 @@ body.modal-open {
     margin-bottom:20px;
 }
 .col-form-label{
-    font-size:14px;
+    font-size:13px;
 }
 
 
@@ -540,4 +540,8 @@ app-modal-property#forgotpwdmodal > .modal-background{
     min-height: 1px;
     padding-right: 0px !important;
     padding-left: 15px;
+}
+
+.form-control{
+    font-size: 13px !important;
 }

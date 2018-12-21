@@ -43,6 +43,7 @@ export class PaymentComponent implements OnInit {
       this.pres = data;
       this.payuform.productinfo = this.pres.packageName;
       this.payuform.amount = this.pres.price;
+      //this.payuform.amount = 1;
       this.payuform.packageId = this.pres.id;
     });
     this.payuform.custId = this.user.loginId;

@@ -177,10 +177,13 @@ ul.areas li { width:20%; list-style:none; float:left; padding:.3em 1em .3em 0; f
 #home-carousel { height: 100%; width: 100%; position: absolute; }
 #home-carousel .carousel-inner { height: 100%; width: 100%; }
 #home-carousel .carousel-inner .item { height: 100%; background-position: center center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
-#home-carousel .carousel-inner .item.banner1 { background-image: url('../../assets/images/home_slider_1.png'); }
-#home-carousel .carousel-inner .item.banner2 { background-image: url('../../assets/images/home_slider_2.png'); }
-#home-carousel .carousel-inner .item.banner3 { background-image: url('../../assets/images/home_slider_3.png'); }
-#home-carousel .carousel-inner .item.banner4 { background-image: url('../../assets/images/home_slider_4.png'); }
+#home-carousel .carousel-inner .item.banner1 { background-image: url('../../assets/images/home_slider_1.jpg'); }
+#home-carousel .carousel-inner .item.banner2 { background-image: url('../../assets/images/home_slider_2.jpg'); }
+#home-carousel .carousel-inner .item.banner3 { background-image: url('../../assets/images/home_slider_3.jpg'); }
+#home-carousel .carousel-inner .item.banner4 { background-image: url('../../assets/images/home_slider_4.jpg'); }
+#home-carousel .carousel-inner .item.banner5 { background-image: url('../../assets/images/home_slider_5.jpg'); }
+#home-carousel .carousel-inner .item.banner6 { background-image: url('../../assets/images/home_slider_6.jpg'); }
+#home-carousel .carousel-inner .item.banner7 { background-image: url('../../assets/images/home_slider_7.jpg'); }
 
 
 /* Home CTA
