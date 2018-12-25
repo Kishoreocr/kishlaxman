@@ -715,6 +715,7 @@ export class AdmindashboardComponent implements OnInit {
             this.filterpropertyApproval.push(item);
           }
         }
+        
         else if (this.searchType === 'district') {
           if (item.district.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1) {
             this.filterpropertyApproval.push(item);
@@ -724,6 +725,10 @@ export class AdmindashboardComponent implements OnInit {
           var fdate = new Date(this.searchGrp.value.searchTextdate1);
           var tdate = new Date(this.searchGrp.value.searchTextdate2);
           if (date.getTime() >= fdate.getTime() && date.getTime() <= tdate.getTime()) {
+            this.filterpropertyApproval.push(item);
+          }
+        }else if (this.searchType === 'propertycode') {
+          if (item.propertyCode.toLowerCase().indexOf(this.searchGrp.value.searchText.toLowerCase()) > -1) {
             this.filterpropertyApproval.push(item);
           }
         }

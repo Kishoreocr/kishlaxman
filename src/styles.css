@@ -39,9 +39,9 @@ border-radius:50px;
 .carousel-indicators .active{
     background-color:#ff5f00;
 }
-.carousel-control-prev, .carousel-control-next{
+/* .carousel-control-prev, .carousel-control-next{
     display:none;
-}
+} */
 /* .dropdown-menu{
     margin: 0.99em 0 0;
     border-top:0px;

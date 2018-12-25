@@ -468,7 +468,7 @@
                                                     [mfRowsOnPage]="5">
                                                     <tbody>
                                                         <tr *ngFor="let comment of mf.data;let IndexId = index">
-                                                            <td>
+                                                            <td *ngIf="comment.status ==='A'">
                                                                 <div class="commentbox-style-1">
                                                                     <p class="comment-role">By {{comment.role}},</p>
                                                                     <p class="comment-description">{{comment.description}}</p>
