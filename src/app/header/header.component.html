@@ -156,8 +156,8 @@ position: relative;">
 
         </ul>
       </div>
-      <div class="phone" style="font-size: 16px;"> WhatsApp us :
-        <a *ngIf="!mobile" href="tel: +917045942225" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i> (+91) 70459 42225</a>
+      <div class="phone" style="font-size: 16px;">
+        <a *ngIf="!mobile" href="tel: +917045942225" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i> &nbsp;&nbsp;<i class="fa fa-whatsapp" aria-hidden="true"></i>&nbsp;(+91) 70459 42225</a>
         <a *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-7045942225" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i> (+91) 70459 42225</a>
       </div>
       <div class="logins">
@@ -187,11 +187,11 @@ position: relative;">
       <div class="mobile-hide">
         <div id="nav">
           <ul>
-            <li>
+            <!-- <li>
               <a routerLink="/home" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/home'">Home</a>
-            </li>
+            </li> -->
 
-            <li>
+            <!-- <li>
               <a [class.activeClassLink] = "currentURL=='/property-monitoring' || currentURL=='/package-description'">Services</a>
               <ul>
                 <li>
@@ -201,17 +201,19 @@ position: relative;">
                   <a routerLink="/package-description" routerLinkActive="activeClss">Packages</a>
                 </li>
               </ul>
+            </li> -->
+
+            <li>
+              <a routerLink="/package-description" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/package-description'">Packages</a>
             </li>
-
-
-            <li *ngIf="!flag">
+            <!-- <li *ngIf="!flag">
               <a [class.activeClassLink] = "currentURL=='/agent-registration'">Agents</a>
               <ul>
                <li>
                   <a routerLink="/agent-registration" routerLinkActive="activeClss">Agent Registration</a>
                 </li>
               </ul>
-            </li>
+            </li> -->
             <li>
               <a [class.activeClassLink] = "currentURL=='/abouteGAZE' || currentURL=='/whyeGAZE'">About</a>
               <ul>
@@ -301,11 +303,11 @@ position: relative;">
     <a style="color:#1275af;font-size:18px;font-weight:400;">{{user.email}}</a>
   </div>
   <ul>
-    <li [class.activelink-mobile-menu-bg]="currentURL=='/home'">
+    <!-- <li [class.activelink-mobile-menu-bg]="currentURL=='/home'">
       <a routerLink="/home" routerLinkActive="activeClss">Home</a>
-    </li>
+    </li> -->
 
-    <li [class.activelink-mobile-menu-bg]="currentURL=='/property-monitoring' || currentURL=='/package-description'">
+    <!-- <li [class.activelink-mobile-menu-bg]="currentURL=='/property-monitoring' || currentURL=='/package-description'">
       <a>Services</a>
       <ul>
         <li [class.activelink-mobile-menu]="currentURL=='/property-monitoring'">
@@ -315,17 +317,19 @@ position: relative;">
           <a routerLink="/package-description" routerLinkActive="activeClss">Packages</a>
         </li>
       </ul>
+    </li> -->
+    <li [class.activelink-mobile-menu-bg]="currentURL=='/package-description'">
+      <a routerLink="/package-description" routerLinkActive="activeClss">Packages</a>
     </li>
 
-
-    <li *ngIf="!flag" [class.activelink-mobile-menu-bg]="currentURL=='/agent-registration'">
+    <!-- <li *ngIf="!flag" [class.activelink-mobile-menu-bg]="currentURL=='/agent-registration'">
       <a>Agents</a>
       <ul>
         <li [class.activelink-mobile-menu]="currentURL=='/agent-registration'">
           <a routerLink="/agent-registration" routerLinkActive="activeClss">Agent Registration</a>
         </li>
       </ul>
-    </li>
+    </li> -->
     <li [class.activelink-mobile-menu-bg]="currentURL=='/abouteGAZE' || currentURL=='/whyeGAZE'">
       <a>About</a>
       <ul>

@@ -76,15 +76,15 @@
          
           <div *ngIf="!disablePaymentButton" class="row" style="margin-left: 0px;">
             
-            <div class="col-md-3 offset-md-1">
+            <div class="col-md-5 offset-md-1">
             For Domestic :<button *ngIf="!disablePaymentButton" type="submit" class="submit-btn">PayUMoney</button>
           </div>
 
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
              For International : <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-           </div>
+           </div> -->
 
-            <div class="col-md-3" style="margin-top: 20px;">
+            <div class="col-md-3" > &nbsp;
            <a routerLink="/package-choose" routerLinkActive="activeClss">
             <button  type="button" class="submit-btn" >Cancel</button>     
           </a>

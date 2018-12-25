@@ -124,11 +124,11 @@
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" formControlName="termsChecked" id="termsChecked" (click)="terms()">
-                    <label class="form-check-label" for="exampleCheck1">I Accepted the
+                    <label class="form-check-label" for="exampleCheck1">I accept
                         <a style="color: #fd8236" routerLink="/terms-conditions" routerLinkActive="active" target="_new">Terms &amp; Conditions.</a>
                     </label>
                 </div>
-                <div *ngIf="termsCheckederrors!=''" style="color:#fd8236;font-size: 80%">
+                <div *ngIf="termsCheckederrors!=''" style="color:#ff7b7b ;font-size: 80%;font-weight: bold">
                     <div>{{termsCheckederrors}}</div>
 
                 </div>

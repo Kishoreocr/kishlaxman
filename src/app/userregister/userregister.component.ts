@@ -112,7 +112,7 @@ export class UserregisterComponent implements OnInit {
     });
 
     this.registerForm.controls['registerType'].setValue("customer");
-    this.registerForm.controls['termsChecked'].setValue("true");
+   // this.registerForm.controls['termsChecked'].setValue("true");
     this.registerForm.controls['country'].setValue("India");
     this.registerForm.controls['countryCode'].setValue("in");
     this.route.queryParamMap.subscribe(params => {
@@ -180,10 +180,14 @@ export class UserregisterComponent implements OnInit {
     // stop here if form is invalid
 
     if (this.registerForm.invalid) {
+      if (!formData.value.termsChecked)
+      this.termsCheckederrors = "Please accept Terms and Conditions";
+    else
+      this.termsCheckederrors = "";
       return;
     } else if (!formData.value.termsChecked) {
       if (!formData.value.termsChecked)
-        this.termsCheckederrors = "Please accept terms and conditions";
+        this.termsCheckederrors = "Please accept Terms and Conditions";
       else
         this.termsCheckederrors = "";
     }
@@ -224,7 +228,7 @@ export class UserregisterComponent implements OnInit {
   }
   terms() {
     if (this.registerForm.get('termsChecked').value)
-      this.termsCheckederrors = "Please accept terms and conditions";
+      this.termsCheckederrors = "Please accept Terms and Conditions";
     else
       this.termsCheckederrors = "";
   }
