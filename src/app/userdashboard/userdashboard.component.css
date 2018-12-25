@@ -237,6 +237,12 @@ caption {
     transition: all 0.5s ease;
     margin-right:-1.5px;
 }
+@media(max-width:420px){
+    .userdashboardTab ul li{
+        font-size:11px;
+        padding:5px 8px;
+    }
+}
 
 .userdashboardTab ul li.active{
     background-color:#1275af !important;
@@ -544,4 +550,13 @@ app-modal-property#forgotpwdmodal > .modal-background{
 
 .form-control{
     font-size: 13px !important;
+}
+.profile-img{
+    border-radius: 50%;border: 1px solid #fff;
+    width:120px;
+}
+@media(max-width:850px){
+    .profile-img{
+        width:90px;
+    }
 }

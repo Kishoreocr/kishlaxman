@@ -286,6 +286,7 @@ export class UserregisterComponent implements OnInit {
         if (result) {
           // sessionStorage.removeItem("formData");
           // sessionStorage.setItem("regsuc","success");
+          this.closeModal('registermodal');
           this.router.navigateByUrl('/loginform?data=success');
 
         }

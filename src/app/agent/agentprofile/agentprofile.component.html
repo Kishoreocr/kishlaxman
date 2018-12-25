@@ -250,8 +250,8 @@
             <form [formGroup]="updateuserNewpwdForm" (ngSubmit)="profileChangepwdSubmit(updateuserNewpwdForm)">
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Old Password</label>
-                    <div class="col-sm-4 passwordInput">
+                    <label class="col-sm-2 col col-form-label">Old Password</label>
+                    <div class="col-sm-4 col passwordInput">
                         <input [type]="showText ? 'text' : 'password' " formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
                           maxlength="20" placeholder="Please Enter Old Password"/>
 
@@ -272,8 +272,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">New Password</label>
-                    <div class="col-sm-4 passwordInput">
+                    <label class="col-sm-2 col col-form-label">New Password</label>
+                    <div class="col-sm-4 col passwordInput">
                         <input [type]="showText1 ? 'text' : 'password' " formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
                          maxlength="20" placeholder="Please Enter New Password"/>
 
@@ -292,8 +292,8 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Confirm Password</label>
-                    <div class="col-sm-4 passwordInput">
+                    <label class="col-sm-2 col col-form-label">Confirm Password</label>
+                    <div class="col-sm-4 col passwordInput">
                         <input [type]="showText2 ? 'text' : 'password' " formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
                         maxlength="20" placeholder="Please Enter Confirm Password"/>
 

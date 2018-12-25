@@ -4,6 +4,17 @@
     background-color: #fffcfa;
     margin: auto;
 }
+.padding-contactus{
+    padding:70px 0px;font-size:16px;
+}
+@media(max-width: 600px){
+    .contact-container-bg{
+        padding: 2px 30px;
+    }
+    .padding-contactus{
+        padding:20px 0px;font-size:15px;
+    }
+}
 
 .email-style{
     padding: 5px 20px;
