@@ -160,11 +160,10 @@ export class UserdashboardComponent implements OnInit {
     this.propertiesShow();
     this.commentForm = this.formBuilder.group({
       commentfield: ['', [Validators.required, Validators.minLength(3)]],
-      typeofProperty: ['', Validators.required],
       commentfile: [null]
     });
 
-    this.commentForm.controls['typeofProperty'].setValue("nochanges");
+    // this.commentForm.controls['typeofProperty'].setValue("nochanges");
     this.upgradePlanForm = this.formBuilder.group({
       plandetailsField: ['', Validators.required]
     });
@@ -412,7 +411,6 @@ export class UserdashboardComponent implements OnInit {
 
 
     else if (this.propertyForm.controls.address1.valid
-      && this.propertyForm.controls.address2.valid
       && this.propertyForm.controls.villageCity.valid
       && this.propertyForm.controls.mandal.valid
       && this.propertyForm.controls.district.valid
@@ -564,6 +562,7 @@ export class UserdashboardComponent implements OnInit {
     });
 
   }
+  nopackage: any = false;
   getPropertiesCount() {
     this.EgazeService.getCustomerPackageLatestRecord(this.user.loginId).subscribe(result => {
       debugger;
@@ -573,6 +572,9 @@ export class UserdashboardComponent implements OnInit {
         if (this.propertyCount.packageName === 'CUSTOM PLAN' && this.propertyCount.purchaseDate === this.propertyCount.expiryDate) {
           this.customdiv = true;
         }
+      } else {
+        this.nopackage = true;
+        this.customdiv = true;
       }
     }, error => {
 
@@ -582,10 +584,10 @@ export class UserdashboardComponent implements OnInit {
   getTransactions() {
     this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
       result => {
-        if (Object.keys(result).length === 0) {
-          this.isLoading = false;
-          window.location.href = AppConstants.packageURL;
-        }
+        // if (Object.keys(result).length === 0) {
+        //   this.isLoading = false;
+        //   window.location.href = AppConstants.packageURL;
+        // }
         this.transactions = result;
       }
 
@@ -766,7 +768,7 @@ export class UserdashboardComponent implements OnInit {
     //alert(JSON.stringify(description.value));
     if (this.commentForm.valid) {
       this.isLoading = true;
-      this.EgazeService.savePropertyComments(this.propertyId, this.user1.loginId, "0", 'Customer', description.value.commentfield, description.value.typeofProperty, this.sfile).subscribe(result => {
+      this.EgazeService.savePropertyComments(this.propertyId, this.user1.loginId, "0", 'Customer', description.value.commentfield, "", this.sfile).subscribe(result => {
         if (result) {
           this.submitted = false;
           this.commentForm.controls['commentfile'].setValue("");

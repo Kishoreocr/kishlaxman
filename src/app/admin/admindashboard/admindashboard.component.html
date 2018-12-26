@@ -32,7 +32,7 @@
                 </li>
                 <li title='Property Assignment to Agent' [ngClass]="{'activeTabdash': propertyAssignmentTab}" (click)="userdashTabs('propertyAssignment')">
 
-                    <i class="fa fa-user"></i> Property Assignment 
+                    <i class="fa fa-user"></i> Property Assignment
                 </li>
                 <!-- <li (click)="userdashTabs('Profile')">
                   
@@ -395,12 +395,13 @@
                                                             <span class="mandatory">*</span>
                                                         </label>
                                                         <input type="text" *ngIf="!isEditDisabled" [readonly]="!isEditDisabled"
-                                                        formControlName="propertyType" class="form-control"
-                                                        [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }"
-                                                        id="propertyType" >
+                                                            formControlName="propertyType" class="form-control"
+                                                            [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }"
+                                                            id="propertyType">
 
-                                                        <select *ngIf="isEditDisabled" class="form-control" formControlName="propertyType"
-                                                            (ngModelChange)="getType($event)" [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }">
+                                                        <select *ngIf="isEditDisabled" class="form-control"
+                                                            formControlName="propertyType" (ngModelChange)="getType($event)"
+                                                            [ngClass]="{ 'is-invalid': submitted && f.propertyType.errors }">
                                                             <option value="" [selected]="selected">Select any Property
                                                             </option>
                                                             <option value="Residential">Residential</option>
@@ -480,7 +481,8 @@
                                                         </label>
                                                         <input type="text" [readonly]="!isEditDisabled" formControlName="extentOfProperty"
                                                             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.extentOfProperty.errors }"
-                                                            id="extentOfProperty" placeholder="Enter Extent of Property" maxlength="150">
+                                                            id="extentOfProperty" placeholder="Enter Extent of Property"
+                                                            maxlength="150">
                                                         <div *ngIf="submitted && f.extentOfProperty.errors" class="invalid-feedback">
                                                             <div *ngIf="f.extentOfProperty.errors.required">Extent of
                                                                 Property is required</div>
@@ -498,7 +500,8 @@
                                                         </label>
                                                         <input type="text" [readonly]="!isEditDisabled" formControlName="documentNo"
                                                             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documentNo.errors }"
-                                                            id="documentNoFormControlInput" placeholder="Enter document no." maxlength="30">
+                                                            id="documentNoFormControlInput" placeholder="Enter document no."
+                                                            maxlength="30">
                                                         <div *ngIf="submitted && f.documentNo.errors" class="invalid-feedback">
                                                             <div *ngIf="f.documentNo.errors.required">Document No. is
                                                                 required</div>
@@ -517,7 +520,8 @@
                                                         </label>
                                                         <input type="text" [readonly]="!isEditDisabled" formControlName="subRegisterOffice"
                                                             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.subRegisterOffice.errors }"
-                                                            id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office" minlength="6" maxlength="150">
+                                                            id="subRegisterOfficeFormControlInput" placeholder="Enter Sub Register Office"
+                                                            minlength="6" maxlength="150">
                                                         <div *ngIf="submitted && f.subRegisterOffice.errors" class="invalid-feedback">
                                                             <div *ngIf="f.subRegisterOffice.errors.required">Sub
                                                                 Register Office is required
@@ -641,18 +645,20 @@
                                                             <span class="mandatory">*</span>
                                                         </label>
 
-                                                        <input type="text" *ngIf="!isEditDisabled" [readonly]="!isEditDisabled" formControlName="state"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
+                                                        <input type="text" *ngIf="!isEditDisabled" [readonly]="!isEditDisabled"
+                                                            formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
                                                             id="stateFormControlInput" placeholder="Enter State">
-                                                       
-                                                            <select *ngIf="isEditDisabled" class="form-control" formControlName="state" (ngModelChange)="getstate($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
-                                                                    <option value="" [selected]="selected">Select State</option>
-                                                                    <option value="AndhraPradesh">Andhrapradesh</option>
-                                                                    <option value="Karnataka">Banglore</option>
-                                                                    <option value="Telangana">Telangana</option>
-                                                                </select>
 
-                                                            <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                                        <select *ngIf="isEditDisabled" class="form-control"
+                                                            formControlName="state" (ngModelChange)="getstate($event)"
+                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                                                            <option value="" [selected]="selected">Select State</option>
+                                                            <option value="AndhraPradesh">Andhrapradesh</option>
+                                                            <option value="Karnataka">Karnataka</option>
+                                                            <option value="Telangana">Telangana</option>
+                                                        </select>
+
+                                                        <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
                                                             <div *ngIf="f.state.errors.required">State is required
                                                             </div>
                                                         </div>
@@ -663,14 +669,16 @@
                                                             <span class="mandatory">*</span>
                                                         </label>
 
-                                                        <input type="text" *ngIf="!isEditDisabled" [readonly]="!isEditDisabled" formControlName="district"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
+                                                        <input type="text" *ngIf="!isEditDisabled" [readonly]="!isEditDisabled"
+                                                            formControlName="district" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }"
                                                             id="districtFormControlInput" placeholder="Enter District">
 
-                                                            <select *ngIf="isEditDisabled" class="form-control" formControlName="district" (ngModelChange)="getdistrict($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }">
-                                                                    <option value="" [selected]="selected">Select District</option>
-                                                                    <option value="{{dist.district}}" *ngFor="let dist of districts">{{dist.district}}</option>
-                                                                </select>
+                                                        <select *ngIf="isEditDisabled" class="form-control"
+                                                            formControlName="district" (ngModelChange)="getdistrict($event)"
+                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.district.errors }">
+                                                            <option value="" [selected]="selected">Select District</option>
+                                                            <option value="{{dist.district}}" *ngFor="let dist of districts">{{dist.district}}</option>
+                                                        </select>
                                                         <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
                                                             <div *ngIf="f.district.errors.required">District is
                                                                 required
@@ -684,14 +692,16 @@
                                                             <span class="mandatory">*</span>
                                                         </label>
 
-                                                        <input *ngIf="!isEditDisabled" type="text" [readonly]="!isEditDisabled" formControlName="mandal"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
+                                                        <input *ngIf="!isEditDisabled" type="text" [readonly]="!isEditDisabled"
+                                                            formControlName="mandal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }"
                                                             id="mandalFormControlInput" placeholder="Enter Mandal">
 
-                                                            <select *ngIf="isEditDisabled" class="form-control" formControlName="mandal" (ngModelChange)="getmandal($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }">
-                                                                    <option value="" [selected]="selected">Select Mandal</option>
-                                                                    <option value="{{dist.mandal}}" *ngFor="let dist of mandals">{{dist.mandal}}</option>
-                                                                </select>
+                                                        <select *ngIf="isEditDisabled" class="form-control"
+                                                            formControlName="mandal" (ngModelChange)="getmandal($event)"
+                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mandal.errors }">
+                                                            <option value="" [selected]="selected">Select Mandal</option>
+                                                            <option value="{{dist.mandal}}" *ngFor="let dist of mandals">{{dist.mandal}}</option>
+                                                        </select>
                                                         <div *ngIf="submitted && f.mandal.errors" class="invalid-feedback">
                                                             <div *ngIf="f.mandal.errors.required">Mandal is required
                                                             </div>
@@ -701,14 +711,16 @@
                                                         <label for="city">Village/City
                                                             <span class="mandatory">*</span>
                                                         </label>
-                                                        <input *ngIf="!isEditDisabled" type="text" [readonly]="!isEditDisabled" formControlName="city"
-                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+                                                        <input *ngIf="!isEditDisabled" type="text" [readonly]="!isEditDisabled"
+                                                            formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
                                                             id="city" placeholder="Enter City">
 
-                                                            <select *ngIf="isEditDisabled" class="form-control" formControlName="city" (ngModelChange)="getvillage($event)" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
-                                                                    <option value="" [selected]="selected">Select Village</option>
-                                                                    <option value="{{dist.village}}" *ngFor="let dist of villages">{{dist.village}}</option>
-                                                                </select>
+                                                        <select *ngIf="isEditDisabled" class="form-control"
+                                                            formControlName="city" (ngModelChange)="getvillage($event)"
+                                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                                                            <option value="" [selected]="selected">Select Village</option>
+                                                            <option value="{{dist.village}}" *ngFor="let dist of villages">{{dist.village}}</option>
+                                                        </select>
                                                         <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
                                                             <div *ngIf="f.city.errors.required">Village/City is
                                                                 required
@@ -854,13 +866,16 @@
                                                     Status
                                                     <span class="mandatory">*</span>
                                                 </label>
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-5">
                                                     <select class="form-control" formControlName="typeofProperty"
                                                         (ngModelChange)="getType($event)" class="form-control">
 
                                                         <option value="nochanges">No Changes</option>
                                                         <option value="roadexpansion">Road Expansion</option>
 
+                                                        <option value="Encroachment">Encroachment</option>
+                                                        <option value="Illegalcontract">Illegal contract</option>
+                                                        <option value="Others">Others</option>
                                                     </select>
                                                 </div>
 
@@ -872,7 +887,7 @@
                                                 <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Comments
                                                     <span class="mandatory">*</span>
                                                 </label>
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-5">
                                                     <textarea class="form-control" style="resize:none;text-align:left;"
                                                         id="exampleFormControlTextarea1" rows="3" formControlName="commentfield"
                                                         class="form-control" [ngClass]="{ 'is-invalid': submitted && c.commentfield.errors }"
@@ -932,7 +947,14 @@
                                                     <td>
                                                         <div class="commentbox-style-1">
                                                             <p class="comment-role">By {{comment.role}},</p>
-                                                            <p class="comment-description">{{comment.description}}</p>
+                                                            <p class="comment-description" *ngIf="comment.severity!=='' "><b>Property Status</b> : 
+                                                                <span *ngIf="comment.severity==='nochanges' ">No Changes </span>
+                                                                <span *ngIf="comment.severity==='roadexpansion' ">Road Expansion</span>
+                                                                <span *ngIf="comment.severity==='Encroachment' ">Encroachment</span>
+                                                                <span *ngIf="comment.severity==='Illegalcontract' ">Illegal contract</span>
+                                                                <span *ngIf="comment.severity==='Others' ">Others</span>
+                                                            </p>
+                                                            <p class="comment-description"><b>Comment</b> :{{comment.description}}</p>
                                                             <span class="comment-reply-btn">
                                                                 <i style="cursor: pointer" *ngIf="comment.documentName!==null"
                                                                     (click)="getporpertyCommentdocDownloadUrl(comment.id)"
@@ -1064,7 +1086,7 @@
                                     <!-- <th>
                                                 <mfDefaultSorter by="index">S.No.</mfDefaultSorter>
                                             </th> -->
-                                    <th>
+                                    <th >
                                         <mfDefaultSorter by="propertyCode">Property Code</mfDefaultSorter>
                                     </th>
                                     <th>
@@ -1076,9 +1098,9 @@
                                     <th>
                                         <mfDefaultSorter by="relationship">Relationship</mfDefaultSorter>
                                     </th>
-                                    <!-- <th>
-                                                    <mfDefaultSorter by="doorNo">Door Number</mfDefaultSorter>
-                                                </th> -->
+                                    <th>
+                                        <mfDefaultSorter by="state">State</mfDefaultSorter>
+                                    </th>
 
                                     <th>
                                         <mfDefaultSorter by="addedDate">Added Date</mfDefaultSorter>
@@ -1099,7 +1121,7 @@
                                     <td>{{property.propertyType}}</td>
                                     <td>{{property.propertyHolderName}}</td>
                                     <td>{{property.relationship}}</td>
-                                    <!-- <td>{{property.doorNo}}</td> -->
+                                    <td>{{property.state}}</td>
 
 
                                     <td>{{property.addedDate | date :'dd/MM/yyyy'}} </td>

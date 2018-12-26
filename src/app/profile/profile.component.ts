@@ -228,8 +228,8 @@ this.updateuserProfilestatus="";
           this.isLoading = false;
           console.log(result);
           if (result === 'SUCCESS') {
-            const element = document.querySelector("#profilechndpwd")
-            if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            //const element = document.querySelector("#profilechndpwd")
+           // if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' })
             this.updateuserNewpwdForm.reset();
             this.submitted = false;
 

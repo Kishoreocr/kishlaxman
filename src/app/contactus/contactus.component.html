@@ -29,7 +29,7 @@
 <div class="row">
   <div class="col-md-12">
       
-  <p style="color: #fd8236"><img src='../../assets/images/whatsapp.png' width="20px" height="20px">
+  <p style="color: #fd8236"><img src='../../assets/images/whatsapp.png' width="25px" height="25px">
     <!-- <i class="fa fa-whatsapp" aria-hidden="true"></i> -->
     <a style="color: #fd8236" *ngIf="!mobile" href="tel: +917045942225" target="_blank">(+91) 7045942225</a>
     <a style="color: #fd8236" *ngIf="mobile" href="https://api.whatsapp.com/send?phone=+91-7045942225" target="_blank">(+91) 7045942225</a>
@@ -132,17 +132,17 @@
             <span class="mandatory">*</span>
           </label>
         
-          <textarea class="form-control" placeholder="Please Enter Description" rows="10" formControlName="description" id="exampleFormControlTextarea1" style='resize:none;' [ngClass]="{ 'is-invalid': submitted && f.description.errors }" maxlength="100"></textarea>
+          <textarea class="form-control" placeholder="Please Enter Description" rows="10" formControlName="description" id="exampleFormControlTextarea1" style='resize:none;' [ngClass]="{ 'is-invalid': submitted && f.description.errors }" maxlength="250"></textarea>
     
         
         
           <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
             <div *ngIf="f.description.errors.required">Description is required</div>
-            <div *ngIf="f.description.errors.minlength">Please enter Minimum 5 characters and Maximum 100 Characters</div>
-            <div  style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value ? f.description.value.length : 0}}/100</div>
+            <div *ngIf="f.description.errors.minlength">Please enter Minimum 5 characters and Maximum 250 Characters</div>
+            <div  style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value ? f.description.value.length : 0}}/250</div>
 
           </div>
-          <div *ngIf="f.description.errors===null || !submitted" style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value ? f.description.value.length:0}}/100</div>
+          <div *ngIf="f.description.errors===null || !submitted" style="position:absolute;right:0px;bottom:-21px;font-size: 14px;color:#ccc">{{f.description.value ? f.description.value.length:0}}/250</div>
 
          
 

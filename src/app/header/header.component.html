@@ -187,9 +187,10 @@ position: relative;">
       <div class="mobile-hide">
         <div id="nav">
           <ul>
-            <!-- <li>
-              <a routerLink="/home" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/home'">Home</a>
-            </li> -->
+            <li>
+              <a routerLink="/home" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/home'"><i class="fa fa-home" aria-hidden="true"></i>
+</a>
+            </li>
 
             <li>
               <a [class.activeClassLink] = "currentURL=='/package-description'">Services</a>
@@ -265,7 +266,7 @@ position: relative;">
             </li>
             <li *ngIf="flag">
               <a *ngIf="this.user.role==='admin'" routerLink="/admindashboard" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/admindashboard'">Dashboard</a>
-              <a *ngIf="this.user.role==='customer'" routerLink="/userdashboard" (click)="userdashboard()" [class.activeClassLink] = "currentURL=='/userdashboard'">Dashboard</a>
+              <a *ngIf="this.user.role==='customer'" routerLink="/userdashboard" [class.activeClassLink] = "currentURL=='/userdashboard'">Dashboard</a>
               <a *ngIf="this.user.role==='agent'" routerLink="/agentdashboard" [class.activeClassLink] = "currentURL=='/agentdashboard'">Dashboard</a>
 
             </li>
@@ -303,9 +304,10 @@ position: relative;">
     <a style="color:#1275af;font-size:18px;font-weight:400;">{{user.email}}</a>
   </div>
   <ul>
-    <!-- <li [class.activelink-mobile-menu-bg]="currentURL=='/home'">
-      <a routerLink="/home" routerLinkActive="activeClss">Home</a>
-    </li> -->
+    <li [class.activelink-mobile-menu-bg]="currentURL=='/home'">
+      <a routerLink="/home" routerLinkActive="activeClss"><i class="fa fa-home" aria-hidden="true"></i>
+      </a>
+    </li>
 
     <li [class.activelink-mobile-menu-bg]="currentURL=='/package-description'">
       <a>Services</a>
@@ -380,7 +382,7 @@ position: relative;">
     </li>
     <li *ngIf="flag" [class.activelink-mobile-menu-bg]="currentURL=='/admindashboard' || currentURL=='/userdashboard' || currentURL=='/agentdashboard'">
       <a *ngIf="this.user.role==='admin'" routerLink="/admindashboard" routerLinkActive="activeClss">Dashboard</a>
-      <a *ngIf="this.user.role==='customer'" (click)="userdashboard()" style="cursor: pointer;" >Dashboard</a>
+      <a *ngIf="this.user.role==='customer'" routerLink="/userdashboard" style="cursor: pointer;" >Dashboard</a>
       <a *ngIf="this.user.role==='agent'" routerLink="/agentdashboard" routerLinkActive="activeClss" >Dashboard</a>
 
     </li>

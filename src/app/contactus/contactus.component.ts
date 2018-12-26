@@ -57,6 +57,7 @@ export class ContactusComponent implements OnInit {
 
   savedata(contactusform) {
     this.submitted = true;
+    this.contactusForm.controls['name'].setValue(this.contactusForm.value.name.trim());
     if (this.contactusForm.valid) {
       this.isLoading = true;
       this.EgazeService.savecontactus(contactusform.value).subscribe(result => {
@@ -85,7 +86,7 @@ export class ContactusComponent implements OnInit {
 
 }
 isCharts(event) {
-  if ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8)
+  if ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32)
     return true;
   else {
     return false;
