@@ -191,21 +191,21 @@ position: relative;">
               <a routerLink="/home" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/home'">Home</a>
             </li> -->
 
-            <!-- <li>
-              <a [class.activeClassLink] = "currentURL=='/property-monitoring' || currentURL=='/package-description'">Services</a>
+            <li>
+              <a [class.activeClassLink] = "currentURL=='/package-description'">Services</a>
               <ul>
-                <li>
+                <!-- <li>
                   <a routerLink="/property-monitoring" routerLinkActive="activeClss">Property Monitoring</a>
-                </li>
+                </li> -->
                 <li>
                   <a routerLink="/package-description" routerLinkActive="activeClss">Packages</a>
                 </li>
               </ul>
-            </li> -->
-
-            <li>
-              <a routerLink="/package-description" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/package-description'">Packages</a>
             </li>
+
+            <!-- <li>
+              <a routerLink="/package-description" routerLinkActive="activeClss" [class.activeClassLink] = "currentURL=='/package-description'">Packages</a>
+            </li> -->
             <!-- <li *ngIf="!flag">
               <a [class.activeClassLink] = "currentURL=='/agent-registration'">Agents</a>
               <ul>
@@ -242,7 +242,7 @@ position: relative;">
 
             <li >
               <a [class.activeClassLink] = "currentURL=='/terms-conditions' || currentURL=='/privacy-policy'">  <!--|| currentURL==='/disclaimer' -->
-                Legals</a>
+                Policies</a>
               <ul>
                 <li>
                   <a routerLink="/terms-conditions" routerLinkActive="activeClss" >Terms &amp; Conditions</a>
@@ -307,20 +307,20 @@ position: relative;">
       <a routerLink="/home" routerLinkActive="activeClss">Home</a>
     </li> -->
 
-    <!-- <li [class.activelink-mobile-menu-bg]="currentURL=='/property-monitoring' || currentURL=='/package-description'">
+    <li [class.activelink-mobile-menu-bg]="currentURL=='/package-description'">
       <a>Services</a>
       <ul>
-        <li [class.activelink-mobile-menu]="currentURL=='/property-monitoring'">
+        <!-- <li [class.activelink-mobile-menu]="currentURL=='/property-monitoring'">
           <a routerLink="/property-monitoring" routerLinkActive="activeClss" >Property Monitoring</a>
-        </li>
+        </li> -->
         <li [class.activelink-mobile-menu]="currentURL=='/package-description'">
           <a routerLink="/package-description" routerLinkActive="activeClss">Packages</a>
         </li>
       </ul>
-    </li> -->
-    <li [class.activelink-mobile-menu-bg]="currentURL=='/package-description'">
-      <a routerLink="/package-description" routerLinkActive="activeClss">Packages</a>
     </li>
+    <!-- <li [class.activelink-mobile-menu-bg]="currentURL=='/package-description'"> 
+      <a routerLink="/package-description" routerLinkActive="activeClss">Packages</a>
+    </li>  -->
 
     <!-- <li *ngIf="!flag" [class.activelink-mobile-menu-bg]="currentURL=='/agent-registration'">
       <a>Agents</a>
@@ -357,7 +357,7 @@ position: relative;">
     </li>
 
      <li [class.activelink-mobile-menu-bg]="currentURL==='/terms-conditions' || currentURL==='/privacy-policy' "> <!--|| currentURL==='/disclaimer' -->
-      <a>Legals</a>
+      <a>Policies</a>
       <ul>
         <li [class.activelink-mobile-menu]="currentURL=='/terms-conditions'">
           <a routerLink="/terms-conditions" routerLinkActive="activeClss">Terms &amp; Conditions</a>

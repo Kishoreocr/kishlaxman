@@ -29,7 +29,7 @@ export class ContactusComponent implements OnInit {
     this.contactusForm = this.fb.group({
       type:['',[ Validators.required]],
       description:['',[ Validators.required, Validators.minLength(5)]],
-      name:['',[ Validators.required, Validators.minLength(2)]],
+      name:['',[ Validators.required, Validators.minLength(4)]],
       email: ['', [ Validators.required, Validators.pattern(emailPattern)]],
       mobile: ['',[ Validators.required, Validators.minLength(10), Validators.maxLength(10)]] //, Validators.minLength(6)
     });
@@ -42,7 +42,7 @@ export class ContactusComponent implements OnInit {
       }
   }
   isNumberKey(evt) {
-    var charCode = (evt.which) ? evt.which : evt.keyCode
+    var charCode = (evt.which) ? evt.which : evt.charCode
     if (charCode > 31 && (charCode < 48 || charCode > 57))
       return false;
 
@@ -85,7 +85,7 @@ export class ContactusComponent implements OnInit {
 
 }
 isCharts(event) {
-  if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+  if ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8)
     return true;
   else {
     return false;

@@ -844,7 +844,7 @@ export class AdmindashboardComponent implements OnInit {
     this.searchGrpcust.controls['searchTypecust'].setValue("firstName");
   }
   isCharts(event) {
-    if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+    if ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8)
       return true;
     else {
       return false;

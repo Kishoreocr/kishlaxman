@@ -38,7 +38,7 @@ export class CustomPackagesComponent implements OnInit {
 
   }
   isNumberKey(evt) {
-    var charCode = (evt.which) ? evt.which : evt.keyCode
+    var charCode = (evt.which) ? evt.which : evt.charCode
     if (charCode > 31 && (charCode < 48 || charCode > 57))
       return false;
 
@@ -75,7 +75,7 @@ export class CustomPackagesComponent implements OnInit {
   }
 
   isNumber(event) {
-    var charCode = (event.which) ? event.which : event.keyCode
+    var charCode = (event.which) ? event.which : event.charCode
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
       return false;
     }
