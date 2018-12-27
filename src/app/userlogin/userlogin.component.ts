@@ -195,13 +195,14 @@ export class UserloginComponent implements OnInit {
     if (this.user1.role === 'customer') {
       this.EgazeService.getCustomerPackages(this.user1.loginId).subscribe(
         result => {
-          if (Object.keys(result).length === 0) {
-            this.isLoading = false;
-            window.location.href = AppConstants.packageURL;
+          // if (Object.keys(result).length === 0) {
+          //   this.isLoading = false;
+          //   window.location.href = AppConstants.packageURL;
 
-          } else {
-            window.location.href = AppConstants.userdashboardURL;
-          }
+          // } else {
+          //   window.location.href = AppConstants.userdashboardURL;
+          // }
+          window.location.href = AppConstants.userdashboardURL;
         }
 
       );
