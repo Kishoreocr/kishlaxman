@@ -10,29 +10,24 @@
 
     <div class="col-md-3 package-tile-style" style="background-color:#f3f2f2;">
       <div class="package-hding">
-        MONTHLY
+        QUATERLY
         <!-- <P>1-MONTH</P> -->
       </div>
       <div class="package-options">
         <ul>
           <li>
-            <i class="fa fa-check"></i> While we have taken care to make sure that we have created a monthly Plan for you.</li>
+            <i class="fa fa-check"></i> While we have taken care to make sure that we have created a Quarterly Plan for you.</li>
           <li>
             <i class="fa fa-check"></i> If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
             Kindly feel free to contact us and get a customised quote.</li>
-          <!-- <li>
-            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
-          <li>
-            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
-          <li>
-            <i class="fa fa-check"></i>Lorem Ipsum is simply dummy.</li> -->
+            <li>INR 4000 +GST </li>
 
         </ul>
 
       </div>
 
-      <div align="center">
-        <span class="package-btn" (click)="packageFun('MONTHLY',1,'custom-modal-package-choosen')">GET STARTED</span>
+      <div align="center" *ngIf="activeflag">
+        <span class="package-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">GET STARTED</span>
       </div>
 
     </div>
@@ -50,21 +45,12 @@
           <li>
             <i class="fa fa-check"></i>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
             Kindly feel free to contact us and get a customised quote.</li>
-          <!-- <li>
-            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
-          <li>
-            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
-          <li>
-            <i class="fa fa-check"></i>Lorem Ipsum is simply dummy.</li>
-          <li>
-            <i class="fa fa-check"></i>Lorem Ipsum is simply dummy.</li>
-          <li>
-            <i class="fa fa-check"></i>Lorem Ipsum is simply dummy.</li> -->
+            <li>INR 7500 +GST </li>
         </ul>
 
       </div>
 
-      <div align="center">
+      <div align="center"  *ngIf="activeflag">
         <span class="package-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">GET STARTED</span>
       </div>
 
@@ -85,18 +71,13 @@
           <li>
             <i class="fa fa-check"></i>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
             Kindly feel free to contact us and get a customised quote.</li>
-          <!-- <li>
-            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
-          <li>
-            <i class="fa fa-check"></i> Lorem Ipsum is simply dummy.</li>
-          <li>
-            <i class="fa fa-check"></i>Lorem Ipsum is simply dummy.</li> -->
+         
 
         </ul>
 
       </div>
 
-      <div align="center">
+      <div align="center"  *ngIf="activeflag">
         <div class="package-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">GET STARTED</div>
       </div>
 
@@ -110,7 +91,7 @@
 
   <div class="row justify-content-center d-none d-sm-block">
 
-    <div class="package-container">
+    <!-- <div class="package-container">
 
       <div class="package-side-left">
         <ul>
@@ -129,10 +110,7 @@
               While we have taken care to make sure that we have created a monthly Plan for you.
 
             </p>
-            <!-- <p class="package-font-style">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-              galley of type and scrambled it to make a type specimen book.</p>
-            <p class="package-font-style">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-              galley of type and scrambled it to make a type specimen book.</p> -->
+           
             <p class="package-font-style">If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
               Kindly feel free to contact us and get a customised quote.
             </p>
@@ -149,11 +127,7 @@
             <p class="package-contain-heading">
               While we have taken care to make sure that we have created a yearly Plan for you.
             </p>
-            <!-- <p class="package-font-style">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-              galley of type and scrambled it to make a type specimen book.
-            </p>
-            <p class="package-font-style">Lorem Ipsum has been the dndustry's standard dummy text ever since the 1500s, when an unknown printer took a
-              galley of type and scrambled it to make a type specimen book.</p> -->
+           
             <p class="package-font-style">If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
               Kindly feel free to contact us and get a customised quote.
             </p>
@@ -170,8 +144,6 @@
             <p class="package-font-style">If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
               Kindly feel free to contact us and get a customised quote.
             </p>
-            <!-- <p class="package-font-style">Lorem Ipsum has been the dndustry's standard dummy text ever since the 1500s, when an unknown printer took a
-              galley of type and scrambled it to make a type specimen book.</p> -->
             <div align="center">
               <div class="orange-clr-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">GET STARTED</div>
             </div>
@@ -180,8 +152,45 @@
 
 
       </div>
-    </div>
+    </div> -->
 
+    
+<div class="container" style="margin:30px auto;text-align: center;">
+
+  <div class="box-layout1">
+    <h1 class="text-heading">QUATERLY </h1>
+    <p class="package-contain-heading">
+      While we have taken care to make sure that we have created a Quarterly Plan for you.
+
+    </p>
+    <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.</p>
+    <p>INR 4000 +GST</p>
+    <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">Buy It</div>
+  </div>
+
+  <div class="box-middle-layout">
+
+    <div class="middle-head">Most Popular</div>
+    <h1 class="text-heading">YEARLY</h1>
+    <p class="package-contain-heading">
+      While we have taken care to make sure that we have created a yearly Plan for you.
+    </p>
+    <p style="padding:10px">If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.</p>
+    <p>INR 7500 +GST</p>
+    <div  *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">Buy It</div>
+  </div>
+
+  <div class="box-layout1">
+    <h1 class="text-heading">CUSTOM</h1>
+    <p class="package-contain-heading">
+      While we have taken care to make sure that we have created a Pocket friendly Plan for you.</p>
+    <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements. </p>
+    <div  *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">Buy It</div>
+  </div>
+
+
+
+</div>
     <app-modal-property id="custom-modal-package-choosen">
       <div class="modal">
         <div class="row justify-content-md-center justify-content-sm-center no-gutters">
@@ -206,10 +215,7 @@
               <button class="submit-btn-confirm" (click)="confirmPackage();">Confirm</button>
               <button class="submit-btn" (click)="closeModal('custom-modal-package-choosen');">Cancel</button>
             </div>
-            <!-- <div class='col' align='center' style='padding:20px;'>
-                      <button class="submit-btn" (click)="closeModal('custom-modal-package-choosen');">Close</button>
-                  </div>
-     -->
+         
           </div>
         </div>
       </div>
@@ -225,29 +231,3 @@
 
 </div>
 <!-- <app-loading-div *ngIf="isLoading"></app-loading-div>  -->
-
-<div class="container" style="margin:30px auto;text-align: center;">
-
-  <div class="box-layout1">
-    <h1 class="text-heading">MONTHLY</h1>
-    <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.</p>
-    <div class="orange-clr-btn">Buy It</div>
-  </div>
-
-  <div class="box-middle-layout">
-
-    <div class="middle-head">Most Popular</div>
-    <h1 class="text-heading">YEARLY</h1>
-    <p style="padding:10px">If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.</p>
-    <div class="orange-clr-btn">Buy It</div>
-  </div>
-
-  <div class="box-layout1">
-    <h1 class="text-heading">CUSTOM</h1>
-    <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements. </p>
-    <div class="orange-clr-btn">Buy It</div>
-  </div>
-
-
-
-</div>

@@ -94,10 +94,7 @@ const appRoutes: Routes = [
   },
   { path: 'success-register', component: SuccessregsiterComponent },
   {
-    path: 'package-choose', component: PackagesComponent, canActivate: [RoleGuard],
-    data: {
-      expectedRole: 'customer'
-    }
+    path: 'package-choose', component: PackagesComponent
   },
   { path: 'forget-password', component: ForgetpasswordComponent },
 

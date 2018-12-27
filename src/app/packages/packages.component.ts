@@ -20,12 +20,15 @@ export class PackagesComponent implements OnInit {
   viewRef: any;
   isLoading: boolean = true;
   packages: any;
-  selectedPlan:string='';
-  user:any;
-  selectedPlanId:any;
-  constructor(private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private ModalPropertyService: ModalPropertyService,private sessionstorageService: SessionstorageService) {
-    this.user =JSON.parse(this.sessionstorageService.getUserDetails()+"");
+  selectedPlan: string = '';
+  user: any;
+  selectedPlanId: any;
 
+  constructor(private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private ModalPropertyService: ModalPropertyService, private sessionstorageService: SessionstorageService) {
+    this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
+    if (this.user != null && this.user.role === 'customer') {
+      this.activeflag = true;
+    }
     this.modalService = modalService;
     this.viewRef = viewRef;
     this.EgazeService.getPackages().subscribe(
@@ -50,15 +53,15 @@ export class PackagesComponent implements OnInit {
       'active-package-tab': id
     };
   }
-  packageFun(selected, id,mid) {
+  packageFun(selected, id, mid) {
 
-    if (selected === 'YEARLY' || selected === 'MONTHLY') {
+    if (selected === 'YEARLY' || selected === 'QUATERLY') {
       //this.router.navigateByUrl('/payment?package='+id);
-      window.location.href ='/payment?package='+id;
+      window.location.href = '/payment?package=' + id;
     }
 
-    if (selected === 'CUSTOM' ) {
-      this.openModal(mid, selected+"$$"+id);
+    if (selected === 'CUSTOM') {
+      this.openModal(mid, selected + "$$" + id);
     }
   }
 
@@ -98,35 +101,35 @@ export class PackagesComponent implements OnInit {
     });
   }
   openModal(id: string, property) {
-    var prop=property.split("$$");
-    this.selectedPlan=prop[0]
-    this.selectedPlanId=prop[1];
+    var prop = property.split("$$");
+    this.selectedPlan = prop[0]
+    this.selectedPlanId = prop[1];
     this.ModalPropertyService.open(id);
   }
 
   closeModal(id: string) {
     this.ModalPropertyService.close(id);
   }
-  confirmPackage(){
-    let data1 ={
+  confirmPackage() {
+    let data1 = {
       "loginId": this.user.loginId,
       "email": this.user.email,
       "packageId": this.selectedPlanId,
       "type": this.user.type
-   
-  }
-  //alert(this.user.email);
-  this.isLoading = true;
-  
-  this.EgazeService.customerpackage(data1).subscribe(
+
+    }
+    //alert(this.user.email);
+    this.isLoading = true;
+
+    this.EgazeService.customerpackage(data1).subscribe(
       result => {
-        if (result==true) {
+        if (result == true) {
           this.isLoading = false;
           this.router.navigateByUrl('/userdashboard');
-  
+
         }
       }
-  
+
     );
   }
 }
