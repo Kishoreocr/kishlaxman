@@ -3,39 +3,43 @@
 
     <div class="col">
 
-      <div class="col-md-6 offset-md-3" style="background-color: #fbfbfb !important;
-      padding: 20px;">
+      <div class="col-md-6 offset-md-3 payment-details-bg">
           <div>
-              <h5 class="tab-active-heading"> Payment Details </h5>
+              <h5 class="tab-active-heading">Payment Details : </h5>
             </div>
         <div class="form-group row">
-          <div class="col-sm-3 col-form-label font-bold-label">Name :</div>
-          <div class="col-sm-6 col-form-label">
+          <div class="col-sm-2 col-2 col-form-label font-bold-label">Name</div>
+          <div class="col-sm-1 col-1 col-form-label">:</div>
+          <div class="col-sm-5 col-8 col-form-label">
            {{payuform.firstname}}
 
           </div>
         </div>
         <div class="form-group row">
-          <div class="col-sm-3 col-form-label font-bold-label">Email :</div>
-          <div class="col-sm-6 col-form-label">
+          <div class="col-sm-2 col-2 col-form-label font-bold-label">Email</div>
+          <div class="col-sm-1 col-1 col-form-label">:</div>
+          <div class="col-sm-6 col-8 col-form-label">
             {{payuform.email}}
           </div>
         </div>
         <div class="form-group row">
-          <div class="col-sm-3 col-form-label font-bold-label">Phone :</div>
-          <div class="col-sm-6 col-form-label">
+          <div class="col-sm-2 col-2 col-form-label font-bold-label">Phone</div>
+          <div class="col-sm-1 col-1 col-form-label">:</div>
+          <div class="col-sm-5 col-8 col-form-label">
             {{payuform.phone}}
           </div>
         </div>
         <div class="form-group row">
-          <div class="col-sm-3 col-form-label font-bold-label">Package :</div>
-          <div class="col-sm-6 col-form-label">
+          <div class="col-sm-2 col-2 col-form-label font-bold-label">Package</div>
+          <div class="col-sm-1 col-1 col-form-label">:</div>
+          <div class="col-sm-5 col-8 col-form-label">
             {{payuform.productinfo}}
           </div>
         </div>
   <div class="form-group row">
-          <div class="col-sm-3 col-form-label font-bold-label">Amount :</div>
-          <div class="col-sm-6 col-form-label">
+          <div class="col-sm-2 col-2 col-form-label font-bold-label">Amount</div>
+          <div class="col-sm-1 col-1 col-form-label">:</div>
+          <div class="col-sm-5 col-8 col-form-label">
            INR {{payuform.amount}}
            
           </div>
@@ -66,28 +70,40 @@
         <textarea name="amount" id="amount" rows="2" cols="2" hidden [(ngModel)]="payuform.amount"></textarea>
         
         <div class="row">
-          
+          <!--
           <div *ngIf="disablePaymentButton" class="col-sm-12 col-form-label" align="center">
-             <button *ngIf="disablePaymentButton" type="button" class="submit-btn" (click)="confirmPayment()">Confirm</button>
+             <button *ngIf="disablePaymentButton" type="button" class="submit-btn" (click)="confirmPayment()" style="background-color: #5edc5c;border-radius: 1px;text-transform: unset;">Confirm</button>
              <a routerLink="/package-choose" routerLinkActive="activeClss">
-              <button  type="button" class="submit-btn" >Cancel</button>     
+              <button  type="button" class="submit-btn" style="border-radius: 1px;text-transform: unset;">Cancel</button>     
             </a>
           </div> 
+        -->
+
+          <div *ngIf="disablePaymentButton" class="payment-edit-layout">
+            <div style="text-align: right;padding: 5px 0px;"><a routerLink="/package-choose" routerLinkActive="activeClss"><img src="../../assets/images/icon_edit.png" width="25px"/></a></div>
+              <button *ngIf="disablePaymentButton" type="button" class="submit-btn" (click)="confirmPayment()" style="background-color: #5edc5c;border-radius: 1px;text-transform: unset;">Confirm</button>
+              <a routerLink="/package-choose" routerLinkActive="activeClss">
+               <button  type="button" class="submit-btn" style="border-radius: 1px;text-transform: unset;">Cancel</button>     
+             </a>
+           </div> 
+ 
+
                      
          
           <div *ngIf="!disablePaymentButton" class="row" style="margin-left: 0px;">
-            
-            <div class="col-md-5 offset-md-1">
-            For Domestic :<button *ngIf="!disablePaymentButton" type="submit" class="submit-btn">PayUMoney</button>
-          </div>
+            <div class="col-md-12"><h5 class="tab-active-heading">For Domestic :</h5></div> 
+           
+            <div class="col-md-12">
+            <!-- For Domestic :-->
+            <button *ngIf="!disablePaymentButton" type="submit" class="submit-btn" style="background-color: #5edc5c;border-radius: 1px;text-transform: unset;">PayUMoney</button>
+           
 
             <!-- <div class="col-md-4">
              For International : <ngx-paypal [config]="payPalConfig"></ngx-paypal>
            </div> -->
 
-            <div class="col-md-3" > &nbsp;
-           <a routerLink="/package-choose" routerLinkActive="activeClss">
-            <button  type="button" class="submit-btn" >Cancel</button>     
+            <a routerLink="/package-choose" routerLinkActive="activeClss">
+            <button  type="button" class="submit-btn" style="border-radius: 1px;text-transform: unset;">Cancel</button>     
           </a>
         </div>
          

@@ -93,7 +93,7 @@
                   <form [formGroup]="userForgtForm" (ngSubmit)="userIdforget(userForgtForm)">
             
                     <div class="form-group">
-                      <label for="userIdInput">Please enter registered email.</label>
+                      <!-- <label for="userIdInput">Please enter registered email.</label> -->
                       <input type="text" class="form-control" id="userIdInput" aria-describedby="userIdInput" placeholder="Please Enter Email" formControlName="emailidForget"
                         [ngClass]="{ 'is-invalid': submitted1 && frgf.emailidForget.errors }">
                       <div *ngIf="submitted1 && frgf.emailidForget.errors" class="invalid-feedback">

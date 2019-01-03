@@ -1,7 +1,6 @@
 <div class="container container-top-padding">
-  <br>
-  <br>
-  <h4 style="text-align:center;padding:10px;">We Have a Package Plan That Fits You.
+
+  <h4 style="text-align:center;padding:50px 10px 30px 10px;">We Have a Package Plan That Fits You.
     <br/>
     <!-- <p style="font-size:14px;font-weight:200;word-spacing: 2px;padding:5px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry</p> -->
   </h4>
@@ -20,14 +19,14 @@
           <li>
             <i class="fa fa-check"></i> If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
             Kindly feel free to contact us and get a customised quote.</li>
-            <li>INR 4000 + 18% GST </li>
+          <li>INR 4000 + 18% GST </li>
 
         </ul>
 
       </div>
 
       <div align="center" *ngIf="activeflag">
-        <span class="package-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">GET STARTED</span>
+        <span style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">Buy It</span>
       </div>
 
     </div>
@@ -45,13 +44,13 @@
           <li>
             <i class="fa fa-check"></i>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
             Kindly feel free to contact us and get a customised quote.</li>
-            <li>INR 7500 + 18% GST </li>
+          <li><span style="text-decoration: line-through;color:red">INR 9000</span><br/>INR 7500 (Special discounted Rate) + 18% GST </li>
         </ul>
 
       </div>
 
-      <div align="center"  *ngIf="activeflag">
-        <span class="package-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">GET STARTED</span>
+      <div align="center" *ngIf="activeflag">
+        <span style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">Buy It</span>
       </div>
 
 
@@ -71,14 +70,14 @@
           <li>
             <i class="fa fa-check"></i>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
             Kindly feel free to contact us and get a customised quote.</li>
-         
+
 
         </ul>
 
       </div>
 
-      <div align="center"  *ngIf="activeflag">
-        <div class="package-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">GET STARTED</div>
+      <div align="center" *ngIf="activeflag">
+        <div style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">Buy It</div>
       </div>
 
 
@@ -154,43 +153,93 @@
       </div>
     </div> -->
 
-    
-<div class="container" style="margin:30px auto;text-align: center;">
+    <div class="tabs-style">
+      <ul>
+        <li [ngClass]="{'activeTab': monitoring === true}" class="activeTab" (click)="tabshow('monitoring')">Monitoring Packages</li>
+        <li (click)="tabshow('additional')" [ngClass]="{'activeTab': additional === true}">Additional Services</li>
+      </ul>
+    </div>
+    <div class="container" style="margin:30px auto;text-align: center;">
 
-  <div class="box-layout1">
-    <h1 class="text-heading">SILVER </h1>
-    <p class="package-contain-heading">
-      While we have taken care to make sure that we have created a Quarterly Plan for you.
+      <div *ngIf="monitoring">
+        <div class="box-layout1">
+          <h1 class="text-heading">SILVER </h1>
+          <p class="package-contain-heading">
+            While we have taken care to make sure that we have created a Quarterly Plan for you.
 
-    </p>
-    <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.</p>
-    <p>INR 4000 + 18% GST</p>
-    <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">Buy It</div>
-  </div>
+          </p>
+          <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.</p>
+          <p class="price-tag">INR 4000 + 18% GST</p>
+          <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">Buy It</div>
+        </div>
 
-  <div class="box-middle-layout">
+        <div class="box-middle-layout">
 
-    <div class="middle-head">Most Popular</div>
-    <h1 class="text-heading">GOLD</h1>
-    <p class="package-contain-heading">
-      While we have taken care to make sure that we have created a yearly Plan for you.
-    </p>
-    <p style="padding:10px">If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.</p>
-    <p>INR 7500 + 18% GST</p>
-    <div  *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">Buy It</div>
-  </div>
+          <div class="middle-head">Most Popular</div>
+          <h1 class="text-heading">GOLD</h1>
+          <p class="package-contain-heading">
+            While we have taken care to make sure that we have created a yearly Plan for you.
+          </p>
+          <p style="padding:10px">If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.</p>
+          <p class="price-tag">
+            <span style="text-decoration: line-through;color:red">INR 9000</span><br/>INR 7500 (Special discounted Rate) + 18% GST</p>
+          <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">Buy It</div>
+        </div>
 
-  <div class="box-layout1">
-    <h1 class="text-heading">CUSTOM</h1>
-    <p class="package-contain-heading">
-      While we have taken care to make sure that we have created a Pocket friendly Plan for you.</p>
-    <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements. </p>
-    <div  *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">Buy It</div>
-  </div>
+        <div class="box-layout1">
+          <h1 class="text-heading">CUSTOM</h1>
+          <p class="package-contain-heading">
+            While we have taken care to make sure that we have created a Pocket friendly Plan for you.</p>
+          <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
+          </p>
+          <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">Buy It</div>
+        </div>
+      </div>
+
+
+      <div *ngIf="additional">
+
+        <div class="row" align="center">
+          <div class="additional-style">
+            <p>
+              Please <a routerLink="/contactus" routerlinkactive="activeClss" style="color:#fd7f08;">Contact US</a> for additional services:
+            </p>
+         
+
+              <ul>
+                  <li>
+                     Legal Advice
+                    </li>
+                <li>
+                  Document Verification
+                </li>
+                <li>
+                  Site/Land Services
+                </li>
+                <li>
+                  Name Change in Revenue
+                </li>
+                <li>
+                  Passbook Updates
+                </li>
+                <li>
+                  Land/Property Taxes
+                </li>
+                <li>
+                  Electricity Connections. etc.
+                </li>
+              </ul>
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
 
 
 
-</div>
     <app-modal-property id="custom-modal-package-choosen">
       <div class="modal">
         <div class="row justify-content-md-center justify-content-sm-center no-gutters">
@@ -215,7 +264,7 @@
               <button class="submit-btn-confirm" (click)="confirmPackage();">Confirm</button>
               <button class="submit-btn" (click)="closeModal('custom-modal-package-choosen');">Cancel</button>
             </div>
-         
+
           </div>
         </div>
       </div>

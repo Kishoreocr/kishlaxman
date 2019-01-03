@@ -66,12 +66,24 @@ export class UserregisterComponent implements OnInit {
   }
 
   isCharts(event) {
-    if ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8){
+    if ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 ){
     return true;
   }else {
       return false;
     }
   }
+
+// allow the space in register form for name field.
+
+isChartsName(event) {
+  if ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 ){
+  return true;
+}else {
+    return false;
+  }
+}
+
+
 
   pswdstrong(control: AbstractControl): any {
     // alert(control.value)

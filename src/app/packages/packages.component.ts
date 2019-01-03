@@ -23,6 +23,8 @@ export class PackagesComponent implements OnInit {
   selectedPlan: string = '';
   user: any;
   selectedPlanId: any;
+  monitoring:any;
+  additional:any;
 
   constructor(private router: Router, modalService: ModalDialogService, viewRef: ViewContainerRef, private EgazeService: EgazeService, private ModalPropertyService: ModalPropertyService, private sessionstorageService: SessionstorageService) {
     this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
@@ -45,6 +47,7 @@ export class PackagesComponent implements OnInit {
 
   ngOnInit() {
     this.YEARLY = true;
+    this.monitoring = true;
     //window.location.reload(true);
   }
   addActiveClass(id) {
@@ -131,5 +134,17 @@ export class PackagesComponent implements OnInit {
       }
 
     );
+  }
+  tabshow(tabs){
+   if(tabs === 'monitoring'){
+   this.monitoring = true;
+   this.additional = false;
+   }
+   else{
+     this.monitoring = false;
+     this.additional = true;
+
+   }
+
   }
 }

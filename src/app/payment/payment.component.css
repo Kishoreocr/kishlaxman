@@ -17,3 +17,24 @@
 .paypal-button-tagline {
     display: none !important;
 }
+.payment-details-bg{
+    background-color: #f9f9f9 !important;
+    padding: 20px; margin: 30px auto;
+}
+@media(max-width:600px){
+    .payment-details-bg{
+        padding: 10px !important; 
+        margin: 30px auto !important;}
+
+       .payment-edit-layout {
+            position: absolute;
+            top: -33px!important;
+            right: 5px!important;;
+        }
+}
+
+.payment-edit-layout{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
