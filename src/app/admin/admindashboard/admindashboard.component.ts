@@ -548,30 +548,7 @@ export class AdmindashboardComponent implements OnInit {
     this.customerpackagestabModal = false;
     this.customerpropertiestabModal = false;
   }
-  commentFun(description) {
-    this.submitted = true;
-    //alert(description.value.commentfield)
-
-    if (this.commentForm.valid) {
-      this.isLoaderdiv = true;
-
-      this.EgazeService.savePropertyComments(this.propertyId, "0", this.loginId, 'Admin', description.value.commentfield, description.value.typeofProperty, this.sfile).subscribe(result => {
-        this.isLoaderdiv = false;
-
-        this.commentsmsg = result;
-        if (this.commentsmsg) {
-          this.submitted = false;
-          this.commentForm.controls['commentfile'].setValue("");
-          this.commentForm.controls['commentfield'].setValue("");
-          this.sfile = null;
-        }
-        //alert('success' + this.commentsmsg);
-        this.getPrpopertyComments();
-      }, error => {
-        //alert('error' + error);
-      });
-    }
-  }
+  
 
 
   comments: any = [];
@@ -586,6 +563,7 @@ export class AdmindashboardComponent implements OnInit {
     });
   }
   fileSelectionEventcomments(event: any) {
+    const reader = new FileReader();
     const [file] = event.target.files;
     if (event.target.files && event.target.files.length) {
       this.sfile = file;
@@ -594,6 +572,7 @@ export class AdmindashboardComponent implements OnInit {
       const file = this.sfile;
       if (file.type === "application/pdf" || file.type.match("image")) {
         if (file.size <= 4194304) {
+          reader.readAsDataURL(file);
           //this.isLoading = true;
 
         } else {
@@ -608,6 +587,31 @@ export class AdmindashboardComponent implements OnInit {
     } else {
       alert("Please choose the file");
       this.commentForm.controls['commentfile'].setValue("");
+    }
+  }
+
+  commentFun(description) {
+    this.submitted = true;
+    //alert(this.sfile)
+
+    if (this.commentForm.valid) {
+      this.isLoaderdiv = true;
+
+      this.EgazeService.savePropertyComments(this.propertyId, "0", this.loginId, 'Admin1', description.value.commentfield, description.value.typeofProperty, this.sfile).subscribe(result => {
+        this.isLoaderdiv = false;
+
+        this.commentsmsg = result;
+        if (this.commentsmsg) {
+          this.submitted = false;
+          this.commentForm.controls['commentfile'].setValue("");
+          this.commentForm.controls['commentfield'].setValue("");
+          this.sfile = null;
+        }
+        //alert('success' + this.commentsmsg);
+        this.getPrpopertyComments();
+      }, error => {
+        //alert('error' + error);
+      });
     }
   }
   getporpertyCommentdocDownloadUrl(id) {
@@ -902,5 +906,9 @@ export class AdmindashboardComponent implements OnInit {
     });
 
   }
+
+  viewur:any=this.EgazeService.getPropertyDocViewURL();
+
+  viewcommentur:any=this.EgazeService.getPropertyCommentDocViewURL();
 
 }

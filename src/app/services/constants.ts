@@ -21,7 +21,7 @@ export class AppConstants {
     public static get paymentFurl(): string { return "http://202.153.46.90:8080/egaze-api/payment/payment-response"; }
 
     //PROD
-    //public static get paymentActionurl(): string { return "https://secure.payu.in/_payment";}
+   // public static get paymentActionurl(): string { return "https://secure.payu.in/_payment";}
     //public static get paymentSurl(): string { return "https://egaze.in/egaze-api/payment/payment-response"; }
     //public static get paymentFurl(): string { return "https://egaze.in/egaze-api/payment/payment-response"; }
 

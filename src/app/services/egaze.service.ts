@@ -7,7 +7,7 @@ export class EgazeService {
   //DEV
   private baseUrl: string = 'http://202.153.46.90:8080/egaze-api/';
   //PROD
-  //private baseUrl: string = 'https://www.egaze.in/egaze-api/';
+ // private baseUrl: string = 'https://www.egaze.in/egaze-api/';
   //private baseUrl: string = 'http://localhost:8080/egaze-api/';
   constructor(private http: HttpClient) { }
 
@@ -179,9 +179,17 @@ export class EgazeService {
     return this.baseUrl + 'downloadFile/propertydocs/' + id;
 
   }
+  getPropertyDocViewURL() {
+    return this.baseUrl + 'viewFile/propertydocs/';
+
+  }
 
   getPropertyCommentDocURL(id) {
     return this.baseUrl + 'downloadFile/propertydocs/agent/' + id;
+
+  }
+  getPropertyCommentDocViewURL(){
+    return this.baseUrl + 'viewFile/propertydocs/agent/' ;
 
   }
   savePropertyComments(propetyId, userId, agentId, role, description, status, file): Observable<any> {
@@ -191,7 +199,7 @@ export class EgazeService {
     //alert(file)
     formdata.append('file', file);
     // if admin then user id is zero.
-    if (role === 'Admin') {
+    if (role === 'Admin1') {
       formdata.append('userId', "0");
     } else {
       formdata.append('userId', userId);

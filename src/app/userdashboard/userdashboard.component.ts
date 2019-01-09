@@ -657,6 +657,7 @@ export class UserdashboardComponent implements OnInit {
       const file = this.sfile;
       if (file.type === "application/pdf" || file.type.match("image")) {
         if (file.size <= 4194304) {
+          reader.readAsDataURL(file);
           //this.isLoaderdiv = true;
           // reader.readAsDataURL(file);
           // reader.onload = () => {
@@ -801,9 +802,15 @@ export class UserdashboardComponent implements OnInit {
   getDownloadUrl(id) {
     window.location.href = this.EgazeService.getPropertyDocURL(id);
   }
+  // getPropertyDocViewURL(id){
+  //   this.viewur=this.EgazeService.getPropertyDocViewURL(id);
+  // }
   getporpertyCommentdocDownloadUrl(id) {
     window.location.href = this.EgazeService.getPropertyCommentDocURL(id);
   }
+  viewur:any=this.EgazeService.getPropertyDocViewURL();
+
+  viewcommentur:any=this.EgazeService.getPropertyCommentDocViewURL();
 
   // removedoc(id) {
   //   this.EgazeService.removePropertyDoc(id).subscribe(result => {

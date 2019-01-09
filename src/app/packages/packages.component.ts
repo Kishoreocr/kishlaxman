@@ -67,7 +67,9 @@ export class PackagesComponent implements OnInit {
       this.openModal(mid, selected + "$$" + id);
     }
   }
-
+  loginformFun(){
+    window.location.href = '/loginform';
+  }
 
   plansTabFun(active) {
     //this.activeSelected = true;

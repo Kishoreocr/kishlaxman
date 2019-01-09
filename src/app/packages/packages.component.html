@@ -28,7 +28,9 @@
       <div align="center" *ngIf="activeflag">
         <span style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">Buy It</span>
       </div>
-
+      <div align="center" *ngIf="!activeflag">
+        <span style="margin-top:20px;" class="orange-clr-btn" (click)="loginformFun()">Buy It</span>
+      </div>
     </div>
 
     <div class="col-md-3 package-tile-style" style="background-color:#f3f2f2;">
@@ -52,7 +54,9 @@
       <div align="center" *ngIf="activeflag">
         <span style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">Buy It</span>
       </div>
-
+      <div align="center" *ngIf="!activeflag">
+        <span style="margin-top:20px;" class="orange-clr-btn" (click)="loginformFun()">Buy It</span>
+      </div>
 
 
     </div>
@@ -79,8 +83,10 @@
       <div align="center" *ngIf="activeflag">
         <div style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">Buy It</div>
       </div>
-
-
+      <div align="center" *ngIf="!activeflag">
+        <div style="margin-top:20px;" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
+      </div>
+     
     </div>
 
   </div>
@@ -171,6 +177,7 @@
           <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.</p>
           <p class="price-tag">INR 4000 + 18% GST</p>
           <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">Buy It</div>
+          <div *ngIf="!activeflag" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
         </div>
 
         <div class="box-middle-layout">
@@ -184,6 +191,7 @@
           <p class="price-tag">
             <span style="text-decoration: line-through;color:red">INR 9000</span><br/>INR 7500 (Special discounted Rate) + 18% GST</p>
           <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">Buy It</div>
+          <div *ngIf="!activeflag" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
         </div>
 
         <div class="box-layout1">
@@ -193,6 +201,8 @@
           <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
           </p>
           <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">Buy It</div>
+          <div *ngIf="!activeflag" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
+       
         </div>
       </div>
 

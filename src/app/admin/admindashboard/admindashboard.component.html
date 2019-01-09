@@ -793,7 +793,8 @@
                                                         <th>Remove
                                                         </th>
                                                         <th>Download
-                                                        </th>
+                                                        </th> <th>View
+                                                            </th>
                                                     </tr>
                                                 </thead>
 
@@ -815,6 +816,11 @@
                                                                 class="fa fa-download" aria-hidden="true"></i>
 
                                                         </td>
+                                                        <td style='text-align:center'>
+                                                                <a style="cursor: pointer;color: black"  target="new" href={{viewur}}{{doc.id}}>
+                                                                <i class="fa fa-eye" aria-hidden="true"> </i></a>
+                                                               
+                                                            </td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
@@ -856,7 +862,7 @@
                                 <div *ngIf="!propertytabModal && !documentstabModal && commentstabModal">
 
                                     <div class="col property-tab-style">
-                                        <form [formGroup]="commentForm" (ngSubmit)="commentFun(commentForm)">
+                                        <form [formGroup]="commentForm" (ngSubmit)="commentFun(commentForm)" >
 
 
                                             <h6>Add Comment</h6>
@@ -955,6 +961,11 @@
                                                                 <span *ngIf="comment.severity==='Others' ">Others</span>
                                                             </p>
                                                             <p class="comment-description"><b>Comment</b> :{{comment.description}}</p>
+                                                            <span class="comment-reply-btn" *ngIf="comment.documentName!=null">
+                                                                    <a style="cursor: pointer;color: #f9a069"  target="new" href={{viewcommentur}}{{comment.id}}>
+                                                                            <i class="fa fa-eye" aria-hidden="true"> </i></a>
+                                                             
+                                                            </span>
                                                             <span class="comment-reply-btn">
                                                                 <i style="cursor: pointer" *ngIf="comment.documentName!==null"
                                                                     (click)="getporpertyCommentdocDownloadUrl(comment.id)"
