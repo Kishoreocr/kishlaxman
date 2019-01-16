@@ -248,7 +248,7 @@
     font-size: 16px;
     padding: 5px 0px;
     margin: 0px 15px;
-    color: rgba(0,0,0,0.8);
+    color: #fff;
     font-weight: 500;
     cursor:pointer;
 }
@@ -266,4 +266,35 @@
  margin: 0px auto;
  text-align: left;
  padding:20px;
+}
+.package-bg{
+    background-image: url(../../assets/images/package_bg_img.jpg);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    height:450px;
+    background-size: cover;
+}
+.package-page-heading{
+    text-align: center;
+    padding: 50px 10px 30px 10px;
+    color: #fff;
+}
+@media(max-width:600px){
+
+.package-page-heading{
+    text-align: center;
+    padding: 50px 10px 30px 10px;
+    color: #000;
+}
+.package-bg{
+    background-image: none;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    height:auto;
+    background-size: none;
+}
+}
+.package-div-height{
+    min-height:900px;
+    height:100%;
 }
