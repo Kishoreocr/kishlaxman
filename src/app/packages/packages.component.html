@@ -1,104 +1,127 @@
 <div class="package-div-height">
-<div class="container-fluid package-bg">
-<div class="container container-top-padding">
+  <div class="container-fluid package-bg">
+    <div class="container container-top-padding">
 
-  <h4 class="package-page-heading">We Have a Package Plan That Fits You.
-    <br/>
-    <!-- <p style="font-size:14px;font-weight:200;word-spacing: 2px;padding:5px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry</p> -->
-  </h4>
+      <h4 class="package-page-heading">We Have a Package Plan That Fits You.
+        <br />
+        <!-- <p style="font-size:14px;font-weight:200;word-spacing: 2px;padding:5px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry</p> -->
+      </h4>
 
-  <div class="row justify-content-center d-block d-sm-none">
+      <div class="row justify-content-center d-block d-sm-none">
 
-    <div class="col-md-3 package-tile-style" style="background-color:#f3f2f2;">
-      <div class="package-hding">
-        SILVER
-        <!-- <P>1-MONTH</P> -->
+        <div class="col-md-3 package-tile-style" style="background-color:#f3f2f2;">
+          <div class="package-hding">
+            SILVER
+            <!-- <P>1-MONTH</P> -->
+          </div>
+          <div class="package-options">
+              <ul>
+                <li>
+                  <i class="fa fa-check"></i>
+                  we will validate the Encumbrance Certificate for your property and provide 3 physical inspection
+                  reports during the duration of the project.
+                </li>
+                <li>
+                  <i class="fa fa-check"></i>
+                  This package lasts for 3 months from the date of activation and needs to be renewed in 3-month
+                  intervals.
+                </li>
+                <li>
+                  <i class="fa fa-check"></i>
+                  Covers 1 Property
+                </li>
+           
+              <li>INR 4000 + 18% GST </li>
+
+            </ul>
+
+          </div>
+
+          <div align="center" *ngIf="activeflag">
+            <span style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">Buy
+              It</span>
+          </div>
+          <div align="center" *ngIf="!activeflag">
+            <span style="margin-top:20px;" class="orange-clr-btn" (click)="loginformFun()">Buy It</span>
+          </div>
+        </div>
+
+        <div class="col-md-3 package-tile-style" style="background-color:#f3f2f2;">
+
+          <div class="package-hding">
+            GOLD
+            <!-- <P>1-YEAR</P> -->
+          </div>
+          <div class="package-options">
+              <ul>
+                <li>
+                  <i class="fa fa-check"></i>
+                  In the Gold package, apart from validating your property's Encumbrance Certificate, we will
+                  endeavor to validate all your property documents.
+                </li>
+                <li>
+                  <i class="fa fa-check"></i>
+                  We will also provide 12 physical inspection reports during the duration of the project. </li>
+                <li>
+                  <i class="fa fa-check"></i>
+                  This package lasts for 12 months from the date of activation and needs to be renewed annually.</li>
+                <li>
+                  <i class="fa fa-check"></i>Covers 1 Property &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+              <li><span style="text-decoration: line-through;color:red">INR 9000</span><br />INR 7500 (Special
+                discounted Rate) + 18% GST </li>
+            </ul>
+
+          </div>
+
+          <div align="center" *ngIf="activeflag">
+            <span style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">Buy
+              It</span>
+          </div>
+          <div align="center" *ngIf="!activeflag">
+            <span style="margin-top:20px;" class="orange-clr-btn" (click)="loginformFun()">Buy It</span>
+          </div>
+
+
+        </div>
+
+        <div class="col-md-3 package-tile-style" style="background-color:#f3f2f2;">
+
+          <div class="package-hding">
+            CUSTOM
+            <!-- <P>CUSTOM</P> -->
+          </div>
+          <div class="package-options">
+            <ul>
+                <li>
+                    <i class="fa fa-check"></i>
+                    If you feel your property needs a different monitoring,please click below for an individualized
+                    package tailored to your unique requirements.
+                  </li>
+
+
+            </ul>
+
+          </div>
+
+          <div align="center" *ngIf="activeflag">
+            <div style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">Buy
+              It</div>
+          </div>
+          <div align="center" *ngIf="!activeflag">
+            <div style="margin-top:20px;" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
+          </div>
+
+        </div>
+
       </div>
-      <div class="package-options">
-        <ul>
-          <li>
-            <i class="fa fa-check"></i> While we have taken care to make sure that we have created a Quarterly Plan for you.</li>
-          <li>
-            <i class="fa fa-check"></i> If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
-            Kindly feel free to contact us and get a customised quote.</li>
-          <li>INR 4000 + 18% GST </li>
-
-        </ul>
-
-      </div>
-
-      <div align="center" *ngIf="activeflag">
-        <span style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">Buy It</span>
-      </div>
-      <div align="center" *ngIf="!activeflag">
-        <span style="margin-top:20px;" class="orange-clr-btn" (click)="loginformFun()">Buy It</span>
-      </div>
-    </div>
-
-    <div class="col-md-3 package-tile-style" style="background-color:#f3f2f2;">
-
-      <div class="package-hding">
-        GOLD
-        <!-- <P>1-YEAR</P> -->
-      </div>
-      <div class="package-options">
-        <ul>
-          <li>
-            <i class="fa fa-check"></i> While we have taken care to make sure that we have created a yearly Plan for you.</li>
-          <li>
-            <i class="fa fa-check"></i>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
-            Kindly feel free to contact us and get a customised quote.</li>
-          <li><span style="text-decoration: line-through;color:red">INR 9000</span><br/>INR 7500 (Special discounted Rate) + 18% GST </li>
-        </ul>
-
-      </div>
-
-      <div align="center" *ngIf="activeflag">
-        <span style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">Buy It</span>
-      </div>
-      <div align="center" *ngIf="!activeflag">
-        <span style="margin-top:20px;" class="orange-clr-btn" (click)="loginformFun()">Buy It</span>
-      </div>
 
 
-    </div>
+      <!-- display only at large screens  -->
 
-    <div class="col-md-3 package-tile-style" style="background-color:#f3f2f2;">
+      <div class="row justify-content-center d-none d-sm-block">
 
-      <div class="package-hding">
-        CUSTOM
-        <!-- <P>CUSTOM</P> -->
-      </div>
-      <div class="package-options">
-        <ul>
-          <li>
-            <i class="fa fa-check"></i> While we have taken care to make sure that we have created a Pocket friendly Plan for you.</li>
-          <li>
-            <i class="fa fa-check"></i>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
-            Kindly feel free to contact us and get a customised quote.</li>
-
-
-        </ul>
-
-      </div>
-
-      <div align="center" *ngIf="activeflag">
-        <div style="margin-top:20px;" class="orange-clr-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">Buy It</div>
-      </div>
-      <div align="center" *ngIf="!activeflag">
-        <div style="margin-top:20px;" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
-      </div>
-     
-    </div>
-
-  </div>
-
-
-  <!-- display only at large screens  -->
-
-  <div class="row justify-content-center d-none d-sm-block">
-
-    <!-- <div class="package-container">
+        <!-- <div class="package-container">
 
       <div class="package-side-left">
         <ul>
@@ -161,136 +184,174 @@
       </div>
     </div> -->
 
-    <div class="tabs-style">
-      <ul>
-        <li [ngClass]="{'activeTab': monitoring === true}" class="activeTab" (click)="tabshow('monitoring')">Monitoring Packages</li>
-        <li (click)="tabshow('additional')" [ngClass]="{'activeTab': additional === true}">Additional Services</li>
-      </ul>
-    </div>
-    <div class="container" style="margin:30px auto;text-align: center;">
-
-      <div *ngIf="monitoring">
-        <div class="box-layout1">
-          <h1 class="text-heading">SILVER </h1>
-          <p class="package-contain-heading">
-            While we have taken care to make sure that we have created a Quarterly Plan for you.
-
-          </p>
-          <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.</p>
-          <p class="price-tag">INR 4000 + 18% GST</p>
-          <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">Buy It</div>
-          <div *ngIf="!activeflag" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
+        <div class="tabs-style">
+          <ul>
+            <li [ngClass]="{'activeTab': monitoring === true}" class="activeTab" (click)="tabshow('monitoring')">Monitoring
+              Packages</li>
+            <li (click)="tabshow('additional')" [ngClass]="{'activeTab': additional === true}">Additional Services</li>
+          </ul>
         </div>
+        <div class="container" style="margin:30px auto;text-align: center;">
 
-        <div class="box-middle-layout">
-
-          <div class="middle-head">Most Popular</div>
-          <h1 class="text-heading">GOLD</h1>
-          <p class="package-contain-heading">
-            While we have taken care to make sure that we have created a yearly Plan for you.
-          </p>
-          <p style="padding:10px">If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.</p>
-          <p class="price-tag">
-            <span style="text-decoration: line-through;color:red">INR 9000</span><br/>INR 7500 (Special discounted Rate) + 18% GST</p>
-          <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">Buy It</div>
-          <div *ngIf="!activeflag" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
-        </div>
-
-        <div class="box-layout1">
-          <h1 class="text-heading">CUSTOM</h1>
-          <p class="package-contain-heading">
-            While we have taken care to make sure that we have created a Pocket friendly Plan for you.</p>
-          <p>If you feel your property needs a different monitoring, get customised monitoring plans to suit your requirements.
-          </p>
-          <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">Buy It</div>
-          <div *ngIf="!activeflag" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
-       
-        </div>
-      </div>
-
-
-      <div *ngIf="additional">
-
-        <div class="row" align="center">
-          <div class="additional-style">
-            <p>
-              Please <a routerLink="/contactus" routerlinkactive="activeClss" style="color:#fd7f08;">Contact US</a> for additional services:
-            </p>
-         
-
-              <ul>
+          <div *ngIf="monitoring">
+            <div class="box-layout1">
+              <h1 class="text-heading">SILVER </h1>
+              <div class="package-options">
+                <ul>
                   <li>
-                     Legal Advice
-                    </li>
-                <li>
-                  Document Verification
-                </li>
-                <li>
-                  Site/Land Services
-                </li>
-                <li>
-                  Name Change in Revenue
-                </li>
-                <li>
-                  Passbook Updates
-                </li>
-                <li>
-                  Land/Property Taxes
-                </li>
-                <li>
-                  Electricity Connections. etc.
-                </li>
-              </ul>
+                    <i class="fa fa-check"></i>
+                    we will validate the Encumbrance Certificate for your property and provide 3 physical inspection
+                    reports during the duration of the project.
+                  </li>
+                  <li>
+                    <i class="fa fa-check"></i>
+                    This package lasts for 3 months from the date of activation and needs to be renewed in 3-month
+                    intervals.
+                  </li>
+                  <li>
+                    <i class="fa fa-check"></i>
+                    Covers 1 Property
+                  </li>
+                </ul>
+              </div>
+              <p class="price-tag">INR 4000 + 18% GST</p>
+              <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('QUATERLY',1,'custom-modal-package-choosen')">Buy
+                It</div>
+              <div *ngIf="!activeflag" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
+            </div>
+
+            <div class="box-middle-layout">
+
+              <div class="middle-head">Most Popular</div>
+              <h1 class="text-heading">GOLD</h1>
+
+              <div class="package-options">
+                <ul>
+                  <li>
+                    <i class="fa fa-check"></i>
+                    In the Gold package, apart from validating your property's Encumbrance Certificate, we will
+                    endeavor to validate all your property documents.
+                  </li>
+                  <li>
+                    <i class="fa fa-check"></i>
+                    We will also provide 12 physical inspection reports during the duration of the project. </li>
+                  <li>
+                    <i class="fa fa-check"></i>
+                    This package lasts for 12 months from the date of activation and needs to be renewed annually.</li>
+                  <li>
+                    <i class="fa fa-check"></i>Covers 1 Property &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
+              </div>
+              <p class="price-tag">
+                <span style="text-decoration: line-through;color:red">INR 9000</span><br />INR 7500 (Special discounted
+                Rate) + 18% GST</p>
+              <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('YEARLY',2,'custom-modal-package-choosen')">Buy
+                It</div>
+              <div *ngIf="!activeflag" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
+            </div>
+
+            <div class="box-layout1">
+              <h1 class="text-heading">CUSTOM</h1>
+              <div class="package-options">
+                <ul>
+                  <li>
+                    <i class="fa fa-check"></i>
+                    If you feel your property needs a different monitoring,please click below for an individualized
+                    package tailored to your unique requirements.
+                  </li>
+                </ul>
+              </div>
+              <div *ngIf="activeflag" class="orange-clr-btn" (click)="packageFun('CUSTOM',3,'custom-modal-package-choosen')">Buy
+                It</div>
+              <div *ngIf="!activeflag" class="orange-clr-btn" (click)="loginformFun()">Buy It</div>
+
+            </div>
+          </div>
+
+
+          <div *ngIf="additional">
+
+            <div class="row" align="center">
+              <div class="additional-style">
+                <p>
+                  Please <a routerLink="/contactus" routerlinkactive="activeClss" style="color:#fd7f08;">Contact US</a>
+                  for additional services:
+                </p>
+
+
+                <ul>
+                  <li>
+                    Legal Advice
+                  </li>
+                  <li>
+                    Document Verification
+                  </li>
+                  <li>
+                    Site/Land Services
+                  </li>
+                  <li>
+                    Name Change in Revenue
+                  </li>
+                  <li>
+                    Passbook Updates
+                  </li>
+                  <li>
+                    Land/Property Taxes
+                  </li>
+                  <li>
+                    Electricity Connections. etc.
+                  </li>
+                </ul>
+
+              </div>
+            </div>
 
           </div>
+
+
         </div>
 
-      </div>
 
+
+        <app-modal-property id="custom-modal-package-choosen">
+          <div class="modal">
+            <div class="row justify-content-md-center justify-content-sm-center no-gutters">
+              <div class="modal-body col-md-4 col-sm-6" style="padding:0px;">
+
+                <div class='col modal-heading'>
+                  <p>Confirm Plan Choosen?
+                  </p>
+                </div>
+                <app-loading-div *ngIf="isLoading"></app-loading-div>
+
+                <div class="close-icon-style">
+                  <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('custom-modal-package-choosen');"></i>
+                </div>
+                <div class="col content-style">
+                  <p>
+                    Please confirm your PLAN
+                    <b>{{selectedPlan}}</b>
+                  </p>
+                </div>
+                <div class='col btn-bottom-style'>
+                  <button class="submit-btn-confirm" (click)="confirmPackage();">Confirm</button>
+                  <button class="submit-btn" (click)="closeModal('custom-modal-package-choosen');">Cancel</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-background"></div>
+        </app-modal-property>
+
+
+
+
+
+      </div>
 
     </div>
-
-
-
-    <app-modal-property id="custom-modal-package-choosen">
-      <div class="modal">
-        <div class="row justify-content-md-center justify-content-sm-center no-gutters">
-          <div class="modal-body col-md-4 col-sm-6" style="padding:0px;">
-
-            <div class='col modal-heading'>
-              <p>Confirm Plan Choosen?
-              </p>
-            </div>
-            <app-loading-div *ngIf="isLoading"></app-loading-div>
-
-            <div class="close-icon-style">
-              <i class="fa fa-times closeIcon-style" aria-hidden="true" (click)="closeModal('custom-modal-package-choosen');"></i>
-            </div>
-            <div class="col content-style">
-              <p>
-                Please confirm your PLAN
-                <b>{{selectedPlan}}</b>
-              </p>
-            </div>
-            <div class='col btn-bottom-style'>
-              <button class="submit-btn-confirm" (click)="confirmPackage();">Confirm</button>
-              <button class="submit-btn" (click)="closeModal('custom-modal-package-choosen');">Cancel</button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-background"></div>
-    </app-modal-property>
-
-
-
-
-
   </div>
-
-</div>
-</div>
 </div>
 <!-- <app-loading-div *ngIf="isLoading"></app-loading-div>  -->
