@@ -23,6 +23,7 @@
     width:100%;min-height:180px;
     /* padding:10px; */
     text-align: justify !important;
+    padding: 0px 8px;
 }
 .package-options > ul{
     margin:0px;
@@ -282,6 +283,7 @@
     background-repeat: no-repeat;
     height:450px;
     background-size: cover;
+    opacity: 5;
 }
 .package-page-heading{
     text-align: center;
@@ -300,7 +302,7 @@
     background-position: 0px 0px;
     background-repeat: no-repeat;
     height:auto;
-    background-size: none;
+    background-size: none;   
 }
 }
 .package-div-height{

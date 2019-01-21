@@ -14,7 +14,8 @@
   }  
     .container-style{
         padding: 20px;
-        background-color: #fffbfb;
+        /* background-color: #fffbfb; */
+        background-color:white;
         border-radius: 6px;
         width: 100%;
         margin: 0px auto!important;
@@ -29,6 +30,9 @@
     }
     span.mandatory{
         color:red;
+    }
+    .form-control{
+        background-color: #e9ecef;
     }
 .justify-content-center{
     margin-top: 30px !important;
