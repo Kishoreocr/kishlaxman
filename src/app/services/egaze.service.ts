@@ -5,9 +5,9 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class EgazeService {
   //DEV
-  private baseUrl: string = 'http://202.153.46.90:8080/egaze-api/';
+ //private baseUrl: string = 'http://202.153.46.90:8080/egaze-api/';
   //PROD
- // private baseUrl: string = 'https://www.egaze.in/egaze-api/';
+  private baseUrl: string = 'https://www.egaze.in/egaze-api/';
   //private baseUrl: string = 'http://localhost:8080/egaze-api/';
   constructor(private http: HttpClient) { }
 
@@ -197,6 +197,9 @@ export class EgazeService {
     formdata.append('propertyId', propetyId);
     formdata.append('status', status);
     //alert(file)
+    // for(var i=0; i<file.length;i++){
+    // formdata.append('file[]', file[i]);
+    // }
     formdata.append('file', file);
     // if admin then user id is zero.
     if (role === 'Admin1') {
@@ -211,7 +214,7 @@ export class EgazeService {
     }
     formdata.append('role', role);
     formdata.append('description', description);
-
+//alert(formdata)
     return this.http.post(this.baseUrl + "uploadFile/propertydocs/agent", formdata);
 
   }
@@ -324,12 +327,13 @@ export class EgazeService {
   getAllContactUsRequests() {
     return this.http.get(this.baseUrl + "getall/contactus")
   }
-  updatecontactus(requestData, freq) {
+  updatecontactus(requestData, freq,email) {
     var data = {
       "id": freq.id,
       "status": requestData.status,
       "description": requestData.description,
-      "type": freq.type
+      "type": freq.type,
+      "email":email
     }
     //alert(JSON.stringify(data));
 

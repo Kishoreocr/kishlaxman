@@ -167,6 +167,7 @@ export class UserdashboardComponent implements OnInit {
     this.upgradePlanForm = this.formBuilder.group({
       plandetailsField: ['', Validators.required]
     });
+    //this.getPropertiesCount();
   }
 
   passwordConfirming(c: AbstractControl): any {

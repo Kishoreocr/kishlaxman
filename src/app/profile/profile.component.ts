@@ -41,9 +41,9 @@ export class ProfileComponent implements OnInit {
   hideIconEye2: boolean = false;
 
 
-  constructor(private formBuilder: FormBuilder, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService, ) {
+  constructor(private formBuilder: FormBuilder, private EgazeService: EgazeService, private sessionstorageService: SessionstorageService ) {
     // this.user = JSON.parse(this.sessionstorageService.getUserDetails() + "");
-    debugger;
+    //debugger;
     // this.getsaveprofile();
     this.showText = false;
     this.showIconEye = false;

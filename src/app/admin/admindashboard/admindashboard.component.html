@@ -862,7 +862,7 @@
                                 <div *ngIf="!propertytabModal && !documentstabModal && commentstabModal">
 
                                     <div class="col property-tab-style">
-                                        <form [formGroup]="commentForm" (ngSubmit)="commentFun(commentForm)" >
+                                        <form [formGroup]="commentForm" (ngSubmit)="commentFun(commentForm)" enctype="multipart/form-data"  >
 
 
                                             <h6>Add Comment</h6>
@@ -929,7 +929,7 @@
                                                 <div class="col-sm-4">
                                                     <div class="form-group uploadfile-style">
                                                         <input type="file" name="commentfile" formControlName="commentfile"
-                                                            title="Browse Document" class="form-control-file" (change)="fileSelectionEventcomments($event)">
+                                                            title="Browse Document" class="form-control-file" (change)="fileSelectionEventcomments($event)" multiple="multiple">
                                                     </div>
                                                 </div>
 

@@ -37,13 +37,14 @@ export class AdminContactusComponent implements OnInit {
     }, error => {
     });
   }
-  
+  email:any;
   openModal(id: string, cust) {
     this.submitted=false;
     this.frequest=cust;
     this.feedbackForm.controls['status'].setValue(cust.status);
     this.feedbackForm.controls['description'].setValue(cust.shortDescription);
     this.modalService.open(id);
+    this.email=cust.email;
     if(cust.status === 'P'){
       this.feedbackForm.controls['status'].setValue("Approved");
     }
@@ -61,7 +62,7 @@ export class AdminContactusComponent implements OnInit {
     if (this.feedbackForm.valid) {
       this.isLoading = true;
       //alert(JSON.stringify(this.feedbackForm))
-      this.egazeService.updatecontactus(this.feedbackForm.value,this.frequest).subscribe(result => {
+      this.egazeService.updatecontactus(this.feedbackForm.value,this.frequest,this.email).subscribe(result => {
         //this.requests = result;
         this.isLoading = false;
 

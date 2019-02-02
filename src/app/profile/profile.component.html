@@ -229,9 +229,9 @@
                 <strong>{{profilechndResultMsg}}</strong>
             </div>
 
-            <form [formGroup]="updateuserNewpwdForm" (ngSubmit)="profileChangepwdSubmit(updateuserNewpwdForm)">
+            <form [formGroup]="updateuserNewpwdForm" (ngSubmit)="profileChangepwdSubmit(updateuserNewpwdForm)" >
 
-                <div class="form-group row">
+                <div class="form-group row  justify-content-center" >
                     <!-- <label class="col-12 col-sm-3 col-md-2 col-lg-2 col-form-label">Old Password</label> -->
                     <div class="col-12 col-sm-8 col-md-5 col-lg-4 passwordInput">
                         <input [type]="showText ? 'text' : 'password' " formControlName="oldpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.oldpwd.errors }"
@@ -252,7 +252,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row  justify-content-center">
                     <!-- <label class="col-12 col-sm-3 col-md-2 col-lg-2 col-form-label">New Password</label> -->
                     <div class="col-12 col-sm-8 col-md-5 col-lg-4 passwordInput">
                         <input [type]="showText1 ? 'text' : 'password' " formControlName="newpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.newpwd.errors }"
@@ -272,7 +272,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row  justify-content-center">
                     <!-- <label class="col-12 col-sm-3 col-md-2 col-lg-2 col-form-label">Confirm Password</label> -->
                     <div class="col-12 col-sm-8 col-md-5 col-lg-4 passwordInput">
                         <input [type]="showText2 ? 'text' : 'password' " formControlName="confirmpwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && fpwdP.confirmpwd.errors }"
@@ -294,9 +294,11 @@
                     </div>
 
                 </div>
-                <div class="col-md-4 offset-md-3" style="margin-top:15px;">
+                <div class="form-group row  justify-content-center">
+                
+                <div class="col-4 col-sm-8 col-md-5 col-lg-4" align='center' style="margin-top:15px;">
                     <button class="submit-btn">SAVE</button>
-                </div>
+                </div></div>
             </form>
 
             <div class='col' align='center' *ngIf="resultMsg!=''">
